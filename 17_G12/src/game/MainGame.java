@@ -10,6 +10,11 @@ package game;
  * @author Stephanie
  */
 public class MainGame {
+    // made by steph.
+    public static void main(String[] args) 
+    {
+        // this is the main guys
+    }
     
     
     // testing
