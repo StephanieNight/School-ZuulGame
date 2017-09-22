@@ -18,12 +18,13 @@ public class MainGame {
     
     
     // testing
-    private void notAThing() {
+    private void notAThing() 
+    {
         
     }
     
-    private void benjamin() {
+    private void benjamin() 
+    {
         
-    }
-    
+    }   
 }
