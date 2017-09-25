@@ -28,4 +28,10 @@ public class MainGame {
     {
         
     }   
+
+private void malte() {
+for (int i = 0; i < 10; i++) {
+    System.out.println("Malte er awesome");
+}
+}
 }
