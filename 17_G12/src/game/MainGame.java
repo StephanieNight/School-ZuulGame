@@ -5,6 +5,8 @@
  */
 package game;
 
+import gameframework.Game;
+
 /**
  *
  * @author Stephanie
@@ -12,26 +14,8 @@ package game;
 public class MainGame {
     // made by steph.
     public static void main(String[] args) 
-    {
-        // this is the main guys
-       int i = 0;
-    }
-    
-    
-    // testing
-    private void notAThing() 
-    {
-        
-    }
-    
-    private void benjamin() 
-    {
-        
-    }   
-
-private void malte() {
-for (int i = 0; i < 10; i++) {
-    System.out.println("Malte er awesome");
-}
-}
+    {       
+       Game g = new Game();
+       g.play();
+    }  
 }
