@@ -14,7 +14,7 @@ public class MainGame {
     public static void main(String[] args) 
     {
         // this is the main guys
-       int i = 0;
+       int i = 6;
     }
     
     
