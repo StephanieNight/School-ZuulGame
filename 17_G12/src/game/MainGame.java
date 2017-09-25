@@ -19,6 +19,9 @@ public class MainGame
        Game g = new Game();
        g.play();
     }  
+    private void getHighscore()
+    {
+    }
 }
 
 
