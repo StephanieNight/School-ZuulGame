@@ -11,6 +11,12 @@ package gameframework;
  */
 public class Combat {
     
+    
+    /**
+     * Calculate if hit, and how much damage done.
+     * @param attack
+     * @param defense 
+     */
     public void attack (Character attack, Character defense)
     {
         if (!isHit(attack.getAttackHitModifier(), defense.getDefenseEvation()))
@@ -27,6 +33,12 @@ public class Combat {
         }
     }
     
+    /**
+     * Calculate if hit is true.
+     * @param attack
+     * @param defense
+     * @return 
+     */
     private boolean isHit(int attack, int defense)
     {
         if ((int)(Math.random() * 100) + attack - defense >= 100)
@@ -39,6 +51,12 @@ public class Combat {
         }
     }
     
+    
+    /**
+     * Loop for combat ending when a character dies.
+     * @param character1
+     * @param character2 
+     */
     public void combatLoop(Character character1, Character character2)
     {
         while (character1.getHealthPoints() > 0 && character2.getHealthPoints() > 0)
@@ -55,7 +73,9 @@ public class Combat {
             attack(character2, character1);
             if (character1.getHealthPoints() < 0)
             {
-                System.out.println(character1.getCharacterName() + " died...");
+                character2.setTotalExp(character1.getExpWorth());
+                character2.updateLevel();
+                System.out.println(character1.getCharacterName() + " killed " + character1.getCharacterName());
                 break;
             }
             
