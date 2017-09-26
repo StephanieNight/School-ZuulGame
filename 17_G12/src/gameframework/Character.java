@@ -14,26 +14,31 @@ public class Character
     private String characterName = "";
     private String description = "";
     private int healthPoints = 100;
-    private int attackDamage = 0;
-    private int attackHitModifier = 0;
-    private int defenseEvation = 0;
+    private int attackBaseDamage = 10;
+    private int attackBaseHitModifier = 0;
+    private int defenseBaseEvation = 5;
     private int defenseArmor = 0;
     private int level =1;
+    private int expWorth = 1;
+    private int totalExp = 0;
+    
+    
+    // the next is work in progress
     // private Item weapon;
     // private Item armor;
     // private Item shield;
     
     Character(String characterName, String description, int healthPoints, 
-            int attackDamage, int attackHitModifier, int defenseArmor, 
-            int defenseEvation, int level)
+            int attackBaseDamage, int attackBaseHitModifier, int defenseArmor, 
+            int defenseBaseEvation, int level)
     {   
         this.characterName = characterName;
         this.description = description;
         this.healthPoints = healthPoints; 
-        this.attackDamage = attackDamage;
-        this.attackHitModifier = attackHitModifier;
+        this.attackBaseDamage = attackBaseDamage;
+        this.attackBaseHitModifier = attackBaseHitModifier;
         this.defenseArmor = defenseArmor;
-        this.defenseEvation = defenseEvation;
+        this.defenseBaseEvation = defenseBaseEvation;
         this.level = level;
     }
     
@@ -54,7 +59,7 @@ public class Character
      * @param character
      * @return Character.characterName
      */
-    public String getCharacterName(Character character)
+    public String getCharacterName()
     {
         return this.characterName;
     }
@@ -73,7 +78,7 @@ public class Character
      * @param character
      * @return 
      */
-    public String getDiscription (Character character)
+    public String getDiscription ()
     {
         return this.description;
     }
@@ -89,51 +94,100 @@ public class Character
     
     /**
      * getter for healthPoints
-     * @param character
      * @return 
      */
-    public int getHealthPoints (Character character)
+    public int getHealthPoints ()
     {
         return this.healthPoints;
     }
+    
     /**
-     * 
-     * @param character
+     * gets actual attack damage
+     * @return
+     */
+    public int getAttackDamage()
+    {
+        return this.attackBaseDamage * this.level; // + this.weapon.damage
+    }
+    
+    /**
+     * getter for attackHitModifier
      * @return 
      */
-    public int getAttackDamage(Character character)
+    public int getAttackHitModifier()
     {
-        return this.attackDamage;
+        return this.attackBaseHitModifier * this.level; 
     }
-    public int getAttackHitModifier(Character character)
+    
+    /**
+     * getter for defenseEvation
+     * @return 
+     */
+    public int getDefenseEvation() 
     {
-        return this.attackHitModifier;
+        return this.defenseBaseEvation * this.level;
     }
-    public int getDefenseEvation(Character character) 
-    {
-        return this.defenseEvation;
-    }
-    public int getDefenseArmor(Character character)
+    
+    /**
+     * getter for defenseArmor
+     * @return 
+     */
+    public int getDefenseArmor()
     {
         return this.defenseArmor;
     }
     
-    public void setAttackDamage(int attackDamage)
+    /**
+     * setter for attackBaseDamage
+     * @param attackBaseDamage 
+     */
+    public void setAttackDamage(int attackBaseDamage)
     {
-        this.attackDamage = attackDamage;
+        this.attackBaseDamage = attackBaseDamage;
     }
-    public void setAttackHitModifier(int attackHitModifier)
+    
+    /**
+     * setter for attackHitModifier
+     * @param attackHitModifier 
+     */
+    public void setAttackHitModifier(int attackBaseHitModifier)
     {
-        this.attackHitModifier = attackHitModifier;
+        this.attackBaseHitModifier = attackBaseHitModifier;
     }
-    public void setDefenseEvation(int defenseEvation)
+    
+    /**
+     * setter for defenseEvation
+     * @param defenseEvation 
+     */
+    public void setDefenseEvation(int defenseBaseEvation)
     {
-        this.defenseEvation = defenseEvation;
+        this.defenseBaseEvation = defenseBaseEvation;
     }
+    
+    /**
+     * setter for defenseArmor
+     * @param defenseArmor 
+     */
     public void setDefenseArmor(int defenseArmor)
     {
         this.defenseArmor = defenseArmor;
     }
+    
+    public int getExpWorth()
+    {
+        return this.expWorth;
+    }
+    public void setTotalExp(int expWorth)
+    {
+        this.totalExp = this.totalExp + expWorth;
+    }
+    
+    public void updateLevel()
+    {
+        this.level = 1 + (totalExp / 3);
+    }
+    
+    
     /*
     soudo kode fordi jeg ikke helt ved hvordan det skal gøres
     
