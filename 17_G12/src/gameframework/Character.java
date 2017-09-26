@@ -11,11 +11,11 @@ package gameframework;
  */
 public class Character 
 {
-    Character(String name, String description, int health)
+    Character(String characterName, String description, int healthPoints)
     {   
-        this.characterName = name;
+        this.characterName = characterName;
         this.description = description;
-        this.healthPoints = health;                
+        this.healthPoints = healthPoints;                
     }
     
     private String characterName;
