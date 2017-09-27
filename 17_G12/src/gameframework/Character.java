@@ -28,13 +28,41 @@ public class Character
     // private Item armor;
     // private Item shield;
     
+    
+    /**
+     * constructor for player character
+     * @param characterName 
+     */
+    Character(String characterName)
+    {
+        this.characterName = characterName;
+    }
+    
+    /**
+     * constructor for monsters
+     * @param characterName
+     * @param description
+     * @param healthPoints
+     * @param attackBaseDamage
+     * @param attackBaseHitModifier
+     * @param defenseArmor
+     * @param defenseBaseEvation
+     * @param level
+     * @param expWorth 
+     */
     Character(String characterName, String description, int healthPoints, 
             int attackBaseDamage, int attackBaseHitModifier, int defenseArmor, 
-            int defenseBaseEvation, int level)
+            int defenseBaseEvation, int level, int expWorth)
     {   
         this.characterName = characterName;
         this.description = description;
         this.healthPoints = healthPoints; 
+        this.attackBaseDamage = attackBaseDamage;
+        this.attackBaseHitModifier = attackBaseHitModifier;
+        this.defenseArmor = defenseArmor;
+        this.defenseBaseEvation = defenseBaseEvation;
+        this.level = level;
+        this.expWorth = expWorth;
     }
     
     
