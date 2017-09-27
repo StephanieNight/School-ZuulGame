@@ -21,8 +21,8 @@ public class Character
     private int level =1;
     private int expWorth = 1;
     private int totalExp = 0;
-    
-    
+
+     
     // the next is work in progress
     // private Item weapon;
     // private Item armor;
@@ -35,11 +35,6 @@ public class Character
         this.characterName = characterName;
         this.description = description;
         this.healthPoints = healthPoints; 
-        this.attackBaseDamage = attackBaseDamage;
-        this.attackBaseHitModifier = attackBaseHitModifier;
-        this.defenseArmor = defenseArmor;
-        this.defenseBaseEvation = defenseBaseEvation;
-        this.level = level;
     }
     
     
@@ -56,7 +51,7 @@ public class Character
     
     /**
      * getter for characterName
-     * @param character
+     * @param
      * @return Character.characterName
      */
     public String getCharacterName()
@@ -148,7 +143,7 @@ public class Character
     
     /**
      * setter for attackHitModifier
-     * @param attackHitModifier 
+     * @param attackBaseHitModifier 
      */
     public void setAttackHitModifier(int attackBaseHitModifier)
     {
@@ -157,7 +152,7 @@ public class Character
     
     /**
      * setter for defenseEvation
-     * @param defenseEvation 
+     * @param defenseBaseEvation 
      */
     public void setDefenseEvation(int defenseBaseEvation)
     {
@@ -185,6 +180,11 @@ public class Character
     public void updateLevel()
     {
         this.level = 1 + (totalExp / 3);
+    }
+    
+    public void setExpWorth(int expWorth)
+    {
+        this.expWorth = expWorth;
     }
     
     
