@@ -10,7 +10,11 @@ public class Command
 {
     private CommandWord commandWord;
     private String secondWord;
-
+/**
+ * Constructor.
+ * @param commandWord
+ * @param secondWord 
+ */
     public Command(CommandWord commandWord, String secondWord)
     {
         this.commandWord = commandWord;

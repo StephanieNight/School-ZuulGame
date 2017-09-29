@@ -24,18 +24,28 @@ public class Room
     {
         exits.put(direction, neighbor);
     }
-
+    /**
+     * 
+     * Gets the discription of the Room
+     * @return Discription
+     */
     public String getShortDescription()
     {
         return description;
     }
-
+    /**
+     * Gets a formated string with the description of the room and it's exists
+     * @return Long Decription of the room
+     */
     public String getLongDescription()
     {
         return "You are " + description + ".\n" + getExitString();
     }
-
-	private String getExitString()
+    /**
+     * a string with all the exits of the room
+     * @return Exists  
+     */
+    private String getExitString()
     {
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
@@ -44,7 +54,11 @@ public class Room
         }
         return returnString;
     }
-
+    /**
+     * 
+     * @param direction you whant to go in, North, South, West and east
+     * @return Room at the Exit
+     */
     public Room getExit(String direction) 
     {
         return exits.get(direction);
