@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 /**
+ * Parsses commands from the command line to the game.
+ * @author Groupe 12
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */

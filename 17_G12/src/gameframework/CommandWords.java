@@ -3,6 +3,7 @@ package gameframework;
 import java.util.HashMap;
 
 /**
+ * used in the parser as a ref. to legal commands to use. 
  * @author  Groupe 12
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
