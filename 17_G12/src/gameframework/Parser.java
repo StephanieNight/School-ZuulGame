@@ -14,12 +14,18 @@ public class Parser
     private CommandWords commands;
     private Scanner reader;
 
+    /**
+     * Constructor 
+     */
     public Parser() 
     {
         commands = new CommandWords();
         reader = new Scanner(System.in);
     }
-
+    /**
+     * gets the command from the command line. 
+     * @return a parsed, command if found. 
+     */
     public Command getCommand() 
     {
         
@@ -41,7 +47,9 @@ public class Parser
 
         return new Command(commands.getCommandWord(word1), word2);
     }
-
+    /**
+     * prints all commands.
+     */
     public void showCommands()
     {
         commands.showAll();

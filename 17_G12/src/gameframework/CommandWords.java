@@ -51,7 +51,7 @@ public class CommandWords
         return validCommands.containsKey(aString);
     }
     /**
-     * prints all commands 
+     * prints all commands, used in the parser to show all awailable commands. 
      */
     public void showAll() 
     {
