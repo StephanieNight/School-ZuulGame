@@ -1,7 +1,7 @@
 package gameframework;
 
 /** 
- * this is the command class
+ * this is the command class or something
  * @author Michael Kolling and David J. Barnes
  * @author Groupe 12.
  * @version 2006.03.30
