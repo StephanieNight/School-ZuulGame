@@ -3,14 +3,19 @@ package gameframework;
 import java.util.HashMap;
 
 /**
+ * @author  Groupe 12
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-
 public class CommandWords
 {
+    /**
+     * 
+     */
     private HashMap<String, CommandWord> validCommands;
-
+    /**
+     * 
+     */
     public CommandWords()
     {
         validCommands = new HashMap<String, CommandWord>();
@@ -22,8 +27,8 @@ public class CommandWords
     }
     /**
      * 
-     * @param commandWord
-     * @return 
+     * @param commandWord the command world to be found
+     * @return a commandword.
      */
     public CommandWord getCommandWord(String commandWord)
     {
@@ -44,7 +49,9 @@ public class CommandWords
     {
         return validCommands.containsKey(aString);
     }
-
+    /**
+     * prints all commands 
+     */
     public void showAll() 
     {
         for(String command : validCommands.keySet()) {
