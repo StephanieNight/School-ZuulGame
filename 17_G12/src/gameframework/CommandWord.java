@@ -1,6 +1,8 @@
 package gameframework;
 
 /**
+ * a collection of valid commandwords to use, it whould be here we whould add
+ * new ones for attacing and looting enamies.
  * @author Michael Kolling and David J. Barnes
  * @author Groupe 12
  * @version 2006.03.30

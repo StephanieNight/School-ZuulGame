@@ -59,5 +59,5 @@ public class CommandWords
             System.out.print(command + "  ");
         }
         System.out.println();
-    }
+    }   
 }
