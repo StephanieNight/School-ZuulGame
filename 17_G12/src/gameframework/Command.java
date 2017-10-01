@@ -1,7 +1,7 @@
 package gameframework;
 
 /** 
- * this is the command class it is used ass a way of storring valid commands 
+ * this is the command class it is used ass a way of storing valid commands 
  * for the game. it is primarily used by the parser class to parse input 
  * from the command line to the game.
  * @author Michael Kolling and David J. Barnes
@@ -13,10 +13,10 @@ public class Command
     private CommandWord commandWord;
     private String secondWord;
     /**
-    * the constructer.
+    * the constructor.
     * @param commandWord the main command word associated like go, 
     * help, and so on.
-    * @param secondWord used then you need to pair the commant with something 
+    * @param secondWord used then you need to pair the command with something 
     * like what direction to go in
     */
     public Command(CommandWord commandWord, String secondWord)
