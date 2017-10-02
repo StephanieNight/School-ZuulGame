@@ -37,7 +37,7 @@ public class Game
         lab.setExit("east", office);
 
         office.setExit("west", lab);
-
+        
         currentRoom = outside;
     }
 
