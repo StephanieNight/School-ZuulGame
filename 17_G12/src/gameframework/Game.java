@@ -7,14 +7,12 @@ package gameframework;
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;
-        
+    private Room currentRoom;        
     public Game() 
     {
         createRooms();
         parser = new Parser();
     }
-
     private void createRooms()
     {
         Room outside, theatre, pub, lab, office;
@@ -40,7 +38,6 @@ public class Game
         
         currentRoom = outside;
     }
-
     public void play() 
     {            
         printWelcome();
@@ -56,8 +53,8 @@ public class Game
     public void playTEST()
     {
         // test by stepth
-        Labyrinth l = new Labyrinth(7);
-        l.renderMap();
+        Labyrinth lab = new Labyrinth(7);
+        lab.renderMap();
         System.out.println("");
     }
 

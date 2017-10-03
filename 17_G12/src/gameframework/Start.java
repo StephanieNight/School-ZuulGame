@@ -12,6 +12,8 @@ package gameframework;
 public class Start {
     public static void main(String[] args)
     {
+        Game gameEngine = new Game();
+        gameEngine.playTEST();
         /*
         Game g = new Game();
         long time = System.currentTimeMillis();
