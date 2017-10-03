@@ -13,7 +13,8 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
-
+    private char occupamnt =' '; //ADDED by Steph
+            
     public Room(String description) 
     {
         this.description = description;
@@ -26,8 +27,8 @@ public class Room
     }
     /**
      * 
-     * Gets the discription of the Room
-     * @return Discription
+     * Gets the description of the Room
+     * @return Description
      */
     public String getShortDescription()
     {
@@ -56,12 +57,26 @@ public class Room
     }
     /**
      * 
-     * @param direction you whant to go in, North, South, West and east
+     * @param direction you want to go in, North, South, West and east
      * @return Room at the Exit
      */
     public Room getExit(String direction) 
     {
         return exits.get(direction);
     }
+    //ADDED by Steph
+    public void setOccupant(char c)
+    {
+        occupamnt = c;
+    }
+    public char getOccupant()
+    {
+        return occupamnt;
+    }
+    public boolean hasExit(String direction)
+    {
+        return exits.containsKey(direction);
+    }
+            
 }
 
