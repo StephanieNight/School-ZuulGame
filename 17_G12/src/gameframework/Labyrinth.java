@@ -79,7 +79,7 @@ public class Labyrinth
     private void generateMap(int size) 
     {
         // fuck hvad den var før nu skal der testes
-        size = 6;
+        size = 24;
         map = new Room[size][size];
         //
         // improv Generator

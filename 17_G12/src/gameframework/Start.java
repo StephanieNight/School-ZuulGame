@@ -12,6 +12,9 @@ package gameframework;
 public class Start {
     public static void main(String[] args) {
         Game g = new Game();
+        long time = System.currentTimeMillis();
         g.playTEST();
+        time = System.currentTimeMillis()-time;
+        System.out.println("Execution in ms: " +time);
     }
 }
