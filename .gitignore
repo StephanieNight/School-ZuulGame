@@ -4,3 +4,6 @@
 #ignored files 
 .gitignore
 *.properties
+/17_G12/dist/
+17_G12/nbproject/private/private.properties
+17_G12/build/built-jar.properties

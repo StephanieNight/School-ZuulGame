@@ -17,7 +17,7 @@ public class Combat {
      * @param attack
      * @param defense 
      */
-    public void attack (Character attack, Character defense)
+    public void attack (CharacterBase attack, CharacterBase defense)
     {
         if (!isHit(attack.getAttackHitModifier(), defense.getDefenseEvation()))
         {
@@ -57,7 +57,7 @@ public class Combat {
      * @param character1
      * @param character2 
      */
-    public void combatLoop(Character character1, Character character2)
+    public void combatLoop(CharacterBase character1, CharacterBase character2)
     {
         while (character1.getHealthPoints() > 0 && character2.getHealthPoints() > 0)
         {
