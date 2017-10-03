@@ -79,7 +79,7 @@ public class Labyrinth
     private void generateMap(int size) 
     {
         // fuck hvad den var før nu skal der testes
-        size = 24;
+        size = 8;
         map = new Room[size][size];
         //
         // improv Generator
@@ -145,7 +145,11 @@ public class Labyrinth
                 {
                     String[] exits = {"east", "south", "north", "west"};
                     map[r][c] = generateRoom(exits);
-                    map[r][c].setOccupant('M');
+                    int i = (int)(Math.random()*2);
+                    if (i ==1)
+                    {
+                        map[r][c].setOccupant('M');
+                    }
                     //System.out.println("Exits for room is middle");
                 }
                 //System.out.println("Generating map with values r: "+r+" and c: "+c);
