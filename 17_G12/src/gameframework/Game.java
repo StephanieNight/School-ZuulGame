@@ -52,6 +52,14 @@ public class Game
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
+    // Debug method by steph
+    public void playTEST()
+    {
+        // test by stepth
+        Labyrinth l = new Labyrinth(7);
+        l.renderMap();
+        System.out.println("");
+    }
 
     private void printWelcome()
     {
