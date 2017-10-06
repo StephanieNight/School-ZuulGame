@@ -6,7 +6,7 @@
 package maltestestpackage;
 
 /**
- *
+ * 
  * @author Malte
  */
 class HealingPotion extends Item{
@@ -20,10 +20,37 @@ class HealingPotion extends Item{
     public String getName() {
         return "Healing Potion";
     }
-
+    
+    /**
+     * adds X to player health points up to max health points
+     */
     @Override
     public void useItem() {
         //adds hp to player character;
+    }
+
+    
+     /**
+      * 
+      * @return 
+      */
+    @Override
+    public String getType() {
+        return "Consumable";
+    }
+
+    @Override
+    public int getStat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    /**
+     * no-args constructor
+     */
+    public HealingPotion()
+    {
+        
     }
     
 }

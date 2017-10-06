@@ -6,10 +6,12 @@
 package maltestestpackage;
 
 /**
- *
+ * Abstract super class for all item classes
+ * getDescription and getName is the same in all item classes and returns 
+ * a string with either description or name of said item.
  * @author Malte
  */
-abstract class Item {
+public abstract class Item {
     public abstract String getDescription();
     public abstract String getName();
     public abstract void useItem();

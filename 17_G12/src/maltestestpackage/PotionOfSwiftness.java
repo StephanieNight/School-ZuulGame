@@ -18,11 +18,21 @@ class PotionOfSwiftness extends Item{
 
     @Override
     public String getName() {
-        return "PotionOfSwiftness";
+        return "Potion Of Swiftness";
     }
 
     @Override
     public void useItem() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getType() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getStat() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
