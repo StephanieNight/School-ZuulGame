@@ -54,7 +54,7 @@ public class Game
     {
         // test by stepth
         Labyrinth lab = new Labyrinth(7);
-        lab.renderMap();
+        lab.display();
         System.out.println("");
     }
 
