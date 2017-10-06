@@ -16,7 +16,7 @@ public class Game
     }
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office, entrance;
+        Room outside, theatre, pub, lab, office;
       
         outside = new Room("outside the main entrance of the university");
         theatre = new Room("in a lecture theatre");
@@ -51,8 +51,6 @@ public class Game
             // check for confligs.
             // Minions 
             // Zuul
-            CharacterBase zuul = new CharacterBase("Zuul");
-            zuul.Move();
             // check for congfligs 
         }
         System.out.println("Thank you for playing.  Good bye.");
