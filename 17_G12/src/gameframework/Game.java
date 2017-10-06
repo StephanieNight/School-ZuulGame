@@ -16,7 +16,7 @@ public class Game
     }
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office;
+        Room outside, theatre, pub, lab, office, entrance;
       
         outside = new Room("outside the main entrance of the university");
         theatre = new Room("in a lecture theatre");
