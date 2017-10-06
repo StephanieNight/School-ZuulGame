@@ -29,12 +29,12 @@ class Branch extends Item{
     }
     
     @Override
-    public String getType(){
+    public String getType(){ //weapons add attack value.
         return "Weapon";
     }
     
     @Override
-    public int getStat(){
+    public int getStat(){ //Added attack value amount.
         return 2;
     }   
 }

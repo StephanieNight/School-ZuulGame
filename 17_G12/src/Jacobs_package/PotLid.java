@@ -28,12 +28,12 @@ class PotLid extends Item{
     }
     
     @Override
-    public String getType(){
+    public String getType(){ //Shields add defense value.
         return "Shield";
     }
     
     @Override
-    public int getStat(){
+    public int getStat(){ //Added defense value amount.
         return 2;
     }   
     
