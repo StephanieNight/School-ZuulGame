@@ -7,7 +7,8 @@ package gameframework;
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;        
+    private Room currentRoom;  
+    
     public Game() 
     {
         createRooms();
@@ -44,8 +45,15 @@ public class Game
 
         boolean finished = false;
         while (! finished) {
+            //player
             Command command = parser.getCommand();
             finished = processCommand(command);
+            // check for confligs.
+            // Minions 
+            // Zuul
+            CharacterBase zuul = new CharacterBase("Zuul");
+            zuul.Move();
+            // check for congfligs 
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
