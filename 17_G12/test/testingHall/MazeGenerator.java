@@ -50,11 +50,12 @@ public class MazeGenerator {
 	private void generateMaze(int cx, int cy) {
 		DIR[] dirs = DIR.values();
 		Collections.shuffle(Arrays.asList(dirs));
-		for (DIR dir : dirs) {
+		for (DIR dir : dirs) 
+                {
 			int nx = cx + dir.dx;
 			int ny = cy + dir.dy;
-			if (between(nx, x) && between(ny, y)
-					&& (maze[nx][ny] == 0)) {
+			if (between(nx, x) && between(ny, y) && (maze[nx][ny] == 0)) 
+                        {
 				maze[cx][cy] |= dir.bit;
 				maze[nx][ny] |= dir.opposite.bit;
 				generateMaze(nx, ny);

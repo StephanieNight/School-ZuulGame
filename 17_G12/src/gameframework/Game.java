@@ -7,8 +7,7 @@ package gameframework;
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;  
-    
+    private Room currentRoom;      
     public Game() 
     {
         createRooms();
@@ -59,11 +58,13 @@ public class Game
     public void playTEST()
     {
         // test by stepth
-        Labyrinth lab = new Labyrinth(7);
-        lab.display();
+        Labyrinth lab = new Labyrinth(4);        
+        System.out.println("");
+          Labyrinth lab1 = new Labyrinth(8);        
+        System.out.println("");
+          Labyrinth lab2 = new Labyrinth(16);        
         System.out.println("");
     }
-
     private void printWelcome()
     {
         System.out.println();
@@ -73,7 +74,6 @@ public class Game
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
-
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
@@ -96,7 +96,6 @@ public class Game
         }
         return wantToQuit;
     }
-
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
@@ -105,7 +104,6 @@ public class Game
         System.out.println("Your command words are:");
         parser.showCommands();
     }
-
     private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
@@ -122,7 +120,10 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
         }
     }
-
+    private void goRandomRoom()
+    {
+        
+    }
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {

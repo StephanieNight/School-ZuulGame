@@ -7,6 +7,7 @@ package gameframework;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 /**
  *
@@ -15,76 +16,165 @@ import java.util.Collections;
 public class Labyrinth
 {
     private final int size;
-    private Room[][] map;
-    private final int[][] maze;
-    
+    private Room[][] maze;
+    private boolean isLoop = false;
+    private int Minions = 0;
+    //private final int[][] maze;    
     public Labyrinth(int size) 
     {
         this.size = size;
-        maze = new int[this.size][this.size];
+        maze = new Room[this.size][this.size];
+        // fills the Maze with emptie 
+        for(int r = 0; r <size; r++)
+        {
+            for(int c = 0; c <size; c++)
+            {
+                maze[r][c] = new Room("A room");
+            }
+        }
         generateMaze(0, 0);
-        //generateMap(size);
+        spawnMobs();
+        display();
     }
-    public Room getNeigthboor(Room currentRoom, String direction) 
-    {
-        return new Room("lol");
-    }
+//    public Room getNeigthboor(Room currentRoom, String direction) 
+//    {
+//        return new Room("lol");
+//    }
     public boolean spawnMobs() 
     {
+        spawnMob(0,0, 'P');
+        spawnMob(this.size-1, this.size-1, 'Z');
+        for (int i = 0; i < Math.pow(this.size,1.5)/2; i++) 
+        {
+            boolean added = false;
+            while (!added)
+            {
+                int x = (int)(1+ Math.random()*(this.size-1)); 
+                int y = (int)(1+ Math.random()*(this.size-1));
+                added = spawnMob(x, y, 'M');
+                if(added) Minions++;
+            }            
+        }
         return true;
+    }
+    public boolean spawnMob(int x,int y, char c)
+    {
+        if (maze[x][y].getOccupant()==' ')
+        {
+            maze[x][y].setOccupant(c);
+            return true;
+        }
+        else 
+        {
+            return false;
+        }        
     }
     public void goRoom(Command command) 
     {
 
-    }
-    public void renderMap() 
-    {
-        int size = map.length;
-        System.out.println("");// fresh line
-        for (int r = 0; r < size; r++) 
-        {
-            for (int c = 0; c < size;c++) 
-            {
-                if(map[r][c]==null)
-                {
-                    return;
-                }
-                Room rm = map[r][c];
-                System.out.print("["+ rm.getOccupant() +"]");
-                if(rm.hasExit("east"))
-                {
-                    System.out.print("-");  
-                }
-                else
-                {
-                     System.out.print(" ");  
-                }
-            }
-            System.out.println("");
-            if(r!=size-1)
-            {
-                for (int c = 0; c < size;c++) 
-                {
-                    Room rm = map[r][c];
-                    System.out.print(" ");
-                    if(rm.hasExit("south"))
-                    {
-                        System.out.print("|");  
-                    }
-                    else
-                    {
-                        System.out.print(" ");  
-                    }
-                    System.out.print("  ");
-                }
-                System.out.println("");
-            }
-        }
-    }
+    }  
     private Room[] getSpawnableRooms() 
     {
         return new Room[0];
     }
+    public void display() 
+    {
+        for (int i = 0; i < this.size; i++) {
+                // draw the north edge
+                for (int j = 0; j < this.size; j++) {
+                        System.out.print(!maze[j][i].hasExit(DIR.N.direction)  ? "+---" : "+   ");
+                }
+                System.out.println("+");
+                // draw the west edge
+                for (int j = 0; j < this.size; j++) {
+                        System.out.print(!maze[j][i].hasExit(DIR.W.direction) ? "| " : "  ");
+                        System.out.print(maze[j][i].getOccupant());
+                        System.out.print(" ");
+                        
+                }
+                System.out.println("|");
+        }
+        // draw the bottom line
+        for (int j = 0; j < this.size; j++) {
+                System.out.print("+---");
+        }
+        System.out.println("+");  
+        System.out.println("Is loop             : "+isLoop);
+        System.out.println("number of moinuions : "+ Minions);
+    }
+    
+    private void generateMaze(int currentX, int currentY) 
+    {
+        DIR[] dirs = DIR.values(); // gets all 4 enums for direction
+        Collections.shuffle(Arrays.asList(dirs)); // mixes them up to get a reandom direction.
+        for (DIR dir : dirs) // loops through each posible direction
+        {
+            int nextX = currentX + dir.dx;      // gets X for the next Room 
+            int nextY = currentY + dir.dy;      // gets Y for the nex Room
+            if (isInsideMaze(nextX, this.size)  // checks if x is indside maze.
+             && isInsideMaze(nextY, this.size))  // checks if y is indside maze.
+            { 
+                // checks if room has no exits 
+                if(!maze[nextX][nextY].hasAnyExits())
+                {
+                   // Add Exit to Current Room
+                   maze[currentX][currentY].setExit(dir.direction, maze[nextX][nextY]);
+                   // Add oppesite exit to next Room to bind them together
+                   maze[nextX][nextY].setExit(dir.opposite.direction,maze[currentX][currentY]); 
+                   // goes to next Cell and start the proces over again untill all rooms is full.
+                   generateMaze(nextX, nextY);
+                    
+                }
+                else
+                {
+                    // we have reached a dead end, checks if we should punch a hole 
+                    // before backtracking to make sure the map is a loop
+                    if(!maze[nextX][nextY].hasExit(dir.opposite.direction) // is there allready a exit to this room
+                        &&(!isLoop || ((int)(Math.random()*20)==5))) // force or random
+                    {
+                        // Add Exit to Current Room
+                        maze[currentX][currentY].setExit(dir.direction, maze[nextX][nextY]);
+                        // Add oppesite exit to next Room to bind them together
+                        maze[nextX][nextY].setExit(dir.opposite.direction,maze[currentX][currentY]);
+                        // the maze is now a loop
+                        isLoop = true;   // no need to force no more                     
+                    }
+                }                
+            }
+        }
+    }
+    /*
+     * Why is this static. ?
+     */
+    private static boolean isInsideMaze(int v, int upper) 
+    {
+            return (v >= 0) && (v < upper);
+    }
+    private enum DIR 
+    {
+        N("north", 0, -1), S("south", 0, 1), E("east", 1, 0), W("west", -1, 0);
+        private final String direction; // binary representation of direction i 4 bits. 
+        private final int dx;  // Direction in the array out of the x axis 
+        private final int dy;  // Direction in the array out of the y axis
+        private DIR opposite;  // deklares the opposite direction for ref.
+ 
+        // use the static initializer to resolve forward references
+        static {
+                N.opposite = S;
+                S.opposite = N;
+                E.opposite = W;
+                W.opposite = E;
+        }
+
+        private DIR(String dir, int dx, int dy)
+        {
+                this.direction = dir;
+                this.dx = dx;
+                this.dy = dy;
+        }
+    };    
+} 
+    /*
     private void generateMapOLD(int size) 
     {
         // fuck hvad den var før nu skal der testes
@@ -169,10 +259,6 @@ public class Labyrinth
             //renderMap();
         }
     }
-    private void generateMap(int size)
-    {
-        
-    }
     private Room generateRoom(String[] exits) 
     {
         Room genericRoom = new Room("generic room");
@@ -185,67 +271,57 @@ public class Labyrinth
         }
         return genericRoom;
     } 
-    public void display() 
+
+
+    public void renderMap() 
     {
-        for (int i = 0; i < this.size; i++) {
-                // draw the north edge
-                for (int j = 0; j < this.size; j++) {
-                        System.out.print((maze[j][i] & 1) == 0 ? "+---" : "+   ");
-                }
-                System.out.println("+");
-                // draw the west edge
-                for (int j = 0; j < this.size; j++) {
-                        System.out.print((maze[j][i] & 8) == 0 ? "|   " : "    ");
-                }
-                System.out.println("|");
-        }
-        // draw the bottom line
-        for (int j = 0; j < this.size; j++) {
-                System.out.print("+---");
-        }
-        System.out.println("+");
-    }
-    private void generateMaze(int cx, int cy) 
-    {
-        DIR[] dirs = DIR.values();
-        Collections.shuffle(Arrays.asList(dirs));
-        for (DIR dir : dirs)
+        System.out.println("");// fresh line
+        for (int r = 0; r < size; r++) 
         {
-            int nx = cx + dir.dx;
-            int ny = cy + dir.dy;
-            if (between(nx, this.size) && between(ny, this.size)
-                            && (maze[nx][ny] == 0)) 
+            for (int c = 0; c < size;c++) 
             {
-                maze[cx][cy] |= dir.bit;
-                maze[nx][ny] |= dir.opposite.bit;
-                generateMaze(nx, ny);
+                if(map[r][c]==null)
+                {
+                    return;
+                }
+                Room rm = map[r][c];
+                if(rm.hasExit("west"))
+                {
+                    System.out.print("-");  
+                }
+                else
+                {
+                     System.out.print(" ");  
+                }
+                System.out.print("["+ rm.getOccupant() +"]");
+                if(rm.hasExit("east"))
+                {
+                    System.out.print("-");  
+                }
+                else
+                {
+                     System.out.print(" ");  
+                }        
+            }
+            System.out.println("");
+            if(r!=size-1)
+            {
+                for (int c = 0; c < size;c++) 
+                {
+                    Room rm = map[r][c];
+                    System.out.print(" ");
+                    if(rm.hasExit("south"))
+                    {
+                        System.out.print("|");  
+                    }
+                    else
+                    {
+                        System.out.print(" ");  
+                    }
+                    System.out.print("  ");
+                }
+                System.out.println("");
             }
         }
     }
-    private static boolean between(int v, int upper) 
-    {
-            return (v >= 0) && (v < upper);
-    }
-    private enum DIR 
-    {
-        N(1, 0, -1), S(2, 0, 1), E(4, 1, 0), W(8, -1, 0);
-        private final int bit;
-        private final int dx;
-        private final int dy;
-        private DIR opposite;
-
-        // use the static initializer to resolve forward references
-        static {
-                N.opposite = S;
-                S.opposite = N;
-                E.opposite = W;
-                W.opposite = E;
-        }
-
-        private DIR(int bit, int dx, int dy) {
-                this.bit = bit;
-                this.dx = dx;
-                this.dy = dy;
-        }
-    };    
-}
+*/

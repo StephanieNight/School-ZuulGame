@@ -20,7 +20,6 @@ public class Room
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
@@ -77,6 +76,10 @@ public class Room
     {
         return exits.containsKey(direction);
     }
-            
+    public boolean hasAnyExits()
+    {
+        return !exits.isEmpty();
+    }
 }
+            
 
