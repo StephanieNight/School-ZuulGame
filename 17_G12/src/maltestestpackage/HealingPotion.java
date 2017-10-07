@@ -30,23 +30,24 @@ class HealingPotion extends Item{
     }
 
     
-     /**
-      * 
-      * @return 
-      */
+
     @Override
     public String getType() {
         return "Consumable";
     }
 
+    /**
+     * 
+     * @return all consumable items return -1 because it's not how you use them.
+     */
     @Override
     public int getStat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return -1;
     }
     
     
     /**
-     * no-args constructor
+     * no-args constructor, no args needed since all information is predefined.
      */
     public HealingPotion()
     {

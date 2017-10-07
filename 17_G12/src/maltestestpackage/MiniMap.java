@@ -21,9 +21,13 @@ class MiniMap extends Item{
         return "Map";
     }
 
+    
+    /**
+     * Updates the whole map as if you've been everywhere.
+     */
     @Override
     public void useItem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //prints the whole map including monsters and unvisited rooms
     }
 
     @Override

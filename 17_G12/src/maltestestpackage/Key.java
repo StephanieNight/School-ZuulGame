@@ -24,6 +24,9 @@ public String getDescription()
         return "Key";
     }
 
+    /**
+     * 
+     */
     @Override
     public void useItem() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -37,5 +40,10 @@ public String getDescription()
     @Override
     public int getStat() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public Key()
+    {
+        
     }
 }
