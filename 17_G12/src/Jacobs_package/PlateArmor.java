@@ -29,12 +29,12 @@ class PlateArmor extends Item{
     }
     
     @Override
-    public String getType(){ //weapons add attack value.
+    public String getType(){ //Armor adds defense value.
         return "Armor";
     }
     
     @Override
-    public int getStat(){ //Added attack value amount.
+    public int getStat(){ //Added defense value amount.
         return 5;
     }   
 }

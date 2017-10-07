@@ -29,12 +29,12 @@ class HeaterShield extends Item{
     }
     
     @Override
-    public String getType(){ //weapons add attack value.
+    public String getType(){ //Shields add defense value.
         return "Shield";
     }
     
     @Override
-    public int getStat(){ //Added attack value amount.
+    public int getStat(){ //Added defense value amount.
         return 5;
     }   
 }
