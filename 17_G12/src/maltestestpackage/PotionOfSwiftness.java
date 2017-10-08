@@ -21,19 +21,22 @@ class PotionOfSwiftness extends Item{
         return "Potion Of Swiftness";
     }
 
+    /**
+     * Lets the player move twice between monster movement. Last for a short duration.
+     */
     @Override
     public void useItem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //
     }
 
     @Override
     public String getType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Consumable";
     }
 
     @Override
     public int getStat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return -1;
     }
     
 }

@@ -29,12 +29,12 @@ class PotionOfCourage extends Item {
 
     @Override
     public String getType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Consumable";
     }
 
     @Override
     public int getStat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return -1;
     }
     
 }
