@@ -104,7 +104,6 @@ public class Inventory {
     /**
      * checks if inventory has any available space and if item type is already 
      * on the list.
-     *
      * @param item 
      */
     public void addItem(Item item)
@@ -182,7 +181,12 @@ public class Inventory {
         
         
     }
+   
     
+    /**
+     * Lets the player delete items.
+     * @param itemName is a String matching a name of an item in the inventory array
+     */
     public void dropItem(String itemName)
     {
         System.out.println("Are you sure you wish to drop " + itemName + "?");
@@ -208,6 +212,28 @@ public class Inventory {
                         break;
                     }
                 }
+            }
+        }
+    }
+    
+    /**
+     * updates the stats the player gets from items.
+     */
+    public void updateStat()
+    {
+        for(Item inventory1: inventory)
+        {
+            if("Weapon".equals(inventory1.getType()))
+            {
+                // player.setTotalDamage = player.getModifiedDamage + inventory1.getStat();
+            }
+            if("Armor".equals(inventory1.getType()))
+            {
+                // player.setTotalArmor = player.getModifiedArmor + inventory1.getStat();
+            }
+            if("Shield".equals(inventory1.getType()))
+            {
+                // player.setTotalShield = player.getModifiedShield + inventory1.getStat();
             }
         }
     }
