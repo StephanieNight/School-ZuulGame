@@ -1,7 +1,7 @@
 
 package nicolai;
 
-import gameframework.Room;
+import Stephie_build.Room;
 
 /**
  *
