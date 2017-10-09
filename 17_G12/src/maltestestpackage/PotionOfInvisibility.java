@@ -9,25 +9,28 @@ package maltestestpackage;
  *
  * @author Malte
  */
-class MiniMap extends Item{
+class PotionOfInvisibility extends Item {
 
+    
+    
     @Override
     public String getDescription() {
-        return "A datailed map of the labyrinth!";
+        return "Is this flask empty? You can hear some liquid sloshing around inside";
     }
 
     @Override
     public String getName() {
-        return "Map";
+        return "Potion of Invisibility";
     }
 
     
     /**
-     * Updates the whole map as if you've been everywhere.
+     * sets invisibility to true, allowing the player to choose if he wants to 
+     * engage monsters or not.
      */
     @Override
     public void useItem() {
-        //sets all room to visited
+        //sets invisibility to true;
     }
 
     @Override

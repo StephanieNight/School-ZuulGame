@@ -25,16 +25,21 @@ public String getDescription()
     }
 
     /**
-     * 
+     * Unlocks the door out of the dungeon letting the player win
      */
     @Override
     public void useItem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // sets the exit to unlocked;
     }
 
+    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String getType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Key";
     }
 
     @Override
