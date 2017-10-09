@@ -9,6 +9,10 @@ package nicolai;
  *
  * @author nicol
  */
-public class player {
-    
+public class Zuul extends Actor
+{
+    public Zuul (int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput)
+    {
+        super("Zuul", defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'Z');
+    }
 }
