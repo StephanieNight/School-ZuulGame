@@ -179,7 +179,7 @@ public class Inventory {
     public void dropItem(String itemName)
     {
         System.out.println("Why would you do this?");
-        System.out.println("Are you sure you wish to drop");
+        System.out.println("Are you sure you wish to drop " + itemName);
         System.out.println("Yes / No");
         Scanner input = new Scanner(System.in);
         String in = input.next();
