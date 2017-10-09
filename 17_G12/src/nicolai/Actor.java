@@ -91,7 +91,7 @@ public abstract class Actor
     public int getTotalXp() {
         return totalXp =totalXp + xp;
     }
-     public char getMAP_CODE() {
+     public char getMapCode() {
         return MAP_CODE;
     }
      public Room getCurrentRoom() {
