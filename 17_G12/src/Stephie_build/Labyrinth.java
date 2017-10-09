@@ -6,9 +6,10 @@
 package Stephie_build;
 
 import gameframework.Command;
-import gameframework.Room;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import nicolai.*;
 
 /**
  *
@@ -19,7 +20,10 @@ public class Labyrinth
     private final int SIZE;
     private Room[][] maze;
     private boolean isLoop = false;
-    private int Minions = 0;
+    private int numberOfMinions = 0;
+    private Player player;
+    private Zuul zuul;
+    private ArrayList<Minions> minions = new ArrayList<>();
     //private final int[][] maze;    
     public Labyrinth(int size) 
     {
@@ -37,14 +41,12 @@ public class Labyrinth
         spawnMobs();
         display();
     }
-//    public Room getNeigthboor(Room currentRoom, String direction) 
-//    {
-//        return new Room("lol");
-//    }
     public boolean spawnMobs() 
-    {
-        spawnMob(0,0, 'P');
-        spawnMob(this.SIZE-1, this.SIZE-1, 'Z');
+    { 
+        player= new Player("Player", 100, 100, 100);
+        zuul = new Zuul(1000,1000, 1000);
+        spawnMob(0,0, player );
+        spawnMob(this.SIZE-1, this.SIZE-1,zuul);
         for (int i = 0; i < Math.pow(this.SIZE,1.5)/2; i++) 
         {
             boolean added = false;
@@ -52,15 +54,20 @@ public class Labyrinth
             {
                 int x = (int)(1+ Math.random()*(this.SIZE-1)); 
                 int y = (int)(1+ Math.random()*(this.SIZE-1));
-                added = spawnMob(x, y, 'M');
-                if(added) Minions++;
+                Minions min = new Minions(("mionion"+i), 50, 50, 50);
+                added = spawnMob(x, y,min);
+                if(added)
+                {
+                    numberOfMinions++;
+                    minions.add(min);
+                }
             }            
         }
         return true;
     }
-    public boolean spawnMob(int x,int y, char c)
+    public boolean spawnMob(int x,int y, Actor c)
     {
-        if (maze[x][y].getOccupant()==' ')
+        if (maze[x][y].getOccupant()== null)
         {
             maze[x][y].setOccupant(c);
             return true;
@@ -102,10 +109,9 @@ public class Labyrinth
         System.out.println("+"); 
         System.out.println("Size                : "+this.SIZE);
         System.out.println("Is loop             : "+isLoop);
-        System.out.println("number of moinuions : "+ Minions);
+        System.out.println("number of moinuions : "+ numberOfMinions);
         System.out.println("Deffictulty is      : "+ GameEngine.getDifficulty());
-    }
-    
+    }    
     private void generateMaze(int currentX, int currentY) 
     {
         DIR[] dirs = DIR.values(); // gets all 4 enums for direction

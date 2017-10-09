@@ -4,7 +4,7 @@ import Stephie_build.Labyrinth;
 import gameframework.Command;
 import gameframework.CommandWord;
 import gameframework.Parser;
-import gameframework.Room;
+import Stephie_build.Room;
 
 /**
  * @author  Michael Kolling and David J. Barnes
