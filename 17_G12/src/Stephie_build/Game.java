@@ -1,4 +1,9 @@
-package gameframework;
+package Stephie_build;
+
+import gameframework.Command;
+import gameframework.CommandWord;
+import gameframework.Parser;
+import gameframework.Room;
 
 /**
  * @author  Michael Kolling and David J. Barnes
@@ -7,11 +12,18 @@ package gameframework;
 public class Game 
 {
     private Parser parser;
-    private Room currentRoom;      
+    private Room currentRoom;  
+    private static int difficulty;   
     public Game() 
     {
         createRooms();
         parser = new Parser();
+        int i = -1;
+        while(i == -1)
+        {
+          i = parser.getDifficulty();
+        }
+        difficulty = i;        
     }
     private void createRooms()
     {
@@ -58,12 +70,8 @@ public class Game
     public void playTEST()
     {
         // test by stepth
-        Labyrinth lab = new Labyrinth(4);        
-        System.out.println("");
-          Labyrinth lab1 = new Labyrinth(8);        
-        System.out.println("");
-          Labyrinth lab2 = new Labyrinth(16);        
-        System.out.println("");
+        int size = (int)((1.5*difficulty)+3);
+        Labyrinth lab = new Labyrinth(size);        
     }
     private void printWelcome()
     {
@@ -133,5 +141,9 @@ public class Game
         else {
             return true;
         }
+    }
+    public static int getDifficulty()
+    {
+        return difficulty;
     }
 }

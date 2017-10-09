@@ -7,7 +7,7 @@ package gameframework;
  */
 public class Actor 
 {
- private int defaultHealthPoint;
+ private int defaultHealthPoint; 
  private int modufiedHealthPoint;
  private int defaultDefense;
  private int modifiedDefense;
