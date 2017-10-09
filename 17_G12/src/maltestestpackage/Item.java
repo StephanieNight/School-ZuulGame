@@ -34,6 +34,11 @@ public abstract class Item {
      * @return the increase the given item applies or -1 if it's a consumable item
      */
     public abstract int getStat();
+    
+    public Item()
+    {
+        
+    }
 }
 
 

@@ -9,7 +9,7 @@ package maltestestpackage;
  * 
  * @author Malte
  */
-class HealingPotion extends Item{
+public class HealingPotion extends Item{
 
     @Override
     public String getDescription() {
@@ -26,7 +26,8 @@ class HealingPotion extends Item{
      */
     @Override
     public void useItem() {
-        //adds hp to player character;
+        System.out.println("You already feel better");
+        //player.setCurrentHealth(player.getCurrentHealth + 30);
     }
 
     

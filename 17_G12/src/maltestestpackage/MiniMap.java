@@ -9,11 +9,12 @@ package maltestestpackage;
  *
  * @author Malte
  */
-class MiniMap extends Item{
+public class MiniMap extends Item{
 
     @Override
     public String getDescription() {
-        return "A datailed map of the labyrinth!";
+        return "A datailed map of the labyrinth!"
+                + "\nYou can even see the monsters!";
     }
 
     @Override

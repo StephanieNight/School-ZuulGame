@@ -10,7 +10,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-class PotLid extends Item{
+public class PotLid extends Item{
 
     @Override
     public String getDescription(){
@@ -37,4 +37,7 @@ class PotLid extends Item{
         return 2;
     }   
     
+    public PotLid(){
+        
+    }
 }

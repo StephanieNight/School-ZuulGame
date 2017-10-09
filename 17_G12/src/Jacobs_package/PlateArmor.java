@@ -11,7 +11,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-class PlateArmor extends Item{
+public class PlateArmor extends Item{
     
     @Override
     public String getDescription(){
@@ -37,4 +37,8 @@ class PlateArmor extends Item{
     public int getStat(){ //Added defense value amount.
         return 5;
     }   
+    
+    public PlateArmor(){
+        
+    }
 }

@@ -6,8 +6,11 @@
 package maltestestpackage;
 import static Stephie_build.GameEngine.getDifficulty;
 import java.util.Scanner;
+import Jacobs_package.*;
 /**
- *
+ * inventory to hold items
+ * inventory length is determined by difficulty.
+ * starting items are a branch, some tattered clothes and a pot lid.
  * @author Malte
  */
 public class Inventory {
@@ -15,7 +18,11 @@ public class Inventory {
     
     public Inventory()
     {
-        this.inventory = new Item[8 - getDifficulty()];
+        inventory = new Item[8 - getDifficulty()];
+        inventory[0] = new Branch();
+        inventory[1] = new TatteredClothes();
+        inventory[2] = new PotLid();
+        
     }
     
     public void getInventoryList()
@@ -36,12 +43,19 @@ public class Inventory {
     public void useItem(String itemName)
     {
         boolean itemUsed = false;
+        
         for(int i = 0; i < inventory.length; i++)
         {
             if(inventory[i].getName().toLowerCase().equals(itemName.toLowerCase()))
             {
                 inventory[i].useItem();
                 itemUsed = true;
+                if ("Weapon".equals(inventory[i].getType()) || "Shield".equals(inventory[i].getType()) 
+                || "Armor".equals(inventory[i].getType()))
+                {
+                    break;
+                }
+                    
                 for(;i < inventory .length; i++)
             {
                 if(i < inventory.length - 1)
@@ -171,6 +185,30 @@ public class Inventory {
     
     public void dropItem(String itemName)
     {
-        System.out.println("Why would you do this?");
+        System.out.println("Are you sure you wish to drop " + itemName + "?");
+        System.out.println("Yes / No");
+        Scanner input = new Scanner(System.in);
+        String in = input.next();
+        if (in.toLowerCase().equals("yes"))
+        {
+            for(int i = 0; i < inventory.length; i++)
+            {
+                if(itemName.toLowerCase().equals(inventory[i].getName().toLowerCase()))
+                {
+                    for(; i < inventory.length; i++)
+                    {
+                        if(i < inventory.length -1)
+                        {
+                            inventory[i] = inventory[i + 1];
+                        }
+                        else
+                        {
+                            inventory[i] = null;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

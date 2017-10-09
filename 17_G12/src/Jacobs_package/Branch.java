@@ -11,7 +11,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-class Branch extends Item{
+public class Branch extends Item{
     
     @Override
     public String getDescription(){
@@ -36,5 +36,10 @@ class Branch extends Item{
     @Override
     public int getStat(){ //Added attack value amount.
         return 2;
-    }   
+    }
+    
+    public Branch(){
+        
+    }
+    
 }

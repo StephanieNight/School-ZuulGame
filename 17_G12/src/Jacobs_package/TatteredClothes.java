@@ -10,7 +10,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-class TatteredClothes extends Item{
+public class TatteredClothes extends Item{
     
     @Override
     public String getDescription(){
@@ -35,5 +35,8 @@ class TatteredClothes extends Item{
     @Override
     public int getStat(){ //Added defense value amount.
         return 1;
-    }   
+    }  
+    public TatteredClothes(){
+        
+    }
 }

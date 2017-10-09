@@ -11,7 +11,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-class Sword extends Item{
+public class Sword extends Item{
     
     @Override
     public String getDescription(){
@@ -37,4 +37,8 @@ class Sword extends Item{
     public int getStat(){ //Added attack value amount.
         return 7;
     }   
+    
+    public Sword(){
+        
+    }
 }

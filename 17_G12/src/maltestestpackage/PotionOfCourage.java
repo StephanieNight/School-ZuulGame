@@ -9,11 +9,12 @@ package maltestestpackage;
  *
  * @author Malte
  */
-class PotionOfCourage extends Item {
+public class PotionOfCourage extends Item {
 
     @Override
     public String getDescription() {
-        return "A flask with a distinct smell of whiskey. Why would anyone leave that here";
+        return "A flask with a distinct smell of whiskey. "
+                + "\nWhy would anyone leave that here";
     }
 
 
@@ -27,7 +28,8 @@ class PotionOfCourage extends Item {
      */
     @Override
     public void useItem() {
-        //nothing here
+        System.out.println("Feels good to drink some liquid courage!");
+        
     }
 
     @Override

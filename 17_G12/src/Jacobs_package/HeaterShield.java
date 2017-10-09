@@ -11,7 +11,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-class HeaterShield extends Item{
+public class HeaterShield extends Item{
     
     @Override
     public String getDescription(){
@@ -37,4 +37,9 @@ class HeaterShield extends Item{
     public int getStat(){ //Added defense value amount.
         return 5;
     }   
+    
+    public HeaterShield(){
+        
+    }
+    
 }
