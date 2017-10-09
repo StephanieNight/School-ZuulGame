@@ -14,8 +14,25 @@ package maltestestpackage;
 public abstract class Item {
     public abstract String getDescription();
     public abstract String getName();
+    
+    
+    /**
+     * Executes the unique effect the item in question has.
+     * Weapons, shields and armor doesn't have any use item effect and returns 
+     * a message "this is not how you use said item".
+     */
     public abstract void useItem();
+    
+    /**
+     * 
+     * @return returns the type for comparison in inventory
+     */
     public abstract String getType();
+    
+    /**
+     * 
+     * @return the increase the given item applies or -1 if it's a consumable item
+     */
     public abstract int getStat();
 }
 

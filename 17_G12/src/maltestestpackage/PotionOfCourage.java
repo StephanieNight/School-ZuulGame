@@ -22,9 +22,12 @@ class PotionOfCourage extends Item {
         return "Potion Of Courage";
     }
 
+    /**
+     * no effect so far
+     */
     @Override
     public void useItem() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //nothing here
     }
 
     @Override
