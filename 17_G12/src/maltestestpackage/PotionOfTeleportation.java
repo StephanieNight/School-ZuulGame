@@ -21,6 +21,10 @@ class PotionOfTeleportation extends Item {
         return "Potion Of Teleportation";
     }
 
+    /**
+     * transports the player to a random location on the map by setting current
+     * location to a randomized location.
+     */
     @Override
     public void useItem() {
 //        currentLocation = map.goRandomRoom;
@@ -28,13 +32,13 @@ class PotionOfTeleportation extends Item {
 
     @Override
     public String getType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Consumable";
     }
 
     @Override
     public int getStat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        return -1;
+        }
     
     
 }

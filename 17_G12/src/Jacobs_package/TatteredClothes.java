@@ -28,12 +28,12 @@ class TatteredClothes extends Item{
     }
     
     @Override
-    public String getType(){
+    public String getType(){ //Armor adds defense value.
         return "Armor";
     }
     
     @Override
-    public int getStat(){
+    public int getStat(){ //Added defense value amount.
         return 1;
     }   
 }

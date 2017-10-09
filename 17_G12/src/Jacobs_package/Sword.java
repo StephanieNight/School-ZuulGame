@@ -6,20 +6,21 @@
 package Jacobs_package;
 
 import maltestestpackage.Item;
+
 /**
  *
  * @author simon
  */
-class PotLid extends Item{
-
+class Sword extends Item{
+    
     @Override
     public String getDescription(){
-        return "The worn lid of a cooking pot from home.";
+        return "A steel sword.";
     }
     
     @Override
     public String getName(){
-        return "Lid";
+        return "Sword";
     }
     
     @Override
@@ -28,13 +29,12 @@ class PotLid extends Item{
     }
     
     @Override
-    public String getType(){ //Shields add defense value.
-        return "Shield";
+    public String getType(){ //weapons add attack value.
+        return "Weapon";
     }
     
     @Override
-    public int getStat(){ //Added defense value amount.
-        return 2;
+    public int getStat(){ //Added attack value amount.
+        return 7;
     }   
-    
 }
