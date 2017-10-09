@@ -11,6 +11,9 @@ public abstract class Actor
  private final int DEFAULT_DEFENSE;
  private final String NAME;
  private final int DEFAULT_DAMGE_OUTPUT;
+ private final char MAP_CODE;
+
+    
  private int modufiedHealthPoint;
  private int modifiedDefense;
  private int modifiedDamgeOutput;
@@ -20,11 +23,12 @@ public abstract class Actor
 
  //in this constructor can you set a name, the defaultDefense and
 // the DefaultDamgeOutput 
- Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput){
+ Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode){
      this.NAME = name;
      this.DEFAULT_HEALTH_POINTS = defaultHealthpoint;
      this.DEFAULT_DEFENSE = defaultDefense;
      this.DEFAULT_DAMGE_OUTPUT = defaultDefense;
+     this.MAP_CODE=mapCode;
  }
  
 //  in this metode you can set the level 
@@ -84,6 +88,8 @@ public abstract class Actor
     public int getTotalXp() {
         return totalXp =totalXp + xp;
     }
- 
+     public char getMAP_CODE() {
+        return MAP_CODE;
+    }
 }
 
