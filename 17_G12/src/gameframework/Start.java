@@ -15,7 +15,7 @@ public class Start {
     public static void main(String[] args)
     {
         GameEngine gameEngine = new GameEngine();
-        gameEngine.playTEST();
+        gameEngine.play();
         /*
         Game g = new Game();
         long time = System.currentTimeMillis();
