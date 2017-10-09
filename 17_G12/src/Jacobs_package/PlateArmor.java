@@ -11,7 +11,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-class PlateArmor extends Item{
+public class PlateArmor extends Item{
     
     @Override
     public String getDescription(){

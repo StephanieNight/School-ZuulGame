@@ -11,7 +11,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-class Sword extends Item{
+public class Sword extends Item{
     
     @Override
     public String getDescription(){

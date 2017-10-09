@@ -10,7 +10,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-class TatteredClothes extends Item{
+public class TatteredClothes extends Item{
     
     @Override
     public String getDescription(){
