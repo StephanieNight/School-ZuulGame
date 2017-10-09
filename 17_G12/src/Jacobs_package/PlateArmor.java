@@ -37,4 +37,8 @@ class PlateArmor extends Item{
     public int getStat(){ //Added defense value amount.
         return 5;
     }   
+    
+    public PlateArmor(){
+        
+    }
 }

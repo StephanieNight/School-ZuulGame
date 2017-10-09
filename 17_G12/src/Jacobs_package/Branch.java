@@ -36,5 +36,10 @@ class Branch extends Item{
     @Override
     public int getStat(){ //Added attack value amount.
         return 2;
-    }   
+    }
+    
+    public Branch(){
+        
+    }
+    
 }

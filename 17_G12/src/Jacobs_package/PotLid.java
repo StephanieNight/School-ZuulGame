@@ -37,4 +37,7 @@ class PotLid extends Item{
         return 2;
     }   
     
+    public PotLid(){
+        
+    }
 }

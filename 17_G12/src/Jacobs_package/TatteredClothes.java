@@ -35,5 +35,8 @@ class TatteredClothes extends Item{
     @Override
     public int getStat(){ //Added defense value amount.
         return 1;
-    }   
+    }  
+    public TatteredClothes(){
+        
+    }
 }

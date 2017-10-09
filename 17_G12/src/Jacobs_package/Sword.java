@@ -37,4 +37,8 @@ class Sword extends Item{
     public int getStat(){ //Added attack value amount.
         return 7;
     }   
+    
+    public Sword(){
+        
+    }
 }
