@@ -19,12 +19,7 @@ public class Labyrinth
 {
     private final int SIZE;
     private Room[][] maze;
-    private boolean isLoop = false;
-    private int numberOfMinions = 0;
-    private Player player;
-    private Zuul zuul;
-    private ArrayList<Monster> minions = new ArrayList<>();
-    //private final int[][] maze;    
+    private boolean isLoop = false;  
     public Labyrinth(int size) 
     {
         this.SIZE = size;
@@ -38,44 +33,38 @@ public class Labyrinth
             }
         }
         generateMaze(0, 0);
-        spawnMobs();
-        display();
-    }
-    public boolean spawnMobs() 
-    { 
-        player= new Player("Player", 100, 100, 100);
-        zuul = new Zuul();
-        spawnMob(0,0, player );
-        spawnMob(this.SIZE-1, this.SIZE-1,zuul);
-        for (int i = 0; i < Math.pow(this.SIZE,1.5)/2; i++) 
-        {
-            boolean added = false;
-            while (!added)
-            {
-                int x = (int)(1+ Math.random()*(this.SIZE-1)); 
-                int y = (int)(1+ Math.random()*(this.SIZE-1));
-                Monster min = new Monster(("mionion"+i));
-                added = spawnMob(x, y,min);
-                if(added)
-                {
-                    numberOfMinions++;
-                    minions.add(min);
-                }
-            }            
-        }
-        return true;
-    }
-    public boolean spawnMob(int x,int y, Actor c)
+    }  
+    public boolean spawnPlayer(int x, int y,Actor actor)
     {
-        if (maze[x][y].getOccupant()== null)
+        if (maze[x][y].getPlayer()== null)
         {
-            maze[x][y].setOccupant(c);
+            maze[x][y].setPlayer(actor);
+            actor.setCurrentRoom(maze[x][y]);
             return true;
         }
         else 
         {
             return false;
-        }        
+        } 
+    }
+    public boolean spawnMonster(int x, int y,Actor actor)
+    {
+        if (maze[x][y].getMonster()== null)
+        {
+            maze[x][y].setMonster(actor);
+            actor.setCurrentRoom(maze[x][y]);
+            return true;
+        }
+        else 
+        {
+            return false;
+        } 
+    }
+    public boolean movePlayer(Actor c,Room NextRoom)
+    {        
+        c.getCurrentRoom().setPlayer(null); 
+        NextRoom.setPlayer(c);
+        return true;       
     }
     public void goRoom(Command command) 
     {
@@ -96,14 +85,7 @@ public class Labyrinth
                 // draw the west edge
                 for (int j = 0; j < this.SIZE; j++) {
                         System.out.print(!maze[j][i].hasExit(DIR.W.direction) ? "| " : "  ");
-                        if( maze[j][i].getOccupant() != null)
-                        {
-                            System.out.print(maze[j][i].getOccupant().getMapCode());
-                        }
-                        else 
-                        {
-                            System.out.print(" ");
-                        }
+                        System.out.print(maze[j][i].getMapCode());
                         System.out.print(" ");
                         
                 }
@@ -116,7 +98,7 @@ public class Labyrinth
         System.out.println("+"); 
         System.out.println("Size                : "+this.SIZE);
         System.out.println("Is loop             : "+isLoop);
-        System.out.println("number of moinuions : "+ numberOfMinions);
+        System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
         System.out.println("Deffictulty is      : "+ GameEngine.getDifficulty());
     }    
     private void generateMaze(int currentX, int currentY) 

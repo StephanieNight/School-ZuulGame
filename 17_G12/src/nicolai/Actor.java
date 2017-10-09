@@ -9,46 +9,44 @@ import Stephie_build.Room;
  */
 public abstract class Actor 
 {
- private final int DEFAULT_HEALTH_POINTS; 
- private final int DEFAULT_DEFENSE;
- private final String NAME;
- private final int DEFAULT_DAMGE_OUTPUT;
- private final char MAP_CODE;
- private Room currentRoom;
- private int maximumHealthPoint;
- private int currentHealth;
- private int modifiedDefense;
- private int modifiedDamgeOutput;
- private int level =1;
- private int xp;
- private int totalXp;
-
- //in this constructor can you set a name, the defaultDefense and
-// the DefaultDamgeOutput 
- Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode){
+    private final int DEFAULT_HEALTH_POINTS; 
+    private final int DEFAULT_DEFENSE;
+    private final String NAME;
+    private final int DEFAULT_DAMGE_OUTPUT;
+    private final char MAP_CODE;
+    private Room currentRoom;
+    private int maximumHealthPoint;
+    private int currentHealth;
+    private int modifiedDefense;
+    private int modifiedDamgeOutput;
+    private int level =1;
+    private int xp;
+    private int totalXp;
+    //in this constructor can you set a name, the defaultDefense and
+    // the DefaultDamgeOutput 
+    public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode){
      this.NAME = name;
      this.DEFAULT_HEALTH_POINTS = defaultHealthpoint;
      this.DEFAULT_DEFENSE = defaultDefense;
      this.DEFAULT_DAMGE_OUTPUT = defaultDefense;
      this.MAP_CODE=mapCode;
  }
- 
-//  in this metode you can set the level 
+    //  in this metode you can set the level 
     public void setLevel(int level) {
         this.level = level;
     }
-  // in this metode you can set the Xp
+    // in this metode you can set the Xp
     public void setXp(int xp) {
         this.xp = xp;
     }
- // in this metode you can set the totalXp
+    // in this metode you can set the totalXp
     public void setTotalXp(int totalXp) {
         this.totalXp = totalXp;
     }
-     public void setCurrentRoom(Room currentRoom) {
+    public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
-        public void setCurrentHealth(int currentHealth) {
+    public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
         if (currentHealth < maximumHealthPoint){
             currentHealth=maximumHealthPoint;
@@ -87,21 +85,19 @@ public abstract class Actor
     public int getModifiedDamgeOutput() {
         return modifiedDamgeOutput = DEFAULT_DAMGE_OUTPUT+(level*5);
     }
-     public int getLevel() {
+    public int getLevel() {
         return level = 1+(xp/2);
-    }
-  
+    }  
     public int getXp() {
         return xp;
     }
-
     public int getTotalXp() {
         return totalXp =totalXp + xp;
     }
-     public char getMapCode() {
+    public char getMapCode() {
         return MAP_CODE;
     }
-     public Room getCurrentRoom() {
+    public Room getCurrentRoom() {
         return currentRoom;
     }
     public int getCurrentHealth() {

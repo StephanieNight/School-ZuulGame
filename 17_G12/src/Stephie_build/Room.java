@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.HashMap;
 import maltestestpackage.Item;
 import nicolai.Actor;
+import nicolai.Player;
 
 
 /**
@@ -15,11 +16,18 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
-    private Actor occupamnt; //ADDED by Steph
-    private ArrayList<Item> Items = new ArrayList<>();           
+    private Actor player; // Copy
+    private Actor monster; // Copy
+    private ArrayList<Item> Items = new ArrayList<>(); 
+
     public Room(String description) 
     {
         this.description = description;
+        exits = new HashMap<String, Room>();
+    }
+    public Room(String description, Item[] items) 
+    {
+        this(description);
         exits = new HashMap<String, Room>();
     }
     public void setExit(String direction, Room neighbor) 
@@ -66,13 +74,25 @@ public class Room
         return exits.get(direction);
     }
     //ADDED by Steph
-    public void setOccupant(Actor a)
+    public void setPlayer(Actor actor)
     {
-        occupamnt = a;
+        player = actor;         
     }
-    public Actor getOccupant()
+    public void setMonster(Actor actor)
     {
-        return occupamnt;
+        monster = actor;         
+    }
+    public Actor getPlayer()
+    {
+        return player;
+    }
+    public Actor getMonster()
+    {
+        return monster;
+    }
+    public boolean isConflict()
+    {
+        return(player !=null && monster != null);
     }
     public boolean hasExit(String direction)
     {
@@ -82,6 +102,16 @@ public class Room
     {
         return !exits.isEmpty();
     }
+    public char getMapCode() {
+        if(isConflict())
+        {
+            return 'C';
+        }
+       else if (this.player !=null)
+            return player.getMapCode();
+       else if(this.monster != null)
+           return monster.getMapCode();
+       else 
+        return ' ';
+    }
 }
-            
-

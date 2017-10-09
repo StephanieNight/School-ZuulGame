@@ -54,10 +54,6 @@ public class Game
             //player
             Command command = parser.getCommand();
             finished = processCommand(command);
-            // check for confligs.
-            // Minions 
-            // Zuul
-            // check for congfligs 
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
@@ -115,10 +111,6 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
-    }
-    private void goRandomRoom()
-    {
-        
     }
     private boolean quit(Command command) 
     {
