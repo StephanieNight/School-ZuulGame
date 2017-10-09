@@ -15,7 +15,8 @@ public abstract class Actor
  private final int DEFAULT_DAMGE_OUTPUT;
  private final char MAP_CODE;
  private Room currentRoom;
- private int modufiedHealthPoint;
+ private int maximumHealthPoint;
+ private int currentHealth;
  private int modifiedDefense;
  private int modifiedDamgeOutput;
  private int level =1;
@@ -47,6 +48,12 @@ public abstract class Actor
      public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
+        public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+        if (currentHealth < maximumHealthPoint){
+            currentHealth=maximumHealthPoint;
+        }
+    }
     public int getDefaultHealthPoint() {
         return DEFAULT_HEALTH_POINTS;
     }
@@ -55,7 +62,7 @@ public abstract class Actor
     // therefore the higher the level the higher the healthpoint is
     // there value 10 can be modified this is just an eksample
     public int getModufiedHealthPoint() {
-        return modufiedHealthPoint = DEFAULT_HEALTH_POINTS+(level*10);
+        return maximumHealthPoint = DEFAULT_HEALTH_POINTS+(level*10);
     }
     public int getDefaultDefense() {
         return DEFAULT_DEFENSE;
@@ -97,6 +104,8 @@ public abstract class Actor
      public Room getCurrentRoom() {
         return currentRoom;
     }
-
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
 }
 
