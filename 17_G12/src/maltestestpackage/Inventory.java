@@ -190,7 +190,7 @@ public class Inventory {
         System.out.println("Yes / No");
         Scanner input = new Scanner(System.in);
         String in = input.next();
-        if (in.toLowerCase().equals(in.toLowerCase()))
+        if (in.toLowerCase().equals("yes"))
         {
         for(int i = 0; i < inventory.length; i++)
         {
