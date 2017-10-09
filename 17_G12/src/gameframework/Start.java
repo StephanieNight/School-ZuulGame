@@ -5,7 +5,7 @@
  */
 package gameframework;
 
-import Stephie_build.Game;
+import Stephie_build.GameEngine;
 
 /**
  *
@@ -14,7 +14,7 @@ import Stephie_build.Game;
 public class Start {
     public static void main(String[] args)
     {
-        Game gameEngine = new Game();
+        GameEngine gameEngine = new GameEngine();
         gameEngine.playTEST();
         /*
         Game g = new Game();

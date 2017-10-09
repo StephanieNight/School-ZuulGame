@@ -9,7 +9,6 @@ import gameframework.Command;
 import gameframework.Room;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
 
 /**
  *
@@ -104,7 +103,7 @@ public class Labyrinth
         System.out.println("Size                : "+this.SIZE);
         System.out.println("Is loop             : "+isLoop);
         System.out.println("number of moinuions : "+ Minions);
-        System.out.println("Deffictulty is      : "+ Game.getDifficulty());
+        System.out.println("Deffictulty is      : "+ GameEngine.getDifficulty());
     }
     
     private void generateMaze(int currentX, int currentY) 
