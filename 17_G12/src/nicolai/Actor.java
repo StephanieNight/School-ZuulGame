@@ -25,12 +25,13 @@ public abstract class Actor
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
     public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode){
-     this.NAME = name;
-     this.DEFAULT_HEALTH_POINTS = defaultHealthpoint;
-     this.DEFAULT_DEFENSE = defaultDefense;
-     this.DEFAULT_DAMGE_OUTPUT = defaultDefense;
-     this.MAP_CODE=mapCode;
- }
+        this.NAME = name;
+        this.DEFAULT_HEALTH_POINTS = defaultHealthpoint;
+        this.DEFAULT_DEFENSE = defaultDefense;
+        this.DEFAULT_DAMGE_OUTPUT = defaultDefense;
+        this.MAP_CODE=mapCode;
+        this.currentHealth = DEFAULT_HEALTH_POINTS;
+    }
     //  in this metode you can set the level 
     public void setLevel(int level) {
         this.level = level;

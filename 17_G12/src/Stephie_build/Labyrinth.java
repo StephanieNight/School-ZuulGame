@@ -139,6 +139,22 @@ public class Labyrinth
     private static boolean isInsideMaze(int v, int upper) 
     {
             return (v >= 0) && (v < upper);
+    }   
+    public boolean hasConflict()
+    {
+        for(Room[] r : maze)
+        {
+            for(Room c:r)
+            {
+                if(c.isConflict())
+                {
+                    return true;
+                }
+               
+            }            
+        }
+        return false;
+        
     }
     private enum DIR 
     {

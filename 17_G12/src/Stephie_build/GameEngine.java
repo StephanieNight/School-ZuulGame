@@ -9,6 +9,8 @@ import gameframework.Command;
 import gameframework.CommandWord;
 import gameframework.Game;
 import gameframework.Parser;
+import java.util.ArrayList;
+import java.util.Scanner;
 import nicolai.Actor;
 import nicolai.Monster;
 import nicolai.Player;
@@ -25,7 +27,7 @@ public class GameEngine extends Game{
     // Primary instances
     private Player player;
     private Zuul zuul;
-    private Monster[] minions;
+    private ArrayList<Monster> minions;
     // ---------------------
     private Labyrinth labyrinth;
     private int mazeSize ;
@@ -41,9 +43,9 @@ public class GameEngine extends Game{
         this.difficulty = i;        
         this.mazeSize = (int)((1.5*difficulty)+3);
         this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
-        this.minions = new Monster[maxNumberOfMinions];
+        this.minions =new ArrayList<>();
         this.labyrinth= new Labyrinth(mazeSize);   
-        spawnMobs();
+        this.spawnMobs();
         this.labyrinth.display();
         System.out.println("Size                : "+this.mazeSize);
         System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
@@ -54,10 +56,11 @@ public class GameEngine extends Game{
     {    
         printWelcome();
         boolean finished = false;
-        while (! finished) {
+        while (!finished) {
             //player
             Command command = parser.getCommand();
             finished = processCommand(command);
+            Monster monsterToDelete = null;
             for(Monster m : minions)
             {
                 String[] exits= m.getCurrentRoom().getExits();
@@ -80,8 +83,20 @@ public class GameEngine extends Game{
                         System.out.println(" Problem occured " + e.getMessage());
 
                     }
-                }                    
+                } 
+              if(m.getCurrentRoom().isConflict())
+              {
+                if(Conflict(m));
+                {
+                    monsterToDelete = m;
+                }
+              }
             }
+            if(monsterToDelete != null)
+            {   minions.remove(monsterToDelete);
+            }
+            
+            // Zuuul
             String[] exits= zuul.getCurrentRoom().getExits();
             for(String s : exits)
             {
@@ -94,6 +109,15 @@ public class GameEngine extends Game{
                         command = new Command(CommandWord.GO, s);
                         goRoom(command,zuul);
                         System.out.println(zuul.getName() + " has moved "+ s);
+                        if(zuul.getCurrentRoom().isConflict())
+                        {
+                          if(Conflict(zuul));
+                          {
+                             zuul = null;
+                              System.out.println("Zuul has been defeated you win !");
+                              finished = true;
+                          }
+                        }
                         break;
                     }
                 }
@@ -101,15 +125,60 @@ public class GameEngine extends Game{
                 {
                     System.out.println(" Problem occured " + e.getMessage());
                 }
-            }  
-            sleep();
-            // check for confligs.
-            // Minions 
-            // Zuul
-            // check for congfligs 
-            labyrinth.display();
+            }              
+            sleep();            
+            labyrinth.display();         
+            
         }
         System.out.println("Thank you for playing.  Good bye.");
+    }
+    private boolean Conflict(Actor monster)            
+    {
+        boolean isOver = false;
+        boolean didWin = false;
+        Command command;
+        int mhp = monster.getCurrentHealth();
+        System.out.println("you have incountered : "+ monster.getName());
+        System.out.println("BATTLE ! write A to Attack and F for Flee");
+        Scanner scn = new Scanner(System.in);
+        while(!isOver)
+        {                    
+            System.out.println("Monsters CurrentHP : "+mhp);
+            System.out.println("Your     CurrentHP : "+player.getCurrentHealth());
+            System.out.print(">");
+            String move = scn.nextLine();
+            if (move.equals("A"))
+            {
+                System.out.println("You choose Attac");
+                int dmg =20+(int)(Math.random()*20);
+                System.out.println("You did "+ dmg + " dmg");
+                mhp = mhp - dmg;
+                if(mhp <0)
+                {
+                    System.out.println(player.getCurrentRoom().getMonster().getName()+" has been slain you win");
+                    player.getCurrentRoom().setMonster(null);
+                    isOver = true;
+                    didWin = true;
+                    return didWin;
+                }
+            }
+            else if (move.equals("F"))
+            {
+                System.out.println("You Chose poorly");
+               for(String s : player.getCurrentRoom().getExits())
+               {
+                   if(player.getCurrentRoom().getExit(s).getMonster() == null)
+                   {
+                       command = new Command(CommandWord.GO, s);
+                       goRoom(command);
+                       isOver = true;
+                       break;
+                   }
+               }
+                System.out.println("there is nowhere to run");
+            }
+        }
+        return false;
     }
     private void printWelcome()
     {   System.out.println("+----------------------------------------------+");
@@ -121,8 +190,7 @@ public class GameEngine extends Game{
         
     }    
     public boolean spawnMobs() 
-    { 
-        
+    {         
         player= new Player("Player", 100, 100, 100);
         zuul = new Zuul();
         labyrinth.spawnPlayer(0,0, player);
@@ -138,7 +206,7 @@ public class GameEngine extends Game{
                 added = labyrinth.spawnMonster(x, y,min);
                 if(added)
                 {
-                    minions[i]=min;
+                    minions.add(min);
                 }
             }            
         }
