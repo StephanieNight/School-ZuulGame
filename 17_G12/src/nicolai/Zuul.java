@@ -11,8 +11,9 @@ package nicolai;
  */
 public class Zuul extends Actor
 {
-    public Zuul (int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput)
+    public Zuul ()
     {
-        super("Zuul", defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'Z');
+        super("Zuul", 500, 500, 500, 'Z');
+        // IS AWESOME !! 
     }
 }
