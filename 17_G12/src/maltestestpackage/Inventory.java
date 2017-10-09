@@ -43,12 +43,19 @@ public class Inventory {
     public void useItem(String itemName)
     {
         boolean itemUsed = false;
+        
         for(int i = 0; i < inventory.length; i++)
         {
             if(inventory[i].getName().toLowerCase().equals(itemName.toLowerCase()))
             {
                 inventory[i].useItem();
                 itemUsed = true;
+                if ("Weapon".equals(inventory[i].getType()) || "Shield".equals(inventory[i].getType()) 
+                || "Armor".equals(inventory[i].getType()))
+                {
+                    break;
+                }
+                    
                 for(;i < inventory .length; i++)
             {
                 if(i < inventory.length - 1)
