@@ -1,6 +1,8 @@
 
 package nicolai;
 
+import gameframework.Room;
+
 /**
  *
  * @author nicol
@@ -12,8 +14,7 @@ public abstract class Actor
  private final String NAME;
  private final int DEFAULT_DAMGE_OUTPUT;
  private final char MAP_CODE;
-
-    
+ private Room currentRoom;
  private int modufiedHealthPoint;
  private int modifiedDefense;
  private int modifiedDamgeOutput;
@@ -43,7 +44,9 @@ public abstract class Actor
     public void setTotalXp(int totalXp) {
         this.totalXp = totalXp;
     }
-  
+     public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
     public int getDefaultHealthPoint() {
         return DEFAULT_HEALTH_POINTS;
     }
@@ -91,5 +94,9 @@ public abstract class Actor
      public char getMAP_CODE() {
         return MAP_CODE;
     }
+     public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
 }
 
