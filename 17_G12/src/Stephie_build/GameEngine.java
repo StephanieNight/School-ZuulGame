@@ -58,32 +58,51 @@ public class GameEngine extends Game{
             //player
             Command command = parser.getCommand();
             finished = processCommand(command);
-            
             for(Monster m : minions)
             {
                 String[] exits= m.getCurrentRoom().getExits();
                 for(String s : exits)
                 {
-                    if(m.getCurrentRoom().getMonster() ==null)
-                    {
-                        command = new Command(CommandWord.GO, s);
-                        goRoom(command, m);
-                        System.out.println("Minion " + m.getName() + " has moved "+ s);
+                    try
+                    {   
+                        Room current = m.getCurrentRoom();
+                        Room ex = current.getExit(s);
+                        if(ex.getMonster() ==null)
+                        {
+                            command = new Command(CommandWord.GO, s);
+                            goRoom(command, m);
+                            System.out.println("Minion " + m.getName() + " has moved "+ s);
+                            break;
+                        }
                     }
-                }
+                    catch (Exception e)
+                    {
+                        System.out.println(" Problem occured " + e.getMessage());
+
+                    }
+                }                    
             }
             String[] exits= zuul.getCurrentRoom().getExits();
             for(String s : exits)
             {
-                if(zuul.getCurrentRoom().getMonster() ==null)
+                try
                 {
-                    command = new Command(CommandWord.GO, s);
-                    goRoom(command,zuul);
-                    System.out.println(zuul.getName() + " has moved "+ s);
+                    Room current = zuul.getCurrentRoom();
+                    Room ex = current.getExit(s);
+                    if(ex.getMonster() ==null)
+                    {
+                        command = new Command(CommandWord.GO, s);
+                        goRoom(command,zuul);
+                        System.out.println(zuul.getName() + " has moved "+ s);
+                        break;
+                    }
                 }
-            }
-            
-            
+                catch (Exception e)
+                {
+                    System.out.println(" Problem occured " + e.getMessage());
+                }
+            }  
+            sleep();
             // check for confligs.
             // Minions 
             // Zuul
@@ -140,7 +159,7 @@ public class GameEngine extends Game{
                 printHelp();
                 break;
             case GO:
-                goRoom(command, player);
+                goRoom(command);
                 break;
             case QUIT:
                 wantToQuit = quit(command);
@@ -158,17 +177,31 @@ public class GameEngine extends Game{
     private void goRoom(Command command, Actor actor) 
     {
         if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
+            System.out.println("Problem with monster "+actor.getName());
             return;
         }
         String direction = command.getSecondWord();
         Room nextRoom = actor.getCurrentRoom().getExit(direction);
         if (nextRoom == null) {
+        }
+        else {
+            labyrinth.moveMonster(actor, nextRoom);
+        }
+    }
+    private void goRoom(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Go where?");
+            return;
+        }
+        String direction = command.getSecondWord();
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
+        if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
-            labyrinth.movePlayer(actor, nextRoom);
-            System.out.println(actor.getCurrentRoom().getLongDescription());
+            labyrinth.movePlayer(player, nextRoom);
+            System.out.println(player.getCurrentRoom().getLongDescription());
         }
     }
     private boolean quit(Command command) 
@@ -189,4 +222,14 @@ public class GameEngine extends Game{
     {
         return difficulty;
     }  
+    private void sleep()
+    {
+        try
+        {
+        Thread.sleep(1000);
+        }
+        catch(Exception e)
+        {
+        }
+    }
 }
