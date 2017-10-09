@@ -12,7 +12,7 @@ import gameframework.Parser;
  *
  * @author Stephanie
  */
-public class GameEngine extends Game {
+public class GameEngine {
     private static int difficulty;  
     private Parser parser;
     public GameEngine()
@@ -25,7 +25,6 @@ public class GameEngine extends Game {
         }
         difficulty = i; 
     }
-    @Override
     public void play()
     {
         // test by stepth

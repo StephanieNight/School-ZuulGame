@@ -23,7 +23,7 @@ public class Labyrinth
     private int numberOfMinions = 0;
     private Player player;
     private Zuul zuul;
-    private ArrayList<Minions> minions = new ArrayList<>();
+    private ArrayList<Monster> minions = new ArrayList<>();
     //private final int[][] maze;    
     public Labyrinth(int size) 
     {
@@ -44,7 +44,7 @@ public class Labyrinth
     public boolean spawnMobs() 
     { 
         player= new Player("Player", 100, 100, 100);
-        zuul = new Zuul(1000,1000, 1000);
+        zuul = new Zuul();
         spawnMob(0,0, player );
         spawnMob(this.SIZE-1, this.SIZE-1,zuul);
         for (int i = 0; i < Math.pow(this.SIZE,1.5)/2; i++) 
@@ -54,7 +54,7 @@ public class Labyrinth
             {
                 int x = (int)(1+ Math.random()*(this.SIZE-1)); 
                 int y = (int)(1+ Math.random()*(this.SIZE-1));
-                Minions min = new Minions(("mionion"+i), 50, 50, 50);
+                Monster min = new Monster(("mionion"+i));
                 added = spawnMob(x, y,min);
                 if(added)
                 {
@@ -96,7 +96,14 @@ public class Labyrinth
                 // draw the west edge
                 for (int j = 0; j < this.SIZE; j++) {
                         System.out.print(!maze[j][i].hasExit(DIR.W.direction) ? "| " : "  ");
-                        System.out.print(maze[j][i].getOccupant());
+                        if( maze[j][i].getOccupant() != null)
+                        {
+                            System.out.print(maze[j][i].getOccupant().getMapCode());
+                        }
+                        else 
+                        {
+                            System.out.print(" ");
+                        }
                         System.out.print(" ");
                         
                 }
