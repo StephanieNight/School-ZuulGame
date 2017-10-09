@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package maltestestpackage;
-import gameframework.Labyrinth;
+import Stephie_build.Labyrinth;
 /**
  *
  * @author Malte

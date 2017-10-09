@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gameframework;
+package Stephie_build;
 
+import gameframework.Command;
+import gameframework.Room;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
@@ -15,15 +17,15 @@ import java.util.Random;
  */
 public class Labyrinth
 {
-    private final int size;
+    private final int SIZE;
     private Room[][] maze;
     private boolean isLoop = false;
     private int Minions = 0;
     //private final int[][] maze;    
     public Labyrinth(int size) 
     {
-        this.size = size;
-        maze = new Room[this.size][this.size];
+        this.SIZE = size;
+        maze = new Room[this.SIZE][this.SIZE];
         // fills the Maze with emptie 
         for(int r = 0; r <size; r++)
         {
@@ -43,14 +45,14 @@ public class Labyrinth
     public boolean spawnMobs() 
     {
         spawnMob(0,0, 'P');
-        spawnMob(this.size-1, this.size-1, 'Z');
-        for (int i = 0; i < Math.pow(this.size,1.5)/2; i++) 
+        spawnMob(this.SIZE-1, this.SIZE-1, 'Z');
+        for (int i = 0; i < Math.pow(this.SIZE,1.5)/2; i++) 
         {
             boolean added = false;
             while (!added)
             {
-                int x = (int)(1+ Math.random()*(this.size-1)); 
-                int y = (int)(1+ Math.random()*(this.size-1));
+                int x = (int)(1+ Math.random()*(this.SIZE-1)); 
+                int y = (int)(1+ Math.random()*(this.SIZE-1));
                 added = spawnMob(x, y, 'M');
                 if(added) Minions++;
             }            
@@ -79,14 +81,14 @@ public class Labyrinth
     }
     public void display() 
     {
-        for (int i = 0; i < this.size; i++) {
+        for (int i = 0; i < this.SIZE; i++) {
                 // draw the north edge
-                for (int j = 0; j < this.size; j++) {
+                for (int j = 0; j < this.SIZE; j++) {
                         System.out.print(!maze[j][i].hasExit(DIR.N.direction)  ? "+---" : "+   ");
                 }
                 System.out.println("+");
                 // draw the west edge
-                for (int j = 0; j < this.size; j++) {
+                for (int j = 0; j < this.SIZE; j++) {
                         System.out.print(!maze[j][i].hasExit(DIR.W.direction) ? "| " : "  ");
                         System.out.print(maze[j][i].getOccupant());
                         System.out.print(" ");
@@ -95,12 +97,14 @@ public class Labyrinth
                 System.out.println("|");
         }
         // draw the bottom line
-        for (int j = 0; j < this.size; j++) {
+        for (int j = 0; j < this.SIZE; j++) {
                 System.out.print("+---");
         }
-        System.out.println("+");  
+        System.out.println("+"); 
+        System.out.println("Size                : "+this.SIZE);
         System.out.println("Is loop             : "+isLoop);
         System.out.println("number of moinuions : "+ Minions);
+        System.out.println("Deffictulty is      : "+ Game.getDifficulty());
     }
     
     private void generateMaze(int currentX, int currentY) 
@@ -111,8 +115,8 @@ public class Labyrinth
         {
             int nextX = currentX + dir.dx;      // gets X for the next Room 
             int nextY = currentY + dir.dy;      // gets Y for the nex Room
-            if (isInsideMaze(nextX, this.size)  // checks if x is indside maze.
-             && isInsideMaze(nextY, this.size))  // checks if y is indside maze.
+            if (isInsideMaze(nextX, this.SIZE)  // checks if x is indside maze.
+             && isInsideMaze(nextY, this.SIZE))  // checks if y is indside maze.
             { 
                 // checks if room has no exits 
                 if(!maze[nextX][nextY].hasAnyExits())

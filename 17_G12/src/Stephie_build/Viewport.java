@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LabyrinthGame;
+package Stephie_build;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
