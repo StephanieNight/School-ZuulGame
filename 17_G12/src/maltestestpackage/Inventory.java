@@ -6,6 +6,7 @@
 package maltestestpackage;
 import static Stephie_build.GameEngine.getDifficulty;
 import java.util.Scanner;
+import Jacobs_package.*;
 /**
  *
  * @author Malte
@@ -15,7 +16,11 @@ public class Inventory {
     
     public Inventory()
     {
-        this.inventory = new Item[8 - getDifficulty()];
+        inventory = new Item[8 - getDifficulty()];
+        inventory[0] = new Branch();
+        inventory[1] = new TatteredClothes();
+        inventory[2] = new PotLid();
+        
     }
     
     public void getInventoryList()

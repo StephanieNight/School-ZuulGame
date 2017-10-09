@@ -9,7 +9,7 @@ package maltestestpackage;
  *
  * @author Malte
  */
-class MiniMap extends Item{
+public class MiniMap extends Item{
 
     @Override
     public String getDescription() {

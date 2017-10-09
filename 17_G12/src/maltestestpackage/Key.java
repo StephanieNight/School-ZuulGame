@@ -9,7 +9,7 @@ package maltestestpackage;
  *
  * @author Malte
  */
-class Key extends Item{
+public class Key extends Item{
 @Override
 
 

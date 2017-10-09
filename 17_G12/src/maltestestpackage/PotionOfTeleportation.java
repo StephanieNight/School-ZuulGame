@@ -9,7 +9,7 @@ import Stephie_build.Labyrinth;
  *
  * @author Malte
  */
-class PotionOfTeleportation extends Item {
+public class PotionOfTeleportation extends Item {
 
     @Override
     public String getDescription() {
