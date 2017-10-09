@@ -185,31 +185,30 @@ public class Inventory {
     
     public void dropItem(String itemName)
     {
-        System.out.println("Why would you do this?");
-        System.out.println("Are you sure you wish to drop " + itemName);
+        System.out.println("Are you sure you wish to drop " + itemName + "?");
         System.out.println("Yes / No");
         Scanner input = new Scanner(System.in);
         String in = input.next();
         if (in.toLowerCase().equals("yes"))
         {
-        for(int i = 0; i < inventory.length; i++)
-        {
-            if(itemName.toLowerCase().equals(inventory[i].getName().toLowerCase()))
+            for(int i = 0; i < inventory.length; i++)
             {
-                for(; i < inventory.length; i++)
+                if(itemName.toLowerCase().equals(inventory[i].getName().toLowerCase()))
                 {
-                    if(i < inventory.length -1)
+                    for(; i < inventory.length; i++)
                     {
-                        inventory[i] = inventory[i + 1];
+                        if(i < inventory.length -1)
+                        {
+                            inventory[i] = inventory[i + 1];
+                        }
+                        else
+                        {
+                            inventory[i] = null;
+                        }
+                        break;
                     }
-                    else
-                    {
-                        inventory[i] = null;
-                    }
-                    break;
                 }
             }
         }
-    }
     }
 }
