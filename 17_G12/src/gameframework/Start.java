@@ -5,6 +5,8 @@
  */
 package gameframework;
 
+import Stephie_build.Game;
+
 /**
  *
  * @author Stephanie

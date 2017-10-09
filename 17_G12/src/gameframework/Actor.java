@@ -7,7 +7,7 @@ package gameframework;
  */
 public class Actor 
 {
- private int defaultHealthPoint;
+ private int defaultHealthPoint; 
  private int modufiedHealthPoint;
  private int defaultDefense;
  private int modifiedDefense;
@@ -29,52 +29,52 @@ public class Actor
      this.defaultDefense = defaultDefense;
      this.defaultDamgeOutput = defaultDefense;
  }
- // in this metode you can the 
+ // in this metode you can set the DefaultHealthPoint 
     public void setDefaultHealthPoint(int defaultHealthPoint) {
         this.defaultHealthPoint = defaultHealthPoint;
     }
-
+ // in this metode you can set the modufiedHealthPoint 
     public void setModufiedHealthPoint(int modufiedHealthPoint) {
         this.modufiedHealthPoint = modufiedHealthPoint;
     }
    
-
+ // in this metode you can set the DefaultDefense
     public void setDefaultDefense(int defaultDefense) {
         this.defaultDefense = defaultDefense;
     }
-
+ // in this metode you can set the modufiedDefense
     public void setModifiedDefense(int modifiedDefense) {
         this.modifiedDefense = modifiedDefense;
     }
-
+ // in this metode you can set the name 
     public void setName(String name) {
         this.name = name;
     }
-
+ // in this metode you can set the defaultDamgeOutput
     public void setDefaultDamgeOutput(int defaultDamgeOutput) {
         this.defaultDamgeOutput = defaultDamgeOutput;
     }
-
+ // in this metode you can set the modufuedDamgeoutput
     public void setModifiedDamgeOutput(int modifiedDamgeOutput) {
         this.modifiedDamgeOutput = modifiedDamgeOutput;
     }
-
+//  in this metode you can set the level 
     public void setLevel(int level) {
         this.level = level;
     }
-
+ // in this metode you can set the new level
     public void setNewLevel(int newLevel) {
         this.newLevel = newLevel;
     }
-   
+  // in this metode you can set the Xp
     public void setXp(int xp) {
         this.xp = xp;
     }
-
+ // in this metode you can set the totalXp
     public void setTotalXp(int totalXp) {
         this.totalXp = totalXp;
     }
-
+  
     public int getDefaultHealthPoint() {
         return defaultHealthPoint;
     }
@@ -97,7 +97,7 @@ public class Actor
     public int getModifiedDefense() {
         return modifiedDefense = defaultDefense+(level*5);
     }
-
+    
     public String getName() {
         return name;
     }

@@ -54,4 +54,29 @@ public class Parser
     {
         commands.showAll();
     }
+    /*
+     * gets the difficulty from 1-5 if errors occur return -1.
+     */
+    public int getDifficulty()
+    { 
+        System.out.println("choose your difficulty. from 1-5");
+        System.out.print("> ");
+
+        String inputLine = reader.nextLine();
+        try
+        {
+            int i = Integer.parseInt(inputLine);
+            if(i >0 && i <6)
+            {
+                return i;
+            }
+            return -1;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            return -1;
+        }        
+    }
+    
 }
