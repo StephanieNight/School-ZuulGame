@@ -27,7 +27,7 @@ public class HealingPotion extends Item{
     @Override
     public void useItem() {
         System.out.println("You already feel better");
-        //player.setCurrentHealth(player.getCurrentHealth + 30)
+        //player.setCurrentHealth(player.getCurrentHealth + 30);
     }
 
     

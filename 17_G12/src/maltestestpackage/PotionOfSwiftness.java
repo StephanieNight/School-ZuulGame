@@ -13,7 +13,8 @@ public class PotionOfSwiftness extends Item{
 
     @Override
     public String getDescription() {
-        return "A flask with a nice yellow color. Bear Grills would be very tempted to just gulp it down";
+        return "A flask with a nice yellow color. "
+                + "\nBear Grills would be very tempted to just gulp it down";
     }
 
     @Override

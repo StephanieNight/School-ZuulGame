@@ -13,7 +13,8 @@ public class PotionOfTeleportation extends Item {
 
     @Override
     public String getDescription() {
-        return "A flask with a clear substance within it. Smells like sunshine and happiness... Wonder what it does...";
+        return "A flask with a clear substance within it. "
+                + "\nSmells like sunshine and happiness... Wonder what it does...";
     }
 
     @Override
@@ -23,7 +24,7 @@ public class PotionOfTeleportation extends Item {
 
     /**
      * transports the player to a random location on the map by setting current
-     * location to a randomized location.
+     * location to a randomised location.
      */
     @Override
     public void useItem() {
