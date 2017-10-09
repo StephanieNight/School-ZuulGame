@@ -45,6 +45,9 @@ public class GameEngine extends Game{
         this.labyrinth= new Labyrinth(mazeSize);   
         spawnMobs();
         this.labyrinth.display();
+        System.out.println("Size                : "+this.mazeSize);
+        System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
+        System.out.println("Deffictulty is      : "+ GameEngine.getDifficulty());
     }
     @Override
     public void play()
@@ -55,6 +58,32 @@ public class GameEngine extends Game{
             //player
             Command command = parser.getCommand();
             finished = processCommand(command);
+            
+            for(Monster m : minions)
+            {
+                String[] exits= m.getCurrentRoom().getExits();
+                for(String s : exits)
+                {
+                    if(m.getCurrentRoom().getMonster() ==null)
+                    {
+                        command = new Command(CommandWord.GO, s);
+                        goRoom(command, m);
+                        System.out.println("Minion " + m.getName() + " has moved "+ s);
+                    }
+                }
+            }
+            String[] exits= zuul.getCurrentRoom().getExits();
+            for(String s : exits)
+            {
+                if(zuul.getCurrentRoom().getMonster() ==null)
+                {
+                    command = new Command(CommandWord.GO, s);
+                    goRoom(command,zuul);
+                    System.out.println(zuul.getName() + " has moved "+ s);
+                }
+            }
+            
+            
             // check for confligs.
             // Minions 
             // Zuul
@@ -71,8 +100,7 @@ public class GameEngine extends Game{
         System.out.println("| what do you do ?                             |");
         System.out.println("+----------------------------------------------+");
         
-    }
-    
+    }    
     public boolean spawnMobs() 
     { 
         
@@ -140,7 +168,6 @@ public class GameEngine extends Game{
         }
         else {
             labyrinth.movePlayer(actor, nextRoom);
-            actor.setCurrentRoom(nextRoom);
             System.out.println(actor.getCurrentRoom().getLongDescription());
         }
     }

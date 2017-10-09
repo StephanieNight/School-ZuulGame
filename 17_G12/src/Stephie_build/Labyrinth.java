@@ -5,8 +5,6 @@
  */
 package Stephie_build;
 
-import gameframework.Command;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import nicolai.*;
@@ -60,20 +58,18 @@ public class Labyrinth
             return false;
         } 
     }
-    public boolean movePlayer(Actor c,Room NextRoom)
+    public void movePlayer(Actor actor,Room NextRoom)
     {        
-        c.getCurrentRoom().setPlayer(null); 
-        NextRoom.setPlayer(c);
-        return true;       
-    }
-    public void goRoom(Command command) 
-    {
-
-    }  
-    private Room[] getSpawnableRooms() 
-    {
-        return new Room[0];
-    }
+        actor.getCurrentRoom().setPlayer(null); 
+        NextRoom.setPlayer(actor);
+        actor.setCurrentRoom(NextRoom);      
+    } 
+    public void moveMonster(Actor actor,Room NextRoom)
+    {        
+        actor.getCurrentRoom().setMonster(null); 
+        NextRoom.setMonster(actor);
+        actor.setCurrentRoom(NextRoom);      
+    } 
     public void display() 
     {
         for (int i = 0; i < this.SIZE; i++) {
@@ -95,11 +91,7 @@ public class Labyrinth
         for (int j = 0; j < this.SIZE; j++) {
                 System.out.print("+---");
         }
-        System.out.println("+"); 
-        System.out.println("Size                : "+this.SIZE);
-        System.out.println("Is loop             : "+isLoop);
-        System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
-        System.out.println("Deffictulty is      : "+ GameEngine.getDifficulty());
+        System.out.println("+");
     }    
     private void generateMaze(int currentX, int currentY) 
     {

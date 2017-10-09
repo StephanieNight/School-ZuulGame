@@ -114,4 +114,24 @@ public class Room
        else 
         return ' ';
     }
+    /* 
+    Crap solution but needed for AI
+    */
+    public String[] getExits()
+    {
+        Set<String> keys = exits.keySet();
+        int i =0;
+        String[] e = new String[keys.size()];
+        for(String s : keys)
+        {
+            e[i] = s;
+            i++;
+        }
+        return e;    
+    }
+    public void changeDescription(String desc)
+    {
+        this.description = desc;
+    }
 }
+            
