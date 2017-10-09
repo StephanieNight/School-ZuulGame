@@ -88,6 +88,7 @@ public class Room
     }
     public Actor getMonster()
     {
+        
         return monster;
     }
     public boolean isConflict()
