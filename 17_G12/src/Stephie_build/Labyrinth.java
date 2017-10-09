@@ -140,7 +140,7 @@ public class Labyrinth
     {
             return (v >= 0) && (v < upper);
     }
-    private enum DIR 
+    public enum DIR 
     {
         N("north", 0, -1), S("south", 0, 1), E("east", 1, 0), W("west", -1, 0);
         private final String direction; // binary representation of direction i 4 bits. 
