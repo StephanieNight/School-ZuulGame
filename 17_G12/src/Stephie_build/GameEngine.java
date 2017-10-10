@@ -134,6 +134,7 @@ public class GameEngine extends Game{
     }
     private boolean Conflict(Actor monster)            
     {
+        labyrinth.display();
         boolean isOver = false;
         boolean didWin = false;
         Command command;
