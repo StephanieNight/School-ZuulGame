@@ -186,6 +186,7 @@ public class Inventory {
     /**
      * Lets the player delete items.
      * @param itemName is a String matching a name of an item in the inventory array
+     * You cannot drop your key as it is needed to win.
      */
     public void dropItem(String itemName)
     {
@@ -195,21 +196,29 @@ public class Inventory {
         String in = input.next();
         if (in.toLowerCase().equals("yes"))
         {
-            for(int i = 0; i < inventory.length; i++)
+            if(in.toLowerCase().equals("key"))
             {
-                if(itemName.toLowerCase().equals(inventory[i].getName().toLowerCase()))
+                System.out.println("You cannot drop your only key out of this place!");
+                
+            }
+            else
+            {
+                for(int i = 0; i < inventory.length; i++)
                 {
-                    for(; i < inventory.length; i++)
+                    if(itemName.toLowerCase().equals(inventory[i].getName().toLowerCase()))
                     {
-                        if(i < inventory.length -1)
+                        for(; i < inventory.length; i++)
                         {
-                            inventory[i] = inventory[i + 1];
+                            if(i < inventory.length -1)
+                            {
+                                inventory[i] = inventory[i + 1];
+                            }
+                            else
+                            {
+                                inventory[i] = null;
+                            }
+                            break;
                         }
-                        else
-                        {
-                            inventory[i] = null;
-                        }
-                        break;
                     }
                 }
             }
