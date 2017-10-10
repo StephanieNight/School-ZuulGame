@@ -15,7 +15,6 @@ import nicolai.Actor;
 import nicolai.Monster;
 import nicolai.Player;
 import nicolai.Zuul;
-import maltestestpackage.Combat;
 
 /**
  *
@@ -135,51 +134,50 @@ public class GameEngine extends Game{
     }
     private boolean Conflict(Actor monster)            
     {
-//        boolean isOver = false;
-//        boolean didWin = false;
-//        Command command;
-//        int mhp = monster.getCurrentHealth();
-//        System.out.println("you have incountered : "+ monster.getName());
-//        System.out.println("BATTLE ! write A to Attack and F for Flee");
-//        Scanner scn = new Scanner(System.in);
-//        while(!isOver)
-//        {                    
-//            System.out.println("Monsters CurrentHP : "+mhp);
-//            System.out.println("Your     CurrentHP : "+player.getCurrentHealth());
-//            System.out.print(">");
-//            String move = scn.nextLine();
-//            if (move.equals("A"))
-//            {
-//                System.out.println("You choose Attac");
-//                int dmg =20+(int)(Math.random()*20);
-//                System.out.println("You did "+ dmg + " dmg");
-//                mhp = mhp - dmg;
-//                if(mhp <0)
-//                {
-//                    System.out.println(player.getCurrentRoom().getMonster().getName()+" has been slain you win");
-//                    player.getCurrentRoom().setMonster(null);
-//                    isOver = true;
-//                    didWin = true;
-//                    return didWin;
-//                }
-//            }
-//            else if (move.equals("F"))
-//            {
-//                System.out.println("You Chose poorly");
-//               for(String s : player.getCurrentRoom().getExits())
-//               {
-//                   if(player.getCurrentRoom().getExit(s).getMonster() == null)
-//                   {
-//                       command = new Command(CommandWord.GO, s);
-//                       goRoom(command);
-//                       isOver = true;
-//                       break;
-//                   }
-//               }
-//                System.out.println("there is nowhere to run");
-//            }
-//        }
-        Combat combat = new Combat(this.player, monster);
+        boolean isOver = false;
+        boolean didWin = false;
+        Command command;
+        int mhp = monster.getCurrentHealth();
+        System.out.println("you have incountered : "+ monster.getName());
+        System.out.println("BATTLE ! write A to Attack and F for Flee");
+        Scanner scn = new Scanner(System.in);
+        while(!isOver)
+        {                    
+            System.out.println("Monsters CurrentHP : "+mhp);
+            System.out.println("Your     CurrentHP : "+player.getCurrentHealth());
+            System.out.print(">");
+            String move = scn.nextLine();
+            if (move.equals("A"))
+            {
+                System.out.println("You choose Attac");
+                int dmg =20+(int)(Math.random()*20);
+                System.out.println("You did "+ dmg + " dmg");
+                mhp = mhp - dmg;
+                if(mhp <0)
+                {
+                    System.out.println(player.getCurrentRoom().getMonster().getName()+" has been slain you win");
+                    player.getCurrentRoom().setMonster(null);
+                    isOver = true;
+                    didWin = true;
+                    return didWin;
+                }
+            }
+            else if (move.equals("F"))
+            {
+                System.out.println("You Chose poorly");
+               for(String s : player.getCurrentRoom().getExits())
+               {
+                   if(player.getCurrentRoom().getExit(s).getMonster() == null)
+                   {
+                       command = new Command(CommandWord.GO, s);
+                       goRoom(command);
+                       isOver = true;
+                       break;
+                   }
+               }
+                System.out.println("there is nowhere to run");
+            }
+        }
         return false;
     }
     private void printWelcome()
