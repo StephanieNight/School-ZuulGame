@@ -13,6 +13,10 @@ import Jacobs_package.*;
  * starting items are a branch, some tattered clothes and a pot lid.
  * @author Malte
  */
+
+
+
+// skal måske laves til set i stedet for array
 public class Inventory {
     private Item[] inventory;
     
