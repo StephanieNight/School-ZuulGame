@@ -22,14 +22,14 @@ public class Inventory {
     
     public Inventory()
     {
-        inventory = new Item[8 - getDifficulty()];
-        inventory[0] = new Branch();
+        inventory = new Item[8 - getDifficulty()]; //inventory size based on difficulty
+        inventory[0] = new Branch();            //the three pieces of starting equipment
         inventory[1] = new TatteredClothes();
         inventory[2] = new PotLid();
         
     }
     
-    public void getInventoryList()
+    public void getInventoryList() //shows player's inventory //TODO needs command word.
     {
         for(Item list: inventory)
         {
@@ -44,33 +44,33 @@ public class Inventory {
      * executes useItem if names matches and removes said item and shifting the 
      * rest of the items to the left.
      */
-    public void useItem(String itemName)
+    public void useItem(String itemName) //TODO needs command word
     {
         boolean itemUsed = false;
         
-        for(int i = 0; i < inventory.length; i++)
+        for(int i = 0; i < inventory.length; i++)//cycles through inventory
         {
-            if(inventory[i].getName().toLowerCase().equals(itemName.toLowerCase()))
+            if(inventory[i].getName().toLowerCase().equals(itemName.toLowerCase()))//checks if name of item matches what the player wanted to use.
             {
-                inventory[i].useItem();
+                inventory[i].useItem();//activates the item's effect.
                 itemUsed = true;
                 if ("Weapon".equals(inventory[i].getType()) || "Shield".equals(inventory[i].getType()) 
-                || "Armor".equals(inventory[i].getType()))
+                || "Armor".equals(inventory[i].getType())) //if the used item is equipment, instantly break out and end the method.
                 {
                     break;
                 }
                     
                 for(;i < inventory .length; i++)
-            {
-                if(i < inventory.length - 1)
                 {
-                    inventory[i] = inventory[i+1];
+                    if(i < inventory.length - 1)
+                    {
+                        inventory[i] = inventory[i+1];
+                    }
+                    else
+                    {
+                        inventory[i] = null;
+                    }
                 }
-                else
-                {
-                    inventory[i] = null;
-                }
-            }
                 break;
             }
 
