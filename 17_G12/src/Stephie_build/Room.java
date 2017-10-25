@@ -18,17 +18,18 @@ public class Room
     private HashMap<String, Room> exits;
     private Actor player; // Copy
     private Actor monster; // Copy
-    private ArrayList<Item> Items = new ArrayList<>(); 
+    private ArrayList<Item> Items;
 
     public Room(String description) 
     {
         this.description = description;
         exits = new HashMap<String, Room>();
+        Items = new ArrayList<>();
     }
     public Room(String description, Item[] items) 
     {
         this(description);
-        exits = new HashMap<String, Room>();
+        Items.addAll(Items);
     }
     public void setExit(String direction, Room neighbor) 
     {
@@ -134,5 +135,13 @@ public class Room
     {
         this.description = desc;
     }
+    
+    public boolean hasItems(){
+        return (Items.size() > 0);
+    }
+    
+    
+    
+    
 }
             

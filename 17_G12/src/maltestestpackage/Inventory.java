@@ -196,7 +196,14 @@ public class Inventory {
                     }
                 }
             }
-            //add option to drop or use items if inventory is full.
+            else{
+                System.out.println("You're overburdened, which item do you want to consume or drop to make space?");
+                Scanner input = new Scanner(System.in);
+                
+            }
+            
+
+//add option to drop or use consumables if inventory is full.
         }
      
         
