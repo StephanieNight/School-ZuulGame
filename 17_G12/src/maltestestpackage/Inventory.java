@@ -60,13 +60,13 @@ public class Inventory {
                     break;
                 }
                     
-                for(;i < inventory .length; i++)
+                for(;i < inventory.length; i++) //cycles through remainder of inventory after match is found.
                 {
-                    if(i < inventory.length - 1)
+                    if(i < inventory.length - 1) //all items following used item are put one index lower to fill the hole.
                     {
                         inventory[i] = inventory[i+1];
                     }
-                    else
+                    else //removes the used item from inventory.
                     {
                         inventory[i] = null;
                     }
@@ -80,14 +80,20 @@ public class Inventory {
             System.out.println("You have no such item!");
         }
     }
-    
+    //udkast til forkortelse af linje 62-73
+    		/*inventory[i] = null; //removes the used item from inventory.
+		
+		for(;i+1 < inventory.length; i++) //cycles through remainder of inventory after match is found.
+		{
+                    inventory[i] = inventory[i+1]; //all items following the used item are put one index lower to fill the hole.
+		}*/
     
     /**
      * loops through items in inventory to find an item with a matching name.
      * @param itemName 
      * prints the name and description if item name matches input name.
      */
-    public void getItemDescription(String itemName)
+    public void getItemDescription(String itemName)//TODO needs command word.
      {
 
         boolean itemUsed = false;
@@ -124,6 +130,7 @@ public class Inventory {
             if(inventory1 == null)
             {
                 inventoryFull = false;
+                break;
             }
         }
         
@@ -131,9 +138,11 @@ public class Inventory {
         {
             if(equipment)
             {
-                for (Item inventory1 : inventory) {
-                    if(item.getType().equals(inventory1.getType()))
+                boolean typeMatch = false;
+                for (Item inventory1 : inventory) {//cycles through inventory
+                    if(item.getType().equals(inventory1.getType()))//checks if equipment to add is the same type as one already in inventory.
                     {
+                        typeMatch = true;
                         System.out.println("Do you wish to swap " + 
                                 inventory1.getName() + " with " + item.getName() + "?");
                         System.out.println("Yes / No");
@@ -141,9 +150,17 @@ public class Inventory {
                         String in = input.next().toLowerCase();
                         if(in.equals("yes"))
                         {
-                            inventory1 = item;
-                        }
+                            inventory1 = item; //destroys current equipment and replaces with new.
+                        }//choosing to not replace equipment (or making a typo) will destroy the picked up item. //FIX?
                         break;
+                    }
+                }
+                if(!typeMatch){ //if you're not already wearing equipment of the same type, pick it up.
+                    for (Item inventory1 : inventory){
+                        if(inventory1 == null){
+                        inventory1 = item; //adds item to first vacant spot in inventory.
+                        break;
+                        }
                     }
                 }
             }
@@ -152,16 +169,16 @@ public class Inventory {
                 for (Item inventory1 : inventory) {
                     if(inventory1 == null)
                     {
-                        inventory1 = item;
+                        inventory1 = item; //adds item to first vacant spot in inventory.
                         break;
                     }
                 }
             }
         }
         
-             if (inventoryFull)
+        else
         {
-            if(equipment)
+            if(equipment) //repeat from line 139
             {
                 for (Item inventory1 : inventory) {
                     if(item.getType().equals(inventory1.getType()))
