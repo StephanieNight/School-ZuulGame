@@ -104,5 +104,8 @@ public abstract class Actor
     public int getCurrentHealth() {
         return currentHealth;
     }
+    public void updateLevel(){
+        getModufiedHealthPoint();
+    }
 }
 
