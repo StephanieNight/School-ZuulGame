@@ -1,6 +1,7 @@
 package Stephie_build;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 import java.util.HashMap;
 import maltestestpackage.Item;
@@ -29,8 +30,14 @@ public class Room
     public Room(String description, Item[] items) 
     {
         this(description);
-        Items.addAll(Items);
+        Collections.addAll(Items, items);
     }
+    public Room(String description, Item item)
+    {
+        this(description);
+        Items.add(item);
+    }
+    
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
@@ -140,8 +147,20 @@ public class Room
         return (Items.size() > 0);
     }
     
+    public Item[] itemList() {
+        Item itemList[] = new Item[Items.size()];
+        return Items.toArray(itemList);
+    }
     
+    public Item pickupItem(int id) {
+        Item returnItem = Items.get(id);
+        Items.remove(id);
+        return returnItem;
+    }
     
+    public void addItem(Item item) {
+        Items.add(item);
+    }
     
 }
             
