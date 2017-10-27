@@ -33,10 +33,10 @@ public class Inventory {
     public void getInventoryList() //shows player's inventory //TODO needs command word.
     {
         int i = 0;
-        System.out.println("Slot  Item");
+        System.out.printf("%-5.4s  %-50.50s%n", "Slot", "Item");
         for(Item list: inventory){
             i++;
-            System.out.println(i + ":    " + list.getName());
+            System.out.printf("%-5.4s  %-50.50s%n", i, list.getName());
         }
     }
     
