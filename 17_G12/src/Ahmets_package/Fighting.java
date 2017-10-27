@@ -7,6 +7,7 @@ package Ahmets_package;
 
 import gameframework.Command;
 import gameframework.CommandWord;
+import gameframework.Parser;
 import java.util.Scanner;
 import nicolai.Actor;
 import nicolai.Monster;
@@ -20,12 +21,13 @@ public class Fighting {
    private Player p;
    private Actor a;
    private boolean flee = false;
+   private Parser parser;
    
    public Fighting (Player p, Actor a)
    {
        this.p = p;
        this.a = a;
-       
+       parser = new Parser();
                
    }
    public void fightingLoop(Player p, Actor a)
@@ -91,7 +93,11 @@ public class Fighting {
         flee = true;
         }
         else if(commandWord == CombatCommandWord.INVENTORY){
-            p.inventory.getInventoryList;
+            p.getInventory().getInventoryList();
+        }
+        else if (commandWord == CombatCommandWord.USE_ITEM){
+            int id = Integer.parseInt(command.getSecondWord());
+            p.getInventory().useItem(id);
         }
         else if (commandWord == CombatCommandWord.QUIT) {
             wantToQuit = quit(command);
@@ -114,5 +120,29 @@ public class Fighting {
        return a1.getCurrentHealth() > 0;
        
    }
-   
+   private void useItem(Command command){
+       if(!command.hasSecondWord()){ 
+           System.out.println("Which item");
+           return;
+       }
+       
+   }
+   private void printHelp() 
+    {
+        System.out.println("You are lost. You are alone. You wander");
+        System.out.println("around at the university.");
+        System.out.println();
+        System.out.println("Your command words are:");
+        parser.showCombatCommands();
+    }
+   private boolean quit(Command command) 
+    {
+        if(command.hasSecondWord()) {
+            System.out.println("Quit what?");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
