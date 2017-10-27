@@ -1,5 +1,7 @@
 package gameframework;
 
+import Ahmets_package.CombatCommand;
+import Ahmets_package.CombatCommandWords;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -13,12 +15,14 @@ public class Parser
 {
     private CommandWords commands;
     private Scanner reader;
+    private CombatCommandWords combatCommands;
 
     /**
      * Constructor 
      */
     public Parser() 
     {
+        combatCommands = new CombatCommandWords();
         commands = new CommandWords();
         reader = new Scanner(System.in);
     }
@@ -77,6 +81,34 @@ public class Parser
             System.out.println(e.getMessage());
             return -1;
         }        
+    }
+        public CombatCommand getCombatCommand() 
+    {
+        
+        String inputLine;
+        String word1 = null;
+        String word2 = null;
+
+        System.out.print("> ");
+
+        inputLine = reader.nextLine();
+
+        Scanner tokenizer = new Scanner(inputLine);
+        if(tokenizer.hasNext()) {
+            word1 = tokenizer.next();
+            if(tokenizer.hasNext()) {
+                word2 = tokenizer.next();
+            }
+        }
+
+        return new CombatCommand(combatCommands.getCombatCommandWord(word1), word2);
+    }
+    /**
+     * prints all commands.
+     */
+    public void showCombatCommands()
+    {
+        combatCommands.showAll();
     }
     
 }
