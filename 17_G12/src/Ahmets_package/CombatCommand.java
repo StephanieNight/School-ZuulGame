@@ -8,15 +8,17 @@ package Ahmets_package;
 import gameframework.CommandWord;
 
 /**
- *
- * @author AC
+ * Has the same fuction as the Command class, but this class is for the combat 
+ * commands. 
+ * @author Michael Kolling and David J. Barnes
+ * modified by Malte, Ahmet og Nicolai
  */
 public class CombatCommand {
     private CombatCommandWord commandWord;
     private String secondWord;
     /**
     * the constructor.
-    * @param commandWord the main command word associated like go, 
+    * @param commandWord the main command word associated like attack, 
     * help, and so on.
     * @param secondWord used then you need to pair the command with something 
     * like what direction to go in
@@ -27,7 +29,7 @@ public class CombatCommand {
         this.secondWord = secondWord;
     }
     /**
-     * Returns the command word of the instqance class
+     * Returns the command word of the instance class
      * @return Commandword
      */
     public CombatCommandWord getCombatCommandWord()
@@ -35,7 +37,7 @@ public class CombatCommand {
         return commandWord;
     }
     /**
-     * Returns the second word word of the instqance class
+     * Returns the second word word of the instance class
      * @return Second word that is a string
      */    
     public String getSecondWord()
@@ -43,7 +45,7 @@ public class CombatCommand {
         return secondWord;
     }
     /**
-     * is this a unknown command.
+     * Checks if this is an unknown command.
      * @return a true or false value.
      */
     public boolean isUnknown()
@@ -51,8 +53,8 @@ public class CombatCommand {
         return (commandWord == CombatCommandWord.UNKNOWN);
     }
     /**
-     * Returms when ever or not that the command has a second word, used in game 
-     * to check if the go command has a direction associated with it.
+     * Returns whenever or not that the command has a second word, used in game 
+     * to check if the useItem command has an item id associated with it.
      * @return a True or False;
      */
     public boolean hasSecondWord()
