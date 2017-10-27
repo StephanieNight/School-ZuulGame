@@ -9,15 +9,17 @@ import java.util.HashMap;
 
 /**
  *
- * @author AC
+ * @author Michael Kolling and David J. Barnes
+ * modified by Ahmet, Malte and Nicolai
  */
 public class CombatCommandWords {
      /**
-     * 
+     * Hashmap over valid commands with strings as keys and combat command word
+     * enums as values. 
      */
     private HashMap<String, CombatCommandWord> validCommands;
     /**
-     * 
+     * Constructor that creates a hashmap with all the valid commands.
      */
     public CombatCommandWords()
     {
@@ -30,7 +32,7 @@ public class CombatCommandWords {
     }
     /**
      * 
-     * @param commandWord the command world to be found
+     * @param commandWord the command word to be found.
      * @return a commandword.
      */
     public CombatCommandWord getCombatCommandWord(String commandWord)
@@ -44,7 +46,7 @@ public class CombatCommandWords {
         }
     }
     /**
-     * 
+     * Checks if the given string is a valid command. 
      * @param aString
      * @return 
      */
@@ -53,7 +55,7 @@ public class CombatCommandWords {
         return validCommands.containsKey(aString);
     }
     /**
-     * prints all commands, used in the parser to show all awailable commands. 
+     * prints all commands, used in the parser to show all available commands. 
      */
     public void showAll() 
     {

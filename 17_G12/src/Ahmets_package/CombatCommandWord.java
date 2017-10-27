@@ -9,8 +9,9 @@ import gameframework.CommandWord;
 import java.util.HashMap;
 
 /**
- *
- * @author AC
+ * 
+ * @author Michael Kolling and David J. Barnes
+ * modified by Malte, Ahmet and Nicolai
  */
 public enum CombatCommandWord {
      /**
