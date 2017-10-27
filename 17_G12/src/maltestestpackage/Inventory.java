@@ -47,7 +47,7 @@ public class Inventory {
      * executes useItem if names matches and removes said item and shifting the 
      * rest of the items to the left.
      */
-    public void useItem(int itemID) //TODO needs command word
+    public boolean useItem(int itemID) //TODO needs command word
     {
         boolean itemUsed = false;
         
@@ -59,9 +59,9 @@ public class Inventory {
             for(int i = itemID;i < inventory.length; i++) //cycles through remainder of inventory after match is found.
             {
                 if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 
-                || "Armor".equals(inventory[itemID].getType())) //if the used item is equipment, instantly break out and end the method.
+                || "Armor".equals(inventory[itemID].getType())) 
                 {
-                    break;
+                    return false; //if the used item is equipment, item isn't used, and returns false.
                 }
                 if(i < inventory.length - 1) //all items following used item are put one index lower to fill the hole.
                 {
@@ -72,11 +72,12 @@ public class Inventory {
                     inventory[i] = null;
                 }
             }
-        }  
-        if(!itemUsed)
-        {
-            System.out.println("You have no such item!");
         }
+        if(itemUsed){
+            return true;
+        }
+        System.out.println("You have no such item!");
+        return false;
     }
     //udkast til forkortelse af linje 62-73
     		/*inventory[i] = null; //removes the used item from inventory.
@@ -243,18 +244,36 @@ public class Inventory {
      */
     public void dropItem(String itemName, Room room) //TODO make command word
     {
-        System.out.println("Are you sure you wish to drop " + itemName + "?");
-        System.out.println("Yes / No");
-        Scanner input = new Scanner(System.in);
-        String in = input.next();
-        if (in.toLowerCase().equals("yes"))
-        {
-            if(in.toLowerCase().equals("key"))
-            {
-                System.out.println("You cannot drop your only key out of this place!");
+        for(int i = 0; i < inventory.length; i++){
+            if(itemName.toLowerCase().equals(inventory[i].getName().toLowerCase())){
+                System.out.println("Are you sure you wish to drop " + itemName + "?");
+                System.out.println("Yes / No");
+                Scanner input = new Scanner(System.in);
+                String in = input.next();
                 
+                while(true){
+                    if(in.toLowerCase().equals("yes")){
+                        room.dropItem(inventory[i]);
+                        inventory[i] = null;
+                        
+                        for(; i < inventory.length-1; i++){
+                            
+                        }
+                        
+                        
+                        break;
+                    }
+                    else if(in.toLowerCase().equals("no")){
+                        break;
+                    }
+                    else{
+                        System.out.println("That is not a valid response.");
+                    }
+                }
             }
-            else
+        }
+                   
+            if (in.toLowerCase().equals("yes"))
             {
                 for(int i = 0; i < inventory.length; i++)
                 {
@@ -276,7 +295,6 @@ public class Inventory {
                     }
                 }
             }
-        }
     }
     
     /**
