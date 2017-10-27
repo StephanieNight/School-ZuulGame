@@ -30,7 +30,7 @@ public class CombatCommand {
      * Returns the command word of the instqance class
      * @return Commandword
      */
-    public CombatCommandWord getCommandWord()
+    public CombatCommandWord getCombatCommandWord()
     {
         return commandWord;
     }

@@ -23,6 +23,7 @@ public class Fighting {
    private boolean flee = false;
    private Parser parser;
    
+   
    public Fighting (Player p, Actor a)
    {
        this.p = p;
@@ -36,14 +37,16 @@ public class Fighting {
          int actorHitpoint;
          
          boolean isAlive = true;
-         boolean flee = false;
-         
+         boolean didAction = false;
          
          
          while (isAlive)
          {
-             //Command command = parser.getCombatCommand, skal laves i parseren
-             if (command == CombatCommandWord.attack) attack(p,a);
+             CombatCommand command = parser.getCombatCommand();
+             didAction = processCommand(command);
+             if (!didAction){
+                 continue;
+             }
              isAlive = alive(a);
              if (!isAlive)
              {
@@ -72,9 +75,9 @@ public class Fighting {
                          
          }
     }
-   private boolean processCommand(Command command) 
+   private boolean processCommand(CombatCommand command) 
     {
-        boolean wantToQuit = false;
+        boolean didAction = false;
 
         CombatCommandWord commandWord = command.getCombatCommandWord();
 
@@ -85,25 +88,35 @@ public class Fighting {
 
         if (commandWord == CombatCommandWord.HELP) {
             printHelp();
+            return false;
         }
         else if (commandWord == CombatCommandWord.ATTACK) {
             attack(p,a);
+            return true;
         }
         else if (commandWord == CombatCommandWord.FLEE){
-        flee = true;
+            flee = true;
+            return true;
         }
         else if(commandWord == CombatCommandWord.INVENTORY){
             p.getInventory().getInventoryList();
+            return false;
         }
         else if (commandWord == CombatCommandWord.USE_ITEM){
             int id = Integer.parseInt(command.getSecondWord());
             p.getInventory().useItem(id);
+            return true;
         }
         else if (commandWord == CombatCommandWord.QUIT) {
-            wantToQuit = quit(command);
+            //wantToQuit = quit(command);
         }
-        return wantToQuit;
+        return didAction;
     }
+   
+   
+   
+   
+   
    private void attack(Actor a1, Actor a2)
    {
        int actorDefense = a2.getModifiedDefense();
@@ -115,6 +128,10 @@ public class Fighting {
        }
        else System.out.println(a1.getName() + " misses " + a2.getName());
    }
+   
+   
+   
+   
    private boolean alive(Actor a1)
    {
        return a1.getCurrentHealth() > 0;
@@ -125,8 +142,13 @@ public class Fighting {
            System.out.println("Which item");
            return;
        }
-       
    }
+   
+   
+   
+   
+   
+   
    private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
@@ -135,6 +157,11 @@ public class Fighting {
         System.out.println("Your command words are:");
         parser.showCombatCommands();
     }
+   
+   
+   
+   
+   
    private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
