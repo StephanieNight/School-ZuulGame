@@ -128,8 +128,7 @@ public class Fighting {
             return false;
         }
         else if (commandWord == CombatCommandWord.USE_ITEM){
-            useItem(command);
-            return true;
+            return useItem(command);
         }
         else if (commandWord == CombatCommandWord.QUIT) {
             //wantToQuit = quit(command);
@@ -173,13 +172,13 @@ public class Fighting {
     * cannot use the item.
     * @param command 
     */
-   private void useItem(CombatCommand command){
+   private boolean useItem(CombatCommand command){
        if(!command.hasSecondWord()){ 
            System.out.println("Which item");
-           return;
+           return false;
        }
        int id = Integer.parseInt(command.getSecondWord());
-            p.getInventory().useItem(id);
+            return p.getInventory().useItem(id);
    }
    
    /**
