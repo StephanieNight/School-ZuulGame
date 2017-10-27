@@ -27,12 +27,11 @@ import nicolai.Zuul;
 public class GameEngine extends Game{
     private static int difficulty;  
     private Parser parser;
-    // ---------------------
+    //-----------------------------------------------------------
     // Primary instances
     private Player player;
-    private Zuul zuul;
-    private ArrayList<Monster> minions;
-    // ---------------------
+    private ArrayList<Monster> monsters;
+    //-----------------------------------------------------------
     private Labyrinth labyrinth;
     private int mazeSize ;
     private int maxNumberOfMinions;
@@ -47,7 +46,7 @@ public class GameEngine extends Game{
         this.difficulty = i;        
         this.mazeSize = (int)((1.5*difficulty)+3);
         this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
-        this.minions =new ArrayList<>();
+        this.monsters =new ArrayList<>();
         this.labyrinth= new Labyrinth(mazeSize);   
         this.spawnMobs();
         this.labyrinth.display();
@@ -68,11 +67,8 @@ public class GameEngine extends Game{
             //player
             Command command = parser.getCommand();
             finished = processCommand(command);
-            processMinions();
-            processZuul();     
-            sleep();            
-            labyrinth.display();         
-            
+            processMonsters();
+            labyrinth.display();
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
@@ -194,9 +190,10 @@ public class GameEngine extends Game{
     public boolean spawnMobs() 
     {         
         player= new Player("Player", 100, 100, 100);
-        zuul = new Zuul();
+        Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', true);
         labyrinth.spawnPlayer(0,0, player);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
+        monsters.add(zuul);
         for (int i = 0; i < this.maxNumberOfMinions ; i++) 
         {
             boolean added = false;
@@ -204,11 +201,11 @@ public class GameEngine extends Game{
             {
                 int x = (int)(1+ Math.random()*(this.mazeSize-1)); 
                 int y = (int)(1+ Math.random()*(this.mazeSize-1));
-                Monster min = new Monster(("mionion"+i));
+                Monster min = new Monster(("minion"+i), 30, 30, 30, 'M', false);
                 added = labyrinth.spawnMonster(x, y,min);
                 if(added)
                 {
-                    minions.add(min);
+                    monsters.add(min);
                 }
             }            
         }
@@ -249,20 +246,25 @@ public class GameEngine extends Game{
     //------------------------AI Handling------------------------
     //-----------------------------------------------------------
     
-    private void processMinions() {
-        Monster monsterToDelete = null;
-        for(Monster m : minions)
+    private void processMonsters() {
+        Monster defeatedMinion = null;
+        for(Monster m : monsters)
         {
-            moveMinion(m);
-            deleteMinion(m);
+            if (m.getCurrentRoom().isConflict())
+            {
+                defeatedMinion = m;
+                labyrinth.display();
+            } else {
+                moveMonster(m);
+            }
         }
         
-        if(monsterToDelete != null)
-            {   minions.remove(monsterToDelete);
-            }    
+        if (defeatedMinion != null)
+            deleteMonster(defeatedMinion);
+        
     }
     
-    private void moveMinion(Monster m) {
+    private void moveMonster(Monster m) {
         String[] exits= m.getCurrentRoom().getExits();
         for(String s : exits)
         {
@@ -287,52 +289,9 @@ public class GameEngine extends Game{
         }
     }
     
-    private void deleteMinion(Monster m) {
-//        if(m.getCurrentRoom().isConflict())
-//        {
-//            if(Conflict(m));
-//            {
-//                //monsterToDelete = m;
-//            }
-//        }
+    private void deleteMonster(Monster m) {
+        m.getCurrentRoom().setMonster(null);
+        monsters.remove(m);
     }
     
-    private void processZuul() {
-        moveZuul();
-    }
-    
-    private void moveZuul() {
-        String[] exits= zuul.getCurrentRoom().getExits();
-        for(String s : exits)
-        {
-            try
-            {
-                Room current = zuul.getCurrentRoom();
-                Room ex = current.getExit(s);
-                if(ex.getMonster() ==null)
-                {
-                    Command command = new Command(CommandWord.GO, s);
-                    goRoom(command,zuul);
-                    System.out.println(zuul.getName() + " has moved "+ s);
-                    deleteZuul();
-                    break;
-                }
-            }
-            catch (Exception e)
-            {
-                System.out.println(" Problem occured " + e.getMessage());
-            }
-        }
-    }
-    
-    private void deleteZuul() {
-        if(zuul.getCurrentRoom().isConflict())
-        {
-            if(Conflict(zuul));
-            {
-                zuul = null;
-                System.out.println("Zuul has been defeated you win !");
-            }
-        }
-    }
 }

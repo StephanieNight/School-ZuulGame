@@ -9,6 +9,7 @@ package nicolai;
  *
  * @author nicol
  */
+@Deprecated
 public class Zuul extends Actor
 {
     public Zuul ()
