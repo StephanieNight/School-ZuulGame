@@ -22,16 +22,20 @@ public class Fighting {
    private Actor a;
    private boolean flee = false;
    private Parser parser;
-   
+   private boolean survived;
    
    public Fighting (Player p, Actor a)
    {
        this.p = p;
        this.a = a;
        parser = new Parser();
-               
+       survived = fightingLoop(p,a);
    }
-   public void fightingLoop(Player p, Actor a)
+
+    public boolean didSurvive() {
+        return survived;
+    }
+   public boolean fightingLoop(Player p, Actor a)
     {
          int playerHitpoint;
          int actorHitpoint;
@@ -56,6 +60,7 @@ public class Fighting {
                 if (newLevel > oldLevel){
                     System.out.println("Congratulations, you lvled up!");
                 }
+                return true;
              }
              
              
@@ -67,13 +72,15 @@ public class Fighting {
              isAlive = alive(p);
              if (!isAlive){ 
                  System.out.println("You are dead");
+                 return false;
              }
          
              if (flee){
-                 break;
+                 return true;
              }
                          
          }
+         return true;
     }
    private boolean processCommand(CombatCommand command) 
     {
