@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Stephie_build;
+package Benjamin;
 
 import Jacobs_package.Sword;
+import Stephie_build.Labyrinth;
+import Stephie_build.Room;
 import gameframework.Command;
 import gameframework.CommandWord;
 import gameframework.Game;
@@ -35,7 +37,7 @@ public class GameEngine extends Game{
     private int mazeSize ;
     private int maxNumberOfMinions;
     public GameEngine()
-    {       
+    {
         this.parser = new Parser();
         int i = -1;
         while(i == -1)
@@ -56,7 +58,7 @@ public class GameEngine extends Game{
     
     @Override
     public void play()
-    {   
+    {
         printWelcome();
         boolean finished = false;
         while (!finished) {
@@ -195,7 +197,7 @@ public class GameEngine extends Game{
                 Room ex = current.getExit(s);
                 if(ex.getMonster() ==null)
                 {
-                    command = new Command(CommandWord.GO, s);
+                    Command command = new Command(CommandWord.GO, s);
                     goRoom(command,zuul);
                     System.out.println(zuul.getName() + " has moved "+ s);
                     deleteZuul();
@@ -216,7 +218,6 @@ public class GameEngine extends Game{
             {
                 zuul = null;
                 System.out.println("Zuul has been defeated you win !");
-                finished = true;
             }
         }
     }
@@ -225,8 +226,8 @@ public class GameEngine extends Game{
         Monster monsterToDelete = null;
         for(Monster m : minions)
         {
-            moveMinion();
-            deleteMinion();
+            moveMinion(m);
+            deleteMinion(m);
         }
         
         if(monsterToDelete != null)
@@ -234,7 +235,7 @@ public class GameEngine extends Game{
             }    
     }
     
-    private void moveMinion() {
+    private void moveMinion(Monster m) {
         String[] exits= m.getCurrentRoom().getExits();
         for(String s : exits)
         {
@@ -245,7 +246,7 @@ public class GameEngine extends Game{
                 if(ex.getMonster() ==null)
                 {
                     //Der laves et nyt object hver gang denne køres
-                    command = new Command(CommandWord.GO, s);
+                    Command command = new Command(CommandWord.GO, s);
                     goRoom(command, m);
                     System.out.println("Minion " + m.getName() + " has moved "+ s);
                     break;
@@ -259,14 +260,14 @@ public class GameEngine extends Game{
         }
     }
     
-    private void deleteMinion() {
-        if(m.getCurrentRoom().isConflict())
-        {
-            if(Conflict(m));
-            {
-                monsterToDelete = m;
-            }
-        }
+    private void deleteMinion(Monster m) {
+//        if(m.getCurrentRoom().isConflict())
+//        {
+//            if(Conflict(m));
+//            {
+//                //monsterToDelete = m;
+//            }
+//        }
     }
     
     private void goRoom(Command command, Actor actor) 
