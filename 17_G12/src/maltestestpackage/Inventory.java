@@ -46,24 +46,22 @@ public class Inventory {
      * executes useItem if names matches and removes said item and shifting the 
      * rest of the items to the left.
      */
-    public void useItem(String itemName) //TODO needs command word
+    public void useItem(int itemID) //TODO needs command word
     {
         boolean itemUsed = false;
         
-        for(int i = 0; i < inventory.length; i++)//cycles through inventory
+        if(inventory[itemID] != null)
         {
-            if(inventory[i].getName().toLowerCase().equals(itemName.toLowerCase()))//checks if name of item matches what the player wanted to use.
-            {
-                inventory[i].useItem();//activates the item's effect.
-                itemUsed = true;
-                if ("Weapon".equals(inventory[i].getType()) || "Shield".equals(inventory[i].getType()) 
-                || "Armor".equals(inventory[i].getType())) //if the used item is equipment, instantly break out and end the method.
+            inventory[itemID].useItem();//activates the item's effect.
+            itemUsed = true;
+            
+            for(int i = itemID;i < inventory.length; i++) //cycles through remainder of inventory after match is found.
+                {
+                if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 
+                || "Armor".equals(inventory[itemID].getType())) //if the used item is equipment, instantly break out and end the method.
                 {
                     break;
                 }
-                    
-                for(;i < inventory.length; i++) //cycles through remainder of inventory after match is found.
-                {
                     if(i < inventory.length - 1) //all items following used item are put one index lower to fill the hole.
                     {
                         inventory[i] = inventory[i+1];
@@ -73,10 +71,7 @@ public class Inventory {
                         inventory[i] = null;
                     }
                 }
-                break;
-            }
-
-        }
+        }  
         if(!itemUsed)
         {
             System.out.println("You have no such item!");
