@@ -80,6 +80,7 @@ public class Fighting {
              }
                          
          }
+         return true;
     }
    private boolean processCommand(CombatCommand command) 
     {
