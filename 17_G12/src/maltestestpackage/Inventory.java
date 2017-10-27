@@ -56,22 +56,17 @@ public class Inventory {
             inventory[itemID].useItem();//activates the item's effect.
             itemUsed = true;
             
-            for(int i = itemID;i < inventory.length; i++) //cycles through remainder of inventory after match is found.
-            {
-                if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 
+            if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 
                 || "Armor".equals(inventory[itemID].getType())) 
                 {
                     return false; //if the used item is equipment, item isn't used, and returns false.
                 }
-                if(i < inventory.length - 1) //all items following used item are put one index lower to fill the hole.
-                {
-                    inventory[i] = inventory[i+1];
-                }
-                else //removes the used item from inventory.
-                {
-                    inventory[i] = null;
-                }
+            
+            for(;itemID < inventory.length-1; itemID++) //cycles through remainder of inventory.
+            {
+                inventory[itemID] = inventory[itemID+1]; //destroys used item and moves all items one index down.
             }
+            inventory[inventory.length-1] = null; //removes last item in inventory to avoid duplicating it.
         }
         if(itemUsed){
             return true;
@@ -117,7 +112,6 @@ public class Inventory {
      */
     public boolean addItem(Item item)
     {
-        boolean added = false;
         boolean equipment = false;
         if ("Weapon".equals(item.getType()) || "Shield".equals(item.getType()) 
                 || "Armor".equals(item.getType()))
@@ -239,63 +233,22 @@ public class Inventory {
     
     /**
      * Lets the player delete items.
-     * @param itemName is a String matching a name of an item in the inventory array
+     * @param itemID is a String matching a name of an item in the inventory array
      * You cannot drop your key as it is needed to win.
      */
-    public void dropItem(String itemName, Room room) //TODO make command word
+    public void dropItem(int itemID, Room room) //TODO make command word
     {
-        for(int i = 0; i < inventory.length; i++){
-            if(itemName.toLowerCase().equals(inventory[i].getName().toLowerCase())){
-                System.out.println("Are you sure you wish to drop " + itemName + "?");
-                System.out.println("Yes / No");
-                Scanner input = new Scanner(System.in);
-                String in = input.next();
-                
-                while(true){
-                    if(in.toLowerCase().equals("yes")){
-                        room.dropItem(inventory[i]);
-                        inventory[i] = null;
-                        
-                        for(; i < inventory.length-1; i++){
-                            
-                        }
-                        
-                        
-                        break;
-                    }
-                    else if(in.toLowerCase().equals("no")){
-                        break;
-                    }
-                    else{
-                        System.out.println("That is not a valid response.");
-                    }
-                }
-            }
+        System.out.println("You dropped your " + itemID);
+        room.dropItem(inventory[itemID]);
+        inventory[itemID] = null;
+        
+        for(;itemID < inventory.length-1; itemID++) //all items following used item are put one index lower to fill the hole.
+        {
+            inventory[itemID] = inventory[itemID+1];
         }
-                   
-            if (in.toLowerCase().equals("yes"))
-            {
-                for(int i = 0; i < inventory.length; i++)
-                {
-                    if(itemName.toLowerCase().equals(inventory[i].getName().toLowerCase()))
-                    {
-                        for(; i < inventory.length; i++)
-                        {
-                            if(i < inventory.length -1)
-                            {
-                                inventory[i] = inventory[i + 1];
-                            }
-                            else
-                            {
-                                room.dropItem(inventory[i]);
-                                inventory[i] = null;
-                            }
-                            break;
-                        }
-                    }
-                }
-            }
+        inventory[inventory.length-1] = null; //the last item is (re)moved.
     }
+    
     
     /**
      * updates the stats the player gets from items.
