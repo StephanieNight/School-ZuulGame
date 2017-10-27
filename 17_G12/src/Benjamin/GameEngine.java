@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Stephie_build;
+package Benjamin;
 
 import Jacobs_package.Sword;
+import Stephie_build.Labyrinth;
+import Stephie_build.Room;
 import gameframework.Command;
 import gameframework.CommandWord;
 import gameframework.Game;
@@ -35,7 +37,7 @@ public class GameEngine extends Game{
     private int mazeSize ;
     private int maxNumberOfMinions;
     public GameEngine()
-    {       
+    {
         this.parser = new Parser();
         int i = -1;
         while(i == -1)
@@ -53,10 +55,13 @@ public class GameEngine extends Game{
         System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
         System.out.println("Deffictulty is      : "+ GameEngine.getDifficulty());
     }
+    //-----------------------------------------------------------
+    //--------------------------General--------------------------
+    //-----------------------------------------------------------
     
     @Override
     public void play()
-    {   
+    {
         printWelcome();
         boolean finished = false;
         while (!finished) {
@@ -70,6 +75,64 @@ public class GameEngine extends Game{
             
         }
         System.out.println("Thank you for playing.  Good bye.");
+    }
+    private void goRoom(Command command, Actor actor) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Problem with monster "+actor.getName());
+            return;
+        }
+        String direction = command.getSecondWord();
+        Room nextRoom = actor.getCurrentRoom().getExit(direction);
+        if (nextRoom == null) {
+        }
+        else {
+            labyrinth.moveMonster(actor, nextRoom);
+        }
+    }
+    private void goRoom(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Go where?");
+            return;
+        }
+        String direction = command.getSecondWord();
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
+        if (nextRoom == null) {
+            System.out.println("There is no door!");
+        }
+        else {
+            labyrinth.movePlayer(player, nextRoom);
+            System.out.println(player.getCurrentRoom().getLongDescription());
+        }
+    }
+    private boolean quit(Command command) 
+    {
+        if(command.hasSecondWord()) {
+            System.out.println("Quit what?");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public static int getDifficulty()
+    {
+        return difficulty;
+    }
+    public static int getMaxNumberOfMinions()
+    {
+        return difficulty;
+    }  
+    private void sleep()
+    {
+        try
+        {
+        Thread.sleep(1000);
+        }
+        catch(Exception e)
+        {
+        }
     }
     private boolean Conflict(Actor monster)            
     {
@@ -181,6 +244,59 @@ public class GameEngine extends Game{
         System.out.println("you have the following uptions :");
         parser.showCommands();
     }
+    
+    //-----------------------------------------------------------
+    //------------------------AI Handling------------------------
+    //-----------------------------------------------------------
+    
+    private void processMinions() {
+        Monster monsterToDelete = null;
+        for(Monster m : minions)
+        {
+            moveMinion(m);
+            deleteMinion(m);
+        }
+        
+        if(monsterToDelete != null)
+            {   minions.remove(monsterToDelete);
+            }    
+    }
+    
+    private void moveMinion(Monster m) {
+        String[] exits= m.getCurrentRoom().getExits();
+        for(String s : exits)
+        {
+            try
+            {   
+                Room current = m.getCurrentRoom();
+                Room ex = current.getExit(s);
+                if(ex.getMonster() ==null)
+                {
+                    //Der laves et nyt object hver gang denne køres
+                    Command command = new Command(CommandWord.GO, s);
+                    goRoom(command, m);
+                    System.out.println("Minion " + m.getName() + " has moved "+ s);
+                    break;
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println(" Problem occured " + e.getMessage());
+
+            }
+        }
+    }
+    
+    private void deleteMinion(Monster m) {
+//        if(m.getCurrentRoom().isConflict())
+//        {
+//            if(Conflict(m));
+//            {
+//                //monsterToDelete = m;
+//            }
+//        }
+    }
+    
     private void processZuul() {
         moveZuul();
     }
@@ -195,7 +311,7 @@ public class GameEngine extends Game{
                 Room ex = current.getExit(s);
                 if(ex.getMonster() ==null)
                 {
-                    command = new Command(CommandWord.GO, s);
+                    Command command = new Command(CommandWord.GO, s);
                     goRoom(command,zuul);
                     System.out.println(zuul.getName() + " has moved "+ s);
                     deleteZuul();
@@ -216,115 +332,7 @@ public class GameEngine extends Game{
             {
                 zuul = null;
                 System.out.println("Zuul has been defeated you win !");
-                finished = true;
             }
-        }
-    }
-    
-    private void processMinions() {
-        Monster monsterToDelete = null;
-        for(Monster m : minions)
-        {
-            moveMinion();
-            deleteMinion();
-        }
-        
-        if(monsterToDelete != null)
-            {   minions.remove(monsterToDelete);
-            }    
-    }
-    
-    private void moveMinion() {
-        String[] exits= m.getCurrentRoom().getExits();
-        for(String s : exits)
-        {
-            try
-            {   
-                Room current = m.getCurrentRoom();
-                Room ex = current.getExit(s);
-                if(ex.getMonster() ==null)
-                {
-                    //Der laves et nyt object hver gang denne køres
-                    command = new Command(CommandWord.GO, s);
-                    goRoom(command, m);
-                    System.out.println("Minion " + m.getName() + " has moved "+ s);
-                    break;
-                }
-            }
-            catch (Exception e)
-            {
-                System.out.println(" Problem occured " + e.getMessage());
-
-            }
-        }
-    }
-    
-    private void deleteMinion() {
-        if(m.getCurrentRoom().isConflict())
-        {
-            if(Conflict(m));
-            {
-                monsterToDelete = m;
-            }
-        }
-    }
-    
-    private void goRoom(Command command, Actor actor) 
-    {
-        if(!command.hasSecondWord()) {
-            System.out.println("Problem with monster "+actor.getName());
-            return;
-        }
-        String direction = command.getSecondWord();
-        Room nextRoom = actor.getCurrentRoom().getExit(direction);
-        if (nextRoom == null) {
-        }
-        else {
-            labyrinth.moveMonster(actor, nextRoom);
-        }
-    }
-    private void goRoom(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
-            return;
-        }
-        String direction = command.getSecondWord();
-        Room nextRoom = player.getCurrentRoom().getExit(direction);
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else {
-            labyrinth.movePlayer(player, nextRoom);
-            System.out.println(player.getCurrentRoom().getLongDescription());
-        }
-    }
-    private boolean quit(Command command) 
-    {
-        if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    public static int getDifficulty()
-    {
-        return difficulty;
-    }
-    public static int getMaxNumberOfMinions()
-    {
-        return difficulty;
-    }  
-    private void sleep()
-    {
-        try
-        {
-        Thread.sleep(1000);
-        }
-        catch(Exception e)
-        {
         }
     }
 }

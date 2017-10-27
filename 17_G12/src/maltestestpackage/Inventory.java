@@ -33,9 +33,10 @@ public class Inventory {
     public void getInventoryList() //shows player's inventory //TODO needs command word.
     {
         int i = 0;
+        System.out.println("Slot  Item");
         for(Item list: inventory){
             i++;
-            System.out.println(i + ": " + list.getName());
+            System.out.println(i + ":    " + list.getName());
         }
     }
     
