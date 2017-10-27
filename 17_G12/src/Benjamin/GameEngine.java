@@ -35,6 +35,7 @@ public class GameEngine extends Game{
     private Labyrinth labyrinth;
     private int mazeSize ;
     private int maxNumberOfMinions;
+    private boolean finished;
     public GameEngine()
     {
         this.parser = new Parser();
@@ -49,6 +50,7 @@ public class GameEngine extends Game{
         this.monsters =new ArrayList<>();
         this.labyrinth= new Labyrinth(mazeSize);   
         this.spawnMobs();
+        this.finished = false;
         this.labyrinth.display();
         System.out.println("Size                : "+this.mazeSize);
         System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
@@ -62,16 +64,21 @@ public class GameEngine extends Game{
     public void play()
     {
         printWelcome();
-        boolean finished = false;
         while (!finished) {
             //player
-            Command command = parser.getCommand();
-            finished = processCommand(command);
+            processPlayer();
             processMonsters();
             labyrinth.display();
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
+    
+    private void processPlayer() {
+        Command command = parser.getCommand();
+        if (!processCommand(command))
+            processPlayer();
+    }
+    
     private void goRoom(Command command, Actor actor) 
     {
         if(!command.hasSecondWord()) {
@@ -86,23 +93,25 @@ public class GameEngine extends Game{
             labyrinth.moveMonster(actor, nextRoom);
         }
     }
-    private void goRoom(Command command) 
+    private boolean goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             System.out.println("Go where?");
-            return;
+            return false;
         }
         String direction = command.getSecondWord();
         Room nextRoom = player.getCurrentRoom().getExit(direction);
         if (nextRoom == null) {
             System.out.println("There is no door!");
+            return false;
         }
         else {
             labyrinth.movePlayer(player, nextRoom);
             System.out.println(player.getCurrentRoom().getLongDescription());
         }
+        return true;
     }
-    private boolean quit(Command command) 
+    private boolean quit(Command command)
     {
         if(command.hasSecondWord()) {
             System.out.println("Quit what?");
@@ -130,7 +139,7 @@ public class GameEngine extends Game{
         {
         }
     }
-    private boolean Conflict(Actor monster)            
+    private boolean Conflict(Actor monster)
     {
         boolean isOver = false;
         boolean didWin = false;
@@ -187,7 +196,7 @@ public class GameEngine extends Game{
         System.out.println("+----------------------------------------------+");
         
     }    
-    public boolean spawnMobs() 
+    public boolean spawnMobs()
     {         
         player= new Player("Player", 100, 100, 100);
         Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', true);
@@ -211,10 +220,8 @@ public class GameEngine extends Game{
         }
         return true;
     }    
-    private boolean processCommand(Command command) 
+    private boolean processCommand(Command command)
     {
-        boolean wantToQuit = false;
-
         CommandWord commandWord = command.getCommandWord();
 
         if(commandWord == CommandWord.UNKNOWN) {
@@ -224,17 +231,16 @@ public class GameEngine extends Game{
         if (null != commandWord) switch (commandWord) {
             case HELP:
                 printHelp();
-                break;
+                return true;
             case GO:
-                goRoom(command);
-                break;
+                return goRoom(command);
             case QUIT:
-                wantToQuit = quit(command);
-                break;
+                finished = quit(command);
+                return true;
             default:
                 break;
         }
-        return wantToQuit;
+        return false;
     }
     private void printHelp() 
     {
