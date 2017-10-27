@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 import java.util.HashMap;
+import maltestestpackage.Inventory;
 import maltestestpackage.Item;
 import nicolai.Actor;
 import nicolai.Player;
@@ -152,13 +153,15 @@ public class Room
         return Items.toArray(itemList);
     }
     
-    public Item pickupItem(int id) {
+    public Item pickupItem(int id, Inventory inventory) {
         Item returnItem = Items.get(id);
-        Items.remove(id);
+        if(inventory.addItem(returnItem)){
+            Items.remove(id);
+        }
         return returnItem;
     }
     
-    public void addItem(Item item) {
+    public void dropItem(Item item) {
         Items.add(item);
     }
     

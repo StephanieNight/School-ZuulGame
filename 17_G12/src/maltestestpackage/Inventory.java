@@ -118,8 +118,9 @@ public class Inventory {
      * on the list.
      * @param item 
      */
-    public void addItem(Item item, Room room)
+    public boolean addItem(Item item)
     {
+        boolean added = false;
         boolean equipment = false;
         if ("Weapon".equals(item.getType()) || "Shield".equals(item.getType()) 
                 || "Armor".equals(item.getType()))
@@ -140,81 +141,102 @@ public class Inventory {
         {
             if(equipment)
             {
-                boolean typeMatch = false;
                 for (Item inventory1 : inventory) {//cycles through inventory
                     if(item.getType().equals(inventory1.getType()))//checks if equipment to add is the same type as one already in inventory.
                     {
-                        typeMatch = true;
-                        boolean valid = false;
-                        while(valid){ //while loop ensures a valid response from player.
+                        while(true){ //while loop ensures a valid response from player.
                             System.out.println("Do you wish to swap " + 
                                     inventory1.getName() + " with " + item.getName() + "?");
                             System.out.println("Yes / No");
                             Scanner input = new Scanner(System.in);
                             String in = input.next().toLowerCase();
                             if(in.equals("yes")){
-                                valid = true;
+                                System.out.println(item.getName() + "was picked up.");
                                 inventory1 = item; //destroys current equipment and replaces with new.
+                                return true;
                             }
-                            else if(in.equals("no")){
-                                valid = true;
+                            if(in.equals("no")){
+                                System.out.println("left the" + item.getName() + "on the ground.");
+                                return false;
                             }
-                            else{
-                                System.out.println("That is not a valid response.");
-                            }
+                            System.out.println("That is not a valid response.");
                         }
-                        break;
                     }
                 }
-                if(!typeMatch){ //if you're not already wearing equipment of the same type, pick it up.
-                    for (Item inventory1 : inventory){
-                        if(inventory1 == null){
+                //if you're not already wearing equipment of the same type, pick it up.
+                for (Item inventory1 : inventory){
+                    if(inventory1 == null){
+                        System.out.println(item.getName() + "was picked up.");
                         inventory1 = item; //adds item to first vacant spot in inventory.
-                        break;
-                        }
+                        return true;
                     }
                 }
             }
             else 
             {
                 for (Item inventory1 : inventory) {
-                    if(inventory1 == null)
-                    {
+                    if(inventory1 == null){
                         inventory1 = item; //adds item to first vacant spot in inventory.
-                        break;
+                        return true;
                     }
                 }
             }
         }
-        
         else
         {
-            if(equipment) //repeat from line 139
+            if(equipment)
             {
                 for (Item inventory1 : inventory) {
                     if(item.getType().equals(inventory1.getType()))
                     {
-                        System.out.println("Do you wish to swap " + 
-                                inventory1.getName() + " with " + item.getName() + "?");
-                        System.out.println("Yes / No");
-                        Scanner input = new Scanner(System.in);
-                        String in = input.next().toLowerCase();
-                        if(in.equals("yes"))
-                        {
-                            inventory1 = item;
+                        while(true){
+                            System.out.println("Do you wish to swap " + 
+                                    inventory1.getName() + " with " + item.getName() + "?");
+                            System.out.println("Yes / No");
+                            Scanner input = new Scanner(System.in);
+                            String in = input.next().toLowerCase();
+                            if(in.equals("yes")){
+                                System.out.println(item.getName() + "was picked up.");
+                                inventory1 = item; //destroys current equipment and replaces with new.
+                                return true;
+                            }
+                            if(in.equals("no")){
+                                System.out.println("left the" + item.getName() + "on the ground.");
+                                return false;
+                            }
+                            System.out.println("That is not a valid response.");
                         }
-                        break;
                     }
+                    //if consumable
+                    System.out.println("You're overburdened, do you want to consume or drop an item to make space?");
+                    System.out.println("Consume X / Drop X / no");
+                    String input = "no"; //get player input
+                    if(input.equals("no")){
+                        System.out.println("left the" + item.getName() + "on the ground.");
+                        return false;
+                    }
+                    return true;//TODO
+                    
                 }
             }
-            else{
-                System.out.println("You're overburdened, which item do you want to consume or drop to make space?");
+            //if consumable
+            System.out.println("You're overburdened, do you want to consume or drop an item to make space?");
+            System.out.println("Consume X / Drop X / no");
+            String input = "no"; //get player input
+            if(input.equals("no")){
+                System.out.println("left the" + item.getName() + "on the ground.");
+                return false;
+            }
+            return true;//TODO
+                
+                
                 /*Scanner input = new Scanner(System.in);//TODO call the command word for useItem and dropItem only?
                 if(input.next().toLowerCase().equals("consume ")){
                     useItem(input.next());
                 }*/
-            }
+            
         }
+        return false;//does nothing, but compiler complains otherwise.
     }
    
     
@@ -250,7 +272,7 @@ public class Inventory {
                             }
                             else
                             {
-                                room.addItem(inventory[i]);
+                                room.dropItem(inventory[i]);
                                 inventory[i] = null;
                             }
                             break;
