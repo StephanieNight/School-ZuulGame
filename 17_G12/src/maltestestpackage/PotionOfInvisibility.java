@@ -9,7 +9,7 @@ package maltestestpackage;
  *
  * @author Malte
  */
-public class PotionOfInvisibility extends Item {
+public class PotionOfInvisibility implements Item {
 
     
     

@@ -9,7 +9,7 @@ package maltestestpackage;
  *
  * @author Malte
  */
-public class PotionOfCourage extends Item {
+public class PotionOfCourage implements Item {
 
     @Override
     public String getDescription() {

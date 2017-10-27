@@ -11,7 +11,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-public class HeaterShield extends Item{
+public class HeaterShield implements Item{
     
     @Override
     public String getDescription(){
