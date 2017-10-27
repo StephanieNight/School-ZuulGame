@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package maltestestpackage;
-import static Stephie_build.GameEngine.getDifficulty;
+import static Benjamin.GameEngine.getDifficulty;
 import java.util.Scanner;
 import Jacobs_package.*;
 import Stephie_build.Room;
@@ -33,10 +33,10 @@ public class Inventory {
     public void getInventoryList() //shows player's inventory //TODO needs command word.
     {
         int i = 0;
-        System.out.println("Slot  Item");
+        System.out.printf("%-5.4s  %-50.50s%n", "Slot", "Item");
         for(Item list: inventory){
             i++;
-            System.out.println(i + ":    " + list.getName());
+            System.out.printf("%-5.4s  %-50.50s%n", i, list.getName()); //prints in two columns
         }
     }
     
@@ -57,21 +57,21 @@ public class Inventory {
             itemUsed = true;
             
             for(int i = itemID;i < inventory.length; i++) //cycles through remainder of inventory after match is found.
-                {
+            {
                 if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 
                 || "Armor".equals(inventory[itemID].getType())) //if the used item is equipment, instantly break out and end the method.
                 {
                     break;
                 }
-                    if(i < inventory.length - 1) //all items following used item are put one index lower to fill the hole.
-                    {
-                        inventory[i] = inventory[i+1];
-                    }
-                    else //removes the used item from inventory.
-                    {
-                        inventory[i] = null;
-                    }
+                if(i < inventory.length - 1) //all items following used item are put one index lower to fill the hole.
+                {
+                    inventory[i] = inventory[i+1];
                 }
+                else //removes the used item from inventory.
+                {
+                    inventory[i] = null;
+                }
+            }
         }  
         if(!itemUsed)
         {
