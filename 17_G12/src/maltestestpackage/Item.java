@@ -11,7 +11,7 @@ package maltestestpackage;
  * a string with description, name or type of said item.
  * @author Malte
  */
-public abstract class Item {
+public interface Item {
     public abstract String getDescription();
     public abstract String getName();
     
@@ -34,11 +34,6 @@ public abstract class Item {
      * @return the increase the given item applies or -1 if it's a consumable item
      */
     public abstract int getStat();
-    
-    public Item()
-    {
-        
-    }
 }
 
 

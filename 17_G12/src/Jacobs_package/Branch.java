@@ -11,7 +11,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-public class Branch extends Item{
+public class Branch implements Item{
     
     @Override
     public String getDescription(){

@@ -32,9 +32,10 @@ public class Inventory {
     
     public void getInventoryList() //shows player's inventory //TODO needs command word.
     {
-        for(Item list: inventory)
-        {
-            System.out.println(list.getName());
+        int i = 0;
+        for(Item list: inventory){
+            i++;
+            System.out.println(i + ": " + list.getName());
         }
     }
     
@@ -117,7 +118,7 @@ public class Inventory {
      * on the list.
      * @param item 
      */
-    public void addItem(Item item)
+    public void addItem(Item item, Room room)
     {
         boolean equipment = false;
         if ("Weapon".equals(item.getType()) || "Shield".equals(item.getType()) 
@@ -144,15 +145,24 @@ public class Inventory {
                     if(item.getType().equals(inventory1.getType()))//checks if equipment to add is the same type as one already in inventory.
                     {
                         typeMatch = true;
-                        System.out.println("Do you wish to swap " + 
-                                inventory1.getName() + " with " + item.getName() + "?");
-                        System.out.println("Yes / No");
-                        Scanner input = new Scanner(System.in);
-                        String in = input.next().toLowerCase();
-                        if(in.equals("yes"))
-                        {
-                            inventory1 = item; //destroys current equipment and replaces with new.
-                        }//choosing to not replace equipment (or making a typo) will destroy the picked up item. //FIX?
+                        boolean valid = false;
+                        while(valid){ //while loop ensures a valid response from player.
+                            System.out.println("Do you wish to swap " + 
+                                    inventory1.getName() + " with " + item.getName() + "?");
+                            System.out.println("Yes / No");
+                            Scanner input = new Scanner(System.in);
+                            String in = input.next().toLowerCase();
+                            if(in.equals("yes")){
+                                valid = true;
+                                inventory1 = item; //destroys current equipment and replaces with new.
+                            }
+                            else if(in.equals("no")){
+                                valid = true;
+                            }
+                            else{
+                                System.out.println("That is not a valid response.");
+                            }
+                        }
                         break;
                     }
                 }

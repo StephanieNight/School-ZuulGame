@@ -10,7 +10,7 @@ import maltestestpackage.Item;
  *
  * @author simon
  */
-public class PotLid extends Item{
+public class PotLid implements Item{
 
     @Override
     public String getDescription(){
