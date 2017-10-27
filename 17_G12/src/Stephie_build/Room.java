@@ -1,6 +1,7 @@
 package Stephie_build;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 import java.util.HashMap;
 import maltestestpackage.Item;
@@ -18,18 +19,25 @@ public class Room
     private HashMap<String, Room> exits;
     private Actor player; // Copy
     private Actor monster; // Copy
-    private ArrayList<Item> Items = new ArrayList<>(); 
+    private ArrayList<Item> Items;
 
     public Room(String description) 
     {
         this.description = description;
         exits = new HashMap<String, Room>();
+        Items = new ArrayList<>();
     }
     public Room(String description, Item[] items) 
     {
         this(description);
-        exits = new HashMap<String, Room>();
+        Collections.addAll(Items, items);
     }
+    public Room(String description, Item item)
+    {
+        this(description);
+        Items.add(item);
+    }
+    
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
@@ -134,5 +142,25 @@ public class Room
     {
         this.description = desc;
     }
+    
+    public boolean hasItems(){
+        return (Items.size() > 0);
+    }
+    
+    public Item[] itemList() {
+        Item itemList[] = new Item[Items.size()];
+        return Items.toArray(itemList);
+    }
+    
+    public Item pickupItem(int id) {
+        Item returnItem = Items.get(id);
+        Items.remove(id);
+        return returnItem;
+    }
+    
+    public void addItem(Item item) {
+        Items.add(item);
+    }
+    
 }
             

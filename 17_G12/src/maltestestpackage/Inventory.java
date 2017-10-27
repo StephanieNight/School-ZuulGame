@@ -7,6 +7,7 @@ package maltestestpackage;
 import static Stephie_build.GameEngine.getDifficulty;
 import java.util.Scanner;
 import Jacobs_package.*;
+import Stephie_build.Room;
 /**
  * inventory to hold items
  * inventory length is determined by difficulty.
@@ -196,11 +197,14 @@ public class Inventory {
                     }
                 }
             }
-            //add option to drop or use items if inventory is full.
+            else{
+                System.out.println("You're overburdened, which item do you want to consume or drop to make space?");
+                /*Scanner input = new Scanner(System.in);//TODO call the command word for useItem and dropItem only?
+                if(input.next().toLowerCase().equals("consume ")){
+                    useItem(input.next());
+                }*/
+            }
         }
-     
-        
-        
     }
    
     
@@ -209,7 +213,7 @@ public class Inventory {
      * @param itemName is a String matching a name of an item in the inventory array
      * You cannot drop your key as it is needed to win.
      */
-    public void dropItem(String itemName)
+    public void dropItem(String itemName, Room room) //TODO make command word
     {
         System.out.println("Are you sure you wish to drop " + itemName + "?");
         System.out.println("Yes / No");
@@ -236,6 +240,7 @@ public class Inventory {
                             }
                             else
                             {
+                                room.addItem(inventory[i]);
                                 inventory[i] = null;
                             }
                             break;

@@ -2,6 +2,7 @@
 package nicolai;
 
 import Stephie_build.Room;
+import maltestestpackage.Inventory;
 
 /**
  *
@@ -22,6 +23,7 @@ public abstract class Actor
     private int level =1;
     private int xp;
     private int totalXp;
+    private Inventory inventory = new Inventory();
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
     public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode){
@@ -104,5 +106,9 @@ public abstract class Actor
     public int getCurrentHealth() {
         return currentHealth;
     }
+    public void updateLevel(){
+        getModufiedHealthPoint();
+    }
+    
 }
 

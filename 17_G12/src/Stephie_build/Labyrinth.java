@@ -32,8 +32,15 @@ public class Labyrinth
         }
         generateMaze(0, 0);
     }  
-    public boolean spawnPlayer(int x, int y,Actor actor)
+    /* 
+     * Spawns the player in the room 
+     */
+    public boolean spawnPlayer(int x, int y, Actor actor)
     {
+        if(x > this.SIZE || y > this.SIZE)
+        {
+            return false;
+        }
         if (maze[x][y].getPlayer()== null)
         {
             maze[x][y].setPlayer(actor);
@@ -117,7 +124,7 @@ public class Labyrinth
                 }
                 else
                 {
-                    // we have reached a dead end, checks if we should punch a hole 
+                    // we have reached a room with an exit, checks if we should punch a hole 
                     // before backtracking to make sure the map is a loop
                     if(!maze[nextX][nextY].hasExit(dir.opposite.direction) // is there allready a exit to this room
                         &&(!isLoop || ((int)(Math.random()*20)==5))) // force or random
@@ -134,15 +141,18 @@ public class Labyrinth
         }
     }
     /*
-     * Why is this static. ?
+     * Checks if the next room is inside the maze.
      */
-    private static boolean isInsideMaze(int v, int upper) 
+    private boolean isInsideMaze(int v, int upper) 
     {
             return (v >= 0) && (v < upper);
     }   
+    /*
+     * is there a conflicgt in the mace 
+     */
     public boolean hasConflict()
     {
-        for(Room[] r : maze)
+        for(Room[] r : maze) // foreach 
         {
             for(Room c:r)
             {
