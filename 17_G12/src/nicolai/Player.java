@@ -13,6 +13,10 @@ import maltestestpackage.Inventory;
  */
 public class Player extends Actor{
      private Inventory inventory = new Inventory();
+     
+     public Inventory getInventory(){
+         return inventory;
+     }
     
     public Player(String name, int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput) {
         super(name, defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'P');

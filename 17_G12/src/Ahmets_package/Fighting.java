@@ -7,6 +7,7 @@ package Ahmets_package;
 
 import gameframework.Command;
 import gameframework.CommandWord;
+import gameframework.Parser;
 import java.util.Scanner;
 import nicolai.Actor;
 import nicolai.Monster;
@@ -20,12 +21,14 @@ public class Fighting {
    private Player p;
    private Actor a;
    private boolean flee = false;
+   private Parser parser;
+   
    
    public Fighting (Player p, Actor a)
    {
        this.p = p;
        this.a = a;
-       
+       parser = new Parser();
                
    }
    public void fightingLoop(Player p, Actor a)
@@ -34,14 +37,16 @@ public class Fighting {
          int actorHitpoint;
          
          boolean isAlive = true;
-         boolean flee = false;
-         
+         boolean didAction = false;
          
          
          while (isAlive)
          {
-             //Command command = parser.getCombatCommand, skal laves i parseren
-             if (command == CombatCommandWord.attack) attack(p,a);
+             CombatCommand command = parser.getCombatCommand();
+             didAction = processCommand(command);
+             if (!didAction){
+                 continue;
+             }
              isAlive = alive(a);
              if (!isAlive)
              {
@@ -70,9 +75,9 @@ public class Fighting {
                          
          }
     }
-   private boolean processCommand(Command command) 
+   private boolean processCommand(CombatCommand command) 
     {
-        boolean wantToQuit = false;
+        boolean didAction = false;
 
         CombatCommandWord commandWord = command.getCombatCommandWord();
 
@@ -83,21 +88,34 @@ public class Fighting {
 
         if (commandWord == CombatCommandWord.HELP) {
             printHelp();
+            return false;
         }
         else if (commandWord == CombatCommandWord.ATTACK) {
             attack(p,a);
+            return true;
         }
         else if (commandWord == CombatCommandWord.FLEE){
-        flee = true;
+            flee = true;
+            return true;
         }
         else if(commandWord == CombatCommandWord.INVENTORY){
-            p.inventory.getInventoryList;
+            p.getInventory().getInventoryList();
+            return false;
+        }
+        else if (commandWord == CombatCommandWord.USE_ITEM){
+            useItem(command);
+            return true;
         }
         else if (commandWord == CombatCommandWord.QUIT) {
-            wantToQuit = quit(command);
+            //wantToQuit = quit(command);
         }
-        return wantToQuit;
+        return didAction;
     }
+   
+   
+   
+   
+   
    private void attack(Actor a1, Actor a2)
    {
        int actorDefense = a2.getModifiedDefense();
@@ -109,10 +127,50 @@ public class Fighting {
        }
        else System.out.println(a1.getName() + " misses " + a2.getName());
    }
+   
+   
+   
+   
    private boolean alive(Actor a1)
    {
        return a1.getCurrentHealth() > 0;
        
    }
+   private void useItem(CombatCommand command){
+       if(!command.hasSecondWord()){ 
+           System.out.println("Which item");
+           return;
+       }
+       int id = Integer.parseInt(command.getSecondWord());
+            p.getInventory().useItem(id);
+   }
    
+   
+   
+   
+   
+   
+   private void printHelp() 
+    {
+        System.out.println("You are lost. You are alone. You wander");
+        System.out.println("around at the university.");
+        System.out.println();
+        System.out.println("Your command words are:");
+        parser.showCombatCommands();
+    }
+   
+   
+   
+   
+   
+   private boolean quit(Command command) 
+    {
+        if(command.hasSecondWord()) {
+            System.out.println("Quit what?");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
