@@ -5,11 +5,14 @@
  */
 package nicolai;
 
+import maltestestpackage.Inventory;
+
 /**
  *
  * @author nicol
  */
 public class Player extends Actor{
+     private Inventory inventory = new Inventory();
     
     public Player(String name, int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput) {
         super(name, defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'P');
