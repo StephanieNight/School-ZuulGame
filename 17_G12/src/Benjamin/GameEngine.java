@@ -55,6 +55,9 @@ public class GameEngine extends Game{
         System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
         System.out.println("Deffictulty is      : "+ GameEngine.getDifficulty());
     }
+    //-----------------------------------------------------------
+    //--------------------------General--------------------------
+    //-----------------------------------------------------------
     
     @Override
     public void play()
@@ -72,6 +75,64 @@ public class GameEngine extends Game{
             
         }
         System.out.println("Thank you for playing.  Good bye.");
+    }
+    private void goRoom(Command command, Actor actor) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Problem with monster "+actor.getName());
+            return;
+        }
+        String direction = command.getSecondWord();
+        Room nextRoom = actor.getCurrentRoom().getExit(direction);
+        if (nextRoom == null) {
+        }
+        else {
+            labyrinth.moveMonster(actor, nextRoom);
+        }
+    }
+    private void goRoom(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Go where?");
+            return;
+        }
+        String direction = command.getSecondWord();
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
+        if (nextRoom == null) {
+            System.out.println("There is no door!");
+        }
+        else {
+            labyrinth.movePlayer(player, nextRoom);
+            System.out.println(player.getCurrentRoom().getLongDescription());
+        }
+    }
+    private boolean quit(Command command) 
+    {
+        if(command.hasSecondWord()) {
+            System.out.println("Quit what?");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public static int getDifficulty()
+    {
+        return difficulty;
+    }
+    public static int getMaxNumberOfMinions()
+    {
+        return difficulty;
+    }  
+    private void sleep()
+    {
+        try
+        {
+        Thread.sleep(1000);
+        }
+        catch(Exception e)
+        {
+        }
     }
     private boolean Conflict(Actor monster)            
     {
@@ -183,44 +244,10 @@ public class GameEngine extends Game{
         System.out.println("you have the following uptions :");
         parser.showCommands();
     }
-    private void processZuul() {
-        moveZuul();
-    }
     
-    private void moveZuul() {
-        String[] exits= zuul.getCurrentRoom().getExits();
-        for(String s : exits)
-        {
-            try
-            {
-                Room current = zuul.getCurrentRoom();
-                Room ex = current.getExit(s);
-                if(ex.getMonster() ==null)
-                {
-                    Command command = new Command(CommandWord.GO, s);
-                    goRoom(command,zuul);
-                    System.out.println(zuul.getName() + " has moved "+ s);
-                    deleteZuul();
-                    break;
-                }
-            }
-            catch (Exception e)
-            {
-                System.out.println(" Problem occured " + e.getMessage());
-            }
-        }
-    }
-    
-    private void deleteZuul() {
-        if(zuul.getCurrentRoom().isConflict())
-        {
-            if(Conflict(zuul));
-            {
-                zuul = null;
-                System.out.println("Zuul has been defeated you win !");
-            }
-        }
-    }
+    //-----------------------------------------------------------
+    //------------------------AI Handling------------------------
+    //-----------------------------------------------------------
     
     private void processMinions() {
         Monster monsterToDelete = null;
@@ -270,62 +297,42 @@ public class GameEngine extends Game{
 //        }
     }
     
-    private void goRoom(Command command, Actor actor) 
-    {
-        if(!command.hasSecondWord()) {
-            System.out.println("Problem with monster "+actor.getName());
-            return;
-        }
-        String direction = command.getSecondWord();
-        Room nextRoom = actor.getCurrentRoom().getExit(direction);
-        if (nextRoom == null) {
-        }
-        else {
-            labyrinth.moveMonster(actor, nextRoom);
-        }
+    private void processZuul() {
+        moveZuul();
     }
-    private void goRoom(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
-            return;
-        }
-        String direction = command.getSecondWord();
-        Room nextRoom = player.getCurrentRoom().getExit(direction);
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else {
-            labyrinth.movePlayer(player, nextRoom);
-            System.out.println(player.getCurrentRoom().getLongDescription());
-        }
-    }
-    private boolean quit(Command command) 
-    {
-        if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    public static int getDifficulty()
-    {
-        return difficulty;
-    }
-    public static int getMaxNumberOfMinions()
-    {
-        return difficulty;
-    }  
-    private void sleep()
-    {
-        try
+    
+    private void moveZuul() {
+        String[] exits= zuul.getCurrentRoom().getExits();
+        for(String s : exits)
         {
-        Thread.sleep(1000);
+            try
+            {
+                Room current = zuul.getCurrentRoom();
+                Room ex = current.getExit(s);
+                if(ex.getMonster() ==null)
+                {
+                    Command command = new Command(CommandWord.GO, s);
+                    goRoom(command,zuul);
+                    System.out.println(zuul.getName() + " has moved "+ s);
+                    deleteZuul();
+                    break;
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println(" Problem occured " + e.getMessage());
+            }
         }
-        catch(Exception e)
+    }
+    
+    private void deleteZuul() {
+        if(zuul.getCurrentRoom().isConflict())
         {
+            if(Conflict(zuul));
+            {
+                zuul = null;
+                System.out.println("Zuul has been defeated you win !");
+            }
         }
     }
 }
