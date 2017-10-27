@@ -19,7 +19,7 @@ import nicolai.Zuul;
  */
 public class Fighting {
    private Player p;
-   private Actor a;
+   private Monster m;
    private boolean flee = false;
    private Parser parser;
    private boolean survived;
@@ -29,14 +29,14 @@ public class Fighting {
     * This is the constructor for the class and automatically runs the fighting 
     * loop method with the given arguements
     * @param p The main player
-    * @param a The monster you meet
+    * @param m The monster you meet
     */
-   public Fighting (Player p, Actor a)
+   public Fighting (Player p, Monster m)
    {
        this.p = p;
-       this.a = a;
+       this.m = m;
        parser = new Parser();
-       survived = fightingLoop(p,a);
+       survived = fightingLoop(p,m);
    }
 
     public boolean didSurvive() {
@@ -48,11 +48,11 @@ public class Fighting {
      * you cant use the same command as when exploring. In case you kill
      * your opponent you will be rewarded xp and check if you level up. 
      * @param p The main player
-     * @param a The monster you meet
+     * @param m The monster you meet
      * @return Returns a boolean value if survive the counter (true if you
      * surive and false if you die)
      */
-   public boolean fightingLoop(Player p, Actor a)
+   public boolean fightingLoop(Player p, Monster m)
     {
          boolean isAlive = true;
          boolean didAction = false;
@@ -64,7 +64,7 @@ public class Fighting {
              if (!didAction){
                  continue;
              }
-             isAlive = alive(a);
+             isAlive = alive(m);
              if (!isAlive)
              {
                  int oldLevel = p.getLevel();
@@ -76,7 +76,7 @@ public class Fighting {
                 return true;
              }
 
-             attack (a,p);
+             attack (m,p);
              isAlive = alive(p);
              if (!isAlive){ 
                  System.out.println("You are dead");
@@ -116,7 +116,7 @@ public class Fighting {
             return false;
         }
         else if (commandWord == CombatCommandWord.ATTACK) {
-            attack(p,a);
+            attack(p,m);
             return true;
         }
         else if (commandWord == CombatCommandWord.FLEE){
