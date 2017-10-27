@@ -14,8 +14,8 @@ import nicolai.Monster;
 import nicolai.Player;
 import nicolai.Zuul;
 /**
- *
- * @author AC
+ * Class to resolve conflict between a player and a monster.
+ * @author collaboration between Ahmet, Malte and Nicolai.
  */
 public class Fighting {
    private Player p;
@@ -24,6 +24,13 @@ public class Fighting {
    private Parser parser;
    private boolean survived;
    
+   
+   /**
+    * This is the constructor for the class and automatically runs the fighting 
+    * loop method with the given arguements
+    * @param p The main player
+    * @param a The monster you meet
+    */
    public Fighting (Player p, Actor a)
    {
        this.p = p;
@@ -35,14 +42,20 @@ public class Fighting {
     public boolean didSurvive() {
         return survived;
     }
+    
+    /**
+     * This is the main loop for resolving combat. It uses a combat command so 
+     * you cant use the same command as when exploring. In case you kill
+     * your opponent you will be rewarded xp and check if you level up. 
+     * @param p The main player
+     * @param a The monster you meet
+     * @return Returns a boolean value if survive the counter (true if you
+     * surive and false if you die)
+     */
    public boolean fightingLoop(Player p, Actor a)
     {
-         int playerHitpoint;
-         int actorHitpoint;
-         
          boolean isAlive = true;
          boolean didAction = false;
-         
          
          while (isAlive)
          {
@@ -62,12 +75,7 @@ public class Fighting {
                 }
                 return true;
              }
-             
-             
-             
-             
-             
-             
+
              attack (a,p);
              isAlive = alive(p);
              if (!isAlive){ 
@@ -82,6 +90,16 @@ public class Fighting {
          }
          return true;
     }
+ 
+   /**
+    * Receives input through the parser from the player and checks if it is a
+    * valid command and executes the command.
+    * @param command The class CombatCommand is being used to make sure the
+    * commands are correctly written.
+    * @return Returns true if you did one of the following commands attack, 
+    * flee or use item and otherwise it returns false so the player can give 
+    * another command. 
+    */
    private boolean processCommand(CombatCommand command) 
     {
         boolean didAction = false;
@@ -119,10 +137,14 @@ public class Fighting {
         return didAction;
     }
    
-   
-   
-   
-   
+   /**
+    * This is a method to resolve the attack. First it checks if the attack hits
+    * by rolling a random number between 0 and 99. If the number is higher than
+    * the defense of the victim, the victim is hit. If it hits damage dealt and 
+    * current health of the victim is updated.
+    * @param a1 The attacker
+    * @param a2 The victim
+    */
    private void attack(Actor a1, Actor a2)
    {
        int actorDefense = a2.getModifiedDefense();
@@ -135,14 +157,22 @@ public class Fighting {
        else System.out.println(a1.getName() + " misses " + a2.getName());
    }
    
-   
-   
-   
+   /**
+    * Checks if the given actor is still alive.
+    * @param a1
+    * @return true if alive.
+    */
    private boolean alive(Actor a1)
    {
        return a1.getCurrentHealth() > 0;
        
    }
+   
+   /**
+    * Use item by giving a number. If no number or a valid number is given it 
+    * cannot use the item.
+    * @param command 
+    */
    private void useItem(CombatCommand command){
        if(!command.hasSecondWord()){ 
            System.out.println("Which item");
@@ -152,11 +182,9 @@ public class Fighting {
             p.getInventory().useItem(id);
    }
    
-   
-   
-   
-   
-   
+   /**
+    * Prints the list of commands and text.  
+    */
    private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
@@ -166,10 +194,11 @@ public class Fighting {
         parser.showCombatCommands();
     }
    
-   
-   
-   
-   
+   /**
+    * Checks to make sure you dont add a second word.
+    * @param command
+    * @return a boolean a value.
+    */
    private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
