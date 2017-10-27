@@ -5,6 +5,8 @@
  */
 package Ahmets_package;
 
+import gameframework.Command;
+import gameframework.CommandWord;
 import java.util.Scanner;
 import nicolai.Actor;
 import nicolai.Monster;
@@ -15,7 +17,17 @@ import nicolai.Zuul;
  * @author AC
  */
 public class Fighting {
-    
+   private Player p;
+   private Actor a;
+   private boolean flee = false;
+   
+   public Fighting (Player p, Actor a)
+   {
+       this.p = p;
+       this.a = a;
+       
+               
+   }
    public void fightingLoop(Player p, Actor a)
     {
          int playerHitpoint;
@@ -24,19 +36,67 @@ public class Fighting {
          boolean isAlive = true;
          boolean flee = false;
          
+         
+         
          while (isAlive)
          {
              //Command command = parser.getCombatCommand, skal laves i parseren
-             //if (command == attack) attack(p,a);
+             if (command == CombatCommandWord.attack) attack(p,a);
              isAlive = alive(a);
              if (!isAlive)
              {
                  int oldLevel = p.getLevel();
                  p.setXp(p.getXp() + 1);
                  int newLevel = p.getLevel();
-                if (newLevel > oldLevel) System.out.println(" Congratulations, you lvled up!");
+                if (newLevel > oldLevel){
+                    System.out.println("Congratulations, you lvled up!");
+                }
              }
+             
+             
+             
+             
+             
+             
+             attack (a,p);
+             isAlive = alive(p);
+             if (!isAlive){ 
+                 System.out.println("You are dead");
+             }
+         
+             if (flee){
+                 break;
+             }
+                         
          }
+    }
+   private boolean processCommand(Command command) 
+    {
+        boolean wantToQuit = false;
+
+        CombatCommandWord commandWord = command.getCombatCommandWord();
+
+        if(commandWord == CombatCommandWord.UNKNOWN) {
+            System.out.println("I don't know what you mean...");
+            return false;
+        }
+
+        if (commandWord == CombatCommandWord.HELP) {
+            printHelp();
+        }
+        else if (commandWord == CombatCommandWord.ATTACK) {
+            attack(p,a);
+        }
+        else if (commandWord == CombatCommandWord.FLEE){
+        flee = true;
+        }
+        else if(commandWord == CombatCommandWord.INVENTORY){
+            p.inventory.getInventoryList;
+        }
+        else if (commandWord == CombatCommandWord.QUIT) {
+            wantToQuit = quit(command);
+        }
+        return wantToQuit;
     }
    private void attack(Actor a1, Actor a2)
    {
