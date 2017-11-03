@@ -21,7 +21,7 @@ import nicolai.Player;
 // skal måske laves til set i stedet for array
 public class Inventory {
     private Item[] inventory;
-    private Player player;
+    Player player;
     public Inventory(Player p)
     {
         this.player = p;
@@ -90,26 +90,22 @@ public class Inventory {
 		}*/
     
     /**
-     * loops through items in inventory to find an item with a matching name.
-     * @param itemName 
-     * prints the name and description if item name matches input name.
+     * prints the name and description of item matching input ID.
+     * @param itemID 
+     * @return 
      */
-    public void getItemDescription(String itemName)//TODO needs command word.
+    
+    public boolean getItemDescription(int itemID)//TODO needs command word.
      {
-
-        boolean itemUsed = false;
-        for (Item inventory1 : inventory) {
-            if (inventory1.getName().toLowerCase().equals(itemName.toLowerCase())) {
-                System.out.println(inventory1.getName());
-                System.out.println(inventory1.getDescription());
-                itemUsed = true;
-                break;
-            }
-        }
-        if(!itemUsed)
+        if(itemID > inventory.length - 1 || itemID < 0)
         {
-            System.out.println("You have no such item!");
+            System.out.println("Please enter a number corresponding to an item.");
         }
+        else{
+            System.out.println(inventory[itemID].getName());
+            System.out.println(inventory[itemID].getDescription());
+        }
+        return false;
     }
     
     /**
