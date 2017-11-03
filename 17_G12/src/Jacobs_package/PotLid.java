@@ -6,6 +6,7 @@
 package Jacobs_package;
 
 import maltestestpackage.Item;
+import nicolai.Player;
 /**
  *
  * @author simon
@@ -23,7 +24,7 @@ public class PotLid implements Item{
     }
     
     @Override
-    public void useItem(){
+    public void useItem(Player p){
         System.out.println("There's a time and place for everything, but not now.");
     }
     
