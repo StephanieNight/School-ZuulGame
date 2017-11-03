@@ -97,8 +97,7 @@ public class Inventory {
     
     public boolean getItemDescription(int itemID)//TODO needs command word.
      {
-        if(itemID > inventory.length - 1 || itemID < 0)
-        {
+        if(itemID > inventory.length - 1 || itemID < 0){
             System.out.println("Please enter a number corresponding to an item.");
         }
         else{
