@@ -5,6 +5,8 @@
  */
 package maltestestpackage;
 
+import nicolai.Player;
+
 /**
  *
  * @author Malte
@@ -28,7 +30,7 @@ public class PotionOfSwiftness implements Item{
      * every 2nd time 5 times.
      */
     @Override
-    public void useItem() {
+    public void useItem(Player p) {
         //setSwiftnessCounter(10);
     }
 

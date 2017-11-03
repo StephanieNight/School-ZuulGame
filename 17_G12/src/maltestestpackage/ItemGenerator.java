@@ -21,14 +21,14 @@ public class ItemGenerator {
     }
     
     
-    public Item generateItem(Player p)
+    public Item generateItem()
     {
 
         int num = (int)(Math.random() * 6) + 1;
         switch (num)
         {
             case 1:
-                return new HealingPotion(p);
+                return new HealingPotion();
   
             case 2:
                 return new MiniMap();
@@ -43,7 +43,7 @@ public class ItemGenerator {
                 return new PotionOfSwiftness();
                 
             default:
-                return new PotionOfTeleportation(p);
+                return new PotionOfTeleportation();
     
         }
     }

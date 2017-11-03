@@ -8,6 +8,7 @@ import static Benjamin.GameEngine.getDifficulty;
 import java.util.Scanner;
 import Jacobs_package.*;
 import Stephie_build.Room;
+import nicolai.Player;
 /**
  * inventory to hold items
  * inventory length is determined by difficulty.
@@ -20,9 +21,10 @@ import Stephie_build.Room;
 // skal måske laves til set i stedet for array
 public class Inventory {
     private Item[] inventory;
-    
-    public Inventory()
+    Player player;
+    public Inventory(Player p)
     {
+        this.player = p;
         inventory = new Item[8 - getDifficulty()]; //inventory size based on difficulty
         inventory[0] = new Branch();            //the three pieces of starting equipment
         inventory[1] = new TatteredClothes();
@@ -58,7 +60,7 @@ public class Inventory {
         
         if(inventory[itemID] != null)
         {
-            inventory[itemID].useItem();//activates the item's effect.
+            inventory[itemID].useItem(null);//activates the item's effect.
             itemUsed = true;
             
             if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 

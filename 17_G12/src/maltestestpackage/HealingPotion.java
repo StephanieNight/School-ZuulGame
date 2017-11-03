@@ -30,9 +30,9 @@ public class HealingPotion implements Item{
      * @param player
      */
     @Override
-    public void useItem() {
+    public void useItem(Player p) {
         System.out.println("You already feel better");
-        player.setCurrentHealth(player.getCurrentHealth() + 30);
+        p.setCurrentHealth(p.getCurrentHealth() + 30);
     }
 
     
@@ -55,7 +55,7 @@ public class HealingPotion implements Item{
     /**
      * no-args constructor, no args needed since all information is predefined.
      */
-    public HealingPotion(Player p)
+    public HealingPotion()
     {
     }
     

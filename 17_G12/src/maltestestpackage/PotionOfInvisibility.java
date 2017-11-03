@@ -5,6 +5,8 @@
  */
 package maltestestpackage;
 
+import nicolai.Player;
+
 /**
  *
  * @author Malte
@@ -29,7 +31,7 @@ public class PotionOfInvisibility implements Item {
      * engage monsters or not.
      */
     @Override
-    public void useItem() {
+    public void useItem(Player p) {
         //sets invisibility to true;
     }
 

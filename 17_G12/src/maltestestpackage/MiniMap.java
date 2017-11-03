@@ -5,6 +5,8 @@
  */
 package maltestestpackage;
 
+import nicolai.Player;
+
 /**
  *
  * @author Malte
@@ -27,7 +29,7 @@ public class MiniMap implements Item{
      * Updates the whole map as if you've been everywhere.
      */
     @Override
-    public void useItem() {
+    public void useItem(Player p) {
         //sets all room to visited
     }
 

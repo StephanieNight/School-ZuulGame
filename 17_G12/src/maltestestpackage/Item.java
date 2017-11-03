@@ -23,7 +23,7 @@ public interface Item {
      * Weapons, shields and armor doesn't have any use item effect and returns 
      * a message "this is not how you use said item".
      */
-    public abstract void useItem();
+    public abstract void useItem(Player p);
     /**
      * 
      * @return returns the type for comparison in inventory

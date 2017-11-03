@@ -29,7 +29,7 @@ public class PotionOfTeleportation implements Item {
      * location to a randomised location.
      */
     @Override
-    public void useItem() {
+    public void useItem(Player p) {
 //        currentLocation = map.goRandomRoom;
     }
 
@@ -43,7 +43,7 @@ public class PotionOfTeleportation implements Item {
         return -1;
         }
     
-    public PotionOfTeleportation(Player p)
+    public PotionOfTeleportation()
     {
         this.p = p;
     }

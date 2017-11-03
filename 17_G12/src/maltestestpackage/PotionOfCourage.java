@@ -5,6 +5,8 @@
  */
 package maltestestpackage;
 
+import nicolai.Player;
+
 /**
  *
  * @author Malte
@@ -27,7 +29,7 @@ public class PotionOfCourage implements Item {
      * no effect so far
      */
     @Override
-    public void useItem() {
+    public void useItem(Player p) {
         System.out.println("Feels good to drink some liquid courage!");
         
     }

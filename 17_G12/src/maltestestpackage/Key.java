@@ -30,7 +30,7 @@ public String getDescription()
      * Unlocks the door out of the dungeon letting the player win
      */
     @Override
-    public void useItem() {
+    public void useItem(Player p) {
         // sets the exit to unlocked;
     }
 
