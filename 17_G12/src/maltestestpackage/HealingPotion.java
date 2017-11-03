@@ -5,12 +5,16 @@
  */
 package maltestestpackage;
 
+import nicolai.Player;
+
 /**
  * 
  * @author Malte
  */
 public class HealingPotion implements Item{
 
+    private Player player;
+    
     @Override
     public String getDescription() {
         return "A red potion. You feel like it might be nice to drink it!";
@@ -23,11 +27,12 @@ public class HealingPotion implements Item{
     
     /**
      * adds X to player health points up to max health points
+     * @param player
      */
     @Override
     public void useItem() {
         System.out.println("You already feel better");
-        //player.setCurrentHealth(player.getCurrentHealth + 30);
+        player.setCurrentHealth(player.getCurrentHealth() + 30);
     }
 
     
@@ -50,9 +55,13 @@ public class HealingPotion implements Item{
     /**
      * no-args constructor, no args needed since all information is predefined.
      */
-    public HealingPotion()
+    public HealingPotion(Player p)
     {
-        
     }
+    
+    public void setPplayer()
+    {
+    }
+
     
 }

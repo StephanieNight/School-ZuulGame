@@ -5,12 +5,14 @@
  */
 package maltestestpackage;
 import Stephie_build.Labyrinth;
+import nicolai.Player;
 /**
  *
  * @author Malte
  */
 public class PotionOfTeleportation implements Item {
 
+    private Player p;
     @Override
     public String getDescription() {
         return "A flask with a clear substance within it. "
@@ -41,5 +43,9 @@ public class PotionOfTeleportation implements Item {
         return -1;
         }
     
+    public PotionOfTeleportation(Player p)
+    {
+        this.p = p;
+    }
     
 }

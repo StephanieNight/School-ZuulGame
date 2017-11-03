@@ -207,7 +207,7 @@ public class CharacterBase
     
     public void updateLevel()
     {
-        this.level = 1 + (totalExp / 3);
+        this.level = 1 + (int)(totalExp / 3);
     }
     
     public void setExpWorth(int expWorth)

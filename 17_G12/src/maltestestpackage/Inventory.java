@@ -50,6 +50,11 @@ public class Inventory {
     public boolean useItem(int itemID) //TODO needs command word
     {
         boolean itemUsed = false;
+        if(itemID > inventory.length - 1 || itemID < 0)
+        {
+            System.out.println("Please enter a number corresponding to an item.");
+            return false;
+        }
         
         if(inventory[itemID] != null)
         {

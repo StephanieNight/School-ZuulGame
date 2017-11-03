@@ -5,6 +5,8 @@
  */
 package maltestestpackage;
 
+import nicolai.Player;
+
 /**
  *
  * @author Malte
@@ -51,4 +53,6 @@ public String getDescription()
     {
         
     }
+
+ 
 }

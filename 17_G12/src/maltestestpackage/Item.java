@@ -5,6 +5,8 @@
  */
 package maltestestpackage;
 
+import nicolai.Player;
+
 /**
  * Abstract super class for all item classes
  * getDescription, getName and getType is the same in all item classes and returns 
@@ -22,7 +24,6 @@ public interface Item {
      * a message "this is not how you use said item".
      */
     public abstract void useItem();
-    
     /**
      * 
      * @return returns the type for comparison in inventory
