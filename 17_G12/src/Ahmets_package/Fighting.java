@@ -173,12 +173,21 @@ public class Fighting {
     * @param command 
     */
    private boolean useItem(CombatCommand command){
+       
        if(!command.hasSecondWord()){ 
            System.out.println("Which item");
            return false;
        }
+       try
+       {
        int id = Integer.parseInt(command.getSecondWord());
             return p.getInventory().useItem(id);
+       }
+       catch (NumberFormatException e)
+               {
+                   System.out.println("Please enter the number for the item you wish to use.");
+               }
+       return false;
    }
    
    /**
