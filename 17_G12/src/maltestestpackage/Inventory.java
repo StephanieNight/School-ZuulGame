@@ -21,7 +21,7 @@ import nicolai.Player;
 // skal måske laves til set i stedet for array
 public class Inventory {
     private Item[] inventory;
-    Player player;
+    private Player player;
     public Inventory(Player p)
     {
         this.player = p;
