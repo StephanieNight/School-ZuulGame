@@ -12,7 +12,7 @@ import maltestestpackage.Inventory;
  * @author nicol
  */
 public class Player extends Actor{
-     private Inventory inventory = new Inventory();
+     private Inventory inventory;
      
      public Inventory getInventory(){
          return inventory;
@@ -20,5 +20,6 @@ public class Player extends Actor{
     
     public Player(String name, int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput) {
         super(name, defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'P');
+        this.inventory = new Inventory(this);
     }    
 }
