@@ -275,18 +275,18 @@ public class Inventory {
         {
             if("Weapon".equals(inventory1.getType()))
             {
-                player.setWeapon() = 0;
-                player.setWeapon() = inventory1.getStat();
+                player.setWeapon(0);
+                player.setWeapon(inventory1.getStat());
             }
             if("Armor".equals(inventory1.getType()))
             {
-                player.setArmor() = 0;
-                player.setArmor() = inventory1.getStat();
+                player.setArmor(0);
+                player.setArmor(inventory1.getStat());
             }
             if("Shield".equals(inventory1.getType()))
             {
-                player.setShield() = 0;
-                player.setShield() =  inventory1.getStat();
+                player.setShield(0);
+                player.setShield(inventory1.getStat());
             }
         }
     }
