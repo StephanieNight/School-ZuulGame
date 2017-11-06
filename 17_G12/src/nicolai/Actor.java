@@ -18,8 +18,6 @@ public abstract class Actor
     private Room currentRoom;
     private int maximumHealthPoint;
     private int currentHealth;
-    private int modifiedDefense;
-    private int modifiedDamgeOutput;
     private int level =1;
     private int xp;
     private int totalXp;
@@ -51,7 +49,7 @@ public abstract class Actor
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
         if (currentHealth < maximumHealthPoint){
-            currentHealth=maximumHealthPoint;
+            currentHealth= maximumHealthPoint;
         }
     }
     public int getDefaultHealthPoint() {
@@ -72,7 +70,7 @@ public abstract class Actor
     // therefore the higher the level the higher the defense is
     // there value 5 can be modified this is just an eksample
     public int getModifiedDefense() {
-        return modifiedDefense = DEFAULT_DEFENSE+(level*5);
+        return DEFAULT_DEFENSE+(level*5);
     }    
     public String getName() {
         return NAME;
@@ -85,7 +83,7 @@ public abstract class Actor
     // therefore the higher the level the higher the damg is
     // there value 5 can be modified this is just an eksample
     public int getModifiedDamgeOutput() {
-        return modifiedDamgeOutput = DEFAULT_DAMGE_OUTPUT+(level*5);
+        return DEFAULT_DAMGE_OUTPUT+(level*5);
     }
     public int getLevel() {
         return level = 1+(xp/2);
