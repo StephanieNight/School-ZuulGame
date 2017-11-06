@@ -2,6 +2,7 @@
 package nicolai;
 
 import Stephie_build.Room;
+import maltestestpackage.Inventory;
 
 
 /**
@@ -21,6 +22,10 @@ public abstract class Actor
     private int level =1;
     private int xp;
     private int totalXp;
+    private Inventory inventory;
+    private int weapon;
+    private int armor;
+    private int shield;
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
     public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode){
@@ -30,6 +35,7 @@ public abstract class Actor
         this.DEFAULT_DAMGE_OUTPUT = defaultDefense;
         this.MAP_CODE=mapCode;
         this.currentHealth = DEFAULT_HEALTH_POINTS;
+        this.inventory = new Inventory(this);
     }
     //  in this metode you can set the level 
     public void setLevel(int level) {
@@ -52,6 +58,7 @@ public abstract class Actor
             currentHealth= maximumHealthPoint;
         }
     }
+    
     public int getDefaultHealthPoint() {
         return DEFAULT_HEALTH_POINTS;
     }
@@ -106,6 +113,17 @@ public abstract class Actor
     public void updateLevel(){
         getModufiedHealthPoint();
     }
-    
+    public Inventory getInventory(){
+         return inventory;
+     }
+    public void setWeapon(int weapon){
+        this.weapon = weapon;
+    }
+    public void setArmor(int armor){
+        this.armor = armor;
+    }
+    public void setShield(int shield){
+        this.shield = shield;
+    }
 }
 
