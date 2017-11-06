@@ -11,13 +11,12 @@ import Stephie_build.Room;
  * @author Malte
  */
 public class RoomDescription {
-    private int numberOfExits;
     String description;
     //Image File something something;
     public RoomDescription(Room room)
     {
-        numberOfExits = room.getExits().length;
-        switch (numberOfExits)
+        
+        switch (room.getExits().length)
         {
                 case 1:
                     this.description = "at a dead end.";

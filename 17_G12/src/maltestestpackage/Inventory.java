@@ -8,6 +8,7 @@ import static Benjamin.GameEngine.getDifficulty;
 import java.util.Scanner;
 import Jacobs_package.*;
 import Stephie_build.Room;
+import nicolai.Actor;
 import nicolai.Player;
 /**
  * inventory to hold items
@@ -21,8 +22,8 @@ import nicolai.Player;
 // skal måske laves til set i stedet for array
 public class Inventory {
     private Item[] inventory;
-    Player player;
-    public Inventory(Player p)
+    Actor player;
+    public Inventory(Actor p)
     {
         this.player = p;
         inventory = new Item[8 - getDifficulty()]; //inventory size based on difficulty
@@ -105,6 +106,7 @@ public class Inventory {
             System.out.println(inventory[itemID].getDescription());
         }
         return false;
+        updateStat();
     }
     
     /**
@@ -146,10 +148,12 @@ public class Inventory {
                             if(in.equals("yes")){
                                 System.out.println(item.getName() + "was picked up.");
                                 inventory1 = item; //destroys current equipment and replaces with new.
+                                updateStat();
                                 return true;
                             }
                             if(in.equals("no")){
                                 System.out.println("left the" + item.getName() + "on the ground.");
+                                updateStat();
                                 return false;
                             }
                             System.out.println("That is not a valid response.");
@@ -161,6 +165,7 @@ public class Inventory {
                     if(inventory1 == null){
                         System.out.println(item.getName() + "was picked up.");
                         inventory1 = item; //adds item to first vacant spot in inventory.
+                        updateStat();
                         return true;
                     }
                 }
@@ -170,6 +175,7 @@ public class Inventory {
                 for (Item inventory1 : inventory) {
                     if(inventory1 == null){
                         inventory1 = item; //adds item to first vacant spot in inventory.
+                        updateStat();
                         return true;
                     }
                 }
@@ -191,10 +197,12 @@ public class Inventory {
                             if(in.equals("yes")){
                                 System.out.println(item.getName() + "was picked up.");
                                 inventory1 = item; //destroys current equipment and replaces with new.
+                                updateStat();
                                 return true;
                             }
                             if(in.equals("no")){
                                 System.out.println("left the" + item.getName() + "on the ground.");
+                                updateStat();
                                 return false;
                             }
                             System.out.println("That is not a valid response.");
@@ -206,8 +214,10 @@ public class Inventory {
                     String input = "no"; //get player input
                     if(input.equals("no")){
                         System.out.println("left the" + item.getName() + "on the ground.");
+                        updateStat();
                         return false;
                     }
+                    updateStat();
                     return true;//TODO
                     
                 }
@@ -218,8 +228,10 @@ public class Inventory {
             String input = "no"; //get player input
             if(input.equals("no")){
                 System.out.println("left the" + item.getName() + "on the ground.");
+                updateStat();
                 return false;
             }
+            updateStat();
             return true;//TODO
                 
                 
@@ -229,6 +241,7 @@ public class Inventory {
                 }*/
             
         }
+        updateStat();
         return false;//does nothing, but compiler complains otherwise.
     }
    
@@ -249,6 +262,7 @@ public class Inventory {
             inventory[itemID] = inventory[itemID+1];
         }
         inventory[inventory.length-1] = null; //the last item is (re)moved.
+        updateStat();
     }
     
     
@@ -261,15 +275,18 @@ public class Inventory {
         {
             if("Weapon".equals(inventory1.getType()))
             {
-                // player.setTotalDamage = player.getModifiedDamage + inventory1.getStat();
+                player.setWeapon(0);
+                player.setWeapon(inventory1.getStat());
             }
             if("Armor".equals(inventory1.getType()))
             {
-                // player.setTotalArmor = player.getModifiedArmor + inventory1.getStat();
+                player.setArmor(0);
+                player.setArmor(inventory1.getStat());
             }
             if("Shield".equals(inventory1.getType()))
             {
-                // player.setTotalShield = player.getModifiedShield + inventory1.getStat();
+                player.setShield(0);
+                player.setShield(inventory1.getStat());
             }
         }
     }

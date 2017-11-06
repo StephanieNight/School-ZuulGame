@@ -11,27 +11,21 @@ import nicolai.Player;
  *
  * @author Malte
  */
-public class PotionOfSwiftness implements Item{
+public class LampOil implements Item{
 
     @Override
     public String getDescription() {
-        return "A flask with a nice yellow color. "
-                + "\nBear Grills would be very tempted to just gulp it down";
+        return "Oil to fuel your Oil lamp.";
     }
 
     @Override
     public String getName() {
-        return "Potion Of Swiftness";
+        return "Lamp Oil";
     }
 
-    /**
-     * Lets the player move twice between monster movement. Last for a short duration.
-     * sets the counter for swiftness to 10, which lets you skip monsters turn
-     * every 2nd time 5 times.
-     */
     @Override
     public void useItem(Player p) {
-        //setSwiftnessCounter(10);
+        p.addLampOil();
     }
 
     @Override
@@ -43,7 +37,8 @@ public class PotionOfSwiftness implements Item{
     public int getStat() {
         return -1;
     }
-    public PotionOfSwiftness()
+    
+    public LampOil()
     {
         
     }
