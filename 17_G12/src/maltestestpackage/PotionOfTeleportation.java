@@ -12,7 +12,6 @@ import nicolai.Player;
  */
 public class PotionOfTeleportation implements Item {
 
-    private Player p;
     @Override
     public String getDescription() {
         return "A flask with a clear substance within it. "
@@ -45,7 +44,7 @@ public class PotionOfTeleportation implements Item {
     
     public PotionOfTeleportation()
     {
-        this.p = p;
+        
     }
-    
+ 
 }

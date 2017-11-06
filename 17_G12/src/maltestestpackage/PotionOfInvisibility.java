@@ -44,5 +44,9 @@ public class PotionOfInvisibility implements Item {
     public int getStat() {
         return -1;
     }
+    public PotionOfInvisibility()
+    {
+        
+    }
     
 }

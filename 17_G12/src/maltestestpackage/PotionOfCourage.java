@@ -43,5 +43,8 @@ public class PotionOfCourage implements Item {
     public int getStat() {
         return -1;
     }
-    
+    public PotionOfCourage()
+    {
+        
+    }
 }

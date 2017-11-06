@@ -43,4 +43,8 @@ public class MiniMap implements Item{
         return -1;
     }
     
+    public MiniMap()
+    {
+        
+    }
 }
