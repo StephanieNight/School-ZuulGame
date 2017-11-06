@@ -105,8 +105,9 @@ public class Inventory {
             System.out.println(inventory[itemID].getName());
             System.out.println(inventory[itemID].getDescription());
         }
-        return false;
         updateStat();
+        return false;
+        
     }
     
     /**
