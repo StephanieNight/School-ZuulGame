@@ -82,13 +82,6 @@ public class Inventory {
         System.out.println("You have no such item!");
         return false;
     }
-    //udkast til forkortelse af linje 62-73
-    		/*inventory[i] = null; //removes the used item from inventory.
-		
-		for(;i+1 < inventory.length; i++) //cycles through remainder of inventory after match is found.
-		{
-                    inventory[i] = inventory[i+1]; //all items following the used item are put one index lower to fill the hole.
-		}*/
     
     /**
      * prints the name and description of item matching input ID.
