@@ -147,14 +147,13 @@ public class Inventory {
                             Scanner input = new Scanner(System.in);
                             String in = input.next().toLowerCase();
                             if(in.equals("yes")){
-                                System.out.println(item.getName() + "was picked up.");
+                                System.out.println(item.getName() + " was picked up.");
                                 inventory1 = item; //destroys current equipment and replaces with new.
                                 updateStat();
                                 return true;
                             }
                             if(in.equals("no")){
-                                System.out.println("left the" + item.getName() + "on the ground.");
-                                updateStat();
+                                System.out.println("left the " + item.getName() + " on the ground.");
                                 return false;
                             }
                             System.out.println("That is not a valid response.");
@@ -171,56 +170,42 @@ public class Inventory {
                     }
                 }
             }
-            else 
+            else //if consumable with non-full inventory
             {
                 for (Item inventory1 : inventory) {
                     if(inventory1 == null){
                         inventory1 = item; //adds item to first vacant spot in inventory.
-                        updateStat();
                         return true;
                     }
                 }
             }
         }
-        else
+        else //if inventory is full
         {
             if(equipment)
             {
                 for (Item inventory1 : inventory) {
                     if(item.getType().equals(inventory1.getType()))
                     {
-                        while(true){
+                        while(true){ //loop with return statements ensures a valid answer.
                             System.out.println("Do you wish to swap " + 
                                     inventory1.getName() + " with " + item.getName() + "?");
                             System.out.println("Yes / No");
                             Scanner input = new Scanner(System.in);
                             String in = input.next().toLowerCase();
                             if(in.equals("yes")){
-                                System.out.println(item.getName() + "was picked up.");
+                                System.out.println(item.getName() + " was picked up.");
                                 inventory1 = item; //destroys current equipment and replaces with new.
                                 updateStat();
                                 return true;
                             }
                             if(in.equals("no")){
                                 System.out.println("left the" + item.getName() + "on the ground.");
-                                updateStat();
                                 return false;
                             }
                             System.out.println("That is not a valid response.");
                         }
                     }
-                    //if consumable
-                    System.out.println("You're overburdened, do you want to consume or drop an item to make space?");
-                    System.out.println("Consume X / Drop X / no");
-                    String input = "no"; //get player input
-                    if(input.equals("no")){
-                        System.out.println("left the" + item.getName() + "on the ground.");
-                        updateStat();
-                        return false;
-                    }
-                    updateStat();
-                    return true;//TODO
-                    
                 }
             }
             //if consumable
@@ -242,8 +227,7 @@ public class Inventory {
                 }*/
             
         }
-        updateStat();
-        return false;//does nothing, but compiler complains otherwise.
+        return false;//does nothing (is never reached), but compiler complains otherwise.
     }
    
     
@@ -272,21 +256,21 @@ public class Inventory {
      */
     public void updateStat()
     {
+        player.setWeapon(0);
+        player.setArmor(0);
+        player.setShield(0);
         for(Item inventory1: inventory)
         {
             if("Weapon".equals(inventory1.getType()))
             {
-                player.setWeapon(0);
                 player.setWeapon(inventory1.getStat());
             }
             if("Armor".equals(inventory1.getType()))
             {
-                player.setArmor(0);
                 player.setArmor(inventory1.getStat());
             }
             if("Shield".equals(inventory1.getType()))
             {
-                player.setShield(0);
                 player.setShield(inventory1.getStat());
             }
         }
