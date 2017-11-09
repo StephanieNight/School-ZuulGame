@@ -22,10 +22,10 @@ import nicolai.Player;
 // skal måske laves til set i stedet for array
 public class Inventory {
     private Item[] inventory;
-    Actor player;
+    Actor actor;
     public Inventory(Actor p)
     {
-        this.player = p;
+        this.actor = p;
         inventory = new Item[8 - getDifficulty()]; //inventory size based on difficulty
         inventory[0] = new Branch();            //the three pieces of starting equipment
         inventory[1] = new TatteredClothes();
@@ -249,22 +249,22 @@ public class Inventory {
      */
     public void updateStat()
     {
-        player.setWeapon(0);
-        player.setArmor(0);
-        player.setShield(0);
+        actor.setWeapon(0);
+        actor.setArmor(0);
+        actor.setShield(0);
         for(Item inventory1: inventory)
         {
             if("Weapon".equals(inventory1.getType()))
             {
-                player.setWeapon(inventory1.getStat());
+                actor.setWeapon(inventory1.getStat());
             }
             if("Armor".equals(inventory1.getType()))
             {
-                player.setArmor(inventory1.getStat());
+                actor.setArmor(inventory1.getStat());
             }
             if("Shield".equals(inventory1.getType()))
             {
-                player.setShield(inventory1.getStat());
+                actor.setShield(inventory1.getStat());
             }
         }
     }
