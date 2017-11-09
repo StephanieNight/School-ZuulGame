@@ -5,11 +5,8 @@
  */
 package gui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -22,7 +19,8 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author BenPaxIndustries
  */
-public class GUIController implements Initializable {
+public class GUIController
+{
     
     private Label label;
     @FXML
@@ -73,31 +71,79 @@ public class GUIController implements Initializable {
     private Button newGameBackButton;
     @FXML
     private Button newGamePlayButton;
-    
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+        
+    public void initialize() {
         // TODO
     }    
 
+    //------------------------------------------------------
+    //-----------------------Main Menu----------------------
+    //------------------------------------------------------
+    
     @FXML
-    private void newGameButtonClicked(ActionEvent event) {
+    private void newGameButtonClicked(ActionEvent event)
+    {
+        changeScene(mainMenuScene, newGameScene);
     }
 
     @FXML
-    private void highscoreButtonClicked(ActionEvent event) {
+    private void highscoreButtonClicked(ActionEvent event)
+    {
+        changeScene(mainMenuScene, highscoreScene);
     }
 
     @FXML
-    private void creditsButtonClicked(ActionEvent event) {
+    private void creditsButtonClicked(ActionEvent event)
+    {
+        changeScene(mainMenuScene, creditsScene);
     }
 
     @FXML
-    private void quitButtonClicked(ActionEvent event) {
+    private void quitButtonClicked(ActionEvent event)
+    {
+        //Quits the game
     }
     
+    //------------------------------------------------------
+    //---------------------New Game Menu--------------------
+    //------------------------------------------------------
+    
+    @FXML
+    private void newGameBackButtonClicked(ActionEvent event)
+    {
+        changeScene(newGameScene, mainMenuScene);
+    }
+    
+    //------------------------------------------------------
+    //--------------------Highscore Menu--------------------
+    //------------------------------------------------------
+    
+    @FXML
+    private void highscoreBackButtonClicked(ActionEvent event)
+    {
+        changeScene(highscoreScene, mainMenuScene);
+    }
+    
+    //------------------------------------------------------
+    //----------------------Credits Menu--------------------
+    //------------------------------------------------------
+    
+    @FXML
+    private void creditsBackButtonClicked(ActionEvent event)
+    {
+        changeScene(creditsScene, mainMenuScene);
+    }
+    
+    //------------------------------------------------------
+    //--------------------General Methods-------------------
+    //------------------------------------------------------
+    
+    public void changeScene(AnchorPane from, AnchorPane to)
+    {
+        from.setVisible(false);
+        from.setDisable(true);
+        to.setVisible(true);
+        to.setDisable(false);
+    }
+
 }
