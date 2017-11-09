@@ -23,9 +23,9 @@ public abstract class Actor
     private int xp;
     private int totalXp;
     private Inventory inventory;
-    private int weapon;
-    private int armor;
-    private int shield;
+    private int weapon = 0;
+    private int armor = 0;
+    private int shield = 0;
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
     public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode){
@@ -36,6 +36,7 @@ public abstract class Actor
         this.MAP_CODE=mapCode;
         this.currentHealth = DEFAULT_HEALTH_POINTS;
         this.inventory = new Inventory(this);
+        inventory.updateStat();
     }
     //  in this metode you can set the level 
     public void setLevel(int level) {
@@ -76,8 +77,8 @@ public abstract class Actor
     // the modified defense is the defaltdefense + (the level * 5)
     // therefore the higher the level the higher the defense is
     // there value 5 can be modified this is just an eksample
-    public int getModifiedDefense() {
-        return DEFAULT_DEFENSE+(level*5);
+    public int getModifiedDefense(){
+        return DEFAULT_DEFENSE+(level*5) + shield + armor;
     }    
     public String getName() {
         return NAME;
@@ -90,7 +91,7 @@ public abstract class Actor
     // therefore the higher the level the higher the damg is
     // there value 5 can be modified this is just an eksample
     public int getModifiedDamgeOutput() {
-        return DEFAULT_DAMGE_OUTPUT+(level*5);
+        return DEFAULT_DAMGE_OUTPUT+(level*5) + weapon;
     }
     public int getLevel() {
         return level = 1+(xp/2);
