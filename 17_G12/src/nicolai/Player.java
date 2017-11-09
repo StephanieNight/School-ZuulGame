@@ -5,6 +5,9 @@
  */
 package nicolai;
 
+import Jacobs_package.Branch;
+import Jacobs_package.PotLid;
+import Jacobs_package.TatteredClothes;
 import maltestestpackage.Inventory;
 
 /**
@@ -12,16 +15,17 @@ import maltestestpackage.Inventory;
  * @author nicol
  */
 public class Player extends Actor{
-     private Inventory inventory;
+   
      private int lampOil;
-     
-     public Inventory getInventory(){
-         return inventory;
-     }
+    
     
     public Player(String name, int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput) {
         super(name, defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'P');
-        this.inventory = new Inventory(this);
+        
+        getInventory().addItem(new Branch());
+        getInventory().addItem(new TatteredClothes());
+        getInventory().addItem(new PotLid());
+       
     }  
     public int getLampOil(){
         return lampOil;
