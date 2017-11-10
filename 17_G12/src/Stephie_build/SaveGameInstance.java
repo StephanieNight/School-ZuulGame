@@ -23,11 +23,11 @@ import nicolai.Player;
  */
 public class SaveGameInstance implements Serializable {
     // then marked transient it will not be serialized.
-    private transient static String filename = "C:\\savegame.zuul";
+    private transient static String filename = "savegame.zuul";
     private Room[][] maze;
     private Player player;
     private ArrayList<Monster> monsters;
-    private int difficulty;
+    private int difficulty;    
     public SaveGameInstance()
     {
     }
@@ -45,13 +45,28 @@ public class SaveGameInstance implements Serializable {
         fileObjectOut.close();
         outStream.close();
     }
-    public static void deserializeFromFile() throws IOException,
-            ClassNotFoundException {
+    public static SaveGameInstance deserializeFromFile() throws IOException, ClassNotFoundException {
         InputStream inStream = new FileInputStream(filename);
         ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
-        SaveGameInstance person = (SaveGameInstance) fileObjectIn.readObject();
-        System.out.println(person);
+        SaveGameInstance sa = (SaveGameInstance) fileObjectIn.readObject();
         fileObjectIn.close();
         inStream.close();
+        
+        return sa;        
+    }
+    public Room[][] getMaze() {
+        return maze;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public ArrayList<Monster> getMonsters() {
+        return monsters;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
     }
 }

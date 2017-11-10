@@ -30,15 +30,15 @@ import nicolai.Zuul;
  */
 public class GameEngine extends Game{
     private static int difficulty;  
-    private Parser parser;
+    private final Parser parser;
     //-----------------------------------------------------------
     // Primary instances
-    private Player player;
-    private ArrayList<Monster> monsters;
+    private static Player player;
+    private static ArrayList<Monster> monsters;
     //-----------------------------------------------------------
-    private Labyrinth labyrinth;
-    private int mazeSize ;
-    private int maxNumberOfMinions;
+    private static Labyrinth labyrinth;
+    private final int mazeSize ;
+    private final int maxNumberOfMinions;
     private boolean finished;
     public GameEngine()
     {
@@ -48,14 +48,14 @@ public class GameEngine extends Game{
         {
           i = parser.getDifficulty();
         }
-        this.difficulty = i;        
-        this.mazeSize = (int)((1.5*difficulty)+3);
-        this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
-        this.monsters =new ArrayList<>();
-        this.labyrinth= new Labyrinth(mazeSize);   
-        this.spawnMobs();
-        this.finished = false;
-        this.labyrinth.display();
+        difficulty = i;        
+        mazeSize = (int)((1.5*difficulty)+3);
+        maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
+        monsters =new ArrayList<>();
+        labyrinth= new Labyrinth(mazeSize);   
+        spawnMobs();
+        finished = false;
+        labyrinth.display();
         System.out.println("Size                : "+this.mazeSize);
         System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
         System.out.println("Deffictulty is      : "+ GameEngine.getDifficulty());
@@ -66,16 +66,8 @@ public class GameEngine extends Game{
     @Override
     public void play()
     {
-        SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(), player, monsters, difficulty);
-        try
-        {
-        SaveGameInstance.serializeToFile(sa);
-        }
-        catch(IOException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        
+        saveGame();
+        //loadGame();      
         
         printWelcome();
         while (!finished) {
@@ -85,7 +77,37 @@ public class GameEngine extends Game{
             labyrinth.display();
         }
         System.out.println("Thank you for playing. Good bye.");
-    }        
+    }    
+    private static void saveGame()
+    {
+        SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsters,difficulty);
+        try
+        {
+           SaveGameInstance.serializeToFile(sa);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private static void loadGame()
+    { 
+        SaveGameInstance sa = new SaveGameInstance();
+        try
+        {
+            sa =SaveGameInstance.deserializeFromFile();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        labyrinth.setMaze(sa.getMaze());
+        monsters = sa.getMonsters();
+        player = sa.getPlayer();
+        difficulty = sa.getDifficulty();
+        
+    }
     private void processPlayer() {
         Command command = parser.getCommand();
         if (!processCommand(command))
