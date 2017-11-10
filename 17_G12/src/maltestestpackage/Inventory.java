@@ -34,6 +34,10 @@ public class Inventory {
         int i = 0;
         System.out.printf("%-5.4s  %-50.50s%n", "Slot", "Item");
         for(Item list: inventory){
+            if(list == null)
+            {
+                break;
+            }
             i++;
             System.out.printf("%-5.4s  %-50.50s%n", i, list.getName()); //prints in two columns
         }
@@ -177,6 +181,8 @@ public class Inventory {
             if(equipment)
             {
                 for (Item inventory1 : inventory) {
+                    if(inventory1 != null)
+                    {
                     if(item.getType().equals(inventory1.getType()))
                     {
                         while(true){ //loop with return statements ensures a valid answer.
@@ -198,6 +204,7 @@ public class Inventory {
                             System.out.println("That is not a valid response.");
                         }
                     }
+                }
                 }
             }
             //if consumable
