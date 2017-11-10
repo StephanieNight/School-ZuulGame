@@ -187,21 +187,21 @@
                <children>
                   <ImageView fx:id="innerRoom" fitHeight="400.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../assets/rooms/straigth.png" />
+                        <Image url="@billeder/straigth.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="outerRoom" fitHeight="400.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../assets/rooms/CornerRigth1.png" />
+                        <Image url="@billeder/CornerRigth1.png" />
                      </image>
                   </ImageView>
                   <TextArea editable="false" maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
                   <AnchorPane maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
                      <children>
-                        <Button fx:id="forwardButton" layoutX="44.0" layoutY="29.0" mnemonicParsing="false" onAction="#forwardButtonClicked" prefWidth="75.0" text="Forward" />
-                        <Button fx:id="leftButton" layoutX="19.0" layoutY="75.0" mnemonicParsing="false" onAction="#leftButtonClicked" prefWidth="50.0" text="Left" />
-                        <Button fx:id="rightButton" layoutX="94.0" layoutY="75.0" mnemonicParsing="false" onAction="#rightButtonClicked" prefWidth="50.0" text="Right" />
-                        <Button fx:id="backButton" layoutX="44.0" layoutY="119.0" mnemonicParsing="false" onAction="#backButtonClicked" prefWidth="75.0" text="Back" />
+                        <Button fx:id="forwardButton" layoutX="52.0" layoutY="28.0" mnemonicParsing="false" onAction="#forwardButtonClicked" prefWidth="75.0" text="Forward" />
+                        <Button fx:id="leftButton" layoutX="22.0" layoutY="85.0" mnemonicParsing="false" onAction="#leftButtonClicked" prefWidth="60.0" text="Left" />
+                        <Button fx:id="rightButton" layoutX="97.0" layoutY="85.0" mnemonicParsing="false" onAction="#rightButtonClicked" prefWidth="60.0" text="Right" />
+                        <Button fx:id="backButton" layoutX="52.0" layoutY="137.0" mnemonicParsing="false" onAction="#backButtonClicked" prefWidth="75.0" text="Back" />
                      </children>
                   </AnchorPane>
                   <AnchorPane maxHeight="80.0" maxWidth="467.0" prefHeight="80.0" prefWidth="467.0" GridPane.rowIndex="1">
@@ -213,7 +213,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Button fx:id="gameSceneOptionsButton" layoutX="58.0" layoutY="28.0" mnemonicParsing="false" onAction="#gameSceneOptionsButtonClicked" text="Options" />
+                        <Button fx:id="gameSceneOptionsButton" layoutX="50.0" layoutY="25.0" mnemonicParsing="false" onAction="#gameSceneOptionsButtonClicked" text="Options" />
                      </children>
                   </AnchorPane>
                </children>
@@ -223,7 +223,7 @@
       <AnchorPane fx:id="optionsScene" disable="true" prefHeight="480.0" prefWidth="640.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" />
-            <GridPane prefHeight="480.0" prefWidth="640.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <GridPane prefHeight="480.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -244,8 +244,8 @@
             </GridPane>
             <AnchorPane fx:id="wantToQuitPopUpLayer" disable="true" prefHeight="480.0" prefWidth="640.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane opacity="0.45" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" />
-                  <Label layoutX="104.0" layoutY="102.0" text="Are you sure you want to quit?" underline="true">
+                  <AnchorPane disable="true" opacity="0.7" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" />
+                  <Label layoutX="104.0" layoutY="102.0" text="Are you sure you want to quit?" textFill="WHITE" underline="true">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
