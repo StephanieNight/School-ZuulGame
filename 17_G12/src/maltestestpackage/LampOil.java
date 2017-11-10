@@ -5,14 +5,13 @@
  */
 package maltestestpackage;
 
-import java.io.Serializable;
 import nicolai.Player;
 
 /**
  *
  * @author Malte
  */
-public class LampOil implements Item, Serializable{
+public class LampOil implements Item{
 
     @Override
     public String getDescription() {

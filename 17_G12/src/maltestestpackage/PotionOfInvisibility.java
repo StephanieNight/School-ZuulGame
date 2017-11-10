@@ -5,14 +5,13 @@
  */
 package maltestestpackage;
 
-import java.io.Serializable;
 import nicolai.Player;
 
 /**
  *
  * @author Malte
  */
-public class PotionOfInvisibility implements Item, Serializable {
+public class PotionOfInvisibility implements Item {
 
     
     

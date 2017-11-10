@@ -5,14 +5,13 @@
  */
 package maltestestpackage;
 
-import java.io.Serializable;
 import nicolai.Player;
 
 /**
  * 
  * @author Malte
  */
-public class HealingPotion implements Item, Serializable{
+public class HealingPotion implements Item{
 
     private Player player;
     

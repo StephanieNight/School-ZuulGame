@@ -5,14 +5,13 @@
  */
 package maltestestpackage;
 
-import java.io.Serializable;
 import nicolai.Player;
 
 /**
  *
  * @author Malte
  */
-public class MiniMap implements Item, Serializable{
+public class MiniMap implements Item{
 
     @Override
     public String getDescription() {

@@ -87,8 +87,6 @@ public class GUIController
     @FXML
     private Button backButton;
     @FXML
-    private AnchorPane optionsScene;
-    @FXML
     private Button inventoryButton;
     @FXML
     private Button searchButton;
@@ -96,6 +94,8 @@ public class GUIController
     private Button pickUpButton;
     @FXML
     private Button gameSceneOptionsButton;
+    @FXML
+    private AnchorPane optionsScene;
     @FXML
     private Button saveGameButton;
     @FXML
@@ -106,6 +106,16 @@ public class GUIController
     private Button resumeGameButton;
     @FXML
     private Button optionsHelpButton;
+    @FXML
+    private AnchorPane helpScene;
+    @FXML
+    private Button backToOptionsButton;
+    @FXML
+    private Button yesDeleteProgressButton;
+    @FXML
+    private Button noBackToOptionsButton;
+    @FXML
+    private AnchorPane wantToQuitPopUpLayer;
         
     public void initialize()
     {
@@ -174,12 +184,24 @@ public class GUIController
     //--------------------General Methods-------------------
     //------------------------------------------------------
     
-    public void changeScene(AnchorPane from, AnchorPane to)
+    private void changeScene(AnchorPane from, AnchorPane to)
     {
         from.setVisible(false);
         from.setDisable(true);
         to.setVisible(true);
         to.setDisable(false);
+    }
+    
+    private void makeVisible(AnchorPane popUp)
+    {
+        popUp.setVisible(true);
+        popUp.setDisable(false);
+    }
+    
+    private void makeInvisible(AnchorPane popUp)
+    {
+        popUp.setVisible(false);
+        popUp.setDisable(true);
     }
 
     @FXML
@@ -216,6 +238,7 @@ public class GUIController
 
     @FXML
     private void gameSceneOptionsButtonClicked(ActionEvent event) {
+        changeScene(gameScene, optionsScene);
     }
 
     @FXML
@@ -224,6 +247,7 @@ public class GUIController
 
     @FXML
     private void optionsBackToMenuButtonClicked(ActionEvent event) {
+        makeVisible(wantToQuitPopUpLayer);
     }
 
     @FXML
@@ -232,10 +256,34 @@ public class GUIController
 
     @FXML
     private void resumeGameButtonClicked(ActionEvent event) {
+        changeScene(optionsScene, gameScene);
     }
 
     @FXML
     private void optionsHelpButtonClicked(ActionEvent event) {
+        changeScene(optionsScene, helpScene);
     }
+
+    @FXML
+    private void backtoOptionsButtonClicked(ActionEvent event) {
+        changeScene(helpScene, optionsScene);
+    }
+
+    @FXML
+    private void newGamePlayButtonClicked(ActionEvent event) {
+        changeScene(newGameScene, gameScene);
+    }
+
+    @FXML
+    private void yesDeleteProgressButtonClicked(ActionEvent event) {
+        makeInvisible(wantToQuitPopUpLayer);
+        changeScene(optionsScene, mainMenuScene);
+    }
+
+    @FXML
+    private void noBackToOptionsButtonClicked(ActionEvent event) {
+        makeInvisible(wantToQuitPopUpLayer);
+    }
+
 
 }

@@ -8,7 +8,6 @@ import static Stephie_build.GameEngine.getDifficulty;
 import java.util.Scanner;
 import Jacobs_package.*;
 import Stephie_build.Room;
-import java.io.Serializable;
 import nicolai.Actor;
 import nicolai.Player;
 /**
@@ -21,7 +20,7 @@ import nicolai.Player;
 
 
 // skal måske laves til set i stedet for array
-public class Inventory implements Serializable {
+public class Inventory {
     private Item[] inventory;
     Actor actor;
     public Inventory(Actor p)
