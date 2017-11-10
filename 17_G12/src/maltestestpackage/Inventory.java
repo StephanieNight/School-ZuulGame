@@ -159,7 +159,7 @@ public class Inventory {
                 //if you're not already wearing equipment of the same type, pick it up.
                 for (Item inventory1 : inventory){
                     if(inventory1 == null){
-                        System.out.println(item.getName() + "was picked up.");
+                        System.out.println(item.getName() + " was picked up.");
                         inventory1 = item; //adds item to first vacant spot in inventory.
                         updateStat();
                         return true;
@@ -198,7 +198,7 @@ public class Inventory {
                                 return true;
                             }
                             if(in.equals("no")){
-                                System.out.println("left the" + item.getName() + "on the ground.");
+                                System.out.println("left the " + item.getName() + " on the ground.");
                                 return false;
                             }
                             System.out.println("That is not a valid response.");
@@ -212,7 +212,7 @@ public class Inventory {
             System.out.println("Consume X / Drop X / no");
             String input = "no"; //get player input
             if(input.equals("no")){
-                System.out.println("left the" + item.getName() + "on the ground.");
+                System.out.println("left the" + item.getName() + " on the ground.");
                 updateStat();
                 return false;
             }
