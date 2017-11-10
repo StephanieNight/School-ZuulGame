@@ -32,7 +32,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="World of Zuul">
+                  <Label text="World of AZuul">
                      <font>
                         <Font size="48.0" />
                      </font>
