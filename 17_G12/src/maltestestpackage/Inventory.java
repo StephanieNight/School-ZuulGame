@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package maltestestpackage;
-import static Benjamin.GameEngine.getDifficulty;
+import static Stephie_build.GameEngine.getDifficulty;
 import java.util.Scanner;
 import Jacobs_package.*;
 import Stephie_build.Room;

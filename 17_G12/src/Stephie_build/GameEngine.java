@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Benjamin;
+package Stephie_build;
 
 import Jacobs_package.Sword;
 import Stephie_build.Labyrinth;
