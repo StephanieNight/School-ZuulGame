@@ -28,7 +28,7 @@ import nicolai.Zuul;
  *
  * @author Stephanie
  */
-public class GameEngine extends Game{
+public class GameEngine extends Game implements IGameConstants {
     private static int difficulty;  
     private Parser parser;
     //-----------------------------------------------------------
@@ -40,6 +40,9 @@ public class GameEngine extends Game{
     private int mazeSize ;
     private int maxNumberOfMinions;
     private boolean finished;
+    /*
+    Contructs the gameEngine. with all settings.
+    */
     public GameEngine()
     {
         this.parser = new Parser();
@@ -48,6 +51,15 @@ public class GameEngine extends Game{
         {
           i = parser.getDifficulty();
         }
+<<<<<<< HEAD
+        difficulty = i;        
+        mazeSize = (int)((1.5*difficulty)+3);
+        maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
+        monsters =new ArrayList<>();
+        labyrinth= new Labyrinth(mazeSize);   
+        spawnMobs();
+        finished = false;
+=======
         this.difficulty = i;        
         this.mazeSize = (int)((1.5*difficulty)+3);
         this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
@@ -56,16 +68,24 @@ public class GameEngine extends Game{
         this.spawnMobs();
         this.finished = false;
         this.labyrinth.display();
+>>>>>>> 9126f72963954fb41241791de6ef482393500c04
         System.out.println("Size                : "+this.mazeSize);
         System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
-        System.out.println("Deffictulty is      : "+ GameEngine.getDifficulty());
+        System.out.println("Diffictulty is      : "+ GameEngine.getDifficulty());
     }
     //-----------------------------------------------------------
     //--------------------------General--------------------------
-    //-----------------------------------------------------------    
+    //-----------------------------------------------------------  
+    /* 
+        Main Play loop
+    */
     @Override
     public void play()
     {
+<<<<<<< HEAD
+        //saveGame();
+        //loadGame();              
+=======
         SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(), player, monsters, difficulty);
         try
         {
@@ -77,15 +97,59 @@ public class GameEngine extends Game{
         }
         
         
+>>>>>>> 9126f72963954fb41241791de6ef482393500c04
         printWelcome();
-        while (!finished) {
-            //player
+        while (!finished) {            
+            labyrinth.display();
             processPlayer();
             processMonsters();
-            labyrinth.display();
+           
         }
         System.out.println("Thank you for playing. Good bye.");
+<<<<<<< HEAD
+    }    
+    /*
+        Saves the game to local disc.
+    */
+    private static void saveGame()
+    {
+        SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsters,difficulty);
+        try
+        {
+           SaveGameInstance.serializeToFile(sa);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }       
+    }
+    /*
+    Loads game from disc
+    */
+    private static void loadGame()
+    { 
+        SaveGameInstance sa = new SaveGameInstance();
+        try
+        {
+            sa =SaveGameInstance.deserializeFromFile();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return;
+        }
+        labyrinth.setMaze(sa.getMaze());
+        monsters = sa.getMonsters();
+        player = sa.getPlayer();
+        difficulty = sa.getDifficulty();
+        System.out.println("Loaded old Game"); 
+    }
+    /*
+    * 
+    */
+=======
     }        
+>>>>>>> 9126f72963954fb41241791de6ef482393500c04
     private void processPlayer() {
         Command command = parser.getCommand();
         if (!processCommand(command))
@@ -99,9 +163,7 @@ public class GameEngine extends Game{
         }
         String direction = command.getSecondWord();
         Room nextRoom = actor.getCurrentRoom().getExit(direction);
-        if (nextRoom == null) {
-        }
-        else {
+        if (nextRoom != null) {
             labyrinth.moveMonster(actor, nextRoom);
         }
     }
@@ -111,17 +173,38 @@ public class GameEngine extends Game{
             System.out.println("Go where?");
             return false;
         }
-        String direction = command.getSecondWord();
-        Room nextRoom = player.getCurrentRoom().getExit(direction);
+        Labyrinth.DIR dir =  Labyrinth.DIR.getDir(command.getSecondWord());
+        if(dir == null)
+        {
+            return false;
+        }
+        Room nextRoom = player.getCurrentRoom().getExit(dir.direction);
         if (nextRoom == null) {
             System.out.println("There is no door!");
             return false;
         }
-        else {
-            labyrinth.movePlayer(player, nextRoom);
-            System.out.println(player.getCurrentRoom().getLongDescription());
+        else if(nextRoom.hasDoor(dir.opposite.direction))
+        {
+                Door d = nextRoom.getDoor(dir.opposite.direction);
+            if(d.isLocked())
+            {
+                System.out.println("Door in directin "+ dir.direction+ " is Locked ");
+                // TODO Add key 
+            }            
+            else
+            {
+                labyrinth.movePlayer(player, nextRoom);
+                return true;
+            }  
+          
         }
-        return true;
+        else
+        {
+            labyrinth.movePlayer(player, nextRoom);
+            return true;
+        }
+            
+        return false;
     }
     private boolean quit(Command command)
     {
@@ -262,6 +345,9 @@ public class GameEngine extends Game{
     //-----------------------------------------------------------
     //------------------------AI Handling------------------------
     //-----------------------------------------------------------    
+    /* 
+    * 
+    */
     private void processMonsters() {
         Monster defeatedMinion = null;
         for(Monster m : monsters)
@@ -279,7 +365,9 @@ public class GameEngine extends Game{
             deleteMonster(defeatedMinion);
         
     }
-    
+    /*
+    * Moves monster.
+    */
     private void moveMonster(Monster m) {
         String[] exits= m.getCurrentRoom().getExits();
         for(String s : exits)
@@ -304,7 +392,9 @@ public class GameEngine extends Game{
             }
         }
     }
-    
+    /*
+    * deletes the monster from the list then it dies.
+    */
     private void deleteMonster(Monster m) {
         m.getCurrentRoom().setMonster(null);
         monsters.remove(m);

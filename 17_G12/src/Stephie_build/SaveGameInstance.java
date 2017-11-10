@@ -23,7 +23,11 @@ import nicolai.Player;
  */
 public class SaveGameInstance implements Serializable {
     // then marked transient it will not be serialized.
+<<<<<<< HEAD
+    
+=======
     private transient static String filename = "C:\\savegame.zuul";
+>>>>>>> 9126f72963954fb41241791de6ef482393500c04
     private Room[][] maze;
     private Player player;
     private ArrayList<Monster> monsters;
@@ -39,19 +43,43 @@ public class SaveGameInstance implements Serializable {
       this.player = player;
     }
     public static void serializeToFile(SaveGameInstance samegame) throws IOException {
-        OutputStream outStream = new FileOutputStream(filename);
+        OutputStream outStream = new FileOutputStream(GameEngine.FILENAME_SAVEGAME);
         ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
         fileObjectOut.writeObject(samegame);
         fileObjectOut.close();
         outStream.close();
     }
+<<<<<<< HEAD
+    public static SaveGameInstance deserializeFromFile() throws IOException, ClassNotFoundException {
+        InputStream inStream = new FileInputStream(GameEngine.FILENAME_SAVEGAME);
+=======
     public static void deserializeFromFile() throws IOException,
             ClassNotFoundException {
         InputStream inStream = new FileInputStream(filename);
+>>>>>>> 9126f72963954fb41241791de6ef482393500c04
         ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
         SaveGameInstance person = (SaveGameInstance) fileObjectIn.readObject();
         System.out.println(person);
         fileObjectIn.close();
         inStream.close();
+<<<<<<< HEAD
+        
+        return sa;        
+    }
+    public Room[][] getMaze() {
+        return maze;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public ArrayList<Monster> getMonsters() {
+        return monsters;
+    }
+    public int getDifficulty() {
+        return difficulty;
+=======
+>>>>>>> 9126f72963954fb41241791de6ef482393500c04
     }
 }

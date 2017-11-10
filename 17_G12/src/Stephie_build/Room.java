@@ -16,6 +16,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    private HashMap<String, Door> doors;
     private Actor player; // Copy
     private Actor monster; // Copy
     private ArrayList<Item> Items;
@@ -43,6 +44,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<String, Room>();
+        doors = new HashMap<String, Door>();
         Items = new ArrayList<>();
         this.pictureID_3D=0;
         this.pictureID_MiniMap =0;
@@ -146,7 +148,7 @@ public class Room
         return ' ';
     }
     /* 
-    Crap solution but needed for AI
+    *
     */
     public String[] getExits()
     {
@@ -167,25 +169,37 @@ public class Room
     
     public boolean hasItems(){
         return (Items.size() > 0);
-    }
-    
+    }    
     public Item[] itemList() {
         Item itemList[] = new Item[Items.size()];
         return Items.toArray(itemList);
-    }
-    
+    }    
     public Item pickupItem(int id, Inventory inventory) {
         Item returnItem = Items.get(id);
         if(inventory.addItem(returnItem)){
             Items.remove(id);
         }
         return returnItem;
-    }
-    
+    }    
     public void dropItem(Item item) {
         Items.add(item);
     }
-    
-    
+    public void setDoor(String direction) 
+    {
+        doors.put(direction,new Door(true));
+    }
+    public boolean hasDoor(String direction)
+    {        
+        return doors.containsKey(direction);
+    }
+    public Door getDoor(String direction)
+    {
+        if(hasDoor(direction))
+        {
+            return doors.get(direction);
+            
+        }
+        return null;        
+    }    
 }
             
