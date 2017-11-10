@@ -5,24 +5,15 @@
  */
 package Stephie_build;
 
-import Jacobs_package.Sword;
-import Stephie_build.Labyrinth;
-import Stephie_build.Labyrinth;
-import Stephie_build.Room;
-import Stephie_build.Room;
-import Stephie_build.SaveGameInstance;
 import gameframework.Command;
 import gameframework.CommandWord;
 import gameframework.Game;
 import gameframework.Parser;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import maltestestpackage.Item;
 import nicolai.Actor;
 import nicolai.Monster;
 import nicolai.Player;
-import nicolai.Zuul;
 
 /**
  *
@@ -33,12 +24,12 @@ public class GameEngine extends Game implements IGameConstants {
     private Parser parser;
     //-----------------------------------------------------------
     // Primary instances
-    private Player player;
-    private ArrayList<Monster> monsters;
+    private static  Player player;
+    private static ArrayList<Monster> monsters;
     //-----------------------------------------------------------
-    private Labyrinth labyrinth;
-    private int mazeSize ;
-    private int maxNumberOfMinions;
+    private static Labyrinth labyrinth;
+    private final int mazeSize ;
+    private final int maxNumberOfMinions;
     private boolean finished;
     /*
     Contructs the gameEngine. with all settings.
@@ -51,7 +42,6 @@ public class GameEngine extends Game implements IGameConstants {
         {
           i = parser.getDifficulty();
         }
-<<<<<<< HEAD
         difficulty = i;        
         mazeSize = (int)((1.5*difficulty)+3);
         maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
@@ -59,16 +49,6 @@ public class GameEngine extends Game implements IGameConstants {
         labyrinth= new Labyrinth(mazeSize);   
         spawnMobs();
         finished = false;
-=======
-        this.difficulty = i;        
-        this.mazeSize = (int)((1.5*difficulty)+3);
-        this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
-        this.monsters =new ArrayList<>();
-        this.labyrinth= new Labyrinth(mazeSize);   
-        this.spawnMobs();
-        this.finished = false;
-        this.labyrinth.display();
->>>>>>> 9126f72963954fb41241791de6ef482393500c04
         System.out.println("Size                : "+this.mazeSize);
         System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
         System.out.println("Diffictulty is      : "+ GameEngine.getDifficulty());
@@ -82,31 +62,16 @@ public class GameEngine extends Game implements IGameConstants {
     @Override
     public void play()
     {
-<<<<<<< HEAD
+
         //saveGame();
         //loadGame();              
-=======
-        SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(), player, monsters, difficulty);
-        try
-        {
-        SaveGameInstance.serializeToFile(sa);
-        }
-        catch(IOException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        
-        
->>>>>>> 9126f72963954fb41241791de6ef482393500c04
         printWelcome();
         while (!finished) {            
             labyrinth.display();
             processPlayer();
-            processMonsters();
-           
+            processMonsters();           
         }
         System.out.println("Thank you for playing. Good bye.");
-<<<<<<< HEAD
     }    
     /*
         Saves the game to local disc.
@@ -147,9 +112,6 @@ public class GameEngine extends Game implements IGameConstants {
     /*
     * 
     */
-=======
-    }        
->>>>>>> 9126f72963954fb41241791de6ef482393500c04
     private void processPlayer() {
         Command command = parser.getCommand();
         if (!processCommand(command))
@@ -195,15 +157,13 @@ public class GameEngine extends Game implements IGameConstants {
             {
                 labyrinth.movePlayer(player, nextRoom);
                 return true;
-            }  
-          
+            }            
         }
         else
         {
             labyrinth.movePlayer(player, nextRoom);
             return true;
-        }
-            
+        }            
         return false;
     }
     private boolean quit(Command command)
