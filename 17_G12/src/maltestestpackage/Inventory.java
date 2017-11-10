@@ -27,10 +27,6 @@ public class Inventory {
     {
         this.actor = p;
         inventory = new Item[8 - getDifficulty()]; //inventory size based on difficulty
-        inventory[0] = new Branch();            //the three pieces of starting equipment
-        inventory[1] = new TatteredClothes();
-        inventory[2] = new PotLid();
-        
     }
     
     public void getInventoryList() //shows player's inventory //TODO needs command word.
