@@ -127,6 +127,8 @@ public class Inventory {
             if(equipment)
             {
                 for (Item inventory1 : inventory) {//cycles through inventory
+                    if(inventory1 != null)
+                    {
                     if(item.getType().equals(inventory1.getType()))//checks if equipment to add is the same type as one already in inventory.
                     {
                         while(true){ //while loop ensures a valid response from player.
@@ -148,6 +150,7 @@ public class Inventory {
                             System.out.println("That is not a valid response.");
                         }
                     }
+                }
                 }
                 //if you're not already wearing equipment of the same type, pick it up.
                 for (Item inventory1 : inventory){
