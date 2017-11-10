@@ -2,6 +2,7 @@
 package nicolai;
 
 import Stephie_build.Room;
+import java.io.Serializable;
 import maltestestpackage.Inventory;
 
 
@@ -9,7 +10,7 @@ import maltestestpackage.Inventory;
  *
  * @author nicol
  */
-public abstract class Actor 
+public abstract class Actor implements Serializable
 {
     private final int DEFAULT_HEALTH_POINTS; 
     private final int DEFAULT_DEFENSE;
