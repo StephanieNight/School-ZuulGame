@@ -186,7 +186,15 @@ public class Labyrinth
                 this.dx = dx;
                 this.dy = dy;
         }
-    };    
+    };   
+    public Room[][] getMaze()
+    {
+        return maze;
+    }
+    public void setMaze(Room[][] maze)
+    {
+        this.maze = maze;
+    }    
 } 
     /*
     private void generateMapOLD(int size) 

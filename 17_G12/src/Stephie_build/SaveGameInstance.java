@@ -5,13 +5,53 @@
  */
 package Stephie_build;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import nicolai.Monster;
+import nicolai.Player;
 
 /**
  *
  * @author Stephanie
  */
 public class SaveGameInstance implements Serializable {
-    
-    
+    // then marked transient it will not be serialized.
+    private transient static String filename = "C:\\savegame.zuul";
+    private Room[][] maze;
+    private Player player;
+    private ArrayList<Monster> monsters;
+    private int difficulty;
+    public SaveGameInstance()
+    {
+    }
+    public SaveGameInstance(Room[][] Maze,Player player, ArrayList<Monster> monsters, int difficulty )
+    {
+      this.maze = Maze;
+      this.difficulty = difficulty;
+      this.monsters = monsters;
+      this.player = player;
+    }
+    public static void serializeToFile(SaveGameInstance samegame) throws IOException {
+        OutputStream outStream = new FileOutputStream(filename);
+        ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
+        fileObjectOut.writeObject(samegame);
+        fileObjectOut.close();
+        outStream.close();
+    }
+    public static void deserializeFromFile() throws IOException,
+            ClassNotFoundException {
+        InputStream inStream = new FileInputStream(filename);
+        ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
+        SaveGameInstance person = (SaveGameInstance) fileObjectIn.readObject();
+        System.out.println(person);
+        fileObjectIn.close();
+        inStream.close();
+    }
 }

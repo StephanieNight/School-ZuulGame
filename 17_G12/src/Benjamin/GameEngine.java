@@ -7,11 +7,15 @@ package Benjamin;
 
 import Jacobs_package.Sword;
 import Stephie_build.Labyrinth;
+import Stephie_build.Labyrinth;
 import Stephie_build.Room;
+import Stephie_build.Room;
+import Stephie_build.SaveGameInstance;
 import gameframework.Command;
 import gameframework.CommandWord;
 import gameframework.Game;
 import gameframework.Parser;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import maltestestpackage.Item;
@@ -58,11 +62,21 @@ public class GameEngine extends Game{
     }
     //-----------------------------------------------------------
     //--------------------------General--------------------------
-    //-----------------------------------------------------------
-    
+    //-----------------------------------------------------------    
     @Override
     public void play()
     {
+        SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(), player, monsters, difficulty);
+        try
+        {
+        SaveGameInstance.serializeToFile(sa);
+        }
+        catch(IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
+        
         printWelcome();
         while (!finished) {
             //player
@@ -70,15 +84,13 @@ public class GameEngine extends Game{
             processMonsters();
             labyrinth.display();
         }
-        System.out.println("Thank you for playing.  Good bye.");
-    }
-    
+        System.out.println("Thank you for playing. Good bye.");
+    }        
     private void processPlayer() {
         Command command = parser.getCommand();
         if (!processCommand(command))
             processPlayer();
-    }
-    
+    }    
     private void goRoom(Command command, Actor actor) 
     {
         if(!command.hasSecondWord()) {
@@ -172,16 +184,16 @@ public class GameEngine extends Game{
             else if (move.equals("F"))
             {
                 System.out.println("You Chose poorly");
-               for(String s : player.getCurrentRoom().getExits())
-               {
-                   if(player.getCurrentRoom().getExit(s).getMonster() == null)
-                   {
-                       command = new Command(CommandWord.GO, s);
-                       goRoom(command);
-                       isOver = true;
-                       break;
-                   }
-               }
+                for(String s : player.getCurrentRoom().getExits())
+                {
+                    if(player.getCurrentRoom().getExit(s).getMonster() == null)
+                    {
+                        command = new Command(CommandWord.GO, s);
+                        goRoom(command);
+                        isOver = true;
+                        break;
+                    }
+                }
                 System.out.println("there is nowhere to run");
             }
         }
@@ -193,14 +205,14 @@ public class GameEngine extends Game{
         System.out.println("| in a endless maze. you hear a GROWL near you.|");
         System.out.println("|                                              |");
         System.out.println("| what do you do ?                             |");
-        System.out.println("+----------------------------------------------+");
-        
+        System.out.println("+----------------------------------------------+");        
     }    
     public boolean spawnMobs()
     {         
         player= new Player("Player", 100, 100, 100);
-        Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', true);
+        
         labyrinth.spawnPlayer(0,0, player);
+        Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', true);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
         monsters.add(zuul);
         for (int i = 0; i < this.maxNumberOfMinions ; i++) 
@@ -246,12 +258,10 @@ public class GameEngine extends Game{
     {
         System.out.println("you have the following uptions :");
         parser.showCommands();
-    }
-    
+    }    
     //-----------------------------------------------------------
     //------------------------AI Handling------------------------
-    //-----------------------------------------------------------
-    
+    //-----------------------------------------------------------    
     private void processMonsters() {
         Monster defeatedMinion = null;
         for(Monster m : monsters)
