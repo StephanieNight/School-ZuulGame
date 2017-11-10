@@ -166,14 +166,13 @@ public class Labyrinth
         return false;
         
     }
-    private enum DIR 
+    public enum DIR 
     {
         N("north", 0, -1), S("south", 0, 1), E("east", 1, 0), W("west", -1, 0);
-        private final String direction; // binary representation of direction i 4 bits. 
+        private final String direction; //representation of direction. 
         private final int dx;  // Direction in the array out of the x axis 
         private final int dy;  // Direction in the array out of the y axis
-        private DIR opposite;  // deklares the opposite direction for ref.
- 
+        private DIR opposite;  // deklares the opposite direction for ref. 
         // use the static initializer to resolve forward references
         static {
                 N.opposite = S;
@@ -181,14 +180,21 @@ public class Labyrinth
                 E.opposite = W;
                 W.opposite = E;
         }
-
         private DIR(String dir, int dx, int dy)
         {
                 this.direction = dir;
                 this.dx = dx;
                 this.dy = dy;
         }
-    };    
+    };   
+    public Room[][] getMaze()
+    {
+        return maze;
+    }
+    public void setMaze(Room[][] maze)
+    {
+        this.maze = maze;
+    }    
 } 
     /*
     private void generateMapOLD(int size) 
@@ -287,8 +293,6 @@ public class Labyrinth
         }
         return genericRoom;
     } 
-
-
     public void renderMap() 
     {
         System.out.println("");// fresh line

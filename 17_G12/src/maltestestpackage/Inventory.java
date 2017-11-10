@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package maltestestpackage;
-import static Benjamin.GameEngine.getDifficulty;
+import static Stephie_build.GameEngine.getDifficulty;
 import java.util.Scanner;
 import Jacobs_package.*;
 import Stephie_build.Room;
@@ -27,10 +27,6 @@ public class Inventory {
     {
         this.actor = p;
         inventory = new Item[8 - getDifficulty()]; //inventory size based on difficulty
-        inventory[0] = new Branch();            //the three pieces of starting equipment
-        inventory[1] = new TatteredClothes();
-        inventory[2] = new PotLid();
-        
     }
     
     public void getInventoryList() //shows player's inventory //TODO needs command word.
@@ -38,6 +34,10 @@ public class Inventory {
         int i = 0;
         System.out.printf("%-5.4s  %-50.50s%n", "Slot", "Item");
         for(Item list: inventory){
+            if(list == null)
+            {
+                break;
+            }
             i++;
             System.out.printf("%-5.4s  %-50.50s%n", i, list.getName()); //prints in two columns
         }
@@ -131,6 +131,8 @@ public class Inventory {
             if(equipment)
             {
                 for (Item inventory1 : inventory) {//cycles through inventory
+                    if(inventory1 != null)
+                    {
                     if(item.getType().equals(inventory1.getType()))//checks if equipment to add is the same type as one already in inventory.
                     {
                         while(true){ //while loop ensures a valid response from player.
@@ -153,10 +155,11 @@ public class Inventory {
                         }
                     }
                 }
+                }
                 //if you're not already wearing equipment of the same type, pick it up.
                 for (Item inventory1 : inventory){
                     if(inventory1 == null){
-                        System.out.println(item.getName() + "was picked up.");
+                        System.out.println(item.getName() + " was picked up.");
                         inventory1 = item; //adds item to first vacant spot in inventory.
                         updateStat();
                         return true;
@@ -178,6 +181,8 @@ public class Inventory {
             if(equipment)
             {
                 for (Item inventory1 : inventory) {
+                    if(inventory1 != null)
+                    {
                     if(item.getType().equals(inventory1.getType()))
                     {
                         while(true){ //loop with return statements ensures a valid answer.
@@ -193,12 +198,13 @@ public class Inventory {
                                 return true;
                             }
                             if(in.equals("no")){
-                                System.out.println("left the" + item.getName() + "on the ground.");
+                                System.out.println("left the " + item.getName() + " on the ground.");
                                 return false;
                             }
                             System.out.println("That is not a valid response.");
                         }
                     }
+                }
                 }
             }
             //if consumable
@@ -206,7 +212,7 @@ public class Inventory {
             System.out.println("Consume X / Drop X / no");
             String input = "no"; //get player input
             if(input.equals("no")){
-                System.out.println("left the" + item.getName() + "on the ground.");
+                System.out.println("left the" + item.getName() + " on the ground.");
                 updateStat();
                 return false;
             }
@@ -254,6 +260,10 @@ public class Inventory {
         actor.setShield(0);
         for(Item inventory1: inventory)
         {
+            if(inventory1 == null)
+            {
+                break;
+            }
             if("Weapon".equals(inventory1.getType()))
             {
                 actor.setWeapon(inventory1.getStat());

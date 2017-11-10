@@ -7,8 +7,6 @@ import java.util.HashMap;
 import maltestestpackage.Inventory;
 import maltestestpackage.Item;
 import nicolai.Actor;
-import nicolai.Player;
-
 
 /**
  * @author  Michael Kolling and David J. Barnes
@@ -21,12 +19,34 @@ public class Room
     private Actor player; // Copy
     private Actor monster; // Copy
     private ArrayList<Item> Items;
+    private int pictureID_3D;
+    private int pictureID_MiniMap;
+    private boolean playerVissited;
+
+    public void setPictureID_3D(int pictureID_3D) {
+        this.pictureID_3D = pictureID_3D;
+    }
+    public void setPictureID_MiniMap(int pictureID_MiniMap) {
+        this.pictureID_MiniMap = pictureID_MiniMap;
+    }
+    public int getPictureID_3D() {
+        return pictureID_3D;
+    }
+    public int getPictureID_MiniMap() {
+        return pictureID_MiniMap;
+    }
+    public boolean isPlayerVissited() {
+        return playerVissited;
+    }
 
     public Room(String description) 
     {
         this.description = description;
         exits = new HashMap<String, Room>();
         Items = new ArrayList<>();
+        this.pictureID_3D=0;
+        this.pictureID_MiniMap =0;
+        this.playerVissited = false;
     }
     public Room(String description, Item[] items) 
     {
@@ -85,7 +105,8 @@ public class Room
     //ADDED by Steph
     public void setPlayer(Actor actor)
     {
-        player = actor;         
+        player = actor;  
+        playerVissited = true;
     }
     public void setMonster(Actor actor)
     {
@@ -164,6 +185,7 @@ public class Room
     public void dropItem(Item item) {
         Items.add(item);
     }
+    
     
 }
             
