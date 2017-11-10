@@ -254,6 +254,10 @@ public class Inventory {
         actor.setShield(0);
         for(Item inventory1: inventory)
         {
+            if(inventory1 == null)
+            {
+                break;
+            }
             if("Weapon".equals(inventory1.getType()))
             {
                 actor.setWeapon(inventory1.getStat());
