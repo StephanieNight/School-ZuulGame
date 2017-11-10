@@ -71,6 +71,42 @@ public class GUIController
     private Button newGameBackButton;
     @FXML
     private Button newGamePlayButton;
+    @FXML
+    private Button loadGameButton;
+    @FXML
+    private AnchorPane gameScene;
+    @FXML
+    private ImageView innerRoom;
+    @FXML
+    private ImageView outerRoom;
+    @FXML
+    private Button forwardButton;
+    @FXML
+    private Button leftButton;
+    @FXML
+    private Button rightButton;
+    @FXML
+    private Button backButton;
+    @FXML
+    private AnchorPane optionsScene;
+    @FXML
+    private Button inventoryButton;
+    @FXML
+    private Button searchButton;
+    @FXML
+    private Button pickUpButton;
+    @FXML
+    private Button gameSceneOptionsButton;
+    @FXML
+    private Button saveGameButton;
+    @FXML
+    private Button optionsBackToMenuButton;
+    @FXML
+    private Button optionsQuitGameButton;
+    @FXML
+    private Button resumeGameButton;
+    @FXML
+    private Button optionsHelpButton;
         
     public void initialize()
     {
@@ -145,6 +181,62 @@ public class GUIController
         from.setDisable(true);
         to.setVisible(true);
         to.setDisable(false);
+    }
+
+    @FXML
+    private void loadGameButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void forwardButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void leftButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void rightButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void backButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void inventoryButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void searchButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void pickUpButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void gameSceneOptionsButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void saveGameButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void optionsBackToMenuButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void optionsQuitGameButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void resumeGameButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void optionsHelpButtonClicked(ActionEvent event) {
     }
 
 }
