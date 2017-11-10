@@ -5,13 +5,14 @@
  */
 package maltestestpackage;
 
+import java.io.Serializable;
 import nicolai.Player;
 
 /**
  *
  * @author Malte
  */
-public class PotionOfSwiftness implements Item{
+public class PotionOfSwiftness implements Item, Serializable{
 
     @Override
     public String getDescription() {

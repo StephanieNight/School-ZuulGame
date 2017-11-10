@@ -5,12 +5,13 @@
  */
 package maltestestpackage;
 import Stephie_build.Labyrinth;
+import java.io.Serializable;
 import nicolai.Player;
 /**
  *
  * @author Malte
  */
-public class PotionOfTeleportation implements Item {
+public class PotionOfTeleportation implements Item, Serializable {
 
     @Override
     public String getDescription() {
