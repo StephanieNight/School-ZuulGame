@@ -72,7 +72,8 @@ public class GUIController
     @FXML
     private Button newGamePlayButton;
         
-    public void initialize() {
+    public void initialize()
+    {
         // TODO
     }    
 
