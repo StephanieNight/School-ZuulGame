@@ -1,5 +1,6 @@
 package Stephie_build;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
@@ -12,7 +13,7 @@ import nicolai.Actor;
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room 
+public class Room implements Serializable
 {
     private String description;
     private HashMap<String, Room> exits;
