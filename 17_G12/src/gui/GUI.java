@@ -22,7 +22,7 @@ public class GUI extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.setTitle("Zuul");
         stage.setScene(scene);
         stage.show();
     }
