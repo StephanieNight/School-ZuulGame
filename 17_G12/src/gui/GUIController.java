@@ -20,8 +20,7 @@ import javafx.scene.layout.AnchorPane;
  * @author BenPaxIndustries
  */
 public class GUIController
-{
-    
+{    
     private Label label;
     @FXML
     private AnchorPane defaultScene;

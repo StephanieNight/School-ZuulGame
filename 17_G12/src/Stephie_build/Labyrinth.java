@@ -31,6 +31,10 @@ public class Labyrinth
             }
         }
         generateMaze(0, 0);
+        for(String s : maze[0][0].getExits())
+        {          
+            maze[0][0].setDoor(s);
+        }
     }  
     /* 
      * Spawns the player in the room 
@@ -114,6 +118,7 @@ public class Labyrinth
                 // checks if room has no exits 
                 if(!maze[nextX][nextY].hasAnyExits())
                 {
+                    
                    // Add Exit to Current Room
                    maze[currentX][currentY].setExit(dir.direction, maze[nextX][nextY]);
                    // Add oppesite exit to next Room to bind them together
@@ -169,10 +174,10 @@ public class Labyrinth
     public enum DIR 
     {
         N("north", 0, -1), S("south", 0, 1), E("east", 1, 0), W("west", -1, 0);
-        private final String direction; //representation of direction. 
-        private final int dx;  // Direction in the array out of the x axis 
-        private final int dy;  // Direction in the array out of the y axis
-        private DIR opposite;  // deklares the opposite direction for ref. 
+        public final String direction; //representation of direction. 
+        public final int dx;  // Direction in the array out of the x axis 
+        public final int dy;  // Direction in the array out of the y axis
+        public DIR opposite;  // deklares the opposite direction for ref. 
         // use the static initializer to resolve forward references
         static {
                 N.opposite = S;
@@ -185,6 +190,18 @@ public class Labyrinth
                 this.direction = dir;
                 this.dx = dx;
                 this.dy = dy;
+        }
+        public static DIR getDir(String dir)
+        {
+            if(dir.equals(DIR.N.direction))
+                 return DIR.N;
+            if(dir.equals(DIR.E.direction))
+                 return DIR.E;
+            if(dir.equals(DIR.W.direction))
+                 return DIR.W;
+            if(dir.equals(DIR.S.direction))
+                 return DIR.S;
+            return null;               
         }
     };   
     public Room[][] getMaze()
