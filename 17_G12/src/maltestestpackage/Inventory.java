@@ -98,7 +98,6 @@ public class Inventory {
             System.out.println(inventory[itemID].getName());
             System.out.println(inventory[itemID].getDescription());
         }
-        updateStat();
         return false;
         
     }
@@ -183,40 +182,38 @@ public class Inventory {
                 for (Item inventory1 : inventory) {
                     if(inventory1 != null)
                     {
-                    if(item.getType().equals(inventory1.getType()))
-                    {
-                        while(true){ //loop with return statements ensures a valid answer.
-                            System.out.println("Do you wish to swap " + 
-                                    inventory1.getName() + " with " + item.getName() + "?");
-                            System.out.println("Yes / No");
-                            Scanner input = new Scanner(System.in);
-                            String in = input.next().toLowerCase();
-                            if(in.equals("yes")){
-                                System.out.println(item.getName() + " was picked up.");
-                                inventory1 = item; //destroys current equipment and replaces with new.
-                                updateStat();
-                                return true;
+                        if(item.getType().equals(inventory1.getType()))
+                        {
+                            while(true){ //loop with return statements ensures a valid answer.
+                                System.out.println("Do you wish to swap " + 
+                                        inventory1.getName() + " with " + item.getName() + "?");
+                                System.out.println("Yes / No");
+                                Scanner input = new Scanner(System.in);
+                                String in = input.next().toLowerCase();
+                                if(in.equals("yes")){
+                                    System.out.println(item.getName() + " was picked up.");
+                                    inventory1 = item; //destroys current equipment and replaces with new.
+                                    updateStat();
+                                    return true;
+                                }
+                                if(in.equals("no")){
+                                    System.out.println("left the " + item.getName() + " on the ground.");
+                                    return false;
+                                }
+                                System.out.println("That is not a valid response.");
                             }
-                            if(in.equals("no")){
-                                System.out.println("left the " + item.getName() + " on the ground.");
-                                return false;
-                            }
-                            System.out.println("That is not a valid response.");
                         }
                     }
-                }
                 }
             }
             //if consumable
             System.out.println("You're overburdened, do you want to consume or drop an item to make space?");
             System.out.println("Consume X / Drop X / no");
-            String input = "no"; //get player input
+            String input = "no"; //TODO get player input
             if(input.equals("no")){
                 System.out.println("left the" + item.getName() + " on the ground.");
-                updateStat();
                 return false;
             }
-            updateStat();
             return true;//TODO
                 
                 
