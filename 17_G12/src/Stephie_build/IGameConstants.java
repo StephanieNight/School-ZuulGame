@@ -11,4 +11,11 @@ package Stephie_build;
  */
 public interface IGameConstants {
     String FILENAME_SAVEGAME = "savegame.zuul";
+     String[] SCREEN_RES =
+    {
+        "800x450",  
+        "1280x720",   
+        "1366x768",
+        "1920x1080"
+    };
 }

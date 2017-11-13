@@ -9,6 +9,7 @@ import gameframework.Command;
 import gameframework.CommandWord;
 import gameframework.Game;
 import gameframework.Parser;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import nicolai.Actor;
@@ -62,7 +63,6 @@ public class GameEngine extends Game implements IGameConstants {
     @Override
     public void play()
     {
-
         //saveGame();
         //loadGame();              
         printWelcome();
@@ -98,7 +98,7 @@ public class GameEngine extends Game implements IGameConstants {
         {
             sa =SaveGameInstance.deserializeFromFile();
         }
-        catch(Exception e)
+        catch(IOException | ClassNotFoundException e)
         {
             System.out.println(e.getMessage());
             return;
@@ -188,7 +188,7 @@ public class GameEngine extends Game implements IGameConstants {
     {
         try
         {
-        Thread.sleep(1000);
+            Thread.sleep(1000);
         }
         catch(Exception e)
         {
