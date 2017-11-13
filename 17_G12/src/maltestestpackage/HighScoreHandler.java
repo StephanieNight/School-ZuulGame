@@ -17,7 +17,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 
 /**
- *
+ * class to handle highscore array and to check and add new score at the right place
  * @author Malte
  */
 public class HighScoreHandler implements Serializable{
@@ -28,6 +28,10 @@ public class HighScoreHandler implements Serializable{
         scores = new Score[10];
         fillArray();
     }
+    
+    /**
+     * makes sure the array is not empty
+     */
     public void fillArray()
     {
        scores[0] = new Score(999, GameEngine.DIFFICULTY_NAMES[4], "Maltron2000");
@@ -47,19 +51,21 @@ public class HighScoreHandler implements Serializable{
         return scores;
     }
 
-    public void setScores(Score[] scores) {
-        this.scores = scores;
-    }
-    
+    /**
+     * adds a score to the array if the score value is larger than the any of 
+     * the other entries. The array moves all scores with lower values one up in
+     * the array and places the new score where it fits.
+     * @param score 
+     */
     public void addScore(Score score)
     {
         for(int i = 0; i < scores.length ; i++)
         {
             if(score.compareTo(scores[i]) < 0)
             {
-                for(int j = i; j < scores.length - 1; i++)
+                for(int j = i + 1; j < scores.length; j++)
                 {
-                    scores[j + 1] = scores[j];
+                    scores[j - 1] = scores[j];
                 }
                 scores[i] = score;
                 break;
@@ -75,6 +81,11 @@ public class HighScoreHandler implements Serializable{
         }  
     }
     
+    /**
+     * saves highscore using java serialization
+     * @param samegame
+     * @throws IOException 
+     */
     public static void serializeToFile(HighScoreHandler samegame) throws IOException {
         OutputStream outStream = new FileOutputStream(GameEngine.FILENAME_HIGHSCORE_LIST);
         ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
@@ -83,9 +94,14 @@ public class HighScoreHandler implements Serializable{
         outStream.close();
     }
 
+    /**
+     * loads highscore using java serialization
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     public static HighScoreHandler deserializeFromFile() throws IOException, ClassNotFoundException {
         InputStream inStream = new FileInputStream(GameEngine.FILENAME_HIGHSCORE_LIST);
-
         ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
         HighScoreHandler sa = (HighScoreHandler) fileObjectIn.readObject();
         System.out.println(sa);
