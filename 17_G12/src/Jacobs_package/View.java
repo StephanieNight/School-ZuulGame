@@ -33,19 +33,17 @@ public class View {
         (current room middle door), (current room right door), (current room left door).
         */
         Room currentRoom = player.getCurrentRoom();
+        
         if(currentRoom.getExit(facing.left.direction) != null){
             ID +=1;
         }
         if(currentRoom.getExit(facing.right.direction) != null){
             ID +=2;
         }
-        //make corresponding room type(GUI) visible in current room area, and others invisible.
-        
         
         Room nextRoom = player.getCurrentRoom().getExit(facing.direction);//TEMP does enum.toString() get the associated string in Labyrinth.DIR?
+        
         if(nextRoom != null){
-            ID += 4;
-            //if((ID >> depth) % 2){} depending on depth, counting from 1, it checks: current room left, current room right, next room left, next room right respectively
             if(nextRoom.getExit(facing.left.direction) != null){
                 ID += 8;
             }
@@ -58,7 +56,8 @@ public class View {
             }
         }
         else{
-            //make a wall visible in next room area.
+            ID += 4;
         }
+        //if((ID >> depth) % 2 == 1){} //used to read the bits. depth determines which bit from the right to read.
     }
 }
