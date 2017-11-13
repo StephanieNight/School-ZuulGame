@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 import nicolai.Player;
 
 /**
- *
+ * Class for tracking the score for the current game
  * @author Malte
  */
 public class ScoreTracker implements Serializable {
@@ -43,7 +43,9 @@ public class ScoreTracker implements Serializable {
         return score;
     }
     
-    
+    /**
+     * adds points when called, used when the player kills a normal monster
+     */
     public void monsterKill()
     {
         
@@ -51,12 +53,17 @@ public class ScoreTracker implements Serializable {
         score.setScore(currentScore);
     }
     
+    /**
+     * used when the boss is killed
+     */
     public void bossKill()
     {
         currentScore += GameEngine.getDifficulty() * 10;
         score.setScore(currentScore);
     }
-    
+    /**
+     * subtracts points every time called, used at the end of every counting turn.
+     */
     public void turnEnd()
     {
         currentScore -= 1;
