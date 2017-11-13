@@ -27,7 +27,6 @@ public class ScoreTracker implements Serializable {
     
     private Score score;
     private int currentScore;
-    private Score[] highScore;
     private Player player;
 
     
@@ -35,36 +34,15 @@ public class ScoreTracker implements Serializable {
     public ScoreTracker(Player p)    
     {
         this.player = p;
-        String diff;
         currentScore = (int)(Math.pow(GameEngine.getDifficulty(), 2) * 10);
-        switch (GameEngine.getDifficulty())
-        {
-            case 1:
-                diff = "Very easy";
-                break;
-            case 2:
-                diff = "Easy";
-                break;
-            case 3:
-                diff = "Normal";
-                break;
-            case 4: 
-                diff = "Hard";
-                break;
-            default:
-                diff = "Very hard";
-        }
+        score = new Score(currentScore, GameEngine.DIFFICULTY_NAMES[GameEngine.getDifficulty() - 1], player.getName());
         
-    score = new Score(currentScore, diff, player.getName());
+    }
 
-    highScore = new Score[10];
+    public Score getScore() {
+        return score;
     }
     
-    
-    public int getScore()
-    {
-        return score.getScore();
-    }
     
     public void monsterKill()
     {
@@ -85,6 +63,5 @@ public class ScoreTracker implements Serializable {
         score.setScore(currentScore);
     }
     
-
     
 }
