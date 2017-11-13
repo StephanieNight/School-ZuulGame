@@ -5,11 +5,13 @@
  */
 package maltestestpackage;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Malte
  */
-public class Score implements Comparable<Score> {
+public class Score implements Comparable<Score>, Serializable {
  private String name;
  private String diff;
  private int score;
@@ -20,6 +22,10 @@ public class Score implements Comparable<Score> {
      this.diff = diff;
      this.name = name;
  }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
     
  @Override
     public String toString()
