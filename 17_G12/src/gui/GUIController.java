@@ -70,8 +70,6 @@ public class GUIController
     @FXML
     private Button newGameBackButton;
     @FXML
-    private Button newGamePlayButton;
-    @FXML
     private Button loadGameButton;
     @FXML
     private AnchorPane gameScene;
@@ -117,6 +115,14 @@ public class GUIController
     private Button noBackToOptionsButton;
     @FXML
     private AnchorPane wantToQuitPopUpLayer;
+    @FXML
+    private Button newGameNextButton;
+    @FXML
+    private AnchorPane EnterNamePopUpLayer;
+    @FXML
+    private Button PlayButton;
+    @FXML
+    private Button BackToDifficlyButton;
         
     public void initialize()
     {
@@ -272,10 +278,9 @@ public class GUIController
         changeScene(helpScene, optionsScene);
     }
 
-    @FXML
-    private void newGamePlayButtonClicked(ActionEvent event) {
-        changeScene(newGameScene, gameScene);
-    }
+//    private void newGamePlayButtonClicked(ActionEvent event) {
+//        changeScene(newGameScene, gameScene);
+//    }
 
     @FXML
     private void yesDeleteProgressButtonClicked(ActionEvent event) {
@@ -286,6 +291,21 @@ public class GUIController
     @FXML
     private void noBackToOptionsButtonClicked(ActionEvent event) {
         makeInvisible(wantToQuitPopUpLayer);
+    }
+
+    @FXML
+    private void newGameNextButtonClicked(ActionEvent event) {
+        makeVisible(EnterNamePopUpLayer);
+    }
+
+    @FXML
+    private void playButtonClicked(ActionEvent event) {
+        changeScene(newGameScene, gameScene);
+    }
+
+    @FXML
+    private void BackToDifficltyButtonClicked(ActionEvent event) {
+        makeInvisible(EnterNamePopUpLayer);
     }
 
 
