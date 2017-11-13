@@ -178,12 +178,22 @@ public class Labyrinth
         public final int dx;  // Direction in the array out of the x axis 
         public final int dy;  // Direction in the array out of the y axis
         public DIR opposite;  // deklares the opposite direction for ref. 
+        public DIR left;
+        public DIR right;
         // use the static initializer to resolve forward references
         static {
                 N.opposite = S;
                 S.opposite = N;
                 E.opposite = W;
                 W.opposite = E;
+                N.left = W;
+                S.left = E;
+                E.left = N;
+                W.left = S;
+                N.right = E;
+                S.right = W;
+                E.right = S;
+                W.right = N;
         }
         private DIR(String dir, int dx, int dy)
         {
