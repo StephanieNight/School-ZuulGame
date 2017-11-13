@@ -36,24 +36,24 @@ public class View {
         if(currentRoom.getExit(facing.left.direction) != null){
             ID +=1;
         }
-        if(currentRoom.getExit(facing.right.toString()) != null){
+        if(currentRoom.getExit(facing.right.direction) != null){
             ID +=2;
         }
         //make corresponding room type(GUI) visible in current room area, and others invisible.
         
         
-        Room nextRoom = player.getCurrentRoom().getExit(facing.toString());//TEMP does enum.toString() get the associated string in Labyrinth.DIR?
+        Room nextRoom = player.getCurrentRoom().getExit(facing.direction);//TEMP does enum.toString() get the associated string in Labyrinth.DIR?
         if(nextRoom != null){
             ID += 4;
             //if((ID >> depth) % 2){} depending on depth, counting from 1, it checks: current room left, current room right, next room left, next room right respectively
-            if(nextRoom.getExit(facing.left.toString()) != null){
+            if(nextRoom.getExit(facing.left.direction) != null){
                 ID += 8;
             }
-            if(nextRoom.getExit(facing.right.toString()) != null){
+            if(nextRoom.getExit(facing.right.direction) != null){
                 ID += 16;
             }
             //make corresponding room type(GUI) visible in the next room area, and others invisible.
-            if(nextRoom.getExit(facing.toString()) != null){ //perhaps we wanna see if there's a wall in front of next room?
+            if(nextRoom.getExit(facing.direction) != null){ //perhaps we wanna see if there's a wall in front of next room?
                 ID += 32;
             }
         }
@@ -61,8 +61,4 @@ public class View {
             //make a wall visible in next room area.
         }
     }
-    
-
-    
-    
 }
