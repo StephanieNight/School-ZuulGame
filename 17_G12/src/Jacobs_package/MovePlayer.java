@@ -11,30 +11,40 @@ package Jacobs_package;
  */
 
 import Stephie_build.Labyrinth;
-
+import Stephie_build.GameEngine;
+import gameframework.Command;
+import gameframework.CommandWord;
 
 //currently a buggy mess, a work in progress, and how to function is undecided.
 public class MovePlayer {
     
+    private View view;
     public Labyrinth.DIR facing = Labyrinth.DIR.S;
+    private GameEngine engine;
     
-    public boolean forward1(){
-        System.out.println("WIP");
-        return false;
+    public boolean forward(){
+        Command command = new Command(CommandWord.GO, facing.direction);
+        //boolean moved = engine.goRoom(command);//goRoom() is private
+        view.View(facing);
+        return false;//return moved;
     }
 
-    public boolean backward1(){
-        System.out.println("WIP");
-        return false;
+    public boolean backward(){
+        Command command = new Command(CommandWord.GO, facing.opposite.direction);
+        //boolean moved = engine.goRoom(command);
+        view.View(facing);
+        return false;//return moved;
     }
     
     public boolean left(){
         this.facing = this.facing.left;
+        view.View(facing);
         return false;
     }
 	
     public boolean right(){
         this.facing = this.facing.left;
+        view.View(facing);
         return false;
     }
     
