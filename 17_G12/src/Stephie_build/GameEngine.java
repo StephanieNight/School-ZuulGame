@@ -62,9 +62,7 @@ public class GameEngine extends Game implements IGameConstants {
     */
     @Override
     public void play()
-    {
-        //saveGame();
-        //loadGame();              
+    {          
         printWelcome();
         while (!finished) {            
             labyrinth.display();
@@ -83,7 +81,7 @@ public class GameEngine extends Game implements IGameConstants {
         {
            SaveGameInstance.serializeToFile(sa);
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             System.out.println(e.getMessage());
         }       
@@ -93,7 +91,7 @@ public class GameEngine extends Game implements IGameConstants {
     */
     private static void loadGame()
     { 
-        SaveGameInstance sa = new SaveGameInstance();
+        SaveGameInstance sa;
         try
         {
             sa =SaveGameInstance.deserializeFromFile();
@@ -109,14 +107,20 @@ public class GameEngine extends Game implements IGameConstants {
         difficulty = sa.getDifficulty();
         System.out.println("Loaded old Game"); 
     }
-    /*
-    * 
-    */
+    /**
+     * handle the players input and turn.
+     */
     private void processPlayer() {
         Command command = parser.getCommand();
         if (!processCommand(command))
             processPlayer();
-    }    
+    }  
+    /**
+     * a version of the old go room from the legacy zuul game 
+     * modified to handle the AI/NPC movement around the map.
+     * @param command command, with what direction the NPC should move.
+     * @param actor the NPC that should move.
+     */
     private void goRoom(Command command, Actor actor) 
     {
         if(!command.hasSecondWord()) {
@@ -129,6 +133,13 @@ public class GameEngine extends Game implements IGameConstants {
             labyrinth.moveMonster(actor, nextRoom);
         }
     }
+    /**
+    * the legacy go room from the zuul framework, modified to have a Boolean return
+    * this is so that it the player tryes to go somewhere that it cant, you dont 
+    * miss a turn.
+    * @param command
+    * @return Boolean was move successefull.
+    */
     private boolean goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
@@ -166,6 +177,11 @@ public class GameEngine extends Game implements IGameConstants {
         }            
         return false;
     }
+    /**
+     * chacks if the quit command is valid
+     * @param command the command to be checked
+     * @return Boolean if the command is valied
+     */
     private boolean quit(Command command)
     {
         if(command.hasSecondWord()) {
@@ -176,72 +192,25 @@ public class GameEngine extends Game implements IGameConstants {
             return true;
         }
     }
+    /**
+     * gets the Difficulty.
+     * @return the difficulty.
+     */
     public static int getDifficulty()
     {
         return difficulty;
     }
+    /**
+     * 
+     * @return 
+     */
     public static int getMaxNumberOfMinions()
     {
         return difficulty;
     }  
-    private void sleep()
-    {
-        try
-        {
-            Thread.sleep(1000);
-        }
-        catch(Exception e)
-        {
-        }
-    }
-    private boolean Conflict(Actor monster)
-    {
-        boolean isOver = false;
-        boolean didWin = false;
-        Command command;
-        int mhp = monster.getCurrentHealth();
-        System.out.println("you have incountered : "+ monster.getName());
-        System.out.println("BATTLE ! write A to Attack and F for Flee");
-        Scanner scn = new Scanner(System.in);
-        while(!isOver)
-        {                    
-            System.out.println("Monsters CurrentHP : "+mhp);
-            System.out.println("Your     CurrentHP : "+player.getCurrentHealth());
-            System.out.print(">");
-            String move = scn.nextLine();
-            if (move.equals("A"))
-            {
-                System.out.println("You choose Attac");
-                int dmg =20+(int)(Math.random()*20);
-                System.out.println("You did "+ dmg + " dmg");
-                mhp = mhp - dmg;
-                if(mhp <0)
-                {
-                    System.out.println(player.getCurrentRoom().getMonster().getName()+" has been slain you win");
-                    player.getCurrentRoom().setMonster(null);
-                    isOver = true;
-                    didWin = true;
-                    return didWin;
-                }
-            }
-            else if (move.equals("F"))
-            {
-                System.out.println("You Chose poorly");
-                for(String s : player.getCurrentRoom().getExits())
-                {
-                    if(player.getCurrentRoom().getExit(s).getMonster() == null)
-                    {
-                        command = new Command(CommandWord.GO, s);
-                        goRoom(command);
-                        isOver = true;
-                        break;
-                    }
-                }
-                System.out.println("there is nowhere to run");
-            }
-        }
-        return false;
-    }
+    /**
+     * prints the welcome screen to system out.
+     */
     private void printWelcome()
     {   System.out.println("+----------------------------------------------+");
         System.out.println("| You are lost. You are alone. You wander.     |");
@@ -250,10 +219,12 @@ public class GameEngine extends Game implements IGameConstants {
         System.out.println("| what do you do ?                             |");
         System.out.println("+----------------------------------------------+");        
     }    
-    public boolean spawnMobs()
+    /**
+     * handles the spawning of of the player, minions and Zuul.
+     */
+    public void spawnMobs()
     {         
-        player= new Player("Player", 100, 100, 100);
-        
+        player= new Player("Player", 100, 100, 100);        
         labyrinth.spawnPlayer(0,0, player);
         Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', true);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
@@ -273,8 +244,14 @@ public class GameEngine extends Game implements IGameConstants {
                 }
             }            
         }
-        return true;
     }    
+    /**
+     * process the command given, from the player 
+     * used to se if the player whants help - to move 
+     * or to quit.
+     * @param command the command created by the player 
+     * @return was the action succesfull.
+     */
     private boolean processCommand(Command command)
     {
         CommandWord commandWord = command.getCommandWord();
@@ -297,6 +274,9 @@ public class GameEngine extends Game implements IGameConstants {
         }
         return false;
     }
+    /**
+     * 
+     */
     private void printHelp() 
     {
         System.out.println("you have the following uptions :");
