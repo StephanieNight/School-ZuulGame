@@ -11,143 +11,80 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import nicolai.Player;
 
 /**
  *
  * @author Malte
  */
-public class ScoreTracker {
+public class ScoreTracker implements Serializable {
     
-    private int score;
-    private String fileName;
-    private String filePath;
-    private File saveFile;
+    private Score score;
+    private int currentScore;
     private Score[] highScore;
+    private Player player;
 
     
     
-    public ScoreTracker()    
+    public ScoreTracker(Player p)    
     {
-    score = (int)(Math.pow(GameEngine.getDifficulty(), 2) * 10);
+        this.player = p;
+        String diff;
+        currentScore = (int)(Math.pow(GameEngine.getDifficulty(), 2) * 10);
+        switch (GameEngine.getDifficulty())
+        {
+            case 1:
+                diff = "Very easy";
+                break;
+            case 2:
+                diff = "Easy";
+                break;
+            case 3:
+                diff = "Normal";
+                break;
+            case 4: 
+                diff = "Hard";
+                break;
+            default:
+                diff = "Very hard";
+        }
+        
+    score = new Score(currentScore, diff, player.getName());
+
     highScore = new Score[10];
     }
     
     
     public int getScore()
     {
-        return score;
+        return score.getScore();
     }
     
     public void monsterKill()
     {
-        score += GameEngine.getDifficulty() * 5;
+        
+        currentScore += GameEngine.getDifficulty() * 5;
+        score.setScore(currentScore);
     }
     
     public void bossKill()
     {
-        score += GameEngine.getDifficulty() * 10;
+        currentScore += GameEngine.getDifficulty() * 10;
+        score.setScore(currentScore);
     }
     
     public void turnEnd()
     {
-        score -= 1;
+        currentScore -= 1;
+        score.setScore(currentScore);
     }
     
-    public void saveScore()
-    {
-        FileWriter fw = null;
-        BufferedWriter bw = null;
-        boolean success = false;
-        
-        
-        try
-        {
- 
-    
-            fw = new FileWriter(saveFile.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
-        } catch (IOException ex) {
-            Logger.getLogger(ScoreTracker.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
 
-	if (bw != null){
-            bw.close();
-        }
-
-	if (fw != null){
-            fw.close();
-        }
-	} catch (IOException e) {
-            }
-        }
-     
-    }
-    
-    public void loadHighScore()
-    {
-        filePath = System.getProperty("user.dir") + "/HighScore";
-        fileName = filePath + "/HighScore.txt";
-        
-        
-        boolean success = false;
-        saveFile = new File(fileName);
-        if(!saveFile.exists())
-        {
-        try
-        {
-            saveFile.createNewFile();  
-            success = true;
-        
-        }
-        catch(IOException e)
-        {   
-        }
-        if(!success)
-            try{
-        {
-            new File(filePath).mkdir();
-            saveFile.createNewFile();
-        }
-        }
-        catch(IOException e)
-        {
-
-        }
- 
-    }
-
-}
-    
-    private void highScoreParser()
-    {
-        String name;
-        String scoreL;
-        String diff;
-        
-        
-        try
-        {
-        Scanner input = new Scanner(saveFile);
-        for(Score s: highScore)
-        {
-            s = new Score(input.nextInt(),input.next(), input.nextLine());
-        }
-        }
-        catch(FileNotFoundException e)
-        { 
-        }
-        
-        
-
-        
-        
-        
-    }
     
 }
