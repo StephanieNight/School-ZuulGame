@@ -44,6 +44,8 @@ public class View {
         Room nextRoom = player.getCurrentRoom().getExit(facing.direction);//TEMP does enum.toString() get the associated string in Labyrinth.DIR?
         
         if(nextRoom != null){
+            ID += 4;
+            
             if(nextRoom.getExit(facing.left.direction) != null){
                 ID += 8;
             }
@@ -54,9 +56,6 @@ public class View {
             if(nextRoom.getExit(facing.direction) != null){ //perhaps we wanna see if there's a wall in front of next room?
                 ID += 32;
             }
-        }
-        else{
-            ID += 4;
         }
         //if((ID >> depth) % 2 == 1){} //used to read the bits. depth determines which bit from the right to read.
     }
