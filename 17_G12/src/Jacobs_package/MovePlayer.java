@@ -30,10 +30,9 @@ public class MovePlayer {
     }
 
     public boolean backward(){
-        Command command = new Command(CommandWord.GO, facing.opposite.direction);
-        //boolean moved = engine.goRoom(command);
+        this.facing = this.facing.opposite;
         view.View(facing);
-        return false;//return moved;
+        return false;
     }
     
     public boolean left(){
