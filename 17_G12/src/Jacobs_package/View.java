@@ -6,10 +6,6 @@
 package Jacobs_package;
 
 import Stephie_build.Labyrinth;
-import static Stephie_build.Labyrinth.DIR.E;
-import static Stephie_build.Labyrinth.DIR.N;
-import static Stephie_build.Labyrinth.DIR.S;
-import static Stephie_build.Labyrinth.DIR.W;
 import Stephie_build.Room;
 import nicolai.Player;
 
@@ -41,22 +37,20 @@ public class View {
             ID +=2;
         }
         
-        Room nextRoom = player.getCurrentRoom().getExit(facing.direction);//TEMP does enum.toString() get the associated string in Labyrinth.DIR?
+        Room nextRoom = currentRoom.getExit(facing.direction);
         
         if(nextRoom != null){
+            ID += 4;
+            
             if(nextRoom.getExit(facing.left.direction) != null){
                 ID += 8;
             }
             if(nextRoom.getExit(facing.right.direction) != null){
                 ID += 16;
             }
-            //make corresponding room type(GUI) visible in the next room area, and others invisible.
-            if(nextRoom.getExit(facing.direction) != null){ //perhaps we wanna see if there's a wall in front of next room?
+            if(nextRoom.getExit(facing.direction) != null){
                 ID += 32;
             }
-        }
-        else{
-            ID += 4;
         }
         //if((ID >> depth) % 2 == 1){} //used to read the bits. depth determines which bit from the right to read.
     }
