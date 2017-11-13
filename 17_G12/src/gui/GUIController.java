@@ -5,6 +5,7 @@
  */
 package gui;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author BenPaxIndustries
  */
-public class GUIController
+public class GUIController 
 {    
     private Label label;
     @FXML
@@ -148,6 +149,7 @@ public class GUIController
     private void quitButtonClicked(ActionEvent event)
     {
         //Quits the game
+        Platform.exit();
     }
     
     //------------------------------------------------------
@@ -252,6 +254,7 @@ public class GUIController
 
     @FXML
     private void optionsQuitGameButtonClicked(ActionEvent event) {
+        Platform.exit();
     }
 
     @FXML
