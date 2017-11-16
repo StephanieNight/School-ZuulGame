@@ -32,9 +32,11 @@ public class GameEngine extends Game implements IGameConstants {
     private final int mazeSize ;
     private final int maxNumberOfMinions;
     private boolean finished;
-    /*
-    Contructs the gameEngine. with all settings.
-    */
+    /** the constructer for the game engine to world of zuul this 
+     * means it set the world size acording to dificulty 
+     * mixes in apropreate numper of monsters and generates the 
+     * lapyrinth.
+     */
     public GameEngine()
     {
         this.parser = new Parser();
@@ -285,9 +287,7 @@ public class GameEngine extends Game implements IGameConstants {
     //-----------------------------------------------------------
     //------------------------AI Handling------------------------
     //-----------------------------------------------------------    
-    /* 
-    * 
-    */
+    
     private void processMonsters() {
         Monster defeatedMinion = null;
         for(Monster m : monsters)
@@ -305,9 +305,7 @@ public class GameEngine extends Game implements IGameConstants {
             deleteMonster(defeatedMinion);
         
     }
-    /*
-    * Moves monster.
-    */
+ 
     private void moveMonster(Monster m) {
         String[] exits= m.getCurrentRoom().getExits();
         for(String s : exits)
@@ -332,9 +330,7 @@ public class GameEngine extends Game implements IGameConstants {
             }
         }
     }
-    /*
-    * deletes the monster from the list then it dies.
-    */
+  
     private void deleteMonster(Monster m) {
         m.getCurrentRoom().setMonster(null);
         monsters.remove(m);

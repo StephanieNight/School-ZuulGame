@@ -6,12 +6,35 @@
 package Stephie_build;
 
 /**
- * contains constants for the game.
+ * contains constants used in the game. like file locations and names
+ * suppertet resulotions and so on.
  * @author Stephanie
  */
 public interface IGameConstants {
+    String FILEPATH_RUNNING_DIR = "";
+    String FILEPATH_MINIMAP_DIR = "assets\\Minimap tiles\\";
     String FILENAME_SAVEGAME = "savegame.zuul";
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
+    String[] FILENAME_PICTURES_MINIMAP = 
+    {
+        "bend south east.png",
+        "bend south west.png",
+        "bend north east.png",
+        "bend north west.png",            
+        "T way north south east.png",
+        "T way south west north.png",
+        "T way south, east, west.png",
+        "T way north east west.png",           
+        "Crossroads.png",
+        "dead end north.png",
+        "dead end west.png",
+        "dead end east.png",
+        "dead end south.png"
+    };
+    String[] FILENAME_PICTURES_VIEWPORT = 
+    {
+        
+    };
     String[] SCREEN_RES =
     {
         "800x450",  
