@@ -382,8 +382,37 @@ public class GameEngine extends Game implements IGameEngine, IGameConstants {
     }
 
     @Override
-    public Image renderMiniMapView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Image renderMiniMapView() {   
+         try {
+             
+            //set basic canves
+            int size = 181* mazeSize;
+            BufferedImage renderedView = new BufferedImage(size,size,BufferedImage.TYPE_INT_ARGB);
+            Graphics2D graph = renderedView.createGraphics();
+            for(int row = 0; row < mazeSize; row++){
+                for(int col = 0; col < mazeSize; col++){
+                    
+                   BufferedImage backGround;
+                   
+                   backGround = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[1])); 
+                   
+                   graph.drawImage(backGround, 181*row, 181*col,null);
+                }
+            }
+            
+            
+            
+            
+            
+            
+            Image toview=SwingFXUtils.toFXImage(renderedView,null);
+            
+            return toview;
+            
+        } catch (Exception ex) {
+             System.out.println(ex.getMessage());
+        }
+         return null;
     }
 
     @Override
