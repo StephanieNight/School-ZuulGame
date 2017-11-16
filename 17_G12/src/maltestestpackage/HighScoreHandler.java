@@ -63,9 +63,9 @@ public class HighScoreHandler implements Serializable{
         {
             if(score.compareTo(scores[i]) < 0)
             {
-                for(int j = i + 1; j < scores.length; j++)
+                for(int j = scores.length - 1; j > i; j--)
                 {
-                    scores[j - 1] = scores[j];
+                    scores[j] = scores[j - 1];
                 }
                 scores[i] = score;
                 break;
