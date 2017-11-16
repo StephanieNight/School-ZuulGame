@@ -12,7 +12,7 @@ import nicolai.Player;
  *
  * @author Stephanie
  */
-class Door implements Serializable{
+public class Door implements Serializable{
     private boolean Locked;
     public Door(boolean Locked)
     {        

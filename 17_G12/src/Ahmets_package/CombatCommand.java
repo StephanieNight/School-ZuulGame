@@ -5,7 +5,7 @@
  */
 package Ahmets_package;
 
-import gameframework.CommandWord;
+import core_engine.CommandWord;
 
 /**
  * Has the same fuction as the Command class, but this class is for the combat 

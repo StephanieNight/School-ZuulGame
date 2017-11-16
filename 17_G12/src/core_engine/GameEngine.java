@@ -7,10 +7,6 @@ package core_engine;
 
 import data.SaveGameInstance;
 import acquaintance.IGameConstants;
-import gameframework.Command;
-import gameframework.CommandWord;
-import gameframework.Game;
-import gameframework.Parser;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -23,7 +19,7 @@ import nicolai.Player;
  * @author Stephanie
  */
 public class GameEngine extends Game implements IGameConstants {
-    private static int difficulty;  
+    private int difficulty;  
     private Parser parser;
     //-----------------------------------------------------------
     // Primary instances
@@ -55,8 +51,8 @@ public class GameEngine extends Game implements IGameConstants {
         spawnMobs();
         finished = false;
         System.out.println("Size                : "+this.mazeSize);
-        System.out.println("number of minions   : "+ GameEngine.getMaxNumberOfMinions());
-        System.out.println("Diffictulty is      : "+ GameEngine.getDifficulty());
+        System.out.println("number of minions   : "+ this.maxNumberOfMinions);
+        System.out.println("Diffictulty is      : "+ this.difficulty);
     }
     //-----------------------------------------------------------
     //--------------------------General--------------------------
@@ -78,7 +74,7 @@ public class GameEngine extends Game implements IGameConstants {
     /*
         Saves the game to local disc.
     */
-    private static void saveGame()
+    public void saveGame()
     {
         SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsters,difficulty);
         try
@@ -93,7 +89,7 @@ public class GameEngine extends Game implements IGameConstants {
     /*
     Loads game from disc
     */
-    private static void loadGame()
+    public void loadGame()
     { 
         SaveGameInstance sa;
         try
@@ -200,7 +196,7 @@ public class GameEngine extends Game implements IGameConstants {
      * gets the Difficulty.
      * @return the difficulty.
      */
-    public static int getDifficulty()
+    public int getDifficulty()
     {
         return difficulty;
     }
@@ -208,15 +204,14 @@ public class GameEngine extends Game implements IGameConstants {
      * 
      * @return 
      */
-    public static int getMaxNumberOfMinions()
-    {
+    @Override
+    public int getMaxNumberOfMinions() {
         return difficulty;
     }  
     /**
      * prints the welcome screen to system out.
      */
-    private void printWelcome()
-    {   System.out.println("+----------------------------------------------+");
+    private void printWelcome() {   System.out.println("+----------------------------------------------+");
         System.out.println("| You are lost. You are alone. You wander.     |");
         System.out.println("| in a endless maze. you hear a GROWL near you.|");
         System.out.println("|                                              |");
@@ -226,8 +221,8 @@ public class GameEngine extends Game implements IGameConstants {
     /**
      * handles the spawning of of the player, minions and Zuul.
      */
-    public void spawnMobs()
-    {         
+    @Override
+    public void spawnMobs() {         
         player= new Player("Player", 100, 100, 100);        
         labyrinth.spawnPlayer(0,0, player);
         Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', true);
@@ -256,8 +251,7 @@ public class GameEngine extends Game implements IGameConstants {
      * @param command the command created by the player 
      * @return was the action succesfull.
      */
-    private boolean processCommand(Command command)
-    {
+    private boolean processCommand(Command command) {
         CommandWord commandWord = command.getCommandWord();
 
         if(commandWord == CommandWord.UNKNOWN) {
@@ -281,15 +275,13 @@ public class GameEngine extends Game implements IGameConstants {
     /**
      * 
      */
-    private void printHelp() 
-    {
+    private void printHelp() {
         System.out.println("you have the following uptions :");
         parser.showCommands();
     }    
     //-----------------------------------------------------------
     //------------------------AI Handling------------------------
-    //-----------------------------------------------------------    
-    
+    //-----------------------------------------------------------      
     private void processMonsters() {
         Monster defeatedMinion = null;
         for(Monster m : monsters)
@@ -306,8 +298,7 @@ public class GameEngine extends Game implements IGameConstants {
         if (defeatedMinion != null)
             deleteMonster(defeatedMinion);
         
-    }
- 
+    } 
     private void moveMonster(Monster m) {
         String[] exits= m.getCurrentRoom().getExits();
         for(String s : exits)
@@ -331,8 +322,7 @@ public class GameEngine extends Game implements IGameConstants {
 
             }
         }
-    }
-  
+    }  
     private void deleteMonster(Monster m) {
         m.getCurrentRoom().setMonster(null);
         monsters.remove(m);

@@ -1,10 +1,8 @@
-package gameframework;
+package core_engine;
 
-import core_engine.Labyrinth;
-import gameframework.Command;
-import gameframework.CommandWord;
-import gameframework.Parser;
-import core_engine.Room;
+import core_engine.Command;
+import core_engine.CommandWord;
+import core_engine.Parser;
 
 /**
  * @author  Michael Kolling and David J. Barnes

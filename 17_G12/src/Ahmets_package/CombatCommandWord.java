@@ -5,7 +5,7 @@
  */
 package Ahmets_package;
 
-import gameframework.CommandWord;
+import core_engine.CommandWord;
 import java.util.HashMap;
 
 /**

@@ -12,8 +12,8 @@ package Jacobs_package;
 
 import core_engine.Labyrinth;
 import core_engine.GameEngine;
-import gameframework.Command;
-import gameframework.CommandWord;
+import core_engine.Command;
+import core_engine.CommandWord;
 
 //currently a buggy mess, a work in progress, and how to function is undecided.
 public class MovePlayer {

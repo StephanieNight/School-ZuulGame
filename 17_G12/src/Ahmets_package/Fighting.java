@@ -5,9 +5,9 @@
  */
 package Ahmets_package;
 
-import gameframework.Command;
-import gameframework.CommandWord;
-import gameframework.Parser;
+import core_engine.Command;
+import core_engine.CommandWord;
+import core_engine.Parser;
 import java.util.Scanner;
 import nicolai.Actor;
 import nicolai.Monster;

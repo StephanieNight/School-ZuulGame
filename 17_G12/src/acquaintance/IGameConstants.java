@@ -5,6 +5,7 @@
  */
 package acquaintance;
 
+
 /**
  * contains constants used in the game. like file locations and names
  * suppertet resulotions and so on.
@@ -50,4 +51,15 @@ public interface IGameConstants {
         "BRING IT ON",
         "I AM DEATH"
     };
+    public void play();
+//    private static void saveGame();
+//    private static void loadGame();
+//    private void processPlayer();
+//    private void goRoom(Command command, Actor actor) ;
+//    private boolean goRoom(Command command) ;
+//    private boolean quit(Command command);
+    public int getDifficulty();
+    public int getMaxNumberOfMinions();
+    public void spawnMobs();
+    
 }

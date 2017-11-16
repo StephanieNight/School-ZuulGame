@@ -5,6 +5,7 @@
  */
 package core_engine;
 
+import core_engine.Room;
 import java.util.Arrays;
 import java.util.Collections;
 import nicolai.*;
