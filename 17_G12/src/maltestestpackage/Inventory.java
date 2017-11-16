@@ -29,58 +29,51 @@ public class Inventory {
         inventory = new Item[8 - getDifficulty()]; //inventory size based on difficulty
     }
     
-    public void getInventoryList() //shows player's inventory //TODO needs command word.
+    public String[] getInventoryList() //shows player's inventory //TODO needs command word.
     {
         int i = 0;
-        System.out.printf("%-5.4s  %-50.50s%n", "Slot", "Item");
+        String[] invString = new String[8-getDifficulty()];
         for(Item list: inventory){
             if(list == null)
             {
                 break;
             }
+            invString[i] = list.getName();
             i++;
-            System.out.printf("%-5.4s  %-50.50s%n", i, list.getName()); //prints in two columns
         }
+        return invString;
     }
     
     
     /**
      * loops through items in inventory to find an item with a matching name.
-     * @param itemName 
+     * @param itemID
      * executes useItem if names matches and removes said item and shifting the 
      * rest of the items to the left.
      */
     public boolean useItem(int itemID) //TODO needs command word
     {
         boolean itemUsed = false;
-        if(itemID > inventory.length - 1 || itemID < 0)
+        if(itemID > inventory.length - 1 || itemID < 0 || inventory[itemID] == null)
         {
             System.out.println("Please enter a number corresponding to an item.");
             return false;
         }
         
-        if(inventory[itemID] != null)
-        {
-            inventory[itemID].useItem(null);//activates the item's effect.
-            itemUsed = true;
-            
-            if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 
-                || "Armor".equals(inventory[itemID].getType())) 
-                {
-                    return false; //if the used item is equipment, item isn't used, and returns false.
-                }
-            
-            for(;itemID < inventory.length-1; itemID++) //cycles through remainder of inventory.
+        inventory[itemID].useItem(null);//activates the item's effect.
+
+        if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 
+            || "Armor".equals(inventory[itemID].getType())) 
             {
-                inventory[itemID] = inventory[itemID+1]; //destroys used item and moves all items one index down.
+                return false; //if the used item is equipment, item isn't used, and returns false.
             }
-            inventory[inventory.length-1] = null; //removes last item in inventory to avoid duplicating it.
+
+        for(;itemID < inventory.length-1; itemID++) //cycles through remainder of inventory.
+        {
+            inventory[itemID] = inventory[itemID+1]; //destroys used item and moves all items one index down.
         }
-        if(itemUsed){
-            return true;
-        }
-        System.out.println("You have no such item!");
-        return false;
+        inventory[inventory.length-1] = null; //removes last item in inventory to avoid duplicating it.7
+        return true;
     }
     
     /**
