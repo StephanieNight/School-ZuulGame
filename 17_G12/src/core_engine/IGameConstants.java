@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package acquaintance;
+package core_engine;
 
 
 /**
@@ -51,15 +51,4 @@ public interface IGameConstants {
         "BRING IT ON",
         "I AM DEATH"
     };
-    public void play();
-//    private static void saveGame();
-//    private static void loadGame();
-//    private void processPlayer();
-//    private void goRoom(Command command, Actor actor) ;
-//    private boolean goRoom(Command command) ;
-//    private boolean quit(Command command);
-    public int getDifficulty();
-    public int getMaxNumberOfMinions();
-    public void spawnMobs();
-    
 }

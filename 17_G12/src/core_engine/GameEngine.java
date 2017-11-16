@@ -5,16 +5,18 @@
  */
 package core_engine;
 
+import acquaintance.IGameEngine;
+import acquaintance.IInventory;
 import data.SaveGameInstance;
-import acquaintance.IGameConstants;
 import java.io.IOException;
 import java.util.ArrayList;
+import javafx.scene.image.Image;
 
 /**
  *
  * @author Stephanie
  */
-public class GameEngine extends Game implements IGameConstants {
+public class GameEngine extends Game implements IGameEngine, IGameConstants {
     private int difficulty;  
     private Parser parser;
     //-----------------------------------------------------------
@@ -70,7 +72,8 @@ public class GameEngine extends Game implements IGameConstants {
     /*
         Saves the game to local disc.
     */
-    public void saveGame()
+    @Override
+    public boolean saveGame()
     {
         SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsters,difficulty);
         try
@@ -80,12 +83,15 @@ public class GameEngine extends Game implements IGameConstants {
         catch(IOException e)
         {
             System.out.println(e.getMessage());
+            return false;
         }       
+        return true;
     }
     /*
     Loads game from disc
     */
-    public void loadGame()
+    @Override
+    public boolean loadGame()
     { 
         SaveGameInstance sa;
         try
@@ -95,13 +101,14 @@ public class GameEngine extends Game implements IGameConstants {
         catch(IOException | ClassNotFoundException e)
         {
             System.out.println(e.getMessage());
-            return;
+            return false;
         }
         labyrinth.setMaze(sa.getMaze());
         monsters = sa.getMonsters();
         player = sa.getPlayer();
         difficulty = sa.getDifficulty();
         System.out.println("Loaded old Game"); 
+        return true;
     }
     /**
      * handle the players input and turn.
@@ -200,9 +207,8 @@ public class GameEngine extends Game implements IGameConstants {
      * 
      * @return 
      */
-    @Override
-    public int getMaxNumberOfMinions() {
-        return difficulty;
+    private int getMaxNumberOfMinions() {
+        return maxNumberOfMinions;
     }  
     /**
      * prints the welcome screen to system out.
@@ -217,8 +223,7 @@ public class GameEngine extends Game implements IGameConstants {
     /**
      * handles the spawning of of the player, minions and Zuul.
      */
-    @Override
-    public void spawnMobs() {         
+    private void spawnMobs() {         
         player= new Player("Player", 100, 100, 100,1);        
         labyrinth.spawnPlayer(0,0, player);
         Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', this.difficulty,true);
@@ -322,6 +327,81 @@ public class GameEngine extends Game implements IGameConstants {
     private void deleteMonster(Monster m) {
         m.getCurrentRoom().setMonster(null);
         monsters.remove(m);
+    }
+
+    @Override
+    public boolean startNewGame(int difficulty) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveHighScore() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean loadHighScore() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean setName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Image renderMazeView() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Image renderMiniMapView() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Image renderBattleView() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean move() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean turnRight() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean turnLeft() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean turnBack() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IInventory getInventory() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean attack() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean flee() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

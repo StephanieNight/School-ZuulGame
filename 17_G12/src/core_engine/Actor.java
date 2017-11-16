@@ -29,6 +29,15 @@ public abstract class Actor implements Serializable
     private int shield = 0;
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
+    /**
+     * 
+     * @param name
+     * @param defaultHealthpoint
+     * @param defaultDefense
+     * @param DefaultDamgeOutput
+     * @param mapCode
+     * @param level 
+     */
     public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode, int level){
         this.NAME = name;
         this.DEFAULT_HEALTH_POINTS = defaultHealthpoint;

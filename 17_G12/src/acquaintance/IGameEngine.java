@@ -5,20 +5,26 @@
  */
 package acquaintance;
 
+import javafx.scene.image.Image;
+
 /**
  *
  * @author Malte
  */
 public interface IGameEngine {
     public boolean startNewGame(int difficulty);
+    public int getDifficulty();
     public boolean saveHighScore();
     public boolean loadHighScore();
     public boolean saveGame();
     public boolean loadGame();    
     public String getName();
-    public boolean setName();  
+    public boolean setName(); 
     
-    
+    public Image renderMazeView();
+    public Image renderMiniMapView();
+    public Image renderBattleView();
+        
     public boolean move();
     public boolean turnRight();
     public boolean turnLeft();
