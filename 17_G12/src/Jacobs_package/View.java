@@ -29,25 +29,25 @@ public class View {
         Room currentRoom = player.getCurrentRoom();
         
         if(currentRoom.getExit(facing.left.direction) != null){
-            ID +=1;
+            ID += 0b000001;
         }
         if(currentRoom.getExit(facing.right.direction) != null){
-            ID +=2;
+            ID += 0b000010;
         }
         
         Room nextRoom = currentRoom.getExit(facing.direction);
         
         if(nextRoom != null){
-            ID += 4;
+            ID += 0b000100;
             
             if(nextRoom.getExit(facing.left.direction) != null){
-                ID += 8;
+                ID += 0b001000;
             }
             if(nextRoom.getExit(facing.right.direction) != null){
-                ID += 16;
+                ID += 0b010000;
             }
             if(nextRoom.getExit(facing.direction) != null){
-                ID += 32;
+                ID += 0b100000;
             }
         }
         //if((ID >> depth) % 2 == 1){} //used to read the bits. depth determines which bit from the right to read.
