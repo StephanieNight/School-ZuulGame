@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.HashMap;
 import maltestestpackage.Inventory;
 import maltestestpackage.Item;
-import nicolai.Actor;
 
 /**
  * @author  Michael Kolling and David J. Barnes

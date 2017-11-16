@@ -8,8 +8,8 @@ import static core_engine.GameEngine.getDifficulty;
 import java.util.Scanner;
 import Jacobs_package.*;
 import core_engine.Room;
-import nicolai.Actor;
-import nicolai.Player;
+import core_engine.Actor;
+import core_engine.Player;
 /**
  * inventory to hold items
  * inventory length is determined by difficulty.

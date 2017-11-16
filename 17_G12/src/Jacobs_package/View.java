@@ -7,7 +7,7 @@ package Jacobs_package;
 
 import core_engine.Labyrinth;
 import core_engine.Room;
-import nicolai.Player;
+import core_engine.Player;
 
 
 /**

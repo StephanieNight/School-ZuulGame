@@ -6,7 +6,6 @@
 package core_engine;
 
 import java.io.Serializable;
-import nicolai.Player;
 
 /**
  *

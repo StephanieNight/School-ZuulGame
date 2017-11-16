@@ -6,7 +6,7 @@
 package Jacobs_package;
 
 import maltestestpackage.Item;
-import nicolai.Player;
+import core_engine.Player;
 /**
  *
  * @author simon

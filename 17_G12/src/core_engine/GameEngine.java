@@ -9,10 +9,6 @@ import data.SaveGameInstance;
 import acquaintance.IGameConstants;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
-import nicolai.Actor;
-import nicolai.Monster;
-import nicolai.Player;
 
 /**
  *
@@ -223,9 +219,9 @@ public class GameEngine extends Game implements IGameConstants {
      */
     @Override
     public void spawnMobs() {         
-        player= new Player("Player", 100, 100, 100);        
+        player= new Player("Player", 100, 100, 100,1);        
         labyrinth.spawnPlayer(0,0, player);
-        Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', true);
+        Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', this.difficulty,true);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
         monsters.add(zuul);
         for (int i = 0; i < this.maxNumberOfMinions ; i++) 
@@ -235,7 +231,7 @@ public class GameEngine extends Game implements IGameConstants {
             {
                 int x = (int)(1+ Math.random()*(this.mazeSize-1)); 
                 int y = (int)(1+ Math.random()*(this.mazeSize-1));
-                Monster min = new Monster(("minion"+i), 30, 30, 30, 'M', false);
+                Monster min = new Monster(("minion"+i), 30, 30, 30, 'M',this.difficulty, false);
                 added = labyrinth.spawnMonster(x, y,min);
                 if(added)
                 {

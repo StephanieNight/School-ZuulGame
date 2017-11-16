@@ -5,7 +5,7 @@
  */
 package maltestestpackage;
 
-import nicolai.Player;
+import core_engine.Player;
 
 /**
  * 

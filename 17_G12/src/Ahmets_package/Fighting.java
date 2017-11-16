@@ -9,10 +9,10 @@ import core_engine.Command;
 import core_engine.CommandWord;
 import core_engine.Parser;
 import java.util.Scanner;
-import nicolai.Actor;
-import nicolai.Monster;
-import nicolai.Player;
-import nicolai.Zuul;
+import core_engine.Actor;
+import core_engine.Monster;
+import core_engine.Player;
+import core_engine.Zuul;
 /**
  * Class to resolve conflict between a player and a monster.
  * @author collaboration between Ahmet, Malte and Nicolai.

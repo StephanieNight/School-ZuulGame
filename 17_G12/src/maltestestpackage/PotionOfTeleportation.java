@@ -5,7 +5,7 @@
  */
 package maltestestpackage;
 import core_engine.Labyrinth;
-import nicolai.Player;
+import core_engine.Player;
 /**
  *
  * @author Malte

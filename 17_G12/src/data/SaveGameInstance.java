@@ -16,8 +16,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import nicolai.Monster;
-import nicolai.Player;
+import core_engine.Monster;
+import core_engine.Player;
 
 /**
  *

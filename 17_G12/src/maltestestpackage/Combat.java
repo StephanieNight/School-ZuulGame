@@ -6,10 +6,10 @@
 package maltestestpackage;
 
 import java.util.Scanner;
-import nicolai.Actor;
-import nicolai.Monster;
-import nicolai.Player;
-import nicolai.Zuul;
+import core_engine.Actor;
+import core_engine.Monster;
+import core_engine.Player;
+import core_engine.Zuul;
 ///**
 // * Sketch for how combat can be resolved
 // * @author Malte

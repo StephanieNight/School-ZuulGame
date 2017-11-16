@@ -5,8 +5,8 @@
  */
 package maltestestpackage;
 
-import nicolai.Monster;
-import nicolai.Player;
+import core_engine.Monster;
+import core_engine.Player;
 
 /**
  *
