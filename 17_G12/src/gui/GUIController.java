@@ -74,10 +74,6 @@ public class GUIController
     @FXML
     private AnchorPane gameScene;
     @FXML
-    private ImageView innerRoom;
-    @FXML
-    private ImageView outerRoom;
-    @FXML
     private Button forwardButton;
     @FXML
     private Button leftButton;
@@ -123,6 +119,8 @@ public class GUIController
     private Button PlayButton;
     @FXML
     private Button BackToDifficlyButton;
+    @FXML
+    private ImageView viewPort;
         
     public void initialize()
     {
