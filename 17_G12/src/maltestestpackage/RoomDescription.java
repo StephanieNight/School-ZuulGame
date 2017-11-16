@@ -5,7 +5,7 @@
  */
 package maltestestpackage;
 
-import Stephie_build.Room;
+import core_engine.Room;
 /**
  * constructor to set a description fitting the number of exits a given room has.
  * @author Malte

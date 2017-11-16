@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Stephie_build;
+package core_engine;
 
+import data.SaveGameInstance;
+import acquaintance.IGameConstants;
 import gameframework.Command;
 import gameframework.CommandWord;
 import gameframework.Game;

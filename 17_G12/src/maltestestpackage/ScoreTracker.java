@@ -5,7 +5,7 @@
  */
 package maltestestpackage;
 
-import Stephie_build.GameEngine;
+import core_engine.GameEngine;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;

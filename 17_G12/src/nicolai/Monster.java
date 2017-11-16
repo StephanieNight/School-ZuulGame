@@ -1,7 +1,7 @@
 
 package nicolai;
 
-import Stephie_build.GameEngine;
+import core_engine.GameEngine;
 
 /**
  *

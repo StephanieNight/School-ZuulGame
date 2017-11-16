@@ -5,8 +5,8 @@
  */
 package maltestestpackage;
 
-import Stephie_build.GameEngine;
-import Stephie_build.SaveGameInstance;
+import core_engine.GameEngine;
+import data.SaveGameInstance;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

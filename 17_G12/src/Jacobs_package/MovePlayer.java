@@ -10,8 +10,8 @@ package Jacobs_package;
  * @author simon
  */
 
-import Stephie_build.Labyrinth;
-import Stephie_build.GameEngine;
+import core_engine.Labyrinth;
+import core_engine.GameEngine;
 import gameframework.Command;
 import gameframework.CommandWord;
 

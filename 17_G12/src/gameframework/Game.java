@@ -1,10 +1,10 @@
 package gameframework;
 
-import Stephie_build.Labyrinth;
+import core_engine.Labyrinth;
 import gameframework.Command;
 import gameframework.CommandWord;
 import gameframework.Parser;
-import Stephie_build.Room;
+import core_engine.Room;
 
 /**
  * @author  Michael Kolling and David J. Barnes

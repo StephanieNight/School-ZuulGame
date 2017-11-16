@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package maltestestpackage;
-import static Stephie_build.GameEngine.getDifficulty;
+import static core_engine.GameEngine.getDifficulty;
 import java.util.Scanner;
 import Jacobs_package.*;
-import Stephie_build.Room;
+import core_engine.Room;
 import nicolai.Actor;
 import nicolai.Player;
 /**

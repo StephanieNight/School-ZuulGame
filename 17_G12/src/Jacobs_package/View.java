@@ -5,8 +5,8 @@
  */
 package Jacobs_package;
 
-import Stephie_build.Labyrinth;
-import Stephie_build.Room;
+import core_engine.Labyrinth;
+import core_engine.Room;
 import nicolai.Player;
 
 

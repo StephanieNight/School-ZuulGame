@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Stephie_build;
+package acquaintance;
 
 /**
  * contains constants used in the game. like file locations and names

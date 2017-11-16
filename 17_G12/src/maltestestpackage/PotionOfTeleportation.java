@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package maltestestpackage;
-import Stephie_build.Labyrinth;
+import core_engine.Labyrinth;
 import nicolai.Player;
 /**
  *
