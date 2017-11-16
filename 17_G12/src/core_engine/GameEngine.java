@@ -8,9 +8,14 @@ package core_engine;
 import acquaintance.IGameEngine;
 import acquaintance.IInventory;
 import data.SaveGameInstance;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -356,7 +361,24 @@ public class GameEngine extends Game implements IGameEngine, IGameConstants {
 
     @Override
     public Image renderMazeView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+         try {
+            //set basic canves
+            BufferedImage renderedView = new BufferedImage(700,600,BufferedImage.TYPE_INT_ARGB);
+            
+            BufferedImage backGround = ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+"\\CornerLeft.png"));
+            
+            Graphics2D graph = renderedView.createGraphics();
+            graph.drawImage(backGround, 0, 0,null);
+            
+            Image toview=SwingFXUtils.toFXImage(renderedView,null);
+            
+            return toview;
+            
+        } catch (Exception ex) {
+             System.out.println(ex.getMessage());
+        }
+         return null;
     }
 
     @Override
