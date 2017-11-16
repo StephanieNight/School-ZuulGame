@@ -21,6 +21,7 @@ public abstract class Actor implements Serializable
     private int maximumHealthPoint;
     private int currentHealth;
     private int level =1;
+    private int diff;
     private int xp;
     private int totalXp;
     private Inventory inventory;
@@ -38,14 +39,14 @@ public abstract class Actor implements Serializable
      * @param mapCode
      * @param level 
      */
-    public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode, int level){
+    public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode, int diff){
         this.NAME = name;
         this.DEFAULT_HEALTH_POINTS = defaultHealthpoint;
         this.DEFAULT_DEFENSE = defaultDefense;
         this.DEFAULT_DAMGE_OUTPUT = defaultDefense;
         this.MAP_CODE=mapCode;
         this.currentHealth = DEFAULT_HEALTH_POINTS;
-        this.inventory = new Inventory(this);
+        this.inventory = new Inventory(this,diff);
         inventory.updateStat();
     }
     //  in this metode you can set the level 
