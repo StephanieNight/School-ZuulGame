@@ -31,7 +31,7 @@ public interface IGameEngine {
     public boolean turnBack();
     public IInventory getInventory();
     
-    
+    public boolean checkForCombat();
     public boolean attack();
     public boolean flee();
     
