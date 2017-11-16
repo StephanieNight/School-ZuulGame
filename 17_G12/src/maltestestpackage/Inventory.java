@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package maltestestpackage;
-import static core_engine.GameEngine.getDifficulty;
+
 import java.util.Scanner;
 import Jacobs_package.*;
 import core_engine.Room;
@@ -22,17 +22,19 @@ import core_engine.Player;
 // skal måske laves til set i stedet for array
 public class Inventory {
     private Item[] inventory;
-    Actor actor;
-    public Inventory(Actor p)
+    private Actor actor;
+    private int diff;
+    public Inventory(Actor p, int diff)
     {
+        this.diff = diff;
         this.actor = p;
-        inventory = new Item[8 - getDifficulty()]; //inventory size based on difficulty
+        inventory = new Item[8 - diff]; //inventory size based on difficulty
     }
     
     public String[] getInventoryList() //shows player's inventory //TODO needs command word.
     {
         int i = 0;
-        String[] invString = new String[8-getDifficulty()];
+        String[] invString = new String[8-diff];
         for(Item list: inventory){
             if(list == null)
             {
