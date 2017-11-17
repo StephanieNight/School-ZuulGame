@@ -30,7 +30,7 @@ public class Fighting {
     */
    public Fighting ()
    {
-       survived = fightingLoop(p,m);
+       //survived = fightingLoop(p,m);
    }
 
     public boolean didSurvive() {
@@ -53,8 +53,8 @@ public class Fighting {
          
          while (isAlive)
          {
-             CombatCommand command = parser.getCombatCommand();
-             didAction = processCommand(command);
+             //CombatCommand command = parser.getCombatCommand();
+             //didAction = processCommand(command);
              if (!didAction){
                  continue;
              }
@@ -110,7 +110,7 @@ public class Fighting {
             return false;
         }
         else if (commandWord == CombatCommandWord.ATTACK) {
-            attack(p,m);
+            //attack(p,m);
             return true;
         }
         else if (commandWord == CombatCommandWord.FLEE){
@@ -118,7 +118,7 @@ public class Fighting {
             return true;
         }
         else if(commandWord == CombatCommandWord.INVENTORY){
-            p.getInventory().getInventoryList();
+            //p.getInventory().getInventoryList();
             return false;
         }
         else if (commandWord == CombatCommandWord.USE_ITEM){
@@ -182,7 +182,7 @@ public class Fighting {
        try
        {
        int id = Integer.parseInt(command.getSecondWord());
-            return p.getInventory().useItem(id);
+            //return p.getInventory().useItem(id);
        }
        catch (NumberFormatException e)
                {
