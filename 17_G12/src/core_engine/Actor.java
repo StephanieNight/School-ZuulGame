@@ -28,6 +28,7 @@ public abstract class Actor implements Serializable
     private int weapon = 0;
     private int armor = 0;
     private int shield = 0;
+    public Labyrinth.DIR facing = Labyrinth.DIR.S;
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
     /**
@@ -136,6 +137,12 @@ public abstract class Actor implements Serializable
     }
     public void setShield(int shield){
         this.shield = shield;
+    }
+    public Labyrinth.DIR getFacing(){
+        return this.facing;
+    }
+    public void setFacing(Labyrinth.DIR facing){
+        this.facing = facing;
     }
 }
 

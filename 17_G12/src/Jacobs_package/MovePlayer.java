@@ -19,7 +19,7 @@ import core_engine.CommandWord;
 public class MovePlayer {
     
     private View view;
-    public Labyrinth.DIR facing = Labyrinth.DIR.S;
+    
     private GameEngine engine;
     
     public boolean forward(){
