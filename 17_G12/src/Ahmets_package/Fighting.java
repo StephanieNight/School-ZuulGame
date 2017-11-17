@@ -5,9 +5,10 @@
  */
 package Ahmets_package;
 
-import core_engine.Command;
-import core_engine.CommandWord;
-import core_engine.Parser;
+import Legacy_framework.CombatCommandWord;
+import Legacy_framework.CombatCommand;
+import Legacy_framework.Command;
+import Legacy_framework.CommandWord;
 import java.util.Scanner;
 import core_engine.Actor;
 import core_engine.Monster;
@@ -17,10 +18,7 @@ import core_engine.Player;
  * @author collaboration between Ahmet, Malte and Nicolai.
  */
 public class Fighting {
-   private Player p;
-   private Monster m;
    private boolean flee = false;
-   private Parser parser;
    private boolean survived;
    
    
@@ -30,11 +28,8 @@ public class Fighting {
     * @param p The main player
     * @param m The monster you meet
     */
-   public Fighting (Player p, Monster m)
+   public Fighting ()
    {
-       this.p = p;
-       this.m = m;
-       parser = new Parser();
        survived = fightingLoop(p,m);
    }
 
@@ -143,7 +138,7 @@ public class Fighting {
     * @param a1 The attacker
     * @param a2 The victim
     */
-   private void attack(Actor a1, Actor a2)
+   private boolean attack(Actor a1, Actor a2)
    {
        int actorDefense = a2.getModifiedDefense();
        int actorHitpoint = a2.getCurrentHealth();
@@ -153,6 +148,13 @@ public class Fighting {
            a2.setCurrentHealth(actorHitpoint);
        }
        else System.out.println(a1.getName() + " misses " + a2.getName());
+       if(a2.getCurrentHealth() > 0){
+           return false;
+       }
+       else {
+           return true;
+       }
+           
    }
    
    /**
@@ -198,7 +200,7 @@ public class Fighting {
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
-        parser.showCombatCommands();
+
     }
    
    /**
