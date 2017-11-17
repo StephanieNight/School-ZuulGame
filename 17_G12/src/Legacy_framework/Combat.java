@@ -9,7 +9,7 @@ import java.util.Scanner;
 import core_engine.Actor;
 import core_engine.Monster;
 import core_engine.Player;
-import core_engine.Zuul;
+
 ///**
 // * Sketch for how combat can be resolved
 // * @author Malte
@@ -23,10 +23,7 @@ public class Combat {
         this.combatLoop(p, m);
     }
     
-    public Combat(Player p, Zuul z)
-    {
-        this.combatLoop(p, z);
-    }
+
     
     
     /**
