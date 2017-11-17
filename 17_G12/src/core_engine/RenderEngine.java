@@ -146,7 +146,23 @@ public class RenderEngine implements IGameConstants{
                                 tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[8]));  
                                 break;
                     } 
-                    graph.drawImage(tile, 181*row, 181*col,null);                   
+                    graph.drawImage(tile, 181*row, 181*col,null);   
+                    if(room.getPlayer() != null)
+                    {
+                        tile = ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_TOKEN[0])); 
+                        graph.drawImage(tile, 181*row, 181*col,null);  
+                    }
+                    if(room.getMonster()!= null)
+                        if(room.getMonster().getMapCode()=='Z')
+                        {
+                            tile = ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_TOKEN[2])); 
+                            graph.drawImage(tile, 181*row, 181*col,null);  
+                        }
+                        else
+                        {
+                            tile = ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_TOKEN[1])); 
+                            graph.drawImage(tile, 181*row, 181*col,null);  
+                        }    
                 }
             }
             return SwingFXUtils.toFXImage(renderedView,null);         

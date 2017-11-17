@@ -332,12 +332,6 @@ public class GameEngine implements IGameEngine, IGameConstants {
         m.getCurrentRoom().setMonster(null);
         monsters.remove(m);
     }
-
-    @Override
-    public boolean startNewGame(int difficulty) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public boolean saveHighScore() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -427,6 +421,11 @@ public class GameEngine implements IGameEngine, IGameConstants {
 
     @Override
     public boolean checkForCombat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean startNewGame(int difficulty, String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

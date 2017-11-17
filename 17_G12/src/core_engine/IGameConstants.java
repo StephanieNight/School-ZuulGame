@@ -13,6 +13,7 @@ package core_engine;
  */
 public interface IGameConstants {
     String FILEPATH_RUNNING_DIR = "";
+    String FILEPATH_CHARACTORS_DIR = "assets\\charactors\\";
     String FILEPATH_MINIMAP_DIR = "assets\\Minimap tiles\\";
     String FILEPATH_MAZEVIEW_DIR = "assets\\rooms\\";
     String FILENAME_SAVEGAME = "savegame.zuul";
@@ -38,6 +39,12 @@ public interface IGameConstants {
     String[] FILENAME_PICTURES_VIEWPORT = 
     {
         
+    };
+    String[] FILENAME_PICTURES_TOKEN = 
+    {
+        "Player Token.png",
+        "Monster Token.png",
+        "Zuul Token.png" 
     };
     String[] SCREEN_RES =
     {
