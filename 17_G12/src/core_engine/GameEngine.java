@@ -30,8 +30,8 @@ public class GameEngine implements IGameEngine, IGameConstants {
     private static ArrayList<Monster> monsters;
     //-----------------------------------------------------------
     private static Labyrinth labyrinth;
-    private final int mazeSize ;
-    private final int maxNumberOfMinions;
+    private int mazeSize ;
+    private int maxNumberOfMinions;
     private boolean finished;
     /** the constructer for the game engine to world of zuul this 
      * means it set the world size acording to dificulty 
@@ -46,16 +46,16 @@ public class GameEngine implements IGameEngine, IGameConstants {
 //        {
 //          i = parser.getDifficulty();
 //        }
-        difficulty = 3;        
-        mazeSize = (int)((1.5*difficulty)+3);
-        maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
-        monsters =new ArrayList<>();
-        labyrinth= new Labyrinth(mazeSize);   
-        spawnMobs();
-        finished = false;
-        System.out.println("Size                : "+this.mazeSize);
-        System.out.println("number of minions   : "+ this.maxNumberOfMinions);
-        System.out.println("Diffictulty is      : "+ this.difficulty);
+//        difficulty = 3;        
+//        mazeSize = (int)((1.5*difficulty)+3);
+//        maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
+//        monsters =new ArrayList<>();
+//        labyrinth= new Labyrinth(mazeSize);   
+//        spawnMobs();
+//        finished = false;
+//        System.out.println("Size                : "+this.mazeSize);
+//        System.out.println("number of minions   : "+ this.maxNumberOfMinions);
+//        System.out.println("Diffictulty is      : "+ this.difficulty);
     }
     //-----------------------------------------------------------
     //--------------------------General--------------------------
@@ -227,8 +227,8 @@ public class GameEngine implements IGameEngine, IGameConstants {
     /**
      * handles the spawning of of the player, minions and Zuul.
      */
-    private void spawnMobs() {         
-        player= new Player("Player", 100, 100, 100,1);        
+    private void spawnMobs(String playerName) {         
+        player= new Player(playerName, 100, 100, 100,1);        
         labyrinth.spawnPlayer(0,0, player);
         Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', this.difficulty,true);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
@@ -426,7 +426,17 @@ public class GameEngine implements IGameEngine, IGameConstants {
 
     @Override
     public boolean startNewGame(int difficulty, String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.difficulty = difficulty;        
+        mazeSize = (int)((1.5*difficulty)+3);
+        maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
+        monsters =new ArrayList<>();
+        labyrinth= new Labyrinth(mazeSize);   
+        spawnMobs(name);
+        finished = false;
+        System.out.println("Size                : "+this.mazeSize);
+        System.out.println("number of minions   : "+ this.maxNumberOfMinions);
+        System.out.println("Diffictulty is      : "+ this.difficulty);
+        return true;
     }
 }
     

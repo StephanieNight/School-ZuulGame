@@ -321,7 +321,7 @@ public class GUIController implements IUI
     @FXML
     private void playButtonClicked(ActionEvent event) {
         changeScene(newGameScene, gameScene);
-        //gameEngine.startNewGame(difficulty, enterPlayerName.getText());
+        gameEngine.startNewGame(difficulty, enterPlayerName.getText());
         viewPort.setImage(gameEngine.renderMiniMapView());
     }
 
