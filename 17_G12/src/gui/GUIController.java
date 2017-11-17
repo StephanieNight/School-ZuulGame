@@ -338,7 +338,7 @@ public class GUIController implements IUI
     private void playButtonClicked(ActionEvent event) {
         changeScene(newGameScene, gameScene);
         gameEngine.startNewGame(difficulty, enterPlayerName.getText());
-        viewPort.setImage(gameEngine.renderMiniMapView());
+        viewPort.setImage(gameEngine.renderMazeView());
     }
 
     @FXML

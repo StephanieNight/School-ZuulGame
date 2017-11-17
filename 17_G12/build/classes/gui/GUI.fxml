@@ -18,7 +18,7 @@
 
 <AnchorPane fx:id="defaultScene" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
-      <AnchorPane fx:id="mainMenuScene" disable="true" visible="false">
+      <AnchorPane fx:id="mainMenuScene">
          <children>
             <GridPane prefHeight="480.0" prefWidth="640.0">
               <columnConstraints>
@@ -109,7 +109,7 @@
             <ImageView fx:id="highscoreBackgroundImage" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="newGameScene">
+      <AnchorPane fx:id="newGameScene" disable="true" visible="false">
          <children>
             <ImageView fx:id="newGameBackgroundImage" fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" visible="false" />
             <GridPane prefHeight="480.0" prefWidth="640.0">
@@ -221,6 +221,7 @@
                         <Button fx:id="inventoryButton" layoutX="42.0" layoutY="28.0" mnemonicParsing="false" onAction="#inventoryButtonClicked" text="Inventory" />
                         <Button fx:id="searchButton" layoutX="155.0" layoutY="28.0" mnemonicParsing="false" onAction="#searchButtonClicked" text="Search" />
                         <Button fx:id="pickUpButton" layoutX="261.0" layoutY="28.0" mnemonicParsing="false" onAction="#pickUpButtonClicked" text="Pick up" />
+                        <Button fx:id="mapButton" layoutX="369.0" layoutY="28.0" mnemonicParsing="false" onAction="#mapButtonClicked" text="Map" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -287,6 +288,46 @@
                   </Label>
                   <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="test&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet" GridPane.rowIndex="1" />
                   <Button fx:id="backToOptionsButton" mnemonicParsing="false" onAction="#backtoOptionsButtonClicked" text="Back to Options" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="combatScene" disable="true" layoutX="10.0" layoutY="10.0" prefHeight="490.0" prefWidth="650.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane prefHeight="480.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="467.0" minWidth="10.0" prefWidth="467.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="400.0" minHeight="0.0" prefHeight="400.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fx:id="viewPort1" fitHeight="400.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@billeder/straigth.png" />
+                     </image>
+                  </ImageView>
+                  <TextArea editable="false" maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+                  <AnchorPane maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Button fx:id="attackButton" layoutX="52.0" layoutY="28.0" mnemonicParsing="false" onAction="#attackButtonClicked" prefWidth="75.0" text="Attack" />
+                        <Button fx:id="combatInventoryButton" layoutX="48.0" layoutY="85.0" mnemonicParsing="false" onAction="#combatInventoryButtonClicked" prefHeight="31.0" prefWidth="83.0" text="Inventory" />
+                        <Button fx:id="fleeButton" layoutX="52.0" layoutY="137.0" mnemonicParsing="false" onAction="#fleeButtonClicked" prefWidth="75.0" text="Flee" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane maxHeight="80.0" maxWidth="467.0" prefHeight="80.0" prefWidth="467.0" GridPane.rowIndex="1">
+                     <children>
+                        <TextField editable="false" layoutX="14.0" layoutY="25.0" prefWidth="40.0" text="HP" />
+                        <TextField fx:id="currentHealthField" editable="false" layoutX="54.0" layoutY="25.0" onAction="#currentHealthFieldUpdate" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Button fx:id="combatSceneOptionsButton" layoutX="50.0" layoutY="25.0" mnemonicParsing="false" onAction="#combatSceneOptionsButtonClicked" text="Options" />
+                     </children>
+                  </AnchorPane>
                </children>
             </GridPane>
          </children>

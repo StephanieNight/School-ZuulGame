@@ -13,8 +13,9 @@ package core_engine;
  */
 public interface IGameConstants {
     String FILEPATH_RUNNING_DIR = "";
+    String FILEPATH_CHARACTORS_DIR = "assets\\charactors\\";
     String FILEPATH_MINIMAP_DIR = "assets\\Minimap tiles\\";
-    String FILEPATH_MAZEVIEW_DIR = "assets\\rooms\\textures\\";
+    String FILEPATH_MAZEVIEW_DIR = "assets\\rooms\\Textures\\";
     String FILENAME_SAVEGAME = "savegame.zuul";
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
     String[] FILENAME_PICTURES_MINIMAP = 
@@ -37,22 +38,28 @@ public interface IGameConstants {
     };
     String[] FILENAME_PICTURES_VIEWPORT = 
     {
-        "Background.png",
-        "InnerTemplate.png",
-        "InnerLeft.png",
-        "InnerRight.png",
-        "InnerNoForward.png",
-        "InnerNoLeft.png",
-        "InnerNoRight.png",
-        
-        "OuterTemplate.png",
-        "OuterLeft.png",
-        "OuterRight.png",
-        "OuterNoForward.png",
-        "OuterNoLeft.png",
-        "OuterNoRight.png",
-        "OuterForward.png"
+        "Background.png",       // 0        
+        "OuterTemplate.png",    // 1
+        "OuterLeft.png",        // 8
+        "OuterRight.png",       // 9
+        "OuterNoForward.png",   // 10
+        "OuterNoLeft.png",      // 11
+        "OuterNoRight.png",     // 12
+        "OuterForward.png",     // 13 
+        "InnerTemplate.png",    // 1
+        "InnerLeft.png",        // 2
+        "InnerRight.png",       // 3
+        "InnerNoForward.png",   // 4
+        "InnerNoLeft.png",      // 5
+        "InnerNoRight.png"      // 6
     
+    };
+    String[] FILENAME_PICTURES_TOKEN = 
+    {
+        "Player Token.png",       // 0
+        "Monster Token.png",     // 1
+        "Zuul Token.png",        // 2
+   
     };
     String[] SCREEN_RES =
     {
