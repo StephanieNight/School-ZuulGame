@@ -5,6 +5,8 @@
  */
 package gui;
 
+import acquaintance.IGameEngine;
+import acquaintance.IUI;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author BenPaxIndustries
  */
-public class GUIController 
+public class GUIController implements IUI
 {    
     private Label label;
     @FXML
@@ -121,6 +124,16 @@ public class GUIController
     private Button BackToDifficlyButton;
     @FXML
     private ImageView viewPort;
+    
+    
+    
+    private int difficulty = 1;
+    
+    private IGameEngine gameEngine;
+    @FXML
+    private TextField enterPlayerName;
+    
+            
         
     public void initialize()
     {
@@ -141,6 +154,7 @@ public class GUIController
     private void highscoreButtonClicked(ActionEvent event)
     {
         changeScene(mainMenuScene, highscoreScene);
+        gameEngine.loadHighScore();
     }
 
     @FXML
@@ -212,30 +226,37 @@ public class GUIController
 
     @FXML
     private void loadGameButtonClicked(ActionEvent event) {
+        gameEngine.loadGame();
     }
 
     @FXML
     private void forwardButtonClicked(ActionEvent event) {
+        gameEngine.move();
     }
 
     @FXML
     private void leftButtonClicked(ActionEvent event) {
+        gameEngine.turnLeft();
     }
 
     @FXML
     private void rightButtonClicked(ActionEvent event) {
+        gameEngine.turnRight();
     }
 
     @FXML
     private void backButtonClicked(ActionEvent event) {
+        gameEngine.turnBack();
     }
 
     @FXML
     private void inventoryButtonClicked(ActionEvent event) {
+        
     }
 
     @FXML
     private void searchButtonClicked(ActionEvent event) {
+        
     }
 
     @FXML
@@ -249,6 +270,7 @@ public class GUIController
 
     @FXML
     private void saveGameButtonClicked(ActionEvent event) {
+        gameEngine.saveGame();
     }
 
     @FXML
@@ -299,11 +321,42 @@ public class GUIController
     @FXML
     private void playButtonClicked(ActionEvent event) {
         changeScene(newGameScene, gameScene);
+        gameEngine.startNewGame(difficulty, enterPlayerName.getText());
     }
 
     @FXML
     private void BackToDifficltyButtonClicked(ActionEvent event) {
         makeInvisible(EnterNamePopUpLayer);
+    }
+
+    @FXML
+    private void veryEasyButtonClicked(ActionEvent event) {
+        difficulty = 1;
+    }
+
+    @FXML
+    private void easyButtonClicked(ActionEvent event) {
+        difficulty = 2;
+    }
+
+    @FXML
+    private void normalButtonClicked(ActionEvent event) {
+        difficulty = 3;                
+    }
+
+    @FXML
+    private void hardButtonClicked(ActionEvent event) {
+        difficulty = 4;
+    }
+
+    @FXML
+    private void veryHardButtonClicked(ActionEvent event) {
+        difficulty = 5;
+    }
+
+    @Override
+    public void injectGameEngine(IGameEngine gameEngine) {
+         this.gameEngine = gameEngine;
     }
 
 
