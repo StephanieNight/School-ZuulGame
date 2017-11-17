@@ -39,19 +39,21 @@ public interface IGameConstants {
     String[] FILENAME_PICTURES_VIEWPORT = 
     {
         "Background.png",       // 0        
-        "OuterTemplate.png",    // 1
-        "OuterLeft.png",        // 8
-        "OuterRight.png",       // 9
-        "OuterNoForward.png",   // 10
-        "OuterNoLeft.png",      // 11
-        "OuterNoRight.png",     // 12
-        "OuterForward.png",     // 13 
+      
         "InnerTemplate.png",    // 1
         "InnerLeft.png",        // 2
         "InnerRight.png",       // 3
         "InnerNoForward.png",   // 4
         "InnerNoLeft.png",      // 5
-        "InnerNoRight.png"      // 6
+        "InnerNoRight.png",      //6
+            
+        "OuterTemplate.png",    // 7
+        "OuterLeft.png",        // 8
+        "OuterRight.png",       // 9
+        "OuterNoForward.png",   // 10
+        "OuterNoLeft.png",      // 11
+        "OuterNoRight.png",     // 12
+        "OuterForward.png"     // 13 
     
     };
     String[] FILENAME_PICTURES_TOKEN = 

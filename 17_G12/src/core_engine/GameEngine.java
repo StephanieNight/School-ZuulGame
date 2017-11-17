@@ -8,14 +8,9 @@ package core_engine;
 import acquaintance.IGameEngine;
 import acquaintance.IInventory;
 import data.SaveGameInstance;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
-import javax.imageio.ImageIO;
 
 /**
  *

@@ -33,6 +33,7 @@ public class RenderEngine implements IGameConstants{
             for(int row = 0; row < mazeSize; row++){
                 for(int col = 0; col < mazeSize; col++){
                     Room room = maze[row][col];
+                    if(!room.isPlayerVissited()) continue;
                     BufferedImage tile = new BufferedImage(181,181,BufferedImage.TYPE_INT_ARGB); // stars as a blank imagae
                     switch (room.getExits().length)
                     {
@@ -319,67 +320,67 @@ public class RenderEngine implements IGameConstants{
             BufferedImage tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[1])); // current template
             graph.drawImage(tile, 0,0,null);  // draws current template;
             
-//            if(currentRoom.getExit(player.getFacing().left.direction) != null)
-//            {
-//                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[2])); 
-//                graph.drawImage(tile, 0,0,null);  // draws 
-//            }
-//            else 
-//            {
-//                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[5]));
-//                graph.drawImage(tile, 0,0,null);  // draws
-//            }
-//            if(currentRoom.getExit(player.getFacing().right.direction) != null)
-//            {
-//                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[3])); 
-//                graph.drawImage(tile, 0,0,null);  // draws 
-//            }
-//            else 
-//            {
-//                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[3]));
-//                graph.drawImage(tile, 0,0,null);  // draws
-//            }  
-//
-//            Room nextRoom = currentRoom.getExit(player.getFacing().direction);
-//            if(nextRoom != null){
-//                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[7])); // next r template
-//                graph.drawImage(tile, 0,0,null);  // draws nexrt template;
-//                
-//                if(nextRoom.getExit(player.getFacing().left.direction) != null){                           
-//                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[8])); // outher template
-//                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-//                }
-//                else
-//                {
-//                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[11])); // outher template
-//                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-//                }
-//                
-//                if(nextRoom.getExit(player.getFacing().right.direction) != null){                          
-//                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[9])); // outher template
-//                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-//                }
-//                else
-//                {
-//                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[12])); // outher template
-//                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-//                }
-//                
-//                if(nextRoom.getExit(player.getFacing().direction) != null){                     
-//                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[13])); // outher template
-//                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-//                }
-//                else
-//                {
-//                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[10])); // outher template
-//                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-//                }
-//            }
-//            else
-//            {
-//                 tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[4])); // outher template
-//                 graph.drawImage(tile, 0,0,null);  // draws next room template;
-//            }            
+            if(currentRoom.getExit(player.getFacing().left.direction) != null)
+            {
+                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[2])); 
+                graph.drawImage(tile, 0,0,null);  // draws 
+            }
+            else 
+            {
+                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[5]));
+                graph.drawImage(tile, 0,0,null);  // draws
+            }
+            if(currentRoom.getExit(player.getFacing().right.direction) != null)
+            {
+                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[3])); 
+                graph.drawImage(tile, 0,0,null);  // draws 
+            }
+            else 
+            {
+                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[6]));
+                graph.drawImage(tile, 0,0,null);  // draws
+            }  
+
+            Room nextRoom = currentRoom.getExit(player.getFacing().direction);
+            if(nextRoom != null){
+                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[7])); // next r template
+                graph.drawImage(tile, 0,0,null);  // draws nexrt template;
+                
+                if(nextRoom.getExit(player.getFacing().left.direction) != null){                           
+                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[8])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                }
+                else
+                {
+                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[11])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                }
+                
+                if(nextRoom.getExit(player.getFacing().right.direction) != null){                          
+                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[9])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                }
+                else
+                {
+                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[12])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                }
+                
+                if(nextRoom.getExit(player.getFacing().direction) != null){                     
+                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[13])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                }
+                else
+                {
+                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[10])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                }
+            }
+            else
+            {
+                 tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[4])); // outher template
+                 graph.drawImage(tile, 0,0,null);  // draws next room template;
+            }            
             return SwingFXUtils.toFXImage(renderedView,null);            
         } 
         catch (IOException ex) {

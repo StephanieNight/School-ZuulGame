@@ -126,7 +126,7 @@ public class GUIController implements IUI
     private ImageView viewPort;
     
     
-    
+    private boolean isMapView = false;
     private int difficulty = 1;
     
     private IGameEngine gameEngine;
@@ -399,6 +399,16 @@ public class GUIController implements IUI
 
     @FXML
     private void mapButtonClicked(ActionEvent event) {
+        if(!isMapView)
+        {
+          viewPort.setImage(gameEngine.renderMiniMapView());
+            isMapView = true;
+        }
+        else
+        {
+            viewPort.setImage(gameEngine.renderMazeView());
+            isMapView = false;
+        }
     }
 
 
