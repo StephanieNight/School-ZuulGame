@@ -23,7 +23,7 @@ import javax.imageio.ImageIO;
  */
 public class GameEngine implements IGameEngine, IGameConstants {
     private int difficulty;  
-    private Parser parser;
+    //private Parser parser;
     //-----------------------------------------------------------
     // Primary instances
     private static  Player player;
@@ -40,13 +40,13 @@ public class GameEngine implements IGameEngine, IGameConstants {
      */
     public GameEngine()
     {
-        this.parser = new Parser();
-        int i = -1;
-        while(i == -1)
-        {
-          i = parser.getDifficulty();
-        }
-        difficulty = i;        
+        //this.parser = new Parser();
+//        int i = -1;
+//        while(i == -1)
+//        {
+//          i = parser.getDifficulty();
+//        }
+        difficulty = 3;        
         mazeSize = (int)((1.5*difficulty)+3);
         maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
         monsters =new ArrayList<>();
@@ -118,9 +118,9 @@ public class GameEngine implements IGameEngine, IGameConstants {
      * handle the players input and turn.
      */
     private void processPlayer() {
-        Command command = parser.getCommand();
-        if (!processCommand(command))
-            processPlayer();
+//        Command command = parser.getCommand();
+//        if (!processCommand(command))
+//            processPlayer();
     }  
     /**
      * a version of the old go room from the legacy zuul game 
@@ -282,7 +282,7 @@ public class GameEngine implements IGameEngine, IGameConstants {
      */
     private void printHelp() {
         System.out.println("you have the following uptions :");
-        parser.showCommands();
+//        parser.showCommands();
     }    
     //-----------------------------------------------------------
     //------------------------AI Handling------------------------
@@ -382,7 +382,7 @@ public class GameEngine implements IGameEngine, IGameConstants {
 
     @Override
     public Image renderMiniMapView() {           
-       return null;
+       return RenderEngine.renderMiniMapView(labyrinth.getMaze());
     }
 
     @Override
