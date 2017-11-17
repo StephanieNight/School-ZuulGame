@@ -41,13 +41,13 @@ public class RenderEngine implements IGameConstants{
                                 if(room.getExits()[0].equals(north))
                                 {
                                     //dead end exit north
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[9]));  
                                     break;
                                 }
                                 else if (room.getExits()[0].equals(south))
                                 {
                                     //dead end exit sout
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[12]));  
                                     break;
 
                                 }
@@ -60,7 +60,7 @@ public class RenderEngine implements IGameConstants{
                                 else 
                                 {
                                     //dead end ext west
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[10]));  
                                     break;
                                 }
                                 // </editor-fold>
@@ -70,41 +70,41 @@ public class RenderEngine implements IGameConstants{
                                     && (room.getExits()[1].equals(north) || room.getExits()[1].equals(south)))
                                 {
                                     //straigt room north south
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[14]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(east) || room.getExits()[0].equals(west)) 
                                     && (room.getExits()[1].equals(east) || room.getExits()[1].equals(west)))
                                 {
                                     //straigt room east west
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[13]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(north) || room.getExits()[0].equals(east)) 
                                     && (room.getExits()[1].equals(north) || room.getExits()[1].equals(east)))
                                 {
                                     //cornor room exits north and east
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[2]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(north) || room.getExits()[0].equals(west)) 
                                     && (room.getExits()[1].equals(north) || room.getExits()[1].equals(west)))
                                 {
                                     //cornor room exits north and west
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[3]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(south) || room.getExits()[0].equals(east)) 
                                     && (room.getExits()[1].equals(south) || room.getExits()[1].equals(east)))
                                 {
                                     //cornor room exits south and east
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[0]));  
                                     break;
                                 }
                                 else
                                 {
                                     //cornor room exits south and west
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[1]));  
                                     break;
                                 }
                                 // </editor-fold>
@@ -115,7 +115,7 @@ public class RenderEngine implements IGameConstants{
                                         && (room.getExits()[2].equals(north) || room.getExits()[2].equals(south) || room.getExits()[2].equals(east)))
                                 {
                                     //T-room exits north, south and east
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[4]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(north) || room.getExits()[0].equals(south) || room.getExits()[0].equals(west)) 
@@ -123,7 +123,7 @@ public class RenderEngine implements IGameConstants{
                                         && (room.getExits()[2].equals(north) || room.getExits()[2].equals(south) || room.getExits()[2].equals(west)))
                                 {
                                     //T-room exits north, south and west
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[5]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(north) || room.getExits()[0].equals(east) || room.getExits()[0].equals(west)) 
@@ -131,19 +131,19 @@ public class RenderEngine implements IGameConstants{
                                         && (room.getExits()[2].equals(north) || room.getExits()[2].equals(east) || room.getExits()[2].equals(west)))
                                 {
                                     //T-room exits north, east and west
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[7]));  
                                     break;
                                 }
                                 else 
                                 {
                                     //T-room exits south, east and west
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[6]));  
                                     break;
                                 }
                                 // </editor-fold>
                             default:
                                 //croos roads
-                                tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[8]));  
                                 break;
                     } 
                     graph.drawImage(tile, 181*row, 181*col,null);                   
