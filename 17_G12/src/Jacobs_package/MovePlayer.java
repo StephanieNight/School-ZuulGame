@@ -22,7 +22,7 @@ public class MovePlayer {
     
     private GameEngine engine;
     
-    public boolean forward(){
+    /*public boolean forward(){
         Command command = new Command(CommandWord.GO, facing.direction);
         //boolean moved = engine.goRoom(command);//goRoom() is private
         view.View(facing);
@@ -50,5 +50,5 @@ public class MovePlayer {
     
     public Labyrinth.DIR getFacing(){
         return this.facing;
-    }
+    }*/
 }
