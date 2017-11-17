@@ -28,7 +28,7 @@ public abstract class Actor implements Serializable
     private int weapon = 0;
     private int armor = 0;
     private int shield = 0;
-    public Labyrinth.DIR facing;
+    private Labyrinth.DIR facing;
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
     /**
