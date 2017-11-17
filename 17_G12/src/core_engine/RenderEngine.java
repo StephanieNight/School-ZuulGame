@@ -287,17 +287,17 @@ public class RenderEngine implements IGameConstants{
     }   
     public Image renderMazeView(Room foreGround, Room backGround) {
     try {
-            //set basic canves
-            BufferedImage renderedView = new BufferedImage(700,600,BufferedImage.TYPE_INT_ARGB);
-            
-            BufferedImage backGround = ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+"\\CornerLeft.png"));
-            
-            Graphics2D graph = renderedView.createGraphics();
-            graph.drawImage(backGround, 0, 0,null);
-            
-            Image toview=SwingFXUtils.toFXImage(renderedView,null);
-            
-            return toview;
+//            //set basic canves
+//            BufferedImage renderedView = new BufferedImage(700,600,BufferedImage.TYPE_INT_ARGB);
+//            
+//            BufferedImage backGround = ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+"\\CornerLeft.png"));
+//            
+//            Graphics2D graph = renderedView.createGraphics();
+//            graph.drawImage(backGround, 0, 0,null);
+//            
+//            Image toview=SwingFXUtils.toFXImage(renderedView,null);
+//            
+//            return toview;
             
         } catch (Exception ex) {
              System.out.println(ex.getMessage());
