@@ -12,7 +12,6 @@ import java.util.Scanner;
 import core_engine.Actor;
 import core_engine.Monster;
 import core_engine.Player;
-import core_engine.Zuul;
 /**
  * Class to resolve conflict between a player and a monster.
  * @author collaboration between Ahmet, Malte and Nicolai.
