@@ -132,6 +132,22 @@ public class GUIController implements IUI
     private IGameEngine gameEngine;
     @FXML
     private TextField enterPlayerName;
+    @FXML
+    private AnchorPane combatScene;
+    @FXML
+    private ImageView viewPort1;
+    @FXML
+    private Button attackButton;
+    @FXML
+    private Button combatInventoryButton;
+    @FXML
+    private Button fleeButton;
+    @FXML
+    private TextField currentHealthField;
+    @FXML
+    private Button combatSceneOptionsButton;
+    @FXML
+    private Button mapButton;
     
             
         
@@ -358,6 +374,31 @@ public class GUIController implements IUI
     @Override
     public void injectGameEngine(IGameEngine gameEngine) {
          this.gameEngine = gameEngine;
+    }
+
+    @FXML
+    private void attackButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void combatInventoryButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void fleeButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void currentHealthFieldUpdate(ActionEvent event) {
+    }
+
+    @FXML
+    private void combatSceneOptionsButtonClicked(ActionEvent event) {
+        changeScene(combatScene, optionsScene);
+    }
+
+    @FXML
+    private void mapButtonClicked(ActionEvent event) {
     }
 
 
