@@ -5,9 +5,9 @@
  */
 package core_engine;
 
-import Jacobs_package.Branch;
-import Jacobs_package.PotLid;
-import Jacobs_package.TatteredClothes;
+import core_engine.Items.Branch;
+import core_engine.Items.PotLid;
+import core_engine.Items.TatteredClothes;
 import maltestestpackage.Inventory;
 
 /**
