@@ -354,24 +354,7 @@ public class GameEngine implements IGameEngine, IGameConstants {
 
     @Override
     public Image renderMazeView() {
-        
-         try {
-            //set basic canves
-            BufferedImage renderedView = new BufferedImage(700,600,BufferedImage.TYPE_INT_ARGB);
-            
-            BufferedImage backGround = ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+"\\CornerLeft.png"));
-            
-            Graphics2D graph = renderedView.createGraphics();
-            graph.drawImage(backGround, 0, 0,null);
-            
-            Image toview=SwingFXUtils.toFXImage(renderedView,null);
-            
-            return toview;
-            
-        } catch (Exception ex) {
-             System.out.println(ex.getMessage());
-        }
-         return null;
+       return RenderEngine.renderMazeView(player);
     }
 
     @Override
