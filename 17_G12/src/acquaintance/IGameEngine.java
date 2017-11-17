@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
  * @author Malte
  */
 public interface IGameEngine {
-    public boolean startNewGame(int difficulty);
+    public boolean startNewGame(int difficulty, String name);
     public int getDifficulty();
     public boolean saveHighScore();
     public boolean loadHighScore();
