@@ -28,7 +28,7 @@ public abstract class Actor implements Serializable
     private int weapon = 0;
     private int armor = 0;
     private int shield = 0;
-    public Labyrinth.DIR facing = Labyrinth.DIR.S;
+    public Labyrinth.DIR facing;
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
     /**
@@ -48,6 +48,7 @@ public abstract class Actor implements Serializable
         this.MAP_CODE=mapCode;
         this.currentHealth = DEFAULT_HEALTH_POINTS;
         this.inventory = new Inventory(this,diff);
+        this.facing = Labyrinth.DIR.S;
         inventory.updateStat();
     }
     //  in this metode you can set the level 

@@ -19,19 +19,21 @@ public interface IGameConstants {
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
     String[] FILENAME_PICTURES_MINIMAP = 
     {
-        "bend south east.png",
-        "bend south west.png",
-        "bend north east.png",
-        "bend north west.png",            
-        "T way north south east.png",
-        "T way south west north.png",
-        "T way south, east, west.png",
-        "T way north east west.png",           
-        "Crossroads.png",
-        "dead end north.png",
-        "dead end west.png",
-        "dead end east.png",
-        "dead end south.png"
+        "bend south east.png",          // 0
+        "bend south west.png",          // 1
+        "bend north east.png",          // 2
+        "bend north west.png",          // 3  
+        "T way north south east.png",   // 4
+        "T way south west north.png",   // 5
+        "T way south, east, west.png",  // 6  
+        "T way north east west.png",    // 7       
+        "Crossroads.png",               // 8
+        "dead end north.png",           // 9
+        "dead end west.png",            // 10
+        "dead end east.png",            // 11
+        "dead end south.png",           // 12
+        "Straight path east west.png",  // 13
+        "Straight path north south.png",// 14
     };
     String[] FILENAME_PICTURES_VIEWPORT = 
     {

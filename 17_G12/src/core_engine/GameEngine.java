@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
  *
  * @author Stephanie
  */
-public class GameEngine extends Game implements IGameEngine, IGameConstants {
+public class GameEngine implements IGameEngine, IGameConstants {
     private int difficulty;  
     private Parser parser;
     //-----------------------------------------------------------
@@ -60,10 +60,9 @@ public class GameEngine extends Game implements IGameEngine, IGameConstants {
     //-----------------------------------------------------------
     //--------------------------General--------------------------
     //-----------------------------------------------------------  
-    /* 
-        Main Play loop
-    */
-    @Override
+    /**
+     * 
+     */
     public void play()
     {          
         printWelcome();
@@ -383,7 +382,7 @@ public class GameEngine extends Game implements IGameEngine, IGameConstants {
 
     @Override
     public Image renderMiniMapView() {           
-       
+       return null;
     }
 
     @Override
@@ -425,5 +424,10 @@ public class GameEngine extends Game implements IGameEngine, IGameConstants {
     public boolean flee() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }   
+
+    @Override
+    public boolean checkForCombat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
     
