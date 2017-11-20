@@ -31,19 +31,16 @@ public class MovePlayer {
 
     public boolean backward(){
         this.facing = this.facing.opposite;
-        view.View(facing);
         return false;
     }
     
     public boolean left(){
         this.facing = this.facing.left;
-        view.View(facing);
         return false;
     }
 	
     public boolean right(){
         this.facing = this.facing.left;
-        view.View(facing);
         return false;
     }
     

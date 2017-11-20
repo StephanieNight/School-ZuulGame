@@ -5,7 +5,7 @@
  */
 package data;
 
-import core_engine.GameEngine;
+import core_engine.ZuulGame;
 import core_engine.Room;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -40,7 +40,7 @@ public class SaveGameInstance implements Serializable {
       this.player = player;
     }
     public static void serializeToFile(SaveGameInstance samegame) throws IOException {
-        OutputStream outStream = new FileOutputStream(GameEngine.FILENAME_SAVEGAME);
+        OutputStream outStream = new FileOutputStream(ZuulGame.FILENAME_SAVEGAME);
         ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
         fileObjectOut.writeObject(samegame);
         fileObjectOut.close();
@@ -48,7 +48,7 @@ public class SaveGameInstance implements Serializable {
     }
 
     public static SaveGameInstance deserializeFromFile() throws IOException, ClassNotFoundException {
-        InputStream inStream = new FileInputStream(GameEngine.FILENAME_SAVEGAME);
+        InputStream inStream = new FileInputStream(ZuulGame.FILENAME_SAVEGAME);
 
         ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
         SaveGameInstance sa = (SaveGameInstance) fileObjectIn.readObject();
