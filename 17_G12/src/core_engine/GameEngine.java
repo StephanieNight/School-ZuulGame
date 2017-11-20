@@ -116,4 +116,9 @@ public class GameEngine implements IGameEngine {
     public boolean flee() {
       return game.flee();
     }
+
+    @Override
+    public boolean checkWinCondition() {
+        return game.checkWinCondition();
+    }
 }

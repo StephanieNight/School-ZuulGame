@@ -106,6 +106,7 @@ public class Labyrinth
     }    
     private void startMazeGeneration()
     {
+        maze[0][0].setIsExit(true);
         DIR dir = DIR.S;
         // Add Exit to Current Room
         int nextX = dir.dx;      // gets X for the next Room 
