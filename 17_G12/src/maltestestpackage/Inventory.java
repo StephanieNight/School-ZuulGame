@@ -6,7 +6,6 @@
 package maltestestpackage;
 
 import java.util.Scanner;
-import Jacobs_package.*;
 import core_engine.Room;
 import core_engine.Actor;
 import core_engine.Player;
