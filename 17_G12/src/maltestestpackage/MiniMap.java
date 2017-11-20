@@ -5,13 +5,17 @@
  */
 package maltestestpackage;
 
+import core_engine.Labyrinth;
 import core_engine.Player;
+import core_engine.Room;
 
 /**
  *
  * @author Malte
  */
 public class MiniMap implements Item{
+    
+    private Room[][] maze;
 
     @Override
     public String getDescription() {
@@ -27,10 +31,15 @@ public class MiniMap implements Item{
     
     /**
      * Updates the whole map as if you've been everywhere.
+     * @param p
      */
     @Override
     public void useItem(Player p) {
-        //sets all room to visited
+        for (Room[] maze1 : maze) {
+            for (Room maze11 : maze1) {
+                maze11.isPlayerVissited();
+            }
+        }
     }
 
     @Override
@@ -43,8 +52,8 @@ public class MiniMap implements Item{
         return -1;
     }
     
-    public MiniMap()
+    public MiniMap(Labyrinth maze)
     {
-        
+        this.maze = maze.getMaze();
     }
 }

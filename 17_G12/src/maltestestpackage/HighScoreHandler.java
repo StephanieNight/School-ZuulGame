@@ -5,7 +5,8 @@
  */
 package maltestestpackage;
 
-import core_engine.GameEngine;
+import core_engine.ZuulGame;
+import core_engine.ZuulGame;
 import data.SaveGameInstance;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -34,16 +35,16 @@ public class HighScoreHandler implements Serializable{
      */
     public void fillArray()
     {
-       scores[0] = new Score(999, GameEngine.DIFFICULTY_NAMES[4], "Maltron2000");
-       scores[1] = new Score(120, GameEngine.DIFFICULTY_NAMES[3], "Hercules");
-       scores[2] = new Score(75, GameEngine.DIFFICULTY_NAMES[2], "Medusa");
-       scores[3] = new Score(55, GameEngine.DIFFICULTY_NAMES[2], "Beowulf");
-       scores[4] = new Score(54, GameEngine.DIFFICULTY_NAMES[2], "Holgar");
-       scores[5] = new Score(40, GameEngine.DIFFICULTY_NAMES[2], "Thomas");
-       scores[6] = new Score(28, GameEngine.DIFFICULTY_NAMES[1], "Karsten");
-       scores[7] = new Score(27, GameEngine.DIFFICULTY_NAMES[1], "Günther");
-       scores[8] = new Score(12, GameEngine.DIFFICULTY_NAMES[0], "NOOB_PLAYER_1");
-       scores[9] = new Score(2, GameEngine.DIFFICULTY_NAMES[0], "NOOB_PLAYER_1");
+       scores[0] = new Score(999, ZuulGame.DIFFICULTY_NAMES[4], "Maltron2000");
+       scores[1] = new Score(120, ZuulGame.DIFFICULTY_NAMES[3], "Hercules");
+       scores[2] = new Score(75, ZuulGame.DIFFICULTY_NAMES[2], "Medusa");
+       scores[3] = new Score(55, ZuulGame.DIFFICULTY_NAMES[2], "Beowulf");
+       scores[4] = new Score(54, ZuulGame.DIFFICULTY_NAMES[2], "Holgar");
+       scores[5] = new Score(40, ZuulGame.DIFFICULTY_NAMES[2], "Thomas");
+       scores[6] = new Score(28, ZuulGame.DIFFICULTY_NAMES[1], "Karsten");
+       scores[7] = new Score(27, ZuulGame.DIFFICULTY_NAMES[1], "Günther");
+       scores[8] = new Score(12, ZuulGame.DIFFICULTY_NAMES[0], "NOOB_PLAYER_1");
+       scores[9] = new Score(2, ZuulGame.DIFFICULTY_NAMES[0], "NOOB_PLAYER_1");
        
     }
 
@@ -87,7 +88,7 @@ public class HighScoreHandler implements Serializable{
      * @throws IOException 
      */
     public static void serializeToFile(HighScoreHandler samegame) throws IOException {
-        OutputStream outStream = new FileOutputStream(GameEngine.FILENAME_HIGHSCORE_LIST);
+        OutputStream outStream = new FileOutputStream(ZuulGame.FILENAME_HIGHSCORE_LIST);
         ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
         fileObjectOut.writeObject(samegame);
         fileObjectOut.close();
@@ -101,7 +102,7 @@ public class HighScoreHandler implements Serializable{
      * @throws ClassNotFoundException 
      */
     public static HighScoreHandler deserializeFromFile() throws IOException, ClassNotFoundException {
-        InputStream inStream = new FileInputStream(GameEngine.FILENAME_HIGHSCORE_LIST);
+        InputStream inStream = new FileInputStream(ZuulGame.FILENAME_HIGHSCORE_LIST);
         ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
         HighScoreHandler sa = (HighScoreHandler) fileObjectIn.readObject();
         System.out.println(sa);
