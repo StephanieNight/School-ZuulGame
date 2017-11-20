@@ -13,9 +13,9 @@ package core_engine;
  */
 public interface IGameConstants {
     String FILEPATH_RUNNING_DIR = "";
-    String FILEPATH_CHARACTORS_DIR = "assets\\charactors\\";
-    String FILEPATH_MINIMAP_DIR = "assets\\Minimap tiles\\";
-    String FILEPATH_MAZEVIEW_DIR = "assets\\rooms\\Textures\\";
+    String FILEPATH_CHARACTORS_DIR = "assets//charactors//";
+    String FILEPATH_MINIMAP_DIR = "assets//Minimap tiles//";
+    String FILEPATH_MAZEVIEW_DIR = "assets//rooms//Textures//";
     String FILENAME_SAVEGAME = "savegame.zuul";
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
     String[] FILENAME_PICTURES_MINIMAP = 
