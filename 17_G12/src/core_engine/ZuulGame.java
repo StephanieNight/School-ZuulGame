@@ -349,16 +349,21 @@ public class ZuulGame implements IGameConstants {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public boolean move() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Command command=new Command(CommandWord.GO, player.getFacing().direction);
+        goRoom(command);
+        return true;
     }
     public boolean turnRight() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        player.setFacing(player.getFacing().right);
+        return false;
     }
     public boolean turnLeft() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        player.setFacing(player.getFacing().left);
+        return false;
     }
     public boolean turnBack() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        player.setFacing(player.getFacing().opposite);
+        return false;
     }
     public IInventory getInventory() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
