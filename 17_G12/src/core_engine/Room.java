@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 import java.util.HashMap;
-import maltestestpackage.Inventory;
-import maltestestpackage.Item;
+import core_engine.Items.Inventory;
+import core_engine.Items.Item;
 
 /**
  * @author  Michael Kolling and David J. Barnes

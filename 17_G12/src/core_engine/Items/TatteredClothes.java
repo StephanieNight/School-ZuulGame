@@ -5,7 +5,6 @@
  */
 package core_engine.Items;
 
-import maltestestpackage.Item;
 import core_engine.Player;
 /**
  *

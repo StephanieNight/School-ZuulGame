@@ -3,7 +3,7 @@ package core_engine;
 
 import core_engine.Room;
 import java.io.Serializable;
-import maltestestpackage.Inventory;
+import core_engine.Items.Inventory;
 
 
 /**
@@ -23,12 +23,13 @@ public abstract class Actor implements Serializable
     private int level =1;
     private int diff;
     private int xp;
-    private int totalXp;
     private Inventory inventory;
     private int weapon = 0;
     private int armor = 0;
     private int shield = 0;
     private Labyrinth.DIR facing;
+    private int swiftnessCounter = 1;
+    private int invisible = 0;
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
     /**
@@ -60,9 +61,7 @@ public abstract class Actor implements Serializable
         this.xp = xp;
     }
     // in this metode you can set the totalXp
-    public void setTotalXp(int totalXp) {
-        this.totalXp = totalXp;
-    }
+
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
@@ -112,9 +111,7 @@ public abstract class Actor implements Serializable
     public int getXp() {
         return xp;
     }
-    public int getTotalXp() {
-        return totalXp =totalXp + xp;
-    }
+
     public char getMapCode() {
         return MAP_CODE;
     }
@@ -144,6 +141,41 @@ public abstract class Actor implements Serializable
     }
     public void setFacing(Labyrinth.DIR facing){
         this.facing = facing;
+    }
+    
+    public boolean isSwiftness()
+    {
+        if(swiftnessCounter %2 == 1)
+        {
+            if(swiftnessCounter < 1)
+            {
+                swiftnessCounter--;
+            }
+            return false;
+        }
+        else
+        {
+            swiftnessCounter--;
+            return true;
+        }
+    }
+    
+    public void setSwiftnessCounter(int counter)
+    {
+        swiftnessCounter += counter;
+    }
+    public boolean isInvis()
+    {
+        if(invisible > 0)
+        {
+            invisible--;
+            return true;
+        }
+        return false;
+    }
+    public void setInvis(int counter)
+    {
+        this.invisible += counter;
     }
 }
 

@@ -11,7 +11,6 @@ import data.SaveGameInstance;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
-import maltestestpackage.ItemGenerator;
 
 /**
  *

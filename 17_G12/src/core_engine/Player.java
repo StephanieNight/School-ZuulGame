@@ -8,7 +8,7 @@ package core_engine;
 import core_engine.Items.Branch;
 import core_engine.Items.PotLid;
 import core_engine.Items.TatteredClothes;
-import maltestestpackage.Inventory;
+import core_engine.Items.Inventory;
 
 /**
  *
