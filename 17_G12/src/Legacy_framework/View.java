@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Jacobs_package;
+package Legacy_framework;
 
 import core_engine.Labyrinth;
 import core_engine.Room;
