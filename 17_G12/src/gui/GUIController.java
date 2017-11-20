@@ -274,25 +274,25 @@ public class GUIController implements IUI
     @FXML
     private void forwardButtonClicked(ActionEvent event) {
         gameEngine.move();
-        gameEngine.renderMazeView();
+        viewPort.setImage(gameEngine.renderMazeView());
     }
 
     @FXML
     private void leftButtonClicked(ActionEvent event) {
         gameEngine.turnLeft();
-        gameEngine.renderMazeView();
+        viewPort.setImage(gameEngine.renderMazeView());
     }
 
     @FXML
     private void rightButtonClicked(ActionEvent event) {
         gameEngine.turnRight();
-        gameEngine.renderMazeView();
+        viewPort.setImage(gameEngine.renderMazeView());
     }
 
     @FXML
     private void backButtonClicked(ActionEvent event) {
         gameEngine.turnBack();
-        gameEngine.renderMazeView();
+        viewPort.setImage(gameEngine.renderMazeView());
     }
 
     @FXML
