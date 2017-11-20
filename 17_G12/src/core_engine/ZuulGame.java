@@ -11,6 +11,7 @@ import data.SaveGameInstance;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
+import maltestestpackage.ItemGenerator;
 
 /**
  *
@@ -28,12 +29,15 @@ public class ZuulGame implements IGameConstants {
     private int mazeSize ;
     private int maxNumberOfMinions;
     private boolean finished;
+    private ItemGenerator itemGenerator;
+    
     /** the constructer for the game engine to world of zuul this 
      * means it set the world size acording to dificulty 
      * mixes in apropreate numper of monsters and generates the 
      * lapyrinth.
      */
     public ZuulGame() {
+        
         //this.parser = new Parser();
 //        int i = -1;
 //        while(i == -1)
@@ -233,6 +237,12 @@ public class ZuulGame implements IGameConstants {
                 }
             }            
         }
+        
+        if(difficulty == 1)
+        {
+            player.getInventory().addItem(itemGenerator.generateItem(1));
+            player.getInventory().addItem(itemGenerator.generateItem(2));
+        }
     }    
     /**
      * process the command given, from the player 
@@ -364,15 +374,17 @@ public class ZuulGame implements IGameConstants {
     }
     public boolean startNewGame(int difficulty, String name) {
         this.difficulty = difficulty;        
-        mazeSize = (int)((1.5*difficulty)+3);
-        maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
-        monsters =new ArrayList<>();
-        labyrinth= new Labyrinth(mazeSize);   
+        this.mazeSize = (int)((1.5*difficulty)+3);
+        this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
+        this.monsters =new ArrayList<>();
+        this.labyrinth= new Labyrinth(mazeSize);   
+        this.itemGenerator = new ItemGenerator(labyrinth);
         spawnMobs(name);
         finished = false;
         System.out.println("Size                : "+this.mazeSize);
         System.out.println("number of minions   : "+ this.maxNumberOfMinions);
         System.out.println("Diffictulty is      : "+ this.difficulty);
+        
         return true;
     }
 }
