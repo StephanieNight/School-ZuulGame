@@ -172,6 +172,8 @@ public class GUIController implements IUI
     private Button dropInventoryButton;
     @FXML
     private Button inspectInventoryButton;
+    @FXML
+    private Button closeInventoryButton;
     
             
         
@@ -295,6 +297,8 @@ public class GUIController implements IUI
 
     @FXML
     private void inventoryButtonClicked(ActionEvent event) {
+        makeVisible(inventoryScene);
+        
         
     }
 
@@ -477,6 +481,11 @@ public class GUIController implements IUI
 
     @FXML
     private void inspectInventoryButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void closeInventoryButtonClicked(ActionEvent event) {
+        makeInvisible(inventoryScene);
     }
 
 

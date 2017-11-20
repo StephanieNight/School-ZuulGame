@@ -199,12 +199,18 @@
                 <RowConstraints maxHeight="80.0" minHeight="10.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <AnchorPane fx:id="inventoryScene" prefHeight="200.0" prefWidth="200.0">
+                  <ImageView fx:id="viewPort" fitHeight="400.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@billeder/straigth.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane fx:id="inventoryScene" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <children>
                         <GridPane prefHeight="400.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
@@ -224,19 +230,15 @@
                               <RadioButton fx:id="itemFourRadioButton" mnemonicParsing="false" onAction="#itemFourRadioButtonClicked" text="Item 4" toggleGroup="$inventoryButtons" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                               <RadioButton fx:id="itemThreeRadioButton" mnemonicParsing="false" onAction="#itemThreeRadioButtonClicked" text="Item 3" toggleGroup="$inventoryButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                               <RadioButton fx:id="itemSixRadioButton" mnemonicParsing="false" onAction="#itemSixRadioButtonClicked" text="Item 6" toggleGroup="$inventoryButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="itemSevenRadioButton" mnemonicParsing="false" onAction="#itemSevenRadioButtonClicked" text="Item 7" toggleGroup="$inventoryButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="itemSevenRadioButton" mnemonicParsing="false" onAction="#itemSevenRadioButtonClicked" text="Item 7" toggleGroup="$inventoryButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
                               <Button fx:id="useInventoryButton" mnemonicParsing="false" onAction="#useInventoryButtonClicked" text="Use" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                               <Button fx:id="dropInventoryButton" mnemonicParsing="false" onAction="#dropInventoryButtonClicked" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                               <Button fx:id="inspectInventoryButton" mnemonicParsing="false" onAction="#inspectInventoryButtonClicked" text="Inspect" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Button fx:id="closeInventoryButton" mnemonicParsing="false" onAction="#closeInventoryButtonClicked" text="Close" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                      </children>
                   </AnchorPane>
-                  <ImageView fx:id="viewPort" fitHeight="400.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@billeder/straigth.png" />
-                     </image>
-                  </ImageView>
                   <TextArea editable="false" maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
                   <AnchorPane maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
                      <children>
