@@ -35,7 +35,7 @@ public class Sword implements Item{
     
     @Override
     public int getStat(){ //Added attack value amount.
-        return 7;
+        return 17;
     }   
     
     public Sword(){

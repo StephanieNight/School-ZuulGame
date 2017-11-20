@@ -17,7 +17,7 @@ import core_engine.Labyrinth;
 
 
 /**
- *
+ * Class to generate items. Can either generate a specific or a random item.
  * @author Malte
  */
 public class ItemGenerator {
@@ -29,7 +29,10 @@ public class ItemGenerator {
         this.maze = maze;
     }
     
-    
+    /**
+     * generates a random item
+     * @return the item generated
+     */
     public Item generateRandomItem()
     {
 
@@ -37,6 +40,11 @@ public class ItemGenerator {
         return generateItem(num);
     }
     
+    /**
+     * generates a specific item
+     * @param num an integer for the item you want.
+     * @return Item corresponding to the interger given.
+     */
     public Item generateItem(int num)
     {
 

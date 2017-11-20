@@ -35,7 +35,7 @@ public class Branch implements Item{
     
     @Override
     public int getStat(){ //Added attack value amount.
-        return 2;
+        return 5;
     }
     
     public Branch(){

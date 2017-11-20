@@ -8,7 +8,7 @@ package core_engine.Items;
 import core_engine.Player;
 
 /**
- *
+ * lets you add extra time to your game.
  * @author Malte
  */
 public class LampOil implements Item{
@@ -23,6 +23,10 @@ public class LampOil implements Item{
         return "Lamp Oil";
     }
 
+    /**
+     * calls the method in player to add extra time.
+     * @param p the current player.
+     */
     @Override
     public void useItem(Player p) {
         p.addLampOil();

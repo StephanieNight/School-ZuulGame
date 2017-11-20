@@ -34,7 +34,7 @@ public class TatteredClothes implements Item{
     
     @Override
     public int getStat(){ //Added defense value amount.
-        return 1;
+        return 3;
     }  
     public TatteredClothes(){
         

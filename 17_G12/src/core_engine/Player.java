@@ -19,13 +19,13 @@ public class Player extends Actor{
      private int lampOil;
     
     
-    public Player(String name, int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, int level) {
-        super(name, defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'P',level);
+    public Player(String name, int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, int level, int difficulty) {
+        super(name, defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'P', level, difficulty);
         
         getInventory().addItem(new Branch());
         getInventory().addItem(new TatteredClothes());
         getInventory().addItem(new PotLid());
-       
+        lampOil = 25 + difficulty * 25;
     }  
     public int getLampOil(){
         return lampOil;

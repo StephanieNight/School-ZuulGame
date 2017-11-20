@@ -127,7 +127,7 @@ public class GUIController implements IUI
     
     
     private boolean isMapView = false;
-    private int difficulty = 1;
+    private int difficulty = 3;
     
     private IGameEngine gameEngine;
     @FXML

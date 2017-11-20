@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 public class RenderEngine implements IGameConstants{
     public static Image renderMiniMapView(Room[][] maze)      
     {
-                String north = "north";
+        String north = "north";
         String south = "south";
         String east = "east";
         String west = "west";
@@ -340,7 +340,7 @@ public class RenderEngine implements IGameConstants{
                 tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[6]));
                 graph.drawImage(tile, 0,0,null);  // draws
             }  
-
+  
             Room nextRoom = currentRoom.getExit(player.getFacing().direction);
             if(nextRoom != null){
                 tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[7])); // next r template
@@ -375,12 +375,15 @@ public class RenderEngine implements IGameConstants{
                     tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[10])); // outher template
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
                 }
+
             }
+            
             else
             {
                  tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[4])); // outher template
                  graph.drawImage(tile, 0,0,null);  // draws next room template;
-            }            
+            }
+  
             return SwingFXUtils.toFXImage(renderedView,null);            
         } 
         catch (IOException ex) {

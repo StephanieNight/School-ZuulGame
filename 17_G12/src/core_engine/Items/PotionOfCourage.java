@@ -26,7 +26,7 @@ public class PotionOfCourage implements Item {
     }
 
     /**
-     * no effect so far
+     * lets you gain a level.
      */
     @Override
     public void useItem(Player p) {

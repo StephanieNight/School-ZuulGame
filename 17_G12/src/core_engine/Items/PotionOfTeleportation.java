@@ -26,8 +26,7 @@ public class PotionOfTeleportation implements Item {
     }
 
     /**
-     * transports the player to a random location on the map by setting current
-     * location to a randomised location.
+     * transports the player to a random location on the map
      */
     @Override
     public void useItem(Player p) {

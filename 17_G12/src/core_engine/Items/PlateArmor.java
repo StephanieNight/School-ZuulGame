@@ -35,7 +35,7 @@ public class PlateArmor implements Item{
     
     @Override
     public int getStat(){ //Added defense value amount.
-        return 5;
+        return 10;
     }   
     
     public PlateArmor(){

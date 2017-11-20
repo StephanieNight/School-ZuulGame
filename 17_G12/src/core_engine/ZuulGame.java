@@ -216,9 +216,10 @@ public class ZuulGame implements IGameConstants {
      * handles the spawning of of the player, minions and Zuul.
      */
     private void spawnMobs(String playerName) {         
-        player= new Player(playerName, 100, 100, 100,1);        
+        player= new Player(playerName, 100, 20, 30, 1, this.difficulty);
+
         labyrinth.spawnPlayer(0,0, player);
-        Monster zuul = new Monster("Zuul", 500, 500, 500, 'Z', this.difficulty,true);
+        Monster zuul = new Monster("Zuul", 140 + ((int)(Math.pow(this.difficulty, 2))*10), 15, 25, 'Z',this.difficulty, true, this.difficulty);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
         monsters.add(zuul);
         for (int i = 0; i < this.maxNumberOfMinions ; i++) 
@@ -228,7 +229,7 @@ public class ZuulGame implements IGameConstants {
             {
                 int x = (int)(1+ Math.random()*(this.mazeSize-1)); 
                 int y = (int)(1+ Math.random()*(this.mazeSize-1));
-                Monster min = new Monster(("minion"+i), 30, 30, 30, 'M',this.difficulty, false);
+                Monster min = new Monster(("minion"+i), 30, 0, 10, 'M',this.difficulty, false, this.difficulty);
                 added = labyrinth.spawnMonster(x, y,min);
                 if(added)
                 {
