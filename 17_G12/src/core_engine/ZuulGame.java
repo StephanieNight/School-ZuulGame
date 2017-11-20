@@ -392,6 +392,10 @@ public class ZuulGame implements IGameConstants {
         
         return true;
     }
+    
+    public boolean checkWinCondition() {
+        return player.getCurrentRoom().isExit();
+    }
 }
     
 

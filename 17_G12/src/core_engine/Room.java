@@ -22,7 +22,16 @@ public class Room
     private int pictureID_3D;
     private int pictureID_MiniMap;
     private boolean playerVissited;
+    private boolean isExit;
 
+    public void setIsExit(boolean isExit) {
+        this.isExit = isExit;
+    }
+
+    public boolean isExit() {
+        return isExit;
+    }
+    
     public void setPictureID_3D(int pictureID_3D) {
         this.pictureID_3D = pictureID_3D;
     }

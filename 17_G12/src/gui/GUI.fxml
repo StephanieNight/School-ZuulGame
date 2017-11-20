@@ -172,20 +172,17 @@
                   <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Information about very hard difficulty" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
-            <AnchorPane fx:id="EnterNamePopUpLayer" disable="true" prefHeight="480.0" prefWidth="640.0" visible="false">
+            <AnchorPane fx:id="EnterNamePopUpLayer" prefHeight="480.0" prefWidth="640.0" visible="false">
                <children>
-                  <AnchorPane opacity="0.7" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;">
-                     <children>
-                        <Button fx:id="PlayButton" layoutX="271.0" layoutY="297.0" mnemonicParsing="false" onAction="#playButtonClicked" prefWidth="100.0" text="Play" />
-                        <TextField fx:id="enterPlayerName" layoutX="246.0" layoutY="195.0" />
-                        <Button fx:id="BackToDifficlyButton" layoutX="271.0" layoutY="357.0" mnemonicParsing="false" onAction="#BackToDifficltyButtonClicked" prefWidth="100.0" text="Back to difficlty" />
-                     </children>
-                  </AnchorPane>
-                  <Label layoutX="104.0" layoutY="102.0" text="Enter your name to continue" textFill="WHITE" underline="true">
+                  <AnchorPane opacity="0.7" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" />
+                  <TextField fx:id="enterPlayerName" layoutX="227.0" layoutY="138.0" />
+                  <Button fx:id="PlayButton" layoutX="250.0" layoutY="276.0" mnemonicParsing="false" onAction="#playButtonClicked" prefWidth="140.0" text="Play" />
+                  <Label layoutX="118.0" layoutY="57.0" text="Enter your name to continue" textFill="WHITE" underline="true">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
+                  <Button fx:id="BackToDifficlyButton" layoutX="250.0" layoutY="347.0" mnemonicParsing="false" onAction="#BackToDifficltyButtonClicked" prefWidth="140.0" text="Back to difficulty" />
                </children>
             </AnchorPane>
          </children>
@@ -202,7 +199,40 @@
                 <RowConstraints maxHeight="80.0" minHeight="10.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="viewPort" fitHeight="400.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true">
+                  <AnchorPane fx:id="inventoryScene" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <GridPane prefHeight="400.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <RadioButton fx:id="itemOneRadioButton" mnemonicParsing="false" onAction="#itemOneRadioButtonClicked" text="Item 1" GridPane.halignment="CENTER">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="inventoryButtons" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="itemTwoRadioButton" mnemonicParsing="false" onAction="#itemTwoRadioButtonClicked" text="Item 2" toggleGroup="$inventoryButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                              <RadioButton fx:id="itemFiveRadioButton" mnemonicParsing="false" onAction="#itemFiveRadioButtonClicked" text="Item 5" toggleGroup="$inventoryButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="itemFourRadioButton" mnemonicParsing="false" onAction="#itemFourRadioButtonClicked" text="Item 4" toggleGroup="$inventoryButtons" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="itemThreeRadioButton" mnemonicParsing="false" onAction="#itemThreeRadioButtonClicked" text="Item 3" toggleGroup="$inventoryButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                              <RadioButton fx:id="itemSixRadioButton" mnemonicParsing="false" onAction="#itemSixRadioButtonClicked" text="Item 6" toggleGroup="$inventoryButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="itemSevenRadioButton" mnemonicParsing="false" onAction="#itemSevenRadioButtonClicked" text="Item 7" toggleGroup="$inventoryButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <Button fx:id="useInventoryButton" mnemonicParsing="false" onAction="#useInventoryButtonClicked" text="Use" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Button fx:id="dropInventoryButton" mnemonicParsing="false" onAction="#dropInventoryButtonClicked" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Button fx:id="inspectInventoryButton" mnemonicParsing="false" onAction="#inspectInventoryButtonClicked" text="Inspect" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+                  <ImageView fx:id="viewPort" fitHeight="400.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@billeder/straigth.png" />
                      </image>

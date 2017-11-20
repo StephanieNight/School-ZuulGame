@@ -30,7 +30,7 @@ public class Labyrinth
                 maze[r][c] = new Room("A room");
             }
         }
-        generateMaze(0, 0);
+        startMazeGeneration();
         for(String s : maze[0][0].getExits())
         {          
             maze[0][0].setDoor(s);
@@ -104,14 +104,31 @@ public class Labyrinth
         }
         System.out.println("+");
     }    
+    private void startMazeGeneration()
+    {
+        maze[0][0].setIsExit(true);
+        DIR dir = DIR.S;
+        // Add Exit to Current Room
+        int nextX = dir.dx;      // gets X for the next Room 
+        int nextY = dir.dy;      // gets Y for the nex Room
+        maze[0][0].setExit(dir.direction, maze[nextX][nextY]);
+        // Add oppesite exit to next Room to bind them together
+        maze[nextX][nextY].setExit(dir.opposite.direction,maze[0][0]); 
+        // goes to next Cell and start the proces over again untill all rooms is full.
+        generateMaze(nextX, nextY);
+    }
     private void generateMaze(int currentX, int currentY) 
     {
         DIR[] dirs = DIR.values(); // gets all 4 enums for direction
         Collections.shuffle(Arrays.asList(dirs)); // mixes them up to get a reandom direction.
         for (DIR dir : dirs) // loops through each posible direction
         {
+            
             int nextX = currentX + dir.dx;      // gets X for the next Room 
             int nextY = currentY + dir.dy;      // gets Y for the nex Room
+            if(nextX == 0 && nextY == 0) continue; //checks if Spawn room if true skip.
+            
+            
             if (isInsideMaze(nextX, this.SIZE)  // checks if x is indside maze.
              && isInsideMaze(nextY, this.SIZE))  // checks if y is indside maze.
             { 

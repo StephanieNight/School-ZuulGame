@@ -148,6 +148,30 @@ public class GUIController implements IUI
     private Button combatSceneOptionsButton;
     @FXML
     private Button mapButton;
+    @FXML
+    private AnchorPane inventoryScene;
+    @FXML
+    private RadioButton itemOneRadioButton;
+    @FXML
+    private ToggleGroup inventoryButtons;
+    @FXML
+    private RadioButton itemTwoRadioButton;
+    @FXML
+    private RadioButton itemFiveRadioButton;
+    @FXML
+    private RadioButton itemFourRadioButton;
+    @FXML
+    private RadioButton itemThreeRadioButton;
+    @FXML
+    private RadioButton itemSixRadioButton;
+    @FXML
+    private RadioButton itemSevenRadioButton;
+    @FXML
+    private Button useInventoryButton;
+    @FXML
+    private Button dropInventoryButton;
+    @FXML
+    private Button inspectInventoryButton;
     
             
         
@@ -413,6 +437,46 @@ public class GUIController implements IUI
             viewPort.setImage(gameEngine.renderMazeView());
             isMapView = false;
         }
+    }
+
+    @FXML
+    private void itemOneRadioButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void itemTwoRadioButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void itemFiveRadioButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void itemFourRadioButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void itemThreeRadioButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void itemSixRadioButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void itemSevenRadioButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void useInventoryButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void dropInventoryButtonClicked(ActionEvent event) {
+    }
+
+    @FXML
+    private void inspectInventoryButtonClicked(ActionEvent event) {
     }
 
 

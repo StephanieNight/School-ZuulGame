@@ -10,5 +10,7 @@ package acquaintance;
  * @author Stephanie
  */
 public interface IRoom {
-    
+    public void setIsExit(boolean isExit);
+
+    public boolean isExit();
 }

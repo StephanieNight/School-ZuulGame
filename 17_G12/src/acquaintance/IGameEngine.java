@@ -34,6 +34,7 @@ public interface IGameEngine {
     public boolean checkForCombat();
     public boolean attack();
     public boolean flee();
+    public boolean checkWinCondition();
     
     
 }
