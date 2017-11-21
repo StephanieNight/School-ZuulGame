@@ -21,13 +21,19 @@ import core_engine.Player;
 // skal måske laves til set i stedet for array
 public class Inventory {
     private Item[] inventory;
-    private Actor actor;
+
+    private Player player;
+
     private int diff;
-    public Inventory(Actor p, int diff)
+    public Inventory( int diff)
     {
+
         this.diff = diff;
-        this.actor = p;
         inventory = new Item[8 - diff]; //inventory size based on difficulty
+    }
+    public void injectPlayer(Player p)
+    {
+        player = p;
     }
     
     public String[] getInventoryList() //shows player's inventory //TODO needs command word.
@@ -61,7 +67,7 @@ public class Inventory {
             return false;
         }
         
-        inventory[itemID].useItem(null);//activates the item's effect.
+        inventory[itemID].useItem(player);//activates the item's effect.
 
         if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 
             || "Armor".equals(inventory[itemID].getType())) 
@@ -102,7 +108,7 @@ public class Inventory {
      * @param item 
      */
     public boolean addItem(Item item)
-    {
+    {  
         boolean equipment = false;
         if ("Weapon".equals(item.getType()) || "Shield".equals(item.getType()) 
                 || "Armor".equals(item.getType()))
@@ -110,12 +116,16 @@ public class Inventory {
             equipment = true;
         }
         
-        boolean inventoryFull = true;
-        for (Item inventory1 : inventory) {
-            if(inventory1 == null)
+        boolean inventoryFull = false;
+        for (int i = 0; i < inventory.length; i++) {
+            if(inventory[i] == null)
             {
                 inventoryFull = false;
                 break;
+            }
+            else
+            {
+                inventoryFull = true;
             }
         }
         
@@ -123,20 +133,20 @@ public class Inventory {
         {
             if(equipment)
             {
-                for (Item inventory1 : inventory) {//cycles through inventory
-                    if(inventory1 != null)
+                for (int i = 0; i < inventory.length; i++) {//cycles through inventory
+                    if(inventory[i] != null)
                     {
-                    if(item.getType().equals(inventory1.getType()))//checks if equipment to add is the same type as one already in inventory.
+                    if(item.getType().equals(inventory[i].getType()))//checks if equipment to add is the same type as one already in inventory.
                     {
                         while(true){ //while loop ensures a valid response from player.
                             System.out.println("Do you wish to swap " + 
-                                    inventory1.getName() + " with " + item.getName() + "?");
+                                    inventory[i].getName() + " with " + item.getName() + "?");
                             System.out.println("Yes / No");
                             Scanner input = new Scanner(System.in);
                             String in = input.next().toLowerCase();
                             if(in.equals("yes")){
                                 System.out.println(item.getName() + " was picked up.");
-                                inventory1 = item; //destroys current equipment and replaces with new.
+                                inventory[i] = item; //destroys current equipment and replaces with new.
                                 updateStat();
                                 return true;
                             }
@@ -150,10 +160,10 @@ public class Inventory {
                 }
                 }
                 //if you're not already wearing equipment of the same type, pick it up.
-                for (Item inventory1 : inventory){
-                    if(inventory1 == null){
+                for (int i = 0; i < inventory.length; i++){
+                    if(inventory[i] == null){
                         System.out.println(item.getName() + " was picked up.");
-                        inventory1 = item; //adds item to first vacant spot in inventory.
+                        inventory[i] = item; //adds item to first vacant spot in inventory.
                         updateStat();
                         return true;
                     }
@@ -161,9 +171,9 @@ public class Inventory {
             }
             else //if consumable with non-full inventory
             {
-                for (Item inventory1 : inventory) {
-                    if(inventory1 == null){
-                        inventory1 = item; //adds item to first vacant spot in inventory.
+                for (int i = 0; i < inventory.length; i++) {
+                    if(inventory[i] == null){
+                        inventory[i] = item; //adds item to first vacant spot in inventory.
                         return true;
                     }
                 }
@@ -173,20 +183,20 @@ public class Inventory {
         {
             if(equipment)
             {
-                for (Item inventory1 : inventory) {
-                    if(inventory1 != null)
+                for (int i =0; i < inventory.length; i++) {
+                    if(inventory[i] != null)
                     {
-                        if(item.getType().equals(inventory1.getType()))
+                        if(item.getType().equals(inventory[i].getType()))
                         {
                             while(true){ //loop with return statements ensures a valid answer.
                                 System.out.println("Do you wish to swap " + 
-                                        inventory1.getName() + " with " + item.getName() + "?");
+                                        inventory[i].getName() + " with " + item.getName() + "?");
                                 System.out.println("Yes / No");
                                 Scanner input = new Scanner(System.in);
                                 String in = input.next().toLowerCase();
                                 if(in.equals("yes")){
                                     System.out.println(item.getName() + " was picked up.");
-                                    inventory1 = item; //destroys current equipment and replaces with new.
+                                    inventory[i] = item; //destroys current equipment and replaces with new.
                                     updateStat();
                                     return true;
                                 }
@@ -246,26 +256,26 @@ public class Inventory {
      */
     public void updateStat()
     {
-        actor.setWeapon(0);
-        actor.setArmor(0);
-        actor.setShield(0);
-        for(Item inventory1: inventory)
+        player.setWeapon(0);
+        player.setArmor(0);
+        player.setShield(0);
+        for (int i = 0; i < inventory.length; i++)
         {
-            if(inventory1 == null)
+            if(inventory[i] == null)
             {
                 break;
             }
-            if("Weapon".equals(inventory1.getType()))
+            if("Weapon".equals(inventory[i].getType()))
             {
-                actor.setWeapon(inventory1.getStat());
+                player.setWeapon(inventory[i].getStat());
             }
-            if("Armor".equals(inventory1.getType()))
+            if("Armor".equals(inventory[i].getType()))
             {
-                actor.setArmor(inventory1.getStat());
+                player.setArmor(inventory[i].getStat());
             }
-            if("Shield".equals(inventory1.getType()))
+            if("Shield".equals(inventory[i].getType()))
             {
-                actor.setShield(inventory1.getStat());
+                player.setShield(inventory[i].getStat());
             }
         }
     }

@@ -98,7 +98,7 @@ public class GameEngine implements IGameEngine {
     }
 
     @Override
-    public IInventory getInventory() {
+    public String[] getInventory() {
         return game.getInventory();
     }
 
@@ -120,5 +120,11 @@ public class GameEngine implements IGameEngine {
     @Override
     public boolean checkWinCondition() {
         return game.checkWinCondition();
+    }
+
+    @Override
+    public boolean useItem(int itemNumber) {
+        game.useItem(itemNumber);
+        return false;
     }
 }

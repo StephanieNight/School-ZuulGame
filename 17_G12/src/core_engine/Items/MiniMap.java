@@ -15,7 +15,7 @@ import core_engine.Room;
  */
 public class MiniMap implements Item{
     
-    private Room[][] maze;
+    private Labyrinth maze;
 
     @Override
     public String getDescription() {
@@ -35,9 +35,9 @@ public class MiniMap implements Item{
      */
     @Override
     public void useItem(Player p) {
-        for (Room[] maze1 : maze) {
-            for (Room maze11 : maze1) {
-                maze11.isPlayerVissited();
+        for (int i = 0; i < maze.getMaze().length; i++) {
+            for (int j = 0; j < maze.getMaze()[i].length; j++) {
+                maze.getMaze()[i][j].setPlayerVisisted();
             }
         }
     }
@@ -54,6 +54,6 @@ public class MiniMap implements Item{
     
     public MiniMap(Labyrinth maze)
     {
-        this.maze = maze.getMaze();
+        this.maze = maze;
     }
 }

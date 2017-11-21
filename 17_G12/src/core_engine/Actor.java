@@ -4,6 +4,7 @@ package core_engine;
 import core_engine.Room;
 import java.io.Serializable;
 import core_engine.Items.Inventory;
+import core_engine.Items.Item;
 
 
 /**
@@ -23,7 +24,7 @@ public abstract class Actor implements Serializable
     private int level;
     private int diff;
     private int xp;
-    private Inventory inventory;
+
     private int weapon = 0;
     private int armor = 0;
     private int shield = 0;
@@ -48,9 +49,9 @@ public abstract class Actor implements Serializable
         this.DEFAULT_DAMGE_OUTPUT = defaultDefense;
         this.MAP_CODE = mapCode;
         this.currentHealth = getModufiedHealthPoint();
-        this.inventory = new Inventory(this,diff);
+
         this.facing = Labyrinth.DIR.S;
-        inventory.updateStat();
+        
         this.level = level;
     }
     //  in this metode you can set the level 
@@ -125,9 +126,7 @@ public abstract class Actor implements Serializable
     public void updateLevel(){
         getModufiedHealthPoint();
     }
-    public Inventory getInventory(){
-         return inventory;
-     }
+
     public void setWeapon(int weapon){
         this.weapon = weapon;
     }

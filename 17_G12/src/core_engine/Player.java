@@ -9,6 +9,7 @@ import core_engine.Items.Branch;
 import core_engine.Items.PotLid;
 import core_engine.Items.TatteredClothes;
 import core_engine.Items.Inventory;
+import core_engine.Items.Item;
 
 /**
  *
@@ -17,15 +18,18 @@ import core_engine.Items.Inventory;
 public class Player extends Actor{
    
      private int lampOil;
+     private Inventory inventory;
     
     
     public Player(String name, int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, int level, int difficulty) {
         super(name, defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'P', level, difficulty);
-        
-        getInventory().addItem(new Branch());
-        getInventory().addItem(new TatteredClothes());
-        getInventory().addItem(new PotLid());
+        this.inventory = new Inventory(difficulty);
+        getInventory().injectPlayer(this);
+        addItem(new Branch());
+        addItem(new TatteredClothes());
+        addItem(new PotLid());
         lampOil = 25 + difficulty * 25;
+        inventory.updateStat();
     }  
     public int getLampOil(){
         return lampOil;
@@ -35,5 +39,15 @@ public class Player extends Actor{
    }
     public void useLampOil(){
         lampOil -= 1;
+    }
+    public Inventory getInventory()
+    {
+        return inventory;
+    }
+    
+    public boolean addItem(Item item)
+    {
+        return inventory.addItem(item);
+        
     }
 }

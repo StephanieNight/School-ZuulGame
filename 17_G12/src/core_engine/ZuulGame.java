@@ -21,10 +21,10 @@ public class ZuulGame implements IGameConstants {
     //private Parser parser;
     //-----------------------------------------------------------
     // Primary instances
-    private static  Player player;
-    private static ArrayList<Monster> monsters;
+    private Player player;
+    private ArrayList<Monster> monsters;
     //-----------------------------------------------------------
-    private static Labyrinth labyrinth;
+    private Labyrinth labyrinth;
     private int mazeSize ;
     private int maxNumberOfMinions;
     private boolean finished;
@@ -216,7 +216,7 @@ public class ZuulGame implements IGameConstants {
      * handles the spawning of of the player, minions and Zuul.
      */
     private void spawnMobs(String playerName) {         
-        player= new Player(playerName, 100, 20, 30, 1, this.difficulty);
+        player = new Player(playerName, 100, 20, 30, 1, this.difficulty);
 
         labyrinth.spawnPlayer(0,0, player);
         Monster zuul = new Monster("Zuul", 140 + ((int)(Math.pow(this.difficulty, 2))*10), 15, 25, 'Z',this.difficulty, true, this.difficulty);
@@ -240,8 +240,8 @@ public class ZuulGame implements IGameConstants {
         
         if(difficulty == 1)
         {
-            player.getInventory().addItem(itemGenerator.generateItem(1));
-            player.getInventory().addItem(itemGenerator.generateItem(2));
+            player.addItem(itemGenerator.generateItem(1));
+            player.addItem(itemGenerator.generateItem(2));
         }
     }    
     /**
@@ -365,8 +365,8 @@ public class ZuulGame implements IGameConstants {
         player.setFacing(player.getFacing().opposite);
         return false;
     }
-    public IInventory getInventory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String[] getInventory() {
+        return player.getInventory().getInventoryList();
     }
     public boolean attack() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -395,6 +395,11 @@ public class ZuulGame implements IGameConstants {
     
     public boolean checkWinCondition() {
         return player.getCurrentRoom().isExit();
+    }
+    
+    public void useItem(int itemID)
+    {
+        player.getInventory().useItem(itemID);
     }
 }
     

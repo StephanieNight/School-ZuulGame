@@ -23,8 +23,8 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author BenPaxIndustries
  */
-public class GUIController implements IUI
-{    
+public class GUIController implements IUI {
+
     private Label label;
     @FXML
     private AnchorPane defaultScene;
@@ -124,11 +124,11 @@ public class GUIController implements IUI
     private Button BackToDifficlyButton;
     @FXML
     private ImageView viewPort;
-    
-    
+
     private boolean isMapView = false;
     private int difficulty = 3;
-    
+    private int itemNumber = 0;
+
     private IGameEngine gameEngine;
     @FXML
     private TextField enterPlayerName;
@@ -175,93 +175,77 @@ public class GUIController implements IUI
     @FXML
     private Button closeInventoryButton;
     
-            
-        
-    public void initialize()
-    {
+    private RadioButton[] radioButtons;
+
+    public void initialize() {
         // TODO
-    }    
+    }
 
     //------------------------------------------------------
     //-----------------------Main Menu----------------------
     //------------------------------------------------------
-    
     @FXML
-    private void newGameButtonClicked(ActionEvent event)
-    {
+    private void newGameButtonClicked(ActionEvent event) {
         changeScene(mainMenuScene, newGameScene);
     }
 
     @FXML
-    private void highscoreButtonClicked(ActionEvent event)
-    {
+    private void highscoreButtonClicked(ActionEvent event) {
         changeScene(mainMenuScene, highscoreScene);
         gameEngine.loadHighScore();
     }
 
     @FXML
-    private void creditsButtonClicked(ActionEvent event)
-    {
+    private void creditsButtonClicked(ActionEvent event) {
         changeScene(mainMenuScene, creditsScene);
     }
 
     @FXML
-    private void quitButtonClicked(ActionEvent event)
-    {
+    private void quitButtonClicked(ActionEvent event) {
         //Quits the game
         Platform.exit();
     }
-    
+
     //------------------------------------------------------
     //---------------------New Game Menu--------------------
     //------------------------------------------------------
-    
     @FXML
-    private void newGameBackButtonClicked(ActionEvent event)
-    {
+    private void newGameBackButtonClicked(ActionEvent event) {
         changeScene(newGameScene, mainMenuScene);
     }
-    
+
     //------------------------------------------------------
     //--------------------Highscore Menu--------------------
     //------------------------------------------------------
-    
     @FXML
-    private void highscoreBackButtonClicked(ActionEvent event)
-    {
+    private void highscoreBackButtonClicked(ActionEvent event) {
         changeScene(highscoreScene, mainMenuScene);
     }
-    
+
     //------------------------------------------------------
     //----------------------Credits Menu--------------------
     //------------------------------------------------------
-    
     @FXML
-    private void creditsBackButtonClicked(ActionEvent event)
-    {
+    private void creditsBackButtonClicked(ActionEvent event) {
         changeScene(creditsScene, mainMenuScene);
     }
-    
+
     //------------------------------------------------------
     //--------------------General Methods-------------------
     //------------------------------------------------------
-    
-    private void changeScene(AnchorPane from, AnchorPane to)
-    {
+    private void changeScene(AnchorPane from, AnchorPane to) {
         from.setVisible(false);
         from.setDisable(true);
         to.setVisible(true);
         to.setDisable(false);
     }
-    
-    private void makeVisible(AnchorPane popUp)
-    {
+
+    private void makeVisible(AnchorPane popUp) {
         popUp.setVisible(true);
         popUp.setDisable(false);
     }
-    
-    private void makeInvisible(AnchorPane popUp)
-    {
+
+    private void makeInvisible(AnchorPane popUp) {
         popUp.setVisible(false);
         popUp.setDisable(true);
     }
@@ -298,13 +282,20 @@ public class GUIController implements IUI
     @FXML
     private void inventoryButtonClicked(ActionEvent event) {
         makeVisible(inventoryScene);
-        
-        
+        String[] inventoryList = gameEngine.getInventory();
+        for(int i = 0; i < inventoryList.length; i++)
+        {
+            System.out.println(inventoryList[i]);
+            radioButtons[i].setText(inventoryList[i]);
+        }
+        viewPort.setVisible(false);
+       
+
     }
 
     @FXML
     private void searchButtonClicked(ActionEvent event) {
-        
+
     }
 
     @FXML
@@ -349,7 +340,6 @@ public class GUIController implements IUI
 //    private void newGamePlayButtonClicked(ActionEvent event) {
 //        changeScene(newGameScene, gameScene);
 //    }
-
     @FXML
     private void yesDeleteProgressButtonClicked(ActionEvent event) {
         makeInvisible(wantToQuitPopUpLayer);
@@ -371,7 +361,18 @@ public class GUIController implements IUI
         changeScene(newGameScene, gameScene);
         gameEngine.startNewGame(difficulty, enterPlayerName.getText());
         viewPort.setImage(gameEngine.renderMazeView());
+        radioButtons = new RadioButton[7];
+        radioButtons[0] = itemOneRadioButton;
+        radioButtons[1] = itemTwoRadioButton;
+        radioButtons[2] = itemThreeRadioButton;
+        radioButtons[3] = itemFourRadioButton;
+        radioButtons[4] = itemFiveRadioButton;
+        radioButtons[5] = itemSixRadioButton;
+        radioButtons[6] = itemSevenRadioButton;
+        
     }
+        
+    
 
     @FXML
     private void BackToDifficltyButtonClicked(ActionEvent event) {
@@ -390,7 +391,7 @@ public class GUIController implements IUI
 
     @FXML
     private void normalButtonClicked(ActionEvent event) {
-        difficulty = 3;                
+        difficulty = 3;
     }
 
     @FXML
@@ -405,7 +406,7 @@ public class GUIController implements IUI
 
     @Override
     public void injectGameEngine(IGameEngine gameEngine) {
-         this.gameEngine = gameEngine;
+        this.gameEngine = gameEngine;
     }
 
     @FXML
@@ -431,13 +432,10 @@ public class GUIController implements IUI
 
     @FXML
     private void mapButtonClicked(ActionEvent event) {
-        if(!isMapView)
-        {
-          viewPort.setImage(gameEngine.renderMiniMapView());
+        if (!isMapView) {
+            viewPort.setImage(gameEngine.renderMiniMapView());
             isMapView = true;
-        }
-        else
-        {
+        } else {
             viewPort.setImage(gameEngine.renderMazeView());
             isMapView = false;
         }
@@ -445,34 +443,43 @@ public class GUIController implements IUI
 
     @FXML
     private void itemOneRadioButtonClicked(ActionEvent event) {
+        itemNumber = 0;
     }
 
     @FXML
     private void itemTwoRadioButtonClicked(ActionEvent event) {
+        itemNumber = 1;
     }
 
     @FXML
     private void itemFiveRadioButtonClicked(ActionEvent event) {
+        itemNumber = 4;
     }
 
     @FXML
     private void itemFourRadioButtonClicked(ActionEvent event) {
+        itemNumber = 3;
     }
 
     @FXML
     private void itemThreeRadioButtonClicked(ActionEvent event) {
+        itemNumber = 2;
     }
 
     @FXML
     private void itemSixRadioButtonClicked(ActionEvent event) {
+        itemNumber = 5;
     }
 
     @FXML
     private void itemSevenRadioButtonClicked(ActionEvent event) {
+        itemNumber = 6;
     }
 
     @FXML
     private void useInventoryButtonClicked(ActionEvent event) {
+        gameEngine.useItem(itemNumber);
+
     }
 
     @FXML
@@ -486,7 +493,8 @@ public class GUIController implements IUI
     @FXML
     private void closeInventoryButtonClicked(ActionEvent event) {
         makeInvisible(inventoryScene);
+        viewPort.setVisible(true);
+        
     }
-
 
 }

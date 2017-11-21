@@ -29,7 +29,8 @@ public interface IGameEngine {
     public boolean turnRight();
     public boolean turnLeft();
     public boolean turnBack();
-    public IInventory getInventory();
+    public String[] getInventory();
+    public boolean useItem(int itemNumber);
     
     public boolean checkForCombat();
     public boolean attack();
