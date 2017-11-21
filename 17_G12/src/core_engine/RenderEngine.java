@@ -173,135 +173,6 @@ public class RenderEngine implements IGameConstants{
         }
         return null;        
     }
-    public static Image renderMiniMapViewOLD(Room[][] maze)            
-    { 
-        try {             
-        int mazeSize = maze.length;
-            //set basic canves
-            int size = 181* mazeSize;
-            BufferedImage renderedView = new BufferedImage(size,size,BufferedImage.TYPE_INT_ARGB);
-            Graphics2D graph = renderedView.createGraphics();
-            for(int row = 0; row < mazeSize; row++){
-                for(int col = 0; col < mazeSize; col++){
-                    String[] exits = maze[row][col].getExits(); 
-                    BufferedImage tile = new BufferedImage(181,181,BufferedImage.TYPE_INT_ARGB); // stars as a blank imagae
-                    switch(exits.length)
-                    {    
-                       
-                        case(1): 
-                            // <editor-fold defaultstate="collapsed" desc="Case dead ends"> 
-                            switch(exits[0])
-                            {
-                                case ("east"):
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
-                                    break;
-                                case ("west"):
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[10]));  
-                                    break;
-                                case ("south"):
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[12]));  
-                                    break;
-                                case ("north"):
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[9]));  
-                                    break;
-                            }
-                            // </editor-fold>
-                            break;
-
-                        case(2):
-                            
-                            switch(exits[0])
-                            {
-                                case ("east"):
-                                    switch(exits[1])
-                                    {                                     
-                                        case ("west"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[13]));  
-                                            break;
-                                        case ("south"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[0]));  
-                                            break;
-                                        case ("north"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[2]));  
-                                            break;
-                                    }                               
-                                    break;
-                                case ("west"):
-                                    switch(exits[1])
-                                    {
-                                        case ("east"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
-                                            break;
-                                        case ("south"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[12]));  
-                                            break;
-                                        case ("north"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[9]));  
-                                            break;
-                                    }
-                                    break;
-                                case ("south"):
-                                      switch(exits[1])
-                                    {
-                                        case ("east"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
-                                            break;
-                                        case ("west"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[10]));  
-                                            break;
-                                        case ("north"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[9]));  
-                                            break;
-                                    }
-                                    break;
-                                case ("north"):
-                                    switch(exits[1])
-                                    {
-                                        case ("east"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
-                                            break;
-                                        case ("west"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[10]));  
-                                            break;
-                                        case ("south"):
-                                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[12]));  
-                                            break;
-                                    }
-                                    break;
-                            }
-                        break;
-                        
-                        case(3):
-                            
-                            
-                            
-                            
-                            
-                            
-                            break;
-                        case(4):
-                            
-                            
-                            tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[8]));    
-                            break;
-                        default:
-                            break;
-                    }
-                    graph.drawImage(tile, 181*row, 181*col,null);
-                   
-                   
-                   
-                   
-                }
-            }
-            Image toview=SwingFXUtils.toFXImage(renderedView,null);
-            
-            return toview;            
-        } catch (IOException ex) {
-             System.out.println(ex.getMessage());
-        }
-        return null;
-    }   
     public static Image renderMazeView(Player player) {
     try {
             //set basic canves
@@ -340,6 +211,20 @@ public class RenderEngine implements IGameConstants{
                 tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[6]));
                 graph.drawImage(tile, 0,0,null);  // draws
             }  
+            Monster m =(Monster) currentRoom.getMonster(); 
+            if(m !=null)
+            {
+                if(m.isBoss())
+                {
+                    tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[3])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;   
+                }
+                else
+                {
+                    tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[2])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;   
+                }
+            }
   
             Room nextRoom = currentRoom.getExit(player.getFacing().direction);
             if(nextRoom != null){
@@ -375,9 +260,22 @@ public class RenderEngine implements IGameConstants{
                     tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[10])); // outher template
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
                 }
+                m =(Monster) nextRoom.getMonster(); 
+                if(m !=null)
+                {
+                    if(m.isBoss())
+                    {
+                        tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[1])); // outher template
+                        graph.drawImage(tile, 0,0,null);  // draws next room template;   
+                    }
+                    else
+                    {
+                        tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[0])); // outher template
+                        graph.drawImage(tile, 0,0,null);  // draws next room template;   
+                    }
+                }
 
-            }
-            
+            }            
             else
             {
                  tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[4])); // outher template
