@@ -12,18 +12,19 @@ package core_engine;
  * @author Stephanie
  */
 public interface IGameConstants {
+    boolean isDebug = true;
     String FILEPATH_RUNNING_DIR = "";
     String FILEPATH_CHARACTORS_DIR = "assets//charactors//";
     String FILEPATH_MINIMAP_DIR = "assets//minimap tiles//";
-    String FILEPATH_MAZEVIEW_DIR = "assets//rooms//Textures//";
+    String FILEPATH_MAZEVIEW_DIR = "assets//rooms//textures//";
     String FILENAME_SAVEGAME = "savegame.zuul";
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
     String[] FILENAME_PICTURES_CHARACTOR =
     {
-        "innerMinion.png",      // 0
-        "innerZuul.png",        // 1
-        "outerMinion.png",      // 2
-        "outerZuul.png"         // 3
+        "innerMinion.png",          // 0
+        "innerZuul.png",            // 1
+        "outerMinion.png",          // 2
+        "outerZuul.png"             // 3
     };
     String[] FILENAME_PICTURES_MINIMAP = 
     {

@@ -169,7 +169,10 @@ public class RenderEngine implements IGameConstants{
             return SwingFXUtils.toFXImage(renderedView,null);         
         } 
         catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("Error happened in Rendering");
+            System.out.println("message: "+ex.getMessage());
+            System.out.println("cause: "+ex.getCause());
+            System.out.println("stacktrace: "+ex.getStackTrace());
         }
         return null;        
     }
@@ -211,20 +214,7 @@ public class RenderEngine implements IGameConstants{
                 tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[6]));
                 graph.drawImage(tile, 0,0,null);  // draws
             }  
-            Monster m =(Monster) currentRoom.getMonster(); 
-            if(m !=null)
-            {
-                if(m.isBoss())
-                {
-                    tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[3])); // outher template
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;   
-                }
-                else
-                {
-                    tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[2])); // outher template
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;   
-                }
-            }
+           
   
             Room nextRoom = currentRoom.getExit(player.getFacing().direction);
             if(nextRoom != null){
@@ -259,33 +249,55 @@ public class RenderEngine implements IGameConstants{
                 {
                     tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[10])); // outher template
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
-                }
-                m =(Monster) nextRoom.getMonster(); 
+                }  
+                Monster m =(Monster) nextRoom.getMonster(); 
                 if(m !=null)
                 {
+                    
                     if(m.isBoss())
                     {
-                        tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[1])); // outher template
+                        if(isDebug)System.out.println("found a boss on next room tile");
+                        tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[3])); // outher template
                         graph.drawImage(tile, 0,0,null);  // draws next room template;   
                     }
                     else
-                    {
-                        tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[0])); // outher template
+                    {   
+                        if(isDebug)System.out.println("found a minion on next room tile");
+                        tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[2])); // outher template
                         graph.drawImage(tile, 0,0,null);  // draws next room template;   
                     }
                 }
-
             }            
             else
             {
                  tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[4])); // outher template
                  graph.drawImage(tile, 0,0,null);  // draws next room template;
             }
+    
+            Monster m =(Monster) currentRoom.getMonster(); 
+            if(m !=null)
+            {
+                if(m.isBoss())
+                {
+                    if(isDebug)System.out.println("found a boss on current room tile");
+                    tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[1])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;   
+                }
+                else
+                {
+                    if(isDebug)System.out.println("found a minion on next room tile");
+                    tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[0])); // outher template
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;   
+                }
+            }          
   
             return SwingFXUtils.toFXImage(renderedView,null);            
         } 
-        catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        catch (IOException ex) { 
+            System.out.println("Error happened in Rendering");
+            System.out.println("message: "+ex.getMessage());
+            System.out.println("cause: "+ex.getCause());
+            System.out.println("stacktrace: "+ex.getStackTrace()); System.out.println(ex.getMessage());
         }
         return null;
     }
