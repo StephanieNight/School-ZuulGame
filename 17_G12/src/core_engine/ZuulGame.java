@@ -357,16 +357,19 @@ public class ZuulGame implements IGameConstants {
         
         boolean moved = goRoom(command);
         
-        if(moved && !player.isSwiftness())
+        if(moved)
         {
-        processMonsters();
-        player.useLampOil();
-        if(player.isInvis())
-        {
+            if(!player.isSwiftness())
+            {
+                processMonsters();
+                player.useLampOil();
+
+            }        
+            if(player.isInvis())
+            {
             return false;
+            }
         }
-        }
-        
         return checkForCombat();
     }
     
