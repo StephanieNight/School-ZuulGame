@@ -127,4 +127,15 @@ public class GameEngine implements IGameEngine {
         game.useItem(itemNumber);
         return false;
     }
+    
+    @Override
+    public boolean dropItem(int itemNumber){
+        game.dropItem(itemNumber);
+        return false;
+    }
+    
+    @Override
+    public String itemDescription(int itemNumber){
+        return game.itemDescription(itemNumber);
+    }
 }

@@ -498,10 +498,13 @@ public class GUIController implements IUI {
 
     @FXML
     private void dropInventoryButtonClicked(ActionEvent event) {
+        gameEngine.dropItem(itemNumber);
     }
 
     @FXML
     private void inspectInventoryButtonClicked(ActionEvent event) {
+        gameEngine.itemDescription(itemNumber);
+        //write it in text box
     }
 
     @FXML

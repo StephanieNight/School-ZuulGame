@@ -61,7 +61,7 @@ public class Inventory {
      * returns true if an item was used, false if item wasn't used.
      */
     public boolean useItem(int itemID) //TODO needs command word
-    {
+    {//TODO change to void
         if(itemID > inventory.length - 1 || itemID < 0 || inventory[itemID] == null)
         {
             return false;
@@ -89,17 +89,9 @@ public class Inventory {
      * @return 
      */
     
-    public boolean getItemDescription(int itemID)//TODO needs command word.
-     {
-        if(itemID > inventory.length - 1 || itemID < 0){
-            System.out.println("Please enter a number corresponding to an item.");
-        }
-        else{
-            System.out.println(inventory[itemID].getName());
-            System.out.println(inventory[itemID].getDescription());
-        }
-        return false;
-        
+    public String getItemDescription(int itemID)//TODO needs command word.
+    {
+        return inventory[itemID].getDescription();
     }
     
     /**
@@ -236,10 +228,10 @@ public class Inventory {
      * @param itemID is a String matching a name of an item in the inventory array
      * You cannot drop your key as it is needed to win.
      */
-    public void dropItem(int itemID, Room room) //TODO make command word
+    public void dropItem(int itemID)
     {
-        System.out.println("You dropped your " + itemID);
-        room.dropItem(inventory[itemID]);
+        System.out.println("You dropped your " + inventory[itemID].getName());
+        player.getCurrentRoom().dropItem(inventory[itemID]);
         inventory[itemID] = null;
         
         for(;itemID < inventory.length-1; itemID++) //all items following used item are put one index lower to fill the hole.

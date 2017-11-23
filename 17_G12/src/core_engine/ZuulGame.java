@@ -417,6 +417,14 @@ public class ZuulGame implements IGameConstants {
     {
         player.getInventory().useItem(itemID);
     }
+    
+    public void dropItem(int itemID){
+        player.getInventory().dropItem(itemID);
+    }
+    
+    public String itemDescription(int itemID){
+        return player.getInventory().getItemDescription(itemID);
+    }
 }
     
 
