@@ -57,13 +57,13 @@ public class Inventory {
      * @param itemID
      * executes useItem if names matches and removes said item and shifting the 
      * rest of the items to the left.
+     * @return 
+     * returns true if an item was used, false if item wasn't used.
      */
     public boolean useItem(int itemID) //TODO needs command word
     {
-        boolean itemUsed = false;
         if(itemID > inventory.length - 1 || itemID < 0 || inventory[itemID] == null)
         {
-            System.out.println("Please enter a number corresponding to an item.");
             return false;
         }
         
