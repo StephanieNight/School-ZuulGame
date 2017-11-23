@@ -257,8 +257,22 @@ public class GUIController implements IUI {
 
     @FXML
     private void forwardButtonClicked(ActionEvent event) {
-        gameEngine.move();
-        viewPort.setImage(gameEngine.renderMazeView());
+        if(gameEngine.move())
+        {
+            changeScene(gameScene, combatScene);
+        }
+        else
+        {
+            if(isMapView)
+            {
+                viewPort.setImage(gameEngine.renderMiniMapView());
+            }
+            else
+            {
+                viewPort.setImage(gameEngine.renderMazeView());
+            }
+        
+        }
     }
 
     @FXML
@@ -494,7 +508,7 @@ public class GUIController implements IUI {
     private void closeInventoryButtonClicked(ActionEvent event) {
         makeInvisible(inventoryScene);
         viewPort.setVisible(true);
-        
+       
     }
 
 }
