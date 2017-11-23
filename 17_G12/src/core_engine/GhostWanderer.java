@@ -62,7 +62,8 @@ public class GhostWanderer
     
     private String tip4()
     {
-        return "I recommend you to find weapons and armor before you face Zuul.";
+        return "I recommend you to find weapons "
+                + "and armor before you face Zuul.";
     }
     
     private String tip5()

@@ -17,7 +17,7 @@ import core_engine.Player;
  * Class to resolve conflict between a player and a monster.
  * @author collaboration between Ahmet, Malte and Nicolai.
  */
-public class Fighting {
+public class Fight {
    private boolean flee = false;
    private boolean survived;
    
@@ -28,7 +28,7 @@ public class Fighting {
     * @param p The main player
     * @param m The monster you meet
     */
-   public Fighting ()
+   public Fight ()
    {
        //survived = fightingLoop(p,m);
    }
@@ -142,19 +142,32 @@ public class Fighting {
    {
        int actorDefense = a2.getModifiedDefense();
        int actorHitpoint = a2.getCurrentHealth();
+       
        if ((int)(Math.random()*100) > actorDefense)
        {
            actorHitpoint -= a1.getModifiedDamgeOutput();
            a2.setCurrentHealth(actorHitpoint);
        }
-       else System.out.println(a1.getName() + " misses " + a2.getName());
+       else
+       {
+           System.out.println(a1.getName() + " misses " + a2.getName());
+       }
+       
+       announceAttack();
+       
        if(a2.getCurrentHealth() > 0){
            return false;
-       }
-       else {
+       } else {
            return true;
        }
-           
+       
+       
+          
+   }
+   
+   public String announceAttack()
+   {
+       
    }
    
    /**
