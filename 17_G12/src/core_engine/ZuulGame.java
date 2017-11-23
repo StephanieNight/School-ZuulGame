@@ -10,6 +10,8 @@ import acquaintance.IInventory;
 import data.SaveGameInstance;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import javafx.scene.image.Image;
 
 /**
@@ -300,7 +302,8 @@ public class ZuulGame implements IGameConstants {
         
     } 
     private void moveMonster(Monster m) {
-        String[] exits= m.getCurrentRoom().getExits();
+        String[] exits = m.getCurrentRoom().getExits();
+        Collections.shuffle(Arrays.asList(exits));
         for(String s : exits)
         {
             try
@@ -322,6 +325,7 @@ public class ZuulGame implements IGameConstants {
 
             }
         }
+        
     }  
     private void deleteMonster(Monster m) {
         m.getCurrentRoom().setMonster(null);
@@ -350,21 +354,37 @@ public class ZuulGame implements IGameConstants {
     }
     public boolean move() {
         Command command=new Command(CommandWord.GO, player.getFacing().direction);
-        goRoom(command);
-        return true;
+        
+        boolean moved = goRoom(command);
+        
+        if(moved && !player.isSwiftness())
+        {
+        processMonsters();
+        player.useLampOil();
+        if(player.isInvis())
+        {
+            return false;
+        }
+        }
+        
+        return checkForCombat();
     }
+    
     public boolean turnRight() {
         player.setFacing(player.getFacing().right);
         return false;
     }
+    
     public boolean turnLeft() {
         player.setFacing(player.getFacing().left);
         return false;
     }
+    
     public boolean turnBack() {
         player.setFacing(player.getFacing().opposite);
         return false;
     }
+    
     public String[] getInventory() {
         return player.getInventory().getInventoryList();
     }
@@ -375,7 +395,7 @@ public class ZuulGame implements IGameConstants {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }   
     public boolean checkForCombat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return player.getCurrentRoom().getMonster() != null;
     }
     public boolean startNewGame(int difficulty, String name) {
         this.difficulty = difficulty;        
