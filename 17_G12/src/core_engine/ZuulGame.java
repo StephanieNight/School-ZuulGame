@@ -141,16 +141,9 @@ public class ZuulGame implements IGameConstants {
     * @return Boolean was move successefull.
     */
     private boolean goRoom(Command command) {
-        if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
-            return false;
-        }
         Labyrinth.DIR dir =  Labyrinth.DIR.getDir(command.getSecondWord());
-        if(dir == null)
-        {
-            return false;
-        }
         Room nextRoom = player.getCurrentRoom().getExit(dir.direction);
+        
         if (nextRoom == null) {
             System.out.println("There is no door!");
             return false;
