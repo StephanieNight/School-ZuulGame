@@ -141,44 +141,60 @@ public class Fight {
     * @param a1 The attacker
     * @param a2 The victim
     */
-   private boolean attack(Actor a1, Actor a2)
-   {
-       int actorDefense = a2.getModifiedDefense();
-       int actorHitpoint = a2.getCurrentHealth();
+    private boolean attack(Actor a1, Actor a2)
+    {
+        int actorDefense = a2.getModifiedDefense();
+        int actorHitpoint = a2.getCurrentHealth();
        
-       if ((int)(Math.random()*100) > actorDefense)
-       {
-           actorHitpoint -= a1.getModifiedDamgeOutput();
-           a2.setCurrentHealth(actorHitpoint);
-           //announceAttack();
-       }
-       else
-       {
-           //announceMiss();
-           System.out.println(a1.getName() + " misses " + a2.getName());
-       }
+        if ((int)(Math.random()*100) > actorDefense)
+        {
+            actorHitpoint -= a1.getModifiedDamgeOutput();
+            a2.setCurrentHealth(actorHitpoint);
+            announceAttack(a1.getModifiedDamgeOutput(), a2.getCurrentHealth(), 
+                   a1.getName(), a2.getName());
+        }
+        else
+        {
+            announceMiss(a1.getName(), a2.getName());
+        }
        
-       //announceAttack();
-       
-       if(a2.getCurrentHealth() > 0){
-           return false;
-       } else {
-           return true;
-       }
-       
-       
-          
-   }
-   /*
-   public String announceAttack()
-   {
-       
-   }
-   
-   public String announceMiss()
-   {
-       
-   }*/
+        if(a2.getCurrentHealth() > 0){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+    * Sets the description in the object message to a string announcing,
+    * the damage dealth, the remaining health of the defending actor and
+    * the name of the attacking and defending actor.
+    * @param damage - The amount of damage dealt
+    * @param remainingHealth - The amount of health back
+    * @param actor1Name - The name of the attacking actor
+    * @param actor2Name - The name of the defending actor
+    */
+    public void announceAttack
+    (
+        int damage, int remainingHealth, String actor1Name, String actor2Name
+    )
+    {
+        message.setDescription(actor1Name + " damaged " + damage + 
+                " points and " + actor2Name + " has " + remainingHealth + 
+                " health left.");
+    }
+    
+    /**
+    * Sets the description in the object message to a string announcing,
+    * that the attack has missed.
+    * @param actor1Name - The name of the attacking actor
+    * @param actor2Name - The name of the defending actor
+    */
+    public void announceMiss(String actor1Name, String actor2Name)
+    {
+        message.setDescription(actor1Name + " missed " + actor2Name + ".");
+    }
+
    
    /**
     * Checks if the given actor is still alive.
