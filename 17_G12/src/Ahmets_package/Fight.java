@@ -11,6 +11,7 @@ import Legacy_framework.Command;
 import Legacy_framework.CommandWord;
 import java.util.Scanner;
 import core_engine.Actor;
+import core_engine.Message;
 import core_engine.Monster;
 import core_engine.Player;
 /**
@@ -20,6 +21,7 @@ import core_engine.Player;
 public class Fight {
    private boolean flee = false;
    private boolean survived;
+   private Message message;
    
    
    /**
@@ -28,8 +30,9 @@ public class Fight {
     * @param p The main player
     * @param m The monster you meet
     */
-   public Fight ()
+   public Fight (Message message)
    {
+       this.message = message;
        //survived = fightingLoop(p,m);
    }
 
@@ -147,9 +150,11 @@ public class Fight {
        {
            actorHitpoint -= a1.getModifiedDamgeOutput();
            a2.setCurrentHealth(actorHitpoint);
+           announceAttack();
        }
        else
        {
+           announceMiss();
            System.out.println(a1.getName() + " misses " + a2.getName());
        }
        
@@ -166,6 +171,11 @@ public class Fight {
    }
    
    public String announceAttack()
+   {
+       
+   }
+   
+   public String announceMiss()
    {
        
    }
