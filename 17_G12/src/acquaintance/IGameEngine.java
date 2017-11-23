@@ -20,6 +20,7 @@ public interface IGameEngine {
     public boolean loadGame();    
     public String getName();
     public boolean setName(); 
+    public String getMessage();
     
     public Image renderMazeView();
     public Image renderMiniMapView();

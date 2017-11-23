@@ -150,15 +150,15 @@ public class Fight {
        {
            actorHitpoint -= a1.getModifiedDamgeOutput();
            a2.setCurrentHealth(actorHitpoint);
-           announceAttack();
+           //announceAttack();
        }
        else
        {
-           announceMiss();
+           //announceMiss();
            System.out.println(a1.getName() + " misses " + a2.getName());
        }
        
-       announceAttack();
+       //announceAttack();
        
        if(a2.getCurrentHealth() > 0){
            return false;
@@ -169,7 +169,7 @@ public class Fight {
        
           
    }
-   
+   /*
    public String announceAttack()
    {
        
@@ -178,7 +178,7 @@ public class Fight {
    public String announceMiss()
    {
        
-   }
+   }*/
    
    /**
     * Checks if the given actor is still alive.

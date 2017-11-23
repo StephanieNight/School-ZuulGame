@@ -138,4 +138,13 @@ public class GameEngine implements IGameEngine {
     public String itemDescription(int itemNumber){
         return game.itemDescription(itemNumber);
     }
+
+    @Override
+    public String getMessage() {
+        
+        return "daaboo";
+    }
+    
+    
+    
 }

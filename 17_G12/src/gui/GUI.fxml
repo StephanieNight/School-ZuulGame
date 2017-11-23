@@ -234,7 +234,7 @@
                         </GridPane>
                      </children>
                   </AnchorPane>
-                  <TextArea editable="false" maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+                  <TextArea fx:id="logTextArea" editable="false" maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
                   <AnchorPane maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
                      <children>
                         <Button fx:id="forwardButton" layoutX="52.0" layoutY="28.0" mnemonicParsing="false" onAction="#forwardButtonClicked" prefWidth="75.0" text="Forward" />
@@ -332,7 +332,7 @@
                </rowConstraints>
                <children>
                   <ImageView fx:id="viewPort1" fitHeight="400.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextArea editable="false" maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+                  <TextArea fx:id="logCombatTextArea" editable="false" maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
                   <AnchorPane maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
                      <children>
                         <Button fx:id="attackButton" layoutX="52.0" layoutY="28.0" mnemonicParsing="false" onAction="#attackButtonClicked" prefWidth="75.0" text="Attack" />
