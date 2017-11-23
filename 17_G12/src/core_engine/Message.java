@@ -14,15 +14,17 @@ public class Message {
     
     public Message()
     {
-        
+        this.description = "";
     }
 
     public String getDescription() {
-        return description;
+        String msgOut = "> " + description + "\n\n";
+        description = "";
+        return msgOut;
     }
 
     public void setDescription(String description) {
-        this.description = "> " + description;
+        this.description += description + "\n";
     }
     
 }
