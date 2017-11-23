@@ -161,6 +161,14 @@ public class Fight {
         if(a2.getCurrentHealth() > 0){
             return false;
         } else {
+            message.setDescription("" + a1.getName() + " killed " + a2.getName());
+            int oldLevel = a1.getLevel();
+            a1.setXp(a1.getXp() + 1);
+            int newLevel = a1.getLevel();
+            if(newLevel > oldLevel)
+            {
+                message.setDescription("You've gained a level!");
+            }
             return true;
         }
     }
