@@ -464,6 +464,18 @@ public class ZuulGame implements IGameConstants {
             }
         return lootArray;
     }
+
+    public void useLootIem(int itemNumber) {
+        player.getCurrentRoom().itemList()[itemNumber].useItem(player);
+    }
+
+    public void pickUpItem(int itemNumber) {
+        player.getInventory().addItem(player.getCurrentRoom().itemList()[itemNumber]);
+    }
+
+    public String getLootItemDescription(int itemNumber) {
+        return player.getCurrentRoom().itemList()[itemNumber].getDescription();
+    }
 }
     
 
