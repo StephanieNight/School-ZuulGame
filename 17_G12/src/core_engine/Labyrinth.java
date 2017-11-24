@@ -5,6 +5,9 @@
  */
 package core_engine;
 
+import core_engine.Items.PlateArmor;
+import core_engine.Items.Shield;
+import core_engine.Items.Sword;
 import core_engine.Room;
 import java.util.Arrays;
 import java.util.Collections;
@@ -35,6 +38,17 @@ public class Labyrinth
         {          
             maze[0][0].setDoor(s);
         }
+        int randomX = (int)(Math.random() * maze.length);
+        int randomY = (int)(Math.random() * maze.length);
+        maze[randomX][randomY].dropItem(new PlateArmor());
+            
+        randomX = (int)(Math.random() * maze.length);
+        randomY = (int)(Math.random() * maze.length);
+        maze[randomX][randomY].dropItem(new Sword());
+            
+        randomX = (int)(Math.random() * maze.length);
+        randomY = (int)(Math.random() * maze.length);
+        maze[randomX][randomY].dropItem(new Shield()); 
     }  
     /* 
      * Spawns the player in the room 
@@ -161,6 +175,12 @@ public class Labyrinth
                 }                
             }
         }
+       
+        
+       
+        
+        
+        
     }
     /*
      * Checks if the next room is inside the maze.

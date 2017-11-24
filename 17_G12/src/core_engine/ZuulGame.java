@@ -467,15 +467,15 @@ public class ZuulGame implements IGameConstants {
         return lootArray;
     }
     public void useLootItem(int itemNumber) {
-        if(player.getCurrentRoom().itemList().length > 1)
+        if(player.getCurrentRoom().itemList().length > 0)
                    player.getCurrentRoom().useItem(itemNumber,player);
     }
     public void pickUpItem(int itemNumber) {
-        if(player.getCurrentRoom().itemList().length > 1)
+        if(player.getCurrentRoom().itemList().length > 0)
         player.getCurrentRoom().pickupItem(itemNumber,player.getInventory());
     }
     public String getLootItemDescription(int itemNumber) {
-        if(player.getCurrentRoom().itemList().length > 1)
+        if(player.getCurrentRoom().itemList().length > 0)
             return player.getCurrentRoom().itemList()[itemNumber].getDescription();
         return "";
     }

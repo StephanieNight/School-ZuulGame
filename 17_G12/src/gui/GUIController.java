@@ -282,12 +282,12 @@ public class GUIController implements IUI
         popUp.setDisable(true);
     }
     
-    private void makeVisible(ImageView popUp) {
+    private void makeImageVisible(ImageView popUp) {
         popUp.setVisible(true);
         popUp.setDisable(false);
     }
 
-    private void makeInvisible(ImageView popUp) {
+    private void makeImageInvisible(ImageView popUp) {
         popUp.setVisible(false);
         popUp.setDisable(true);
     }
@@ -354,7 +354,7 @@ public class GUIController implements IUI
                 inventoryRadioButtons[i].setText("Empty inventory slot");
             }
         }
-        makeInvisible(labyrinthImage);
+        makeImageInvisible(labyrinthImage);
        
 
     }
@@ -377,7 +377,7 @@ public class GUIController implements IUI
                 searchRadioButtons[i].setVisible(false);
             }
         }
-        makeInvisible(labyrinthImage);
+        makeImageInvisible(labyrinthImage);
     }
 
     @FXML
@@ -553,7 +553,7 @@ public class GUIController implements IUI
                 inventoryRadioButtons[i].setText("Empty inventory slot");
             }
         }
-        makeInvisible(labyrinthImage);
+        makeImageInvisible(labyrinthImage);
     }
 
     @FXML
@@ -640,7 +640,7 @@ public class GUIController implements IUI
     @FXML
     private void closeInventoryButtonClicked(ActionEvent event) {
         makeInvisible(inventoryScene);
-        makeVisible(labyrinthImage);
+        makeImageVisible(labyrinthImage);
        
     }
 
@@ -660,7 +660,7 @@ public class GUIController implements IUI
     private void closeSearchSceneButtonClicked(ActionEvent event)
     {
         makeInvisible(searchScene);
-        makeVisible(labyrinthImage);
+        makeImageVisible(labyrinthImage);
     }
 
     @FXML
