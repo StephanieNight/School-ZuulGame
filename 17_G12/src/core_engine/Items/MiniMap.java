@@ -26,6 +26,7 @@ public class MiniMap implements Item{
     @Override
     public String getName() {
         return "Map";
+        
     }
 
     
@@ -34,12 +35,13 @@ public class MiniMap implements Item{
      * @param p
      */
     @Override
-    public void useItem(Player p) {
+    public boolean useItem(Player p) {
         for (int i = 0; i < maze.getMaze().length; i++) {
             for (int j = 0; j < maze.getMaze()[i].length; j++) {
                 maze.getMaze()[i][j].setPlayerVisisted();
             }
         }
+        return true;
     }
 
     @Override

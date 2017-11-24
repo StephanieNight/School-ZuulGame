@@ -24,8 +24,9 @@ public class HeaterShield implements Item{
     }
     
     @Override
-    public void useItem(Player p){
+    public boolean useItem(Player p){
         System.out.println("There's a time and place for everything, but not now.");
+        return false;
     }
     
     @Override

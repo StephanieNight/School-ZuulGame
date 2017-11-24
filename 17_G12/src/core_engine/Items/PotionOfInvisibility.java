@@ -31,8 +31,9 @@ public class PotionOfInvisibility implements Item {
      * engage monsters or not.
      */
     @Override
-    public void useItem(Player p) {
+    public boolean useItem(Player p) {
         p.setInvis(5);
+        return true;
     }
 
     @Override

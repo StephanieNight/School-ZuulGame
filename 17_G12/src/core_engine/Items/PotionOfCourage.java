@@ -29,10 +29,11 @@ public class PotionOfCourage implements Item {
      * lets you gain a level.
      */
     @Override
-    public void useItem(Player p) {
+    public boolean useItem(Player p) {
         System.out.println("Feels good to drink some liquid courage!");
         p.setXp(p.getXp() + 2);
         p.updateLevel();  
+        return true;
     }
 
     @Override

@@ -18,6 +18,7 @@ public class Key implements Item{
 public String getDescription()
 {
     return "This is a key, what does it do?";
+    
 }
 
 
@@ -30,8 +31,9 @@ public String getDescription()
      * Unlocks the door out of the dungeon letting the player win
      */
     @Override
-    public void useItem(Player p) {
+    public boolean useItem(Player p) {
         // sets the exit to unlocked;
+        return false;
     }
 
     

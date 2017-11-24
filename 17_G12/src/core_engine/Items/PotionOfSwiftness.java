@@ -30,8 +30,9 @@ public class PotionOfSwiftness implements Item{
      * every 2nd time 5 times.
      */
     @Override
-    public void useItem(Player p) {
+    public boolean useItem(Player p) {
         p.setSwiftnessCounter(9);
+        return true;
     }
 
     @Override

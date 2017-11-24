@@ -21,11 +21,13 @@ public class PlateArmor implements Item{
     @Override
     public String getName(){
         return "Plate armor";
+       
     }
     
     @Override
-    public void useItem(Player p){
+    public boolean useItem(Player p){
         System.out.println("There's a time and place for everything, but not now.");
+         return false;
     }
     
     @Override

@@ -20,11 +20,13 @@ public class PotLid implements Item{
     @Override
     public String getName(){
         return "Lid";
+        
     }
     
     @Override
-    public void useItem(Player p){
+    public boolean useItem(Player p){
         System.out.println("There's a time and place for everything, but not now.");
+        return false;
     }
     
     @Override

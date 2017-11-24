@@ -29,12 +29,13 @@ public class PotionOfTeleportation implements Item {
      * transports the player to a random location on the map
      */
     @Override
-    public void useItem(Player p) {
+    public boolean useItem(Player p) {
         int x = (int)(Math.random() * maze.getMaze().length);
         int y = (int)(Math.random() * maze.getMaze().length);
         
         Room room = maze.getMaze()[x][y];
         maze.movePlayer(p, room);
+        return true;
     }
 
     @Override

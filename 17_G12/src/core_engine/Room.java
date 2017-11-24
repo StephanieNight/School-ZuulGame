@@ -18,7 +18,7 @@ public class Room
     private HashMap<String, Door> doors;
     private Actor player; // Copy
     private Actor monster; // Copy
-    private ArrayList<Item> Items;
+    private ArrayList<Item> lootList;
     private int pictureID_3D;
     private int pictureID_MiniMap;
     private boolean playerVissited;
@@ -53,7 +53,7 @@ public class Room
         this.description = description;
         exits = new HashMap<String, Room>();
         doors = new HashMap<String, Door>();
-        Items = new ArrayList<>();
+        lootList = new ArrayList<>();
         this.pictureID_3D=0;
         this.pictureID_MiniMap =0;
         this.playerVissited = false;
@@ -61,12 +61,12 @@ public class Room
     public Room(String description, Item[] items) 
     {
         this(description);
-        Collections.addAll(Items, items);
+        Collections.addAll(lootList, items);
     }
     public Room(String description, Item item)
     {
         this(description);
-        Items.add(item);
+        lootList.add(item);
     }
     
     public void setExit(String direction, Room neighbor) 
@@ -176,21 +176,21 @@ public class Room
     }
     
     public boolean hasItems(){
-        return (Items.size() > 0);
+        return (lootList.size() > 0);
     }    
     public Item[] itemList() {
-        Item itemList[] = new Item[Items.size()];
-        return Items.toArray(itemList);
+        Item itemList[] = new Item[lootList.size()];
+        return lootList.toArray(itemList);
     }    
     public Item pickupItem(int id, Inventory inventory) {
-        Item returnItem = Items.get(id);
+        Item returnItem = lootList.get(id);
         if(inventory.addItem(returnItem)){
-            Items.remove(id);
+            lootList.remove(id);
         }
         return returnItem;
     }    
     public void dropItem(Item item) {
-        Items.add(item);
+        lootList.add(item);
     }
     public void setDoor(String direction) 
     {
@@ -212,6 +212,13 @@ public class Room
     public void setPlayerVisisted()
     {
         playerVissited = true;
+    }
+    public void useItem(int id, Player p)
+    {
+        if(itemList()[id].useItem(p))
+        {
+            lootList.remove(id);
+        }
     }
 }
             

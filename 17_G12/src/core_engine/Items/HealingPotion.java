@@ -30,9 +30,10 @@ public class HealingPotion implements Item{
      * @param player
      */
     @Override
-    public void useItem(Player p) {
+    public boolean useItem(Player p) {
         System.out.println("You already feel better");
         p.setCurrentHealth(p.getCurrentHealth() + 30);
+        return false;
     }
 
     

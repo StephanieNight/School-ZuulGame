@@ -16,6 +16,7 @@ public class LampOil implements Item{
     @Override
     public String getDescription() {
         return "Oil to fuel your Oil lamp.";
+        
     }
 
     @Override
@@ -28,8 +29,9 @@ public class LampOil implements Item{
      * @param p the current player.
      */
     @Override
-    public void useItem(Player p) {
+    public boolean useItem(Player p) {
         p.addLampOil();
+        return true;
     }
 
     @Override
