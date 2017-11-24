@@ -9,16 +9,14 @@ package core_engine;
  *
  * @author BenPaxIndustries
  */
-public class GhostWanderer
+public class GhostWanderer extends Actor
 {
-    
-    String name;
     String greeting;
     String[] tips;
     
     public GhostWanderer(String name)
     {
-        this.name = name;
+        super(name, 1, 1, 1, 'g', 1, 1);
         this.tips = new String[5];
         this.greeting = greeting();
         tips[0] = tip1();
@@ -31,11 +29,6 @@ public class GhostWanderer
     public String getQuote(int number)
     {
         return tips[number];
-    }
-    
-    public String getName()
-    {
-        return name;
     }
 
     private String greeting()
