@@ -124,7 +124,7 @@ public class GUIController implements IUI {
     @FXML
     private Button BackToDifficlyButton;
     @FXML
-    private ImageView viewPort;
+    private ImageView labyrinthImage;
 
     private boolean isMapView = false;
     private int difficulty = 3;
@@ -136,7 +136,7 @@ public class GUIController implements IUI {
     @FXML
     private AnchorPane combatScene;
     @FXML
-    private ImageView viewPort1;
+    private ImageView combatImage;
     @FXML
     private Button attackButton;
     @FXML
@@ -270,11 +270,11 @@ public class GUIController implements IUI {
         {
             if(isMapView)
             {
-                viewPort.setImage(gameEngine.renderMiniMapView());
+                labyrinthImage.setImage(gameEngine.renderMiniMapView());
             }
             else
             {
-                viewPort.setImage(gameEngine.renderMazeView());
+                labyrinthImage.setImage(gameEngine.renderMazeView());
             }
         
         }
@@ -287,19 +287,19 @@ public class GUIController implements IUI {
     @FXML
     private void leftButtonClicked(ActionEvent event) {
         gameEngine.turnLeft();
-        viewPort.setImage(gameEngine.renderMazeView());
+        labyrinthImage.setImage(gameEngine.renderMazeView());
     }
 
     @FXML
     private void rightButtonClicked(ActionEvent event) {
         gameEngine.turnRight();
-        viewPort.setImage(gameEngine.renderMazeView());
+        labyrinthImage.setImage(gameEngine.renderMazeView());
     }
 
     @FXML
     private void backButtonClicked(ActionEvent event) {
         gameEngine.turnBack();
-        viewPort.setImage(gameEngine.renderMazeView());
+        labyrinthImage.setImage(gameEngine.renderMazeView());
     }
 
     @FXML
@@ -311,7 +311,7 @@ public class GUIController implements IUI {
             System.out.println(inventoryList[i]);
             inventoryRadioButtons[i].setText(inventoryList[i]);
         }
-        viewPort.setVisible(false);
+        labyrinthImage.setVisible(false);
        
 
     }
@@ -319,7 +319,7 @@ public class GUIController implements IUI {
     @FXML
     private void searchButtonClicked(ActionEvent event)
     {
-
+        
     }
 
     @FXML
@@ -386,7 +386,7 @@ public class GUIController implements IUI {
     private void playButtonClicked(ActionEvent event) {
         changeScene(newGameScene, gameScene);
         gameEngine.startNewGame(difficulty, enterPlayerName.getText());
-        viewPort.setImage(gameEngine.renderMazeView());
+        labyrinthImage.setImage(gameEngine.renderMazeView());
         inventoryRadioButtons = new RadioButton[7];
         inventoryRadioButtons[0] = itemOneRadioButton;
         inventoryRadioButtons[1] = itemTwoRadioButton;
@@ -395,7 +395,7 @@ public class GUIController implements IUI {
         inventoryRadioButtons[4] = itemFiveRadioButton;
         inventoryRadioButtons[5] = itemSixRadioButton;
         inventoryRadioButtons[6] = itemSevenRadioButton;
-        
+        currentHealthField.setText(gameEngine.getCurrentHealthToString());
     }
         
     
@@ -439,10 +439,10 @@ public class GUIController implements IUI {
     private void attackButtonClicked(ActionEvent event) {
         if(gameEngine.attack())
         {
-//            if (gameEngine.)
-//            {
-//                
-//            }
+            if (gameEngine.checkForGameOver())
+            {
+                //chanceScene(combatScene, defeatedScene);
+            }
             changeScene(combatScene, gameScene);
         }
         
@@ -459,7 +459,7 @@ public class GUIController implements IUI {
             System.out.println(inventoryList[i]);
             inventoryRadioButtons[i].setText(inventoryList[i]);
         }
-        viewPort.setVisible(false);
+        labyrinthImage.setVisible(false);
     }
 
     @FXML
@@ -483,10 +483,10 @@ public class GUIController implements IUI {
     @FXML
     private void mapButtonClicked(ActionEvent event) {
         if (!isMapView) {
-            viewPort.setImage(gameEngine.renderMiniMapView());
+            labyrinthImage.setImage(gameEngine.renderMiniMapView());
             isMapView = true;
         } else {
-            viewPort.setImage(gameEngine.renderMazeView());
+            labyrinthImage.setImage(gameEngine.renderMazeView());
             isMapView = false;
         }
     }
@@ -546,7 +546,7 @@ public class GUIController implements IUI {
     @FXML
     private void closeInventoryButtonClicked(ActionEvent event) {
         makeInvisible(inventoryScene);
-        viewPort.setVisible(true);
+        labyrinthImage.setVisible(true);
        
     }
 

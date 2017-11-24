@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="defaultScene" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
+<AnchorPane fx:id="defaultScene" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
       <AnchorPane fx:id="mainMenuScene">
          <children>
@@ -164,11 +164,11 @@
                   </RadioButton>
                   <Button fx:id="newGameBackButton" mnemonicParsing="false" onAction="#newGameBackButtonClicked" text="Back to Main Menu" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Button fx:id="newGameNextButton" mnemonicParsing="false" onAction="#newGameNextButtonClicked" text="Next" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Information about very easy difficulty" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Information about easy difficulty" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Information about normal difficulty" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Information about hard difficulty" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Information about very hard difficulty" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="For first timers. This difficulty is preferred if you have never played the game before.  " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="If you have played the game but you still suck. This difficulty is preferred if you are still having trouble with the game." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="For the average player. This difficulty is preferred if you have a standard understanding of the game. " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="For the experienced player. This difficulty is preferred if you are looking for more challenge. " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="GOOD LUCK. " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <AnchorPane fx:id="EnterNamePopUpLayer" prefHeight="480.0" prefWidth="640.0" visible="false">
@@ -198,7 +198,7 @@
                 <RowConstraints maxHeight="80.0" minHeight="10.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="viewPort" fitHeight="400.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="labyrinthImage" fitHeight="400.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true" />
                   <AnchorPane fx:id="inventoryScene" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <children>
                         <GridPane prefHeight="400.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -331,7 +331,7 @@
                   <RowConstraints maxHeight="80.0" minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fx:id="viewPort1" fitHeight="400.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="combatImage" fitHeight="400.0" fitWidth="467.0" pickOnBounds="true" preserveRatio="true" />
                   <TextArea fx:id="logCombatTextArea" editable="false" maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" GridPane.columnIndex="1" GridPane.valignment="TOP" />
                   <AnchorPane maxHeight="200.0" maxWidth="173.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
                      <children>
