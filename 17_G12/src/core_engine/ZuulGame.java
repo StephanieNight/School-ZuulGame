@@ -26,6 +26,7 @@ public class ZuulGame implements IGameConstants {
     // Primary instances
     private Player player;
     private ArrayList<Monster> monsters;
+    private GhostWanderer ghost;
     //-----------------------------------------------------------
     private Labyrinth labyrinth;
     private int mazeSize ;
@@ -193,19 +194,10 @@ public class ZuulGame implements IGameConstants {
      */
     public int getDifficulty() {
         return difficulty;
-    }
-    
-    public int getPlayerCurrentHealth()
-    {
+    }    
+    public int getPlayerCurrentHealth() {
         return player.getCurrentHealth();
     }
-    /**
-     * 
-     * @return 
-     */
-    private int getMaxNumberOfMinions() {
-        return maxNumberOfMinions;
-    }  
     /**
      * prints the welcome screen to system out.
      */
@@ -220,9 +212,12 @@ public class ZuulGame implements IGameConstants {
      * handles the spawning of of the player, minions and Zuul.
      */
     private void spawnMobs(String playerName) {         
-        player = new Player(playerName, 100, 20, 30, 1, this.difficulty);
-
+        player = new Player(playerName, 100, 20, 30, 1, 1);    
         labyrinth.spawnPlayer(0,0, player);
+        
+        ghost = new GhostWanderer("bob");
+        labyrinth.spawnMonster(1,1,ghost); 
+        
         Monster zuul = new Monster("Zuul", 140 + ((int)(Math.pow(this.difficulty, 2))*10), 15, 25, 'Z',this.difficulty, true, this.difficulty);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
         monsters.add(zuul);
@@ -342,8 +337,7 @@ public class ZuulGame implements IGameConstants {
     }
     public boolean setName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }    
     public Image renderMazeView() {
        return RenderEngine.renderMazeView(player);
     }
@@ -373,23 +367,19 @@ public class ZuulGame implements IGameConstants {
         }
         System.out.println(player.getLampOil());
         return checkForCombat();
-    }
-    
+    }    
     public boolean turnRight() {
         player.setFacing(player.getFacing().right);
         return false;
-    }
-    
+    }    
     public boolean turnLeft() {
         player.setFacing(player.getFacing().left);
         return false;
-    }
-    
+    }    
     public boolean turnBack() {
         player.setFacing(player.getFacing().opposite);
         return false;
-    }
-    
+    }    
     public String[] getInventory() {
         return player.getInventory().getInventoryList();
     }
@@ -432,31 +422,23 @@ public class ZuulGame implements IGameConstants {
         System.out.println("Diffictulty is      : "+ this.difficulty);
         
         return true;
-    }
-    
+    }    
     public boolean checkWinCondition() {
         return player.getCurrentRoom().isExit();
-    }
-    
-    public void useItem(int itemID)
-    {
+    }    
+    public void useItem(int itemID) {
         player.getInventory().useItem(itemID);
-    }
-    
+    }    
     public void dropItem(int itemID){
         player.getInventory().dropItem(itemID);
-    }
-    
+    }    
     public String itemDescription(int itemID){
         return player.getInventory().getItemDescription(itemID);
     }
-    public boolean checkForGameOver()
-    {
+    public boolean checkForGameOver() {
         return (player.getCurrentHealth() < 1 || player.getLampOil() < 1);
-    }
-    
-    public String[] getLoot()
-    {
+    }    
+    public String[] getLoot() {
         
         String[] lootArray = new String[player.getCurrentRoom().itemList().length];
         for (int i = 0; i < lootArray.length; i++) {
@@ -464,15 +446,12 @@ public class ZuulGame implements IGameConstants {
             }
         return lootArray;
     }
-
     public void useLootItem(int itemNumber) {
-        player.getCurrentRoom().pickupItem(itemNumber, player.getInventory());
+        player.getCurrentRoom().useItem(itemNumber,player);
     }
-
     public void pickUpItem(int itemNumber) {
         player.getCurrentRoom().useItem(itemNumber, player);
     }
-
     public String getLootItemDescription(int itemNumber) {
         return player.getCurrentRoom().itemList()[itemNumber].getDescription();
     }

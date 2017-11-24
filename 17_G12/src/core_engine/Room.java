@@ -18,6 +18,7 @@ public class Room
     private HashMap<String, Door> doors;
     private Actor player; // Copy
     private Actor monster; // Copy
+    private Actor gaust; // Copy
     private ArrayList<Item> lootList;
     private int pictureID_3D;
     private int pictureID_MiniMap;
@@ -112,7 +113,6 @@ public class Room
     {
         return exits.get(direction);
     }
-    //ADDED by Steph
     public void setPlayer(Actor actor)
     {
         player = actor;  
@@ -220,5 +220,13 @@ public class Room
             lootList.remove(id);
         }
     }
+
+    public Actor getGaust() {
+        return gaust;
+    }
+    public void setGaust(Actor gaust) {
+        this.gaust = gaust;
+    }
+    
 }
             
