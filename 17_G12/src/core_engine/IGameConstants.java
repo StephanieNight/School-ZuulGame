@@ -13,10 +13,10 @@ package core_engine;
  */
 public interface IGameConstants {
     boolean isDebug = true;
-    String FILEPATH_RUNNING_DIR = "";
-    String FILEPATH_CHARACTORS_DIR = "assets//charactors//";
-    String FILEPATH_MINIMAP_DIR = "assets//minimap tiles//";
-    String FILEPATH_MAZEVIEW_DIR = "assets//rooms//textures//";
+    String DIR_CHARACTORS = "assets//charactors//";
+    String DIR_MINIMAP = "assets//minimap tiles//";
+    String DIR_MAZEVIEW_LABYRITH = "assets//rooms//textures//";
+    String DIR_MAZEVIEW_OBJECTS = "assets//rooms//Objects//";
     String FILENAME_SAVEGAME = "savegame.zuul";
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
     String[] FILENAME_PICTURES_CHARACTOR =
@@ -43,13 +43,32 @@ public interface IGameConstants {
         "dead end south.png",           // 12
         "Straight path east west.png",  // 13
         "Straight path north south.png",// 14
+        ""
     };
-    String[] FILENAME_PICTURES_VIEWPORT = 
+    String[] FILENAME_PICTURES_MAZE = 
     {
         "Background.png",       // 0      
         "InnerTemplate.png",    // 1
         "InnerLeft.png",        // 2
         "InnerRight.png",       // 3
+        "InnerNoForward.png",   // 4
+        "InnerNoLeft.png",      // 5
+        "InnerNoRight.png",     // 6            
+        "OuterTemplate.png",    // 7
+        "OuterLeft.png",        // 8
+        "OuterRight.png",       // 9
+        "OuterNoForward.png",   // 10
+        "OuterNoLeft.png",      // 11
+        "OuterNoRight.png",     // 12
+        "OuterForward.png"      // 13    
+    };
+        String[] FILENAME_PICTURES_MAZE_OBJECTS = 
+    {
+        "outerDoorForward.png", // 0      
+        "outerChest.png",       // 1
+        "innerDoorForward.png", // 2        
+        "innerChest.png",       // 3
+        
         "InnerNoForward.png",   // 4
         "InnerNoLeft.png",      // 5
         "InnerNoRight.png",     // 6            

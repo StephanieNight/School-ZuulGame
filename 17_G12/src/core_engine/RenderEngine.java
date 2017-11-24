@@ -42,26 +42,26 @@ public class RenderEngine implements IGameConstants{
                                 if(room.getExits()[0].equals(north))
                                 {
                                     //dead end exit north
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[9]));  
+                                    tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[9]));  
                                     break;
                                 }
                                 else if (room.getExits()[0].equals(south))
                                 {
                                     //dead end exit sout
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[12]));  
+                                    tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[12]));  
                                     break;
 
                                 }
                                 else if (room.getExits()[0].equals(east))
                                 {
                                     //dead end exit east
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[11]));  
+                                     tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[11]));  
                                     break;
                                 }
                                 else 
                                 {
                                     //dead end ext west
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[10]));  
+                                    tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[10]));  
                                     break;
                                 }
                                 // </editor-fold>
@@ -71,41 +71,41 @@ public class RenderEngine implements IGameConstants{
                                     && (room.getExits()[1].equals(north) || room.getExits()[1].equals(south)))
                                 {
                                     //straigt room north south
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[14]));  
+                                     tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[14]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(east) || room.getExits()[0].equals(west)) 
                                     && (room.getExits()[1].equals(east) || room.getExits()[1].equals(west)))
                                 {
                                     //straigt room east west
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[13]));  
+                                     tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[13]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(north) || room.getExits()[0].equals(east)) 
                                     && (room.getExits()[1].equals(north) || room.getExits()[1].equals(east)))
                                 {
                                     //cornor room exits north and east
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[2]));  
+                                     tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[2]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(north) || room.getExits()[0].equals(west)) 
                                     && (room.getExits()[1].equals(north) || room.getExits()[1].equals(west)))
                                 {
                                     //cornor room exits north and west
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[3]));  
+                                    tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[3]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(south) || room.getExits()[0].equals(east)) 
                                     && (room.getExits()[1].equals(south) || room.getExits()[1].equals(east)))
                                 {
                                     //cornor room exits south and east
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[0]));  
+                                    tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[0]));  
                                     break;
                                 }
                                 else
                                 {
                                     //cornor room exits south and west
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[1]));  
+                                     tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[1]));  
                                     break;
                                 }
                                 // </editor-fold>
@@ -116,7 +116,7 @@ public class RenderEngine implements IGameConstants{
                                         && (room.getExits()[2].equals(north) || room.getExits()[2].equals(south) || room.getExits()[2].equals(east)))
                                 {
                                     //T-room exits north, south and east
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[4]));  
+                                    tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[4]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(north) || room.getExits()[0].equals(south) || room.getExits()[0].equals(west)) 
@@ -124,7 +124,7 @@ public class RenderEngine implements IGameConstants{
                                         && (room.getExits()[2].equals(north) || room.getExits()[2].equals(south) || room.getExits()[2].equals(west)))
                                 {
                                     //T-room exits north, south and west
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[5]));  
+                                    tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[5]));  
                                     break;
                                 }
                                 else if((room.getExits()[0].equals(north) || room.getExits()[0].equals(east) || room.getExits()[0].equals(west)) 
@@ -132,36 +132,36 @@ public class RenderEngine implements IGameConstants{
                                         && (room.getExits()[2].equals(north) || room.getExits()[2].equals(east) || room.getExits()[2].equals(west)))
                                 {
                                     //T-room exits north, east and west
-                                    tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[7]));  
+                                    tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[7]));  
                                     break;
                                 }
                                 else 
                                 {
                                     //T-room exits south, east and west
-                                     tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[6]));  
+                                     tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[6]));  
                                     break;
                                 }
                                 // </editor-fold>
                             default:
                                 //croos roads
-                                tile = ImageIO.read(new File(FILEPATH_MINIMAP_DIR+FILENAME_PICTURES_MINIMAP[8]));  
+                                tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[8]));  
                                 break;
                     } 
                     graph.drawImage(tile, 181*row, 181*col,null);   
                     if(room.getPlayer() != null)
                     {
-                        tile = ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_TOKEN[0])); 
+                        tile = ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_TOKEN[0])); 
                         graph.drawImage(tile, 181*row, 181*col,null);  
                     }
                     if(room.getMonster()!= null)
                         if(room.getMonster().getMapCode()=='Z')
                         {
-                            tile = ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_TOKEN[2])); 
+                            tile = ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_TOKEN[2])); 
                             graph.drawImage(tile, 181*row, 181*col,null);  
                         }
                         else
                         {
-                            tile = ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_TOKEN[1])); 
+                            tile = ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_TOKEN[1])); 
                             graph.drawImage(tile, 181*row, 181*col,null);  
                         }    
                 }
@@ -171,133 +171,189 @@ public class RenderEngine implements IGameConstants{
         catch (IOException ex) {
             System.out.println("Error happened in Rendering");
             System.out.println("message: "+ex.getMessage());
-            System.out.println("cause: "+ex.getCause());
-            System.out.println("stacktrace: "+ex.getStackTrace());
         }
         return null;        
     }
     public static Image renderMazeView(Player player) {
-    try {
+        try {
             //set basic canves
-            BufferedImage renderedView = ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[0])); 
+            BufferedImage renderedView = ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[0])); 
+    
+            Room currentRoom = player.getCurrentRoom();                         // get the current room 
+            Room nextRoom = currentRoom.getExit(player.getFacing().direction);  // get the room next to it.
             
-           
-            /* ID is effectively used as the first 6 digits in binary.
-            1 means door exists, each 0 means it doesn't.
-            111111 - each digit respectively represents a door as following:
-            (next room middle door), (next room right door), (next room left door),
-            (current room middle door), (current room right door), (current room left door).
-            */
-            Room currentRoom = player.getCurrentRoom();
-            Graphics2D graph = renderedView.createGraphics();
+            Graphics2D graph = renderedView.createGraphics();                   // makes the graphics opject to draw to. 
+            BufferedImage tile;                                                 // image to be drawn.
             
-            BufferedImage tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[1])); // current template
-            graph.drawImage(tile, 0,0,null);  // draws current template;
             
-            if(currentRoom.getExit(player.getFacing().left.direction) != null)
-            {
-                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[2])); 
-                graph.drawImage(tile, 0,0,null);  // draws 
-            }
-            else 
-            {
-                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[5]));
-                graph.drawImage(tile, 0,0,null);  // draws
-            }
-            if(currentRoom.getExit(player.getFacing().right.direction) != null)
-            {
-                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[3])); 
-                graph.drawImage(tile, 0,0,null);  // draws 
-            }
-            else 
-            {
-                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[6]));
-                graph.drawImage(tile, 0,0,null);  // draws
-            }  
-           
-  
-            Room nextRoom = currentRoom.getExit(player.getFacing().direction);
+            // stars with the back room
+            // <editor-fold defaultstate="collapsed" desc="back room.">
             if(nextRoom != null){
-                tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[7])); // next r template
-                graph.drawImage(tile, 0,0,null);  // draws nexrt template;
+                // <editor-fold defaultstate="collapsed" desc="draw room.">
                 
-                if(nextRoom.getExit(player.getFacing().left.direction) != null){                           
-                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[8])); // outher template
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                 // draws the rest of the template
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[7])); // gets Outer Template img
+                graph.drawImage(tile, 0,0,null);// draws picture
+                
+                // checks for Left exit
+                if(nextRoom.getExit(player.getFacing().left.direction) != null)
+                {   // gets outher left img
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[8]));
+                    graph.drawImage(tile, 0,0,null);// draws picture
                 }
                 else
-                {
-                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[11])); // outher template
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-                }
-                
-                if(nextRoom.getExit(player.getFacing().right.direction) != null){                          
-                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[9])); // outher template
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-                }
-                else
-                {
-                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[12])); // outher template
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-                }
-                
-                if(nextRoom.getExit(player.getFacing().direction) != null){                     
-                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[13])); // outher template
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                {   // gets outher no left img
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[11])); 
+                    graph.drawImage(tile, 0,0,null);// draws picture
+                }        
+                // checks for a rigth exit
+                if(nextRoom.getExit(player.getFacing().right.direction) != null)
+                {   // gets outher rigth img
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[9])); 
+                    graph.drawImage(tile, 0,0,null);// draws picture
                 }
                 else
-                {
-                    tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[10])); // outher template
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-                }  
-                Monster m =(Monster) nextRoom.getMonster(); 
-                if(m !=null)
-                {
-                    
-                    if(m.isBoss())
+                {   // gets outher no rigth img
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[12])); 
+                    graph.drawImage(tile, 0,0,null);// draws picture
+                }
+                // checks if there is a exit straigth ahead
+                if(nextRoom.getExit(player.getFacing().direction) != null)
+                {   // gets outher forward img
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[13]));
+                    graph.drawImage(tile, 0,0,null);// draws picture
+                }
+                else
+                {   // gets outher no forward img
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[10]));
+                    graph.drawImage(tile, 0,0,null); // draws picture
+                } 
+               
+                
+                // </editor-fold> 
+                // <editor-fold defaultstate="collapsed" desc="draw monsters.">
+                Monster m =(Monster) nextRoom.getMonster();                     // gets monsters to draw.
+                if(m !=null)                                                    // checks if there is a actual monsters to draw.
+                {                    
+                    if(m.isBoss())                                              // checks the type.
                     {
                         if(isDebug)System.out.println("found a boss on next room tile");
-                        tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[3])); // outher template
+                        tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[3])); // outher template
                         graph.drawImage(tile, 0,0,null);  // draws next room template;   
                     }
                     else
                     {   
                         if(isDebug)System.out.println("found a minion on next room tile");
-                        tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[2])); // outher template
+                        tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[2])); // outher template
                         graph.drawImage(tile, 0,0,null);  // draws next room template;   
                     }
                 }
+                // </editor-fold>
+                // <editor-fold defaultstate="collapsed" desc="draw Chests.">        
+                                 
+                if(nextRoom.hasItems())                                              // checks the room has Items.
+                {
+                    if(isDebug)System.out.println("found "+nextRoom.itemList().length+" items on next room tile");
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[1])); // gets innerChest img.
+                    graph.drawImage(tile, 0,0,null); 
+                }                
+                // </editor-fold>
+                // <editor-fold defaultstate="collapsed" desc="draw Door.">
+                if(nextRoom.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
+                {                       
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[2])); // outher door forward
+                    graph.drawImage(tile, 0,0,null);
+                }
+                // </editor-fold>                
             }            
             else
-            {
-                 tile =ImageIO.read(new File(FILEPATH_MAZEVIEW_DIR+FILENAME_PICTURES_VIEWPORT[4])); // outher template
-                 graph.drawImage(tile, 0,0,null);  // draws next room template;
+            {   // gets InnerNoForward img
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4]));
+                graph.drawImage(tile, 0,0,null);  // draws
             }
-    
-            Monster m =(Monster) currentRoom.getMonster(); 
-            if(m !=null)
-            {
-                if(m.isBoss())
+            // </editor-fold>      
+            // then the front room            
+            // <editor-fold defaultstate="collapsed" desc="front room.">
+            // <editor-fold defaultstate="collapsed" desc="draw room.">
+            
+            // gets inner template img
+            tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[1])); 
+            graph.drawImage(tile, 0,0,null); // draw
+            
+            // checks if there is a left exit
+            if(currentRoom.getExit(player.getFacing().left.direction) != null)
+            {   // get the inndr left img
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[2])); 
+                graph.drawImage(tile, 0,0,null); // draws 
+            }
+            else 
+            {   // get the inner no left img
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[5]));
+                graph.drawImage(tile, 0,0,null); // draws
+            }
+            // checks if there is a rigth exit
+            if(currentRoom.getExit(player.getFacing().right.direction) != null)
+            {   // get the inner rigth img
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[3])); 
+                graph.drawImage(tile, 0,0,null); // draws 
+            }
+            else 
+            {   // get the inner no rigth img
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[6]));
+                graph.drawImage(tile, 0,0,null); // draws
+            }  
+           
+            
+            // </editor-fold> 
+            // <editor-fold defaultstate="collapsed" desc="draw monsters.">
+            Monster m =(Monster) currentRoom.getMonster();                      // gets monsters to draw.
+            if(m !=null)                                                        // checks if there is a actual monsters to draw.
+            {                    
+                if(m.isBoss())                                                  // checks the type.
                 {
                     if(isDebug)System.out.println("found a boss on current room tile");
-                    tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[1])); // outher template
+                    // gets inner zuul img
+                    tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[1])); 
                     graph.drawImage(tile, 0,0,null);  // draws next room template;   
                 }
                 else
-                {
+                {   
                     if(isDebug)System.out.println("found a minion on next room tile");
-                    tile =ImageIO.read(new File(FILEPATH_CHARACTORS_DIR+FILENAME_PICTURES_CHARACTOR[0])); // outher template
+                    // gets inner miniun
+                    tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[0]));
                     graph.drawImage(tile, 0,0,null);  // draws next room template;   
                 }
-            }          
-  
+            }
+            // </editor-fold>
+            // <editor-fold defaultstate="collapsed" desc="draw Chests.">        
+
+            if(currentRoom.hasItems())                                          // checks the room has Items.
+            {
+                if(isDebug)System.out.println("found "+currentRoom.itemList().length+" items on current room tile");
+                // gets innerChest img.
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[3])); 
+                graph.drawImage(tile, 0,0,null);  // Draw
+            }                
+            // </editor-fold>
+//            
+//            // <editor-fold defaultstate="collapsed" desc="draw Door.">
+//            if(nextRoom.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
+//            {                       
+//                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
+//                graph.drawImage(tile, 0,0,null);  // draws next room template;
+//                tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[2])); // outher door forward
+//                graph.drawImage(tile, 0,0,null);
+//            }
+//            // </editor-fold>             
+//            
+            // </editor-fold>     
             return SwingFXUtils.toFXImage(renderedView,null);            
         } 
         catch (IOException ex) { 
             System.out.println("Error happened in Rendering");
-            System.out.println("message: "+ex.getMessage());
-            System.out.println("cause: "+ex.getCause());
-            System.out.println("stacktrace: "+ex.getStackTrace()); System.out.println(ex.getMessage());
+            System.out.println("message: "+ex.getMessage());           
         }
         return null;
     }
