@@ -129,6 +129,7 @@ public class GUIController implements IUI {
     private boolean isMapView = false;
     private int difficulty = 3;
     private int itemNumber = 0;
+    private int lootItemNumber = 0;
 
     private IGameEngine gameEngine;
     @FXML
@@ -644,13 +645,13 @@ public class GUIController implements IUI {
     @FXML
     private void useRoomItemButtonClicked(ActionEvent event)
     {
-        gameEngine.useLootItem(itemNumber);
+        gameEngine.useLootItem(lootItemNumber);
     }
 
     @FXML
     private void inspectRoomItemButtonClicked(ActionEvent event)
     {
-        
+        logTextArea.setText(gameEngine.getLootItemDescription(lootItemNumber));
     }
 
     @FXML
@@ -658,6 +659,78 @@ public class GUIController implements IUI {
     {
         makeInvisible(searchScene);
         makeVisible(labyrinthImage);
+    }
+
+    @FXML
+    private void roomItem1RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 0;
+    }
+
+    @FXML
+    private void roomItem2RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 1;
+    }
+
+    @FXML
+    private void roomItem3RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 2;
+    }
+
+    @FXML
+    private void roomItem4RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 3;
+    }
+
+    @FXML
+    private void roomItem5RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 4;
+    }
+
+    @FXML
+    private void roomItem6RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 5;
+    }
+
+    @FXML
+    private void roomItem7RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 6;
+    }
+
+    @FXML
+    private void roomItem8RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 7;
+    }
+
+    @FXML
+    private void roomItem9RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 8;
+    }
+
+    @FXML
+    private void roomItem10RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 9;
+    }
+
+    @FXML
+    private void roomItem11RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 10;
+    }
+
+    @FXML
+    private void roomItem12RadioButtonClicked(ActionEvent event)
+    {
+        lootItemNumber = 11;
     }
 
     

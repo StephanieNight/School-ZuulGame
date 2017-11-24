@@ -163,17 +163,17 @@ public class GameEngine implements IGameEngine {
 
     @Override
     public void useLootItem(int itemNumber) {
-        
+        game.useLootItem(itemNumber);
     }
 
     @Override
     public void pickUpItem(int itemNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        game.pickUpItem(itemNumber);
     }
 
     @Override
     public String getLootItemDescription(int itemNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return game.getLootItemDescription(itemNumber);
     }
     
     
