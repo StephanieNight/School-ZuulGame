@@ -644,7 +644,7 @@ public class GUIController implements IUI {
     @FXML
     private void useRoomItemButtonClicked(ActionEvent event)
     {
-        
+        gameEngine.useLootItem(itemNumber);
     }
 
     @FXML

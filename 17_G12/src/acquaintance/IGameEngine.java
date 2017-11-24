@@ -38,7 +38,7 @@ public interface IGameEngine {
     public String itemDescription(int itemNumber);
     
     public String[] getLoot();
-    public void useLootIem(int itemNumber);
+    public void useLootItem(int itemNumber);
     public void pickUpItem(int itemNumber);
     public String getLootItemDescription(int itemNumber);
     

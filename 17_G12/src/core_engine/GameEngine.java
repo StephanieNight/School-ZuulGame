@@ -162,7 +162,7 @@ public class GameEngine implements IGameEngine {
     }
 
     @Override
-    public void useLootIem(int itemNumber) {
+    public void useLootItem(int itemNumber) {
         
     }
 
