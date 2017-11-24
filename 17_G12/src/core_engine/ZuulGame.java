@@ -219,7 +219,7 @@ public class ZuulGame implements IGameConstants {
         labyrinth.spawnPlayer(0,0, player);
         
         ghost = new GhostWanderer("bob");
-        labyrinth.spawnMonster(1,1,ghost); 
+        labyrinth.spawnNPC(1,1,ghost); 
         
         Monster zuul = new Monster("Zuul", 140 + ((int)(Math.pow(this.difficulty, 2))*10), 15, 25, 'Z',this.difficulty, true, this.difficulty);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
