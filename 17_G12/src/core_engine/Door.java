@@ -12,18 +12,19 @@ import java.io.Serializable;
  * @author Stephanie
  */
 public class Door implements Serializable{
-    private boolean Locked;
+    private boolean locked;
     public Door(boolean Locked)
     {        
-        this.Locked = Locked;
+        this.locked = Locked;
     }
     public boolean unLock(Player p)
     {
-        return false;                
+        locked = false;
+        return isLocked();                
     }
 
     public boolean isLocked() {
-        return Locked;
+        return locked;
     }
     
 }

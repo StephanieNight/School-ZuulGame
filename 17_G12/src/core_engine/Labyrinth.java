@@ -6,6 +6,7 @@
 package core_engine;
 
 import core_engine.Items.PlateArmor;
+import core_engine.Items.Shield;
 import core_engine.Items.Sword;
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,16 +37,18 @@ public class Labyrinth
         {          
             maze[0][0].setDoor(s);
         }
-        int randomX = (int)(Math.random() * maze.length);
-        int randomY = (int)(Math.random() * maze.length);
+        int randomX = (int)(Math.random() * maze.length - 1) + 1;
+        int randomY = (int)(Math.random() * maze.length - 1) + 1;
         maze[randomX][randomY].dropItem(new PlateArmor());
             
-        randomX = (int)(Math.random() * maze.length);
-        randomY = (int)(Math.random() * maze.length);
+        randomX = (int)(Math.random() * maze.length - 1) + 1;
+        randomY = (int)(Math.random() * maze.length - 1) + 1;
         maze[randomX][randomY].dropItem(new Sword());
             
-        randomX = (int)(Math.random() * maze.length);
-        randomY = (int)(Math.random() * maze.length);
+        randomX = (int)(Math.random() * maze.length - 1) + 1;
+        randomY = (int)(Math.random() * maze.length - 1) + 1;
+        maze[randomX][randomY].dropItem(new Shield());
+        
       // * bug * //
       //  maze[randomX][randomY].dropItem(new Shield()); 
     }  

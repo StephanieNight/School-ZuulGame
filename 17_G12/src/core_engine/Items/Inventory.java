@@ -69,8 +69,7 @@ public class Inventory {
         
         inventory[itemID].useItem(player);//activates the item's effect.
 
-        if ("Weapon".equals(inventory[itemID].getType()) || "Shield".equals(inventory[itemID].getType()) 
-            || "Armor".equals(inventory[itemID].getType())) 
+        if (!"Consumable".equalsIgnoreCase(inventory[itemID].getType())) 
             {
                 return false; //if the used item is equipment, item isn't used, and returns false.
             }

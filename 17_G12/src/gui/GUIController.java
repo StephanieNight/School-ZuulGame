@@ -282,12 +282,12 @@ public class GUIController implements IUI
         popUp.setDisable(true);
     }
     
-    private void makeImageVisible(ImageView popUp) {
+    private void makeVisible(ImageView popUp) {
         popUp.setVisible(true);
         popUp.setDisable(false);
     }
 
-    private void makeImageInvisible(ImageView popUp) {
+    private void makeInvisible(ImageView popUp) {
         popUp.setVisible(false);
         popUp.setDisable(true);
     }
@@ -304,15 +304,7 @@ public class GUIController implements IUI
             changeScene(gameScene, combatScene);
         }
         
-        
-            if(isMapView)
-            {
-                labyrinthImage.setImage(gameEngine.renderMiniMapView());
-            }
-            else
-            {
-                labyrinthImage.setImage(gameEngine.renderMazeView());
-            }
+        redraw();
         
         
         
@@ -321,25 +313,25 @@ public class GUIController implements IUI
     @FXML
     private void leftButtonClicked(ActionEvent event) {
         gameEngine.turnLeft();
-        labyrinthImage.setImage(gameEngine.renderMazeView());
+        redraw();
     }
 
     @FXML
     private void rightButtonClicked(ActionEvent event) {
         gameEngine.turnRight();
-        labyrinthImage.setImage(gameEngine.renderMazeView());
+        redraw();
     }
 
     @FXML
     private void backButtonClicked(ActionEvent event) {
         gameEngine.turnBack();
-        labyrinthImage.setImage(gameEngine.renderMazeView());
+        redraw();
     }
 
     @FXML
     private void inventoryButtonClicked(ActionEvent event) {
  
-        makeVisible(inventoryScene);
+        GUIController.this.makeVisible(inventoryScene);
         String[] inventoryList = gameEngine.getInventory();
         for(int i = 0; i < inventoryList.length; i++)
         {
@@ -354,7 +346,7 @@ public class GUIController implements IUI
                 inventoryRadioButtons[i].setText("Empty inventory slot");
             }
         }
-        makeImageInvisible(labyrinthImage);
+        makeInvisible(labyrinthImage);
        
 
     }
@@ -362,7 +354,7 @@ public class GUIController implements IUI
     @FXML
     private void searchButtonClicked(ActionEvent event)
     {
-        makeVisible(searchScene);
+        GUIController.this.makeVisible(searchScene);
         String[] roomItemList = gameEngine.getLoot();
         for (int i = 0; i < searchRadioButtons.length; i++)
         {
@@ -377,13 +369,15 @@ public class GUIController implements IUI
                 searchRadioButtons[i].setVisible(false);
             }
         }
-        makeImageInvisible(labyrinthImage);
+        makeInvisible(labyrinthImage);
     }
 
     @FXML
     private void pickUpButtonClicked(ActionEvent event)
     {
         gameEngine.pickUpItem(lootItemNumber);
+        searchButtonClicked(event);
+        redraw();
     }
 
     @FXML
@@ -399,7 +393,7 @@ public class GUIController implements IUI
 
     @FXML
     private void optionsBackToMenuButtonClicked(ActionEvent event) {
-        makeVisible(wantToQuitPopUpLayer);
+        GUIController.this.makeVisible(wantToQuitPopUpLayer);
     }
 
     @FXML
@@ -427,18 +421,18 @@ public class GUIController implements IUI
 //    }
     @FXML
     private void yesDeleteProgressButtonClicked(ActionEvent event) {
-        makeInvisible(wantToQuitPopUpLayer);
+        GUIController.this.makeInvisible(wantToQuitPopUpLayer);
         changeScene(optionsScene, mainMenuScene);
     }
 
     @FXML
     private void noBackToOptionsButtonClicked(ActionEvent event) {
-        makeInvisible(wantToQuitPopUpLayer);
+        GUIController.this.makeInvisible(wantToQuitPopUpLayer);
     }
 
     @FXML
     private void newGameNextButtonClicked(ActionEvent event) {
-        makeVisible(enterNamePopUpLayer);
+        GUIController.this.makeVisible(enterNamePopUpLayer);
     }
 
     @FXML
@@ -447,6 +441,7 @@ public class GUIController implements IUI
         gameEngine.startNewGame(difficulty, enterPlayerName.getText());
         labyrinthImage.setImage(gameEngine.renderMazeView());
         createRadioArrays();
+        GUIController.this.makeInvisible(enterNamePopUpLayer);
         
         
     }
@@ -487,7 +482,7 @@ public class GUIController implements IUI
 
     @FXML
     private void BackToDifficltyButtonClicked(ActionEvent event) {
-        makeInvisible(enterNamePopUpLayer);
+        GUIController.this.makeInvisible(enterNamePopUpLayer);
     }
 
     @FXML
@@ -538,7 +533,7 @@ public class GUIController implements IUI
     @FXML
     private void combatInventoryButtonClicked(ActionEvent event)
     {
-        makeVisible(inventoryScene);
+        GUIController.this.makeVisible(inventoryScene);
         String[] inventoryList = gameEngine.getInventory();
         for(int i = 0; i < inventoryList.length; i++)
         {
@@ -553,7 +548,7 @@ public class GUIController implements IUI
                 inventoryRadioButtons[i].setText("Empty inventory slot");
             }
         }
-        makeImageInvisible(labyrinthImage);
+        makeInvisible(labyrinthImage);
     }
 
     @FXML
@@ -623,12 +618,16 @@ public class GUIController implements IUI
     @FXML
     private void useInventoryButtonClicked(ActionEvent event) {
         gameEngine.useItem(itemNumber);
+        inventoryButtonClicked(event);
+       
 
     }
 
     @FXML
     private void dropInventoryButtonClicked(ActionEvent event) {
         gameEngine.dropItem(itemNumber);
+        inventoryButtonClicked(event);
+        redraw();
     }
 
     @FXML
@@ -639,15 +638,17 @@ public class GUIController implements IUI
 
     @FXML
     private void closeInventoryButtonClicked(ActionEvent event) {
-        makeInvisible(inventoryScene);
-        makeImageVisible(labyrinthImage);
-       
+        GUIController.this.makeInvisible(inventoryScene);
+        makeVisible(labyrinthImage);
+        redraw();
     }
 
     @FXML
     private void useRoomItemButtonClicked(ActionEvent event)
     {
         gameEngine.useLootItem(lootItemNumber);
+        searchButtonClicked(event);
+        
     }
 
     @FXML
@@ -659,8 +660,9 @@ public class GUIController implements IUI
     @FXML
     private void closeSearchSceneButtonClicked(ActionEvent event)
     {
-        makeInvisible(searchScene);
-        makeImageVisible(labyrinthImage);
+        GUIController.this.makeInvisible(searchScene);
+        makeVisible(labyrinthImage);
+        redraw();
     }
 
     @FXML
@@ -735,6 +737,18 @@ public class GUIController implements IUI
         lootItemNumber = 11;
     }
 
+    
+    private void redraw()
+    {
+        if(isMapView)
+        {
+        labyrinthImage.setImage(gameEngine.renderMiniMapView());
+        }
+        else
+        {
+        labyrinthImage.setImage(gameEngine.renderMazeView());
+        }
+    }
     
     
 }

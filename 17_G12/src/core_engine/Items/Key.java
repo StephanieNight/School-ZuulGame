@@ -32,7 +32,10 @@ public String getDescription()
      */
     @Override
     public boolean useItem(Player p) {
-        // sets the exit to unlocked;
+        if(p.getCurrentRoom().getExit("north").hasDoor("south"))
+        {
+            p.getCurrentRoom().getExit("north").getDoor("south").unLock(p);
+        }
         return false;
     }
 

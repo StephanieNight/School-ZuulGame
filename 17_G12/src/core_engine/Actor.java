@@ -69,8 +69,8 @@ public abstract class Actor implements Serializable
     }
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
-        if (currentHealth < maximumHealthPoint){
-            currentHealth= maximumHealthPoint;
+        if (this.currentHealth > maximumHealthPoint){
+            this.currentHealth = maximumHealthPoint;
         }
     }
     

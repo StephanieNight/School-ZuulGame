@@ -428,19 +428,7 @@ public class ZuulGame implements IGameConstants {
         System.out.println("number of minions   : "+ this.maxNumberOfMinions);
         System.out.println("Diffictulty is      : "+ this.difficulty);
         
-        
-        int randomX = (int)(Math.random() * labyrinth.getMaze().length);
-        int randomY = (int)(Math.random() * labyrinth.getMaze().length);
-        labyrinth.getMaze()[randomX][randomY].dropItem(new PlateArmor());
-            
-        randomX = (int)(Math.random() * labyrinth.getMaze().length);
-        randomY = (int)(Math.random() * labyrinth.getMaze().length);
-        labyrinth.getMaze()[randomX][randomY].dropItem(new Sword());
-            
-        randomX = (int)(Math.random() * labyrinth.getMaze().length);
-        randomY = (int)(Math.random() * labyrinth.getMaze().length);
-        labyrinth.getMaze()[randomX][randomY].dropItem(new PlateArmor());
-        
+
         return true;
     }    
     public boolean checkWinCondition() {
