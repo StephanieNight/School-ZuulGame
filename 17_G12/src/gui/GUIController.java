@@ -381,7 +381,7 @@ public class GUIController implements IUI {
     @FXML
     private void pickUpButtonClicked(ActionEvent event)
     {
-        
+        gameEngine.pickUpItem(lootItemNumber);
     }
 
     @FXML
