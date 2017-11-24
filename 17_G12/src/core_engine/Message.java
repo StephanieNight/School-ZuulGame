@@ -11,14 +11,19 @@ package core_engine;
  */
 public class Message {
     private String description;
+    private String oldMessage;
     
     public Message()
     {
+        this.oldMessage = "";
         this.description = "";
     }
 
     public String getDescription() {
-        String msgOut = "> " + description + "\n\n";
+        String msgOut = oldMessage + "> " + description;
+        
+        String oldMessage = "> " + description + "\n\n";
+        description = "";
         description = "";
         return msgOut;
     }
