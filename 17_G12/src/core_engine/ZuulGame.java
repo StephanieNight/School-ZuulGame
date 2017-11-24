@@ -449,6 +449,10 @@ public class ZuulGame implements IGameConstants {
     public String itemDescription(int itemID){
         return player.getInventory().getItemDescription(itemID);
     }
+    public boolean checkForGameOver()
+    {
+        return (player.getCurrentHealth() < 1 || player.getLampOil() < 1);
+    }
 }
     
 

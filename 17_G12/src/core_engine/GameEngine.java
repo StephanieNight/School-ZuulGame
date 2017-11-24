@@ -150,6 +150,11 @@ public class GameEngine implements IGameEngine {
     {
         return Integer.toString(game.getPlayerCurrentHealth());
     }
+
+    @Override
+    public boolean checkForGameOver() {
+        return game.checkForGameOver();
+    }
     
     
     

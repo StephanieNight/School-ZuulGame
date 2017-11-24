@@ -40,6 +40,6 @@ public interface IGameEngine {
     public boolean attack();
     public boolean flee();
     public boolean checkWinCondition();
-    
+    public boolean checkForGameOver();
     
 }
