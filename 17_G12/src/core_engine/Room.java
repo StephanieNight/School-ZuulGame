@@ -215,9 +215,12 @@ public class Room
     }
     public void useItem(int id, Player p)
     {
-        if(itemList()[id].useItem(p))
+        if(itemList()[id] != null && id < itemList().length)
         {
-            lootList.remove(id);
+            if(itemList()[id].useItem(p))
+            {
+             lootList.remove(id);
+            }
         }
     }
 }
