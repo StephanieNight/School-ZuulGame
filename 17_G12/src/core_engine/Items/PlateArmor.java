@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
@@ -12,6 +13,7 @@ import core_engine.Player;
  * @author simon
  */
 public class PlateArmor implements Item{
+    private Message msg;
     
     @Override
     public String getDescription(){
@@ -40,7 +42,7 @@ public class PlateArmor implements Item{
         return 10;
     }   
     
-    public PlateArmor(){
-        
+    public PlateArmor(Message msg){
+        this.msg = msg;
     }
 }

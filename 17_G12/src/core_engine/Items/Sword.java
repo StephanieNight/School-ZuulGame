@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
@@ -13,6 +14,7 @@ import core_engine.Player;
  */
 public class Sword implements Item{
     
+    private Message msg;
     @Override
     public String getDescription(){
         return "A steel sword.";
@@ -39,7 +41,7 @@ public class Sword implements Item{
         return 17;
     }   
     
-    public Sword(){
-        
+    public Sword(Message msg){
+        this.msg = msg;
     }
 }

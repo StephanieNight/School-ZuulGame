@@ -17,8 +17,8 @@ public class testLabyrinth {
         for(int i = 0; i < 10;i++)        
         {
             int mazeSize = (int)((1.5*i)+3);
-            Labyrinth labyrinth= new Labyrinth(mazeSize);
-            labyrinth.display();
+            //Labyrinth labyrinth= new Labyrinth(mazeSize);
+            //labyrinth.display();
         }
     }
 }

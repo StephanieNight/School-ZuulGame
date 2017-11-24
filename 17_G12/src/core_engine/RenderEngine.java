@@ -232,7 +232,7 @@ public class RenderEngine implements IGameConstants{
                 
                 // </editor-fold> 
                 // <editor-fold defaultstate="collapsed" desc="draw monsters.">
-                Monster m =(Monster) nextRoom.getMonster();                     // gets monsters to draw.
+                Monster m =(Monster)nextRoom.getMonster();                     // gets monsters to draw.
                 if(m !=null)                                                    // checks if there is a actual monsters to draw.
                 {                    
                     if(m.isBoss())                                              // checks the type.

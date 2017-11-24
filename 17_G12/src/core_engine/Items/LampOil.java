@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
@@ -13,6 +14,7 @@ import core_engine.Player;
  */
 public class LampOil implements Item{
 
+    private Message msg;
     @Override
     public String getDescription() {
         return "Oil to fuel your Oil lamp.";
@@ -44,8 +46,8 @@ public class LampOil implements Item{
         return -1;
     }
     
-    public LampOil()
+    public LampOil(Message msg)
     {
-        
+        this.msg = msg;
     }
 }

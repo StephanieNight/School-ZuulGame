@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
@@ -12,9 +13,11 @@ import core_engine.Player;
  * @author Malte
  */
 public class Key implements Item{
+
+
+private Message msg;
+
 @Override
-
-
 public String getDescription()
 {
     return "This is a key, what does it do?";
@@ -54,9 +57,9 @@ public String getDescription()
         return -1;
     }
     
-    public Key()
+    public Key(Message msg)
     {
-        
+        this.msg = msg;
     }
 
  

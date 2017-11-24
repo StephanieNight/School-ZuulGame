@@ -6,7 +6,7 @@
 package core_engine;
 
 import core_engine.Items.PlateArmor;
-import core_engine.Items.Shield;
+import core_engine.Items.HeaterShield;
 import core_engine.Items.Sword;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,11 +17,13 @@ import java.util.Collections;
  */
 public class Labyrinth
 {
+    private Message msg;
     private final int SIZE;
     private Room[][] maze;
     private boolean isLoop = false;  
-    public Labyrinth(int size) 
+    public Labyrinth(int size, Message msg) 
     {
+        this.msg = msg;
         this.SIZE = size;
         maze = new Room[this.SIZE][this.SIZE];
         // fills the Maze with emptie 
@@ -39,15 +41,15 @@ public class Labyrinth
         }
         int randomX = (int)(Math.random() * maze.length - 1) + 1;
         int randomY = (int)(Math.random() * maze.length - 1) + 1;
-        maze[randomX][randomY].dropItem(new PlateArmor());
+        maze[randomX][randomY].dropItem(new PlateArmor(msg));
             
         randomX = (int)(Math.random() * maze.length - 1) + 1;
         randomY = (int)(Math.random() * maze.length - 1) + 1;
-        maze[randomX][randomY].dropItem(new Sword());
+        maze[randomX][randomY].dropItem(new Sword(msg));
             
         randomX = (int)(Math.random() * maze.length - 1) + 1;
         randomY = (int)(Math.random() * maze.length - 1) + 1;
-        maze[randomX][randomY].dropItem(new Shield());
+        maze[randomX][randomY].dropItem(new HeaterShield(msg));
         
       // * bug * //
       //  maze[randomX][randomY].dropItem(new Shield()); 

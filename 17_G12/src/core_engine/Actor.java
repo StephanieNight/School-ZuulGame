@@ -13,6 +13,7 @@ import core_engine.Items.Item;
  */
 public abstract class Actor implements Serializable
 {
+    private Message message;
     private final int DEFAULT_HEALTH_POINTS; 
     private final int DEFAULT_DEFENSE;
     private final String NAME;
@@ -42,17 +43,22 @@ public abstract class Actor implements Serializable
      * @param mapCode
      * @param level 
      */
-    public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode, int level, int diff){
+    public Actor(String name,int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, char mapCode, int level, int diff, Message message){
         this.NAME = name;
         this.DEFAULT_HEALTH_POINTS = defaultHealthpoint;
         this.DEFAULT_DEFENSE = defaultDefense;
         this.DEFAULT_DAMGE_OUTPUT = defaultDefense;
         this.MAP_CODE = mapCode;
         this.currentHealth = getModufiedHealthPoint();
+        this.message = message;
 
         this.facing = Labyrinth.DIR.S;
         
         this.level = level;
+    }
+
+    public Message getMessage() {
+        return message;
     }
     //  in this metode you can set the level 
     public void setLevel(int level) {

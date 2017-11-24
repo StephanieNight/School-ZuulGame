@@ -11,8 +11,8 @@ public class Monster extends Actor
 {
     private final boolean IS_BOSS;
     
-    public Monster(String name, int defaultHealthpoint, int defaultDefense, int defaultDamgeOutput, char mapCode, int level, boolean isBoss, int difficulty) {
-        super(name, defaultHealthpoint, defaultDefense, defaultDamgeOutput, mapCode, level, difficulty);
+    public Monster(String name, int defaultHealthpoint, int defaultDefense, int defaultDamgeOutput, char mapCode, int level, boolean isBoss, int difficulty, Message msg) {
+        super(name, defaultHealthpoint, defaultDefense, defaultDamgeOutput, mapCode, level, difficulty, msg);
         this.IS_BOSS = isBoss;
     }    
     public boolean isBoss() {

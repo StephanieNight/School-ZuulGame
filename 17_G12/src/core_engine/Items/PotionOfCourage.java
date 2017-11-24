@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
@@ -13,6 +14,7 @@ import core_engine.Player;
  */
 public class PotionOfCourage implements Item {
 
+    private Message msg;
     @Override
     public String getDescription() {
         return "A flask with a distinct smell of whiskey. "
@@ -45,8 +47,8 @@ public class PotionOfCourage implements Item {
     public int getStat() {
         return -1;
     }
-    public PotionOfCourage()
+    public PotionOfCourage(Message msg)
     {
-        
+        this.msg = msg;
     }
 }

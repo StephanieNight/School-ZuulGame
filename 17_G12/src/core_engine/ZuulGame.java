@@ -215,13 +215,13 @@ public class ZuulGame implements IGameConstants {
      * handles the spawning of of the player, minions and Zuul.
      */
     private void spawnMobs(String playerName) {         
-        player = new Player(playerName, 100, 20, 30, 1, 1);    
+        player = new Player(playerName, 100, 20, 30, 1, 1, message);    
         labyrinth.spawnPlayer(0,0, player);
         
-        ghost = new GhostWanderer("bob");
+        ghost = new GhostWanderer("bob", message);
         labyrinth.spawnNPC(1,1,ghost); 
         
-        Monster zuul = new Monster("Zuul", 140 + ((int)(Math.pow(this.difficulty, 2))*10), 15, 25, 'Z',this.difficulty, true, this.difficulty);
+        Monster zuul = new Monster("Zuul", 140 + ((int)(Math.pow(this.difficulty, 2))*10), 15, 25, 'Z',this.difficulty, true, this.difficulty, message);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
         monsters.add(zuul);
         for (int i = 0; i < this.maxNumberOfMinions ; i++) 
@@ -231,7 +231,7 @@ public class ZuulGame implements IGameConstants {
             {
                 int x = (int)(1+ Math.random()*(this.mazeSize-1)); 
                 int y = (int)(1+ Math.random()*(this.mazeSize-1));
-                Monster min = new Monster(("minion"+i), 30, 0, 10, 'M',this.difficulty, false, this.difficulty);
+                Monster min = new Monster(("minion"+i), 30, 0, 10, 'M',this.difficulty, false, this.difficulty, message);
                 added = labyrinth.spawnMonster(x, y,min);
                 if(added)
                 {
@@ -392,7 +392,7 @@ public class ZuulGame implements IGameConstants {
         {
             if(m.getMapCode() == 'Z')
             {
-                player.getCurrentRoom().dropItem(new Key());
+                player.getCurrentRoom().dropItem(new Key(message));
             }
             deleteMonster(m);
             player.getCurrentRoom().dropItem(itemGenerator.generateRandomItem());
@@ -419,8 +419,8 @@ public class ZuulGame implements IGameConstants {
         this.mazeSize = (int)((1.5*difficulty)+3);
         this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
         this.monsters =new ArrayList<>();
-        this.labyrinth= new Labyrinth(mazeSize);   
-        this.itemGenerator = new ItemGenerator(labyrinth);
+        this.labyrinth= new Labyrinth(mazeSize, message);   
+        this.itemGenerator = new ItemGenerator(labyrinth, message);
         
         spawnMobs(name);
         finished = false;

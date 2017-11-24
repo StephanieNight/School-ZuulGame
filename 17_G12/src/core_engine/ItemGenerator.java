@@ -22,11 +22,13 @@ import core_engine.Labyrinth;
  */
 public class ItemGenerator {
 
-    Labyrinth maze;
+    private Labyrinth maze;
+    private Message msg;
     
-    public ItemGenerator(Labyrinth maze)
+    public ItemGenerator(Labyrinth maze, Message msg)
     {
         this.maze = maze;
+        this.msg = msg;
     }
     
     /**
@@ -51,25 +53,25 @@ public class ItemGenerator {
         switch (num)
         {
             case 1:
-                return new HealingPotion();
+                return new HealingPotion(msg);
   
             case 2:
-                return new MiniMap(maze);
+                return new MiniMap(maze, msg);
                 
             case 3:
-                return new PotionOfCourage();
+                return new PotionOfCourage(msg);
                
             case 4:
-                return new PotionOfInvisibility();
+                return new PotionOfInvisibility(msg);
                 
             case 5:
-                return new PotionOfSwiftness();
+                return new PotionOfSwiftness(msg);
                 
             case 6:
-                return new LampOil();
+                return new LampOil(msg);
                 
             default:
-                return new PotionOfTeleportation(maze);
+                return new PotionOfTeleportation(maze, msg);
     
         }
     }

@@ -5,42 +5,44 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
  *
- * @author simon
+ * @author Malte
  */
-public class HeaterShield implements Item{
+public class HeaterShield implements Item {
+
+    private Message msg;
     
     @Override
-    public String getDescription(){
-        return "A common and effective shield.";
+    public String getDescription() {
+        return "A aweinspirering shield that makes you wonder if anyone can hit you while using it"; 
     }
-    
+
     @Override
-    public String getName(){
-        return "Heater shield";
-    }
-    
-    @Override
-    public boolean useItem(Player p){
-        System.out.println("There's a time and place for everything, but not now.");
-        return false;
-    }
-    
-    @Override
-    public String getType(){ //Shields add defense value.
+    public String getName() {
         return "Shield";
     }
-    
+
     @Override
-    public int getStat(){ //Added defense value amount.
-        return 5;
-    }   
-    
-    public HeaterShield(){
-        
+    public boolean useItem(Player p) {
+        return false;
+    }
+
+    @Override
+    public String getType() {
+        return "Shield";
+    }
+
+    @Override
+    public int getStat() {
+        return 10;
+    }
+    public HeaterShield(Message msg)
+    {
+        this.msg = msg;
     }
     
 }

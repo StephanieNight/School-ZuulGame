@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
@@ -13,7 +14,7 @@ import core_engine.Player;
  */
 public class PotionOfInvisibility implements Item {
 
-    
+    private Message msg;
     
     @Override
     public String getDescription() {
@@ -45,9 +46,9 @@ public class PotionOfInvisibility implements Item {
     public int getStat() {
         return -1;
     }
-    public PotionOfInvisibility()
+    public PotionOfInvisibility(Message msg)
     {
-        
+        this.msg = msg;
     }
     
 }

@@ -14,9 +14,9 @@ public class GhostWanderer extends Actor
     String greeting;
     String[] tips;
     
-    public GhostWanderer(String name)
+    public GhostWanderer(String name, Message msg)
     {
-        super(name, 1, 1, 1, 'g', 1, 1);
+        super(name, 1, 1, 1, 'g', 1, 1, msg);
         this.tips = new String[5];
         this.greeting = greeting();
         tips[0] = tip1();

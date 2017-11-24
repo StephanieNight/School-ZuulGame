@@ -16,18 +16,18 @@ import core_engine.Items.Item;
  * @author nicol
  */
 public class Player extends Actor{
-   
+    ;
      private int lampOil;
      private Inventory inventory;
     
     
-    public Player(String name, int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, int level, int difficulty) {
-        super(name, defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'P', level, difficulty);
-        this.inventory = new Inventory(difficulty);
+    public Player(String name, int defaultHealthpoint, int defaultDefense, int DefaultDamgeOutput, int level, int difficulty, Message msg) {
+        super(name, defaultHealthpoint, defaultDefense, DefaultDamgeOutput, 'P', level, difficulty, msg);
+        this.inventory = new Inventory(difficulty, msg);
         getInventory().injectPlayer(this);
-        addItem(new Branch());
-        addItem(new TatteredClothes());
-        addItem(new PotLid());
+        addItem(new Branch(msg));
+        addItem(new TatteredClothes(msg));
+        addItem(new PotLid(msg));
         lampOil = 25 + difficulty * 25;
         inventory.updateStat();
     }  

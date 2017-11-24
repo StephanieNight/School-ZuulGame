@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
@@ -13,6 +14,7 @@ import core_engine.Player;
  */
 public class PotionOfSwiftness implements Item{
 
+    private Message msg;
     @Override
     public String getDescription() {
         return "A flask with a nice yellow color. "
@@ -44,8 +46,8 @@ public class PotionOfSwiftness implements Item{
     public int getStat() {
         return -1;
     }
-    public PotionOfSwiftness()
+    public PotionOfSwiftness(Message msg)
     {
-        
+        this.msg = msg;
     }
 }

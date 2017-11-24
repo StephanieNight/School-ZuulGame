@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 import core_engine.Labyrinth;
+import core_engine.Message;
 import core_engine.Player;
 import core_engine.Room;
 /**
@@ -13,6 +14,7 @@ import core_engine.Room;
  */
 public class PotionOfTeleportation implements Item {
     private Labyrinth maze;
+    private Message msg;
     
     @Override
     public String getDescription() {
@@ -48,9 +50,10 @@ public class PotionOfTeleportation implements Item {
         return -1;
         }
     
-    public PotionOfTeleportation(Labyrinth maze)
+    public PotionOfTeleportation(Labyrinth maze, Message msg)
     {
         this.maze = maze;
+        this.msg = msg;
     }
  
 }

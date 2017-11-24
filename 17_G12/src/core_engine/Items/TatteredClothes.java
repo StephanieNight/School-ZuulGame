@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 /**
  *
@@ -12,6 +13,7 @@ import core_engine.Player;
  */
 public class TatteredClothes implements Item{
     
+    private Message msg;
     @Override
     public String getDescription(){
         return "Trusty clothes that have seen a lot of use.";
@@ -37,7 +39,7 @@ public class TatteredClothes implements Item{
     public int getStat(){ //Added defense value amount.
         return 3;
     }  
-    public TatteredClothes(){
-        
+    public TatteredClothes(Message msg){
+        this.msg = msg;
     }
 }

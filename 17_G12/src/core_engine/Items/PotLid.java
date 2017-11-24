@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 /**
  *
@@ -12,6 +13,7 @@ import core_engine.Player;
  */
 public class PotLid implements Item{
 
+    private Message msg;
     @Override
     public String getDescription(){
         return "The worn lid of a cooking pot from home.";
@@ -39,7 +41,8 @@ public class PotLid implements Item{
         return 2;
     }   
     
-    public PotLid(){
+    public PotLid(Message msg){
+        this.msg = msg;
         
     }
 }

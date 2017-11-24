@@ -8,6 +8,7 @@ package core_engine.Items;
 import java.util.Scanner;
 import core_engine.Room;
 import core_engine.Actor;
+import core_engine.Message;
 import core_engine.Player;
 /**
  * inventory to hold items
@@ -21,13 +22,13 @@ import core_engine.Player;
 // skal måske laves til set i stedet for array
 public class Inventory {
     private Item[] inventory;
-
+    private Message msg;
     private Player player;
 
     private int diff;
-    public Inventory( int diff)
+    public Inventory( int diff, Message msg)
     {
-
+        this.msg = msg;
         this.diff = diff;
         inventory = new Item[8 - diff]; //inventory size based on difficulty
     }

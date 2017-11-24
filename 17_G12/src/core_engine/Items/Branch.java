@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
@@ -12,6 +13,7 @@ import core_engine.Player;
  * @author simon
  */
 public class Branch implements Item{
+    private Message msg;
     
     @Override
     public String getDescription(){
@@ -39,8 +41,8 @@ public class Branch implements Item{
         return 5;
     }
     
-    public Branch(){
-        
+    public Branch(Message message){
+        msg = message;
     }
     
 }

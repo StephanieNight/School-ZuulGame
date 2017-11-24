@@ -5,6 +5,7 @@
  */
 package core_engine.Items;
 
+import core_engine.Message;
 import core_engine.Player;
 
 /**
@@ -14,6 +15,7 @@ import core_engine.Player;
 public class HealingPotion implements Item{
 
     private Player player;
+    private Message msg;
     
     @Override
     public String getDescription() {
@@ -56,13 +58,12 @@ public class HealingPotion implements Item{
     /**
      * no-args constructor, no args needed since all information is predefined.
      */
-    public HealingPotion()
+    public HealingPotion(Message msg)
     {
+        this.msg = msg;
     }
     
-    public void setPplayer()
-    {
-    }
+
 
     
 }
