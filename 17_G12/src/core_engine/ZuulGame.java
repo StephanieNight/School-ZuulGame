@@ -5,6 +5,7 @@
  */
 package core_engine;
 
+import Ahmets_package.Fight;
 import acquaintance.IGameEngine;
 import acquaintance.IInventory;
 import data.SaveGameInstance;
@@ -31,6 +32,8 @@ public class ZuulGame implements IGameConstants {
     private int maxNumberOfMinions;
     private boolean finished;
     private ItemGenerator itemGenerator;
+    private Fight fight;
+    private Message message;
     
     /** the constructer for the game engine to world of zuul this 
      * means it set the world size acording to dificulty 
@@ -38,7 +41,8 @@ public class ZuulGame implements IGameConstants {
      * lapyrinth.
      */
     public ZuulGame() {
-        
+        this.message = new Message();
+        this.fight = new Fight(message);
         //this.parser = new Parser();
 //        int i = -1;
 //        while(i == -1)
@@ -320,7 +324,7 @@ public class ZuulGame implements IGameConstants {
         }
         
     }  
-    private void deleteMonster(Monster m) {
+    private void deleteMonster(Actor m) {
         m.getCurrentRoom().setMonster(null);
         monsters.remove(m);
     }
@@ -385,7 +389,21 @@ public class ZuulGame implements IGameConstants {
         return player.getInventory().getInventoryList();
     }
     public boolean attack() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Actor m = player.getCurrentRoom().getMonster();
+        if(fight.attack(player, m))
+        {
+            deleteMonster(m);
+           return true; 
+        }
+        else if(fight.attack(m, player))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
     public boolean flee() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -400,6 +418,7 @@ public class ZuulGame implements IGameConstants {
         this.monsters =new ArrayList<>();
         this.labyrinth= new Labyrinth(mazeSize);   
         this.itemGenerator = new ItemGenerator(labyrinth);
+        
         spawnMobs(name);
         finished = false;
         System.out.println("Size                : "+this.mazeSize);
