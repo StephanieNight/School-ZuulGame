@@ -177,6 +177,7 @@ public class GUIController implements IUI {
     private Button closeInventoryButton;
     
     private RadioButton[] inventoryRadioButtons;
+    private RadioButton[] searchRadioButtons;
     @FXML
     private TextArea logTextArea;
     @FXML
@@ -185,8 +186,6 @@ public class GUIController implements IUI {
     private AnchorPane searchScene;
     @FXML
     private RadioButton roomItem1RadioButton;
-    @FXML
-    private ToggleGroup inventoryButtons1;
     @FXML
     private RadioButton roomItem2RadioButton;
     @FXML
@@ -200,13 +199,17 @@ public class GUIController implements IUI {
     @FXML
     private RadioButton roomItem7RadioButton;
     @FXML
-    private Button useInventoryButton1;
+    private ToggleGroup roomRadioButtons;
     @FXML
-    private Button dropInventoryButton1;
+    private RadioButton roomItem8RadioButton;
     @FXML
-    private Button inspectInventoryButton1;
+    private RadioButton roomItem9RadioButton;
     @FXML
-    private Button closeInventoryButton1;
+    private RadioButton roomItem10RadioButton;
+    @FXML
+    private RadioButton roomItem11RadioButton;
+    @FXML
+    private RadioButton roomItem12RadioButton;
 
     public void initialize() {
         // TODO
@@ -280,6 +283,16 @@ public class GUIController implements IUI {
         popUp.setVisible(false);
         popUp.setDisable(true);
     }
+    
+    private void makeVisible(ImageView popUp) {
+        popUp.setVisible(true);
+        popUp.setDisable(false);
+    }
+
+    private void makeInvisible(ImageView popUp) {
+        popUp.setVisible(false);
+        popUp.setDisable(true);
+    }
 
     @FXML
     private void loadGameButtonClicked(ActionEvent event) {
@@ -337,7 +350,7 @@ public class GUIController implements IUI {
             System.out.println(inventoryList[i]);
             inventoryRadioButtons[i].setText(inventoryList[i]);
         }
-        labyrinthImage.setVisible(false);
+        makeInvisible(labyrinthImage);
        
 
     }
@@ -345,7 +358,16 @@ public class GUIController implements IUI {
     @FXML
     private void searchButtonClicked(ActionEvent event)
     {
-        
+        makeVisible(searchScene);
+        String[] roomItemList = new String[10];
+        for (int i = 0; i < roomItemList.length; i++)
+        {
+            if (roomItemList[i] != null)
+            {
+                searchRadioButtons[i].setText(roomItemList[i]);
+            }
+        }
+        makeInvisible(labyrinthImage);
     }
 
     @FXML
@@ -470,7 +492,7 @@ public class GUIController implements IUI {
             {
                 //chanceScene(combatScene, defeatedScene);
             }
-            changeScene(combatScene, gameScene);
+            makeInvisible(combatScene);
         }
         
         currentHealthField.setText(gameEngine.getCurrentHealthToString());
@@ -486,7 +508,7 @@ public class GUIController implements IUI {
             System.out.println(inventoryList[i]);
             inventoryRadioButtons[i].setText(inventoryList[i]);
         }
-        labyrinthImage.setVisible(false);
+        makeInvisible(labyrinthImage);
     }
 
     @FXML
@@ -573,8 +595,27 @@ public class GUIController implements IUI {
     @FXML
     private void closeInventoryButtonClicked(ActionEvent event) {
         makeInvisible(inventoryScene);
-        labyrinthImage.setVisible(true);
+        makeVisible(labyrinthImage);
        
+    }
+
+    @FXML
+    private void useRoomItemButtonClicked(ActionEvent event)
+    {
+        
+    }
+
+    @FXML
+    private void inspectRoomItemButtonClicked(ActionEvent event)
+    {
+        
+    }
+
+    @FXML
+    private void closeSearchSceneButtonClicked(ActionEvent event)
+    {
+        makeInvisible(searchScene);
+        makeVisible(labyrinthImage);
     }
 
     

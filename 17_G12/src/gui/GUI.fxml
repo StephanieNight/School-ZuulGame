@@ -252,19 +252,24 @@
                            <children>
                               <RadioButton fx:id="roomItem1RadioButton" mnemonicParsing="false" onAction="#itemOneRadioButtonClicked" text="Item 1" GridPane.halignment="CENTER">
                                  <toggleGroup>
-                                    <ToggleGroup fx:id="inventoryButtons1" />
+                                    <ToggleGroup fx:id="roomRadioButtons" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton fx:id="roomItem2RadioButton" mnemonicParsing="false" onAction="#itemTwoRadioButtonClicked" text="Item 2" toggleGroup="$inventoryButtons1" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                              <RadioButton fx:id="roomItem3RadioButton" mnemonicParsing="false" onAction="#itemThreeRadioButtonClicked" text="Item 3" toggleGroup="$inventoryButtons1" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                              <RadioButton fx:id="roomItem4RadioButton" mnemonicParsing="false" onAction="#itemFourRadioButtonClicked" text="Item 4" toggleGroup="$inventoryButtons1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="roomItem5RadioButton" mnemonicParsing="false" onAction="#itemFiveRadioButtonClicked" text="Item 5" toggleGroup="$inventoryButtons1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="roomItem6RadioButton" mnemonicParsing="false" onAction="#itemSixRadioButtonClicked" text="Item 6" toggleGroup="$inventoryButtons1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="roomItem7RadioButton" mnemonicParsing="false" onAction="#itemSevenRadioButtonClicked" text="Item 7" toggleGroup="$inventoryButtons1" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-                              <Button fx:id="useInventoryButton1" mnemonicParsing="false" onAction="#useInventoryButtonClicked" text="Use" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button fx:id="dropInventoryButton1" mnemonicParsing="false" onAction="#dropInventoryButtonClicked" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button fx:id="inspectInventoryButton1" mnemonicParsing="false" onAction="#inspectInventoryButtonClicked" text="Inspect" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button fx:id="closeInventoryButton1" mnemonicParsing="false" onAction="#closeInventoryButtonClicked" text="Close" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <RadioButton fx:id="roomItem2RadioButton" mnemonicParsing="false" onAction="#itemTwoRadioButtonClicked" text="Item 2" toggleGroup="$roomRadioButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                              <RadioButton fx:id="roomItem3RadioButton" mnemonicParsing="false" onAction="#itemThreeRadioButtonClicked" text="Item 3" toggleGroup="$roomRadioButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                              <RadioButton fx:id="roomItem4RadioButton" mnemonicParsing="false" onAction="#itemSevenRadioButtonClicked" text="Item 4" toggleGroup="$roomRadioButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                              <RadioButton fx:id="roomItem5RadioButton" mnemonicParsing="false" onAction="#itemFourRadioButtonClicked" text="Item 5" toggleGroup="$roomRadioButtons" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="roomItem6RadioButton" mnemonicParsing="false" onAction="#itemFiveRadioButtonClicked" text="Item 6" toggleGroup="$roomRadioButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="roomItem7RadioButton" mnemonicParsing="false" onAction="#itemSixRadioButtonClicked" text="Item 7" toggleGroup="$roomRadioButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="roomItem8RadioButton" mnemonicParsing="false" text="Item 8" toggleGroup="$roomRadioButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="roomItem9RadioButton" mnemonicParsing="false" text="Item 9" toggleGroup="$roomRadioButtons" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="roomItem10RadioButton" mnemonicParsing="false" text="Item 10" toggleGroup="$roomRadioButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="roomItem11RadioButton" mnemonicParsing="false" text="Item 11" toggleGroup="$roomRadioButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="roomItem12RadioButton" mnemonicParsing="false" text="Item 12" toggleGroup="$roomRadioButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" onAction="#useRoomItemButtonClicked" text="Use" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" onAction="#pickUpButtonClicked" text="Pick up" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" onAction="#inspectRoomItemButtonClicked" text="Inspect" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" onAction="#closeSearchSceneButtonClicked" text="Close" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                      </children>
