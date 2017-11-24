@@ -141,7 +141,7 @@ public class Fight {
     * @param a1 The attacker
     * @param a2 The victim
     */
-    private boolean attack(Actor a1, Actor a2)
+    public boolean attack(Actor a1, Actor a2)
     {
         int actorDefense = a2.getModifiedDefense();
         int actorHitpoint = a2.getCurrentHealth();
@@ -157,6 +157,7 @@ public class Fight {
         {
             announceMiss(a1.getName(), a2.getName());
         }
+        System.out.println(message.getDescription());
        
         if(a2.getCurrentHealth() > 0){
             return false;
