@@ -24,193 +24,190 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author BenPaxIndustries
  */
-public class GUIController implements IUI {
-
-    private Label label;
-    @FXML
-    private AnchorPane defaultScene;
-    @FXML
-    private AnchorPane mainMenuScene;
-    @FXML
-    private Button newGameButton;
-    @FXML
-    private Button highScoreButton;
-    @FXML
-    private Button creditsButton;
-    @FXML
-    private Button quitButton;
-    @FXML
-    private ImageView mainMenuBackgroundImage;
-    @FXML
-    private AnchorPane creditsScene;
-    @FXML
-    private Button creditsBackButton;
-    @FXML
-    private ImageView creditsBackgroundImage;
-    @FXML
-    private AnchorPane highscoreScene;
-    @FXML
-    private ListView<?> highscoreList;
-    @FXML
-    private Button highscoreBackButton;
-    @FXML
-    private ImageView highscoreBackgroundImage;
-    @FXML
-    private AnchorPane newGameScene;
-    @FXML
-    private ImageView newGameBackgroundImage;
-    @FXML
-    private RadioButton veryEasyButton;
-    @FXML
-    private ToggleGroup difficultyRadioButtons;
-    @FXML
-    private RadioButton easyButton;
-    @FXML
-    private RadioButton normalButton;
-    @FXML
-    private RadioButton hardButton;
-    @FXML
-    private RadioButton veryHardButton;
-    @FXML
-    private Button newGameBackButton;
-    @FXML
-    private Button loadGameButton;
-    @FXML
-    private AnchorPane gameScene;
-    @FXML
-    private Button forwardButton;
-    @FXML
-    private Button leftButton;
-    @FXML
-    private Button rightButton;
-    @FXML
-    private Button backButton;
-    @FXML
-    private Button inventoryButton;
-    @FXML
-    private Button searchButton;
-    @FXML
-    private Button pickUpButton;
-    @FXML
-    private Button gameSceneOptionsButton;
-    @FXML
-    private AnchorPane optionsScene;
-    @FXML
-    private Button saveGameButton;
-    @FXML
-    private Button optionsBackToMenuButton;
-    @FXML
-    private Button optionsQuitGameButton;
-    @FXML
-    private Button resumeGameButton;
-    @FXML
-    private Button optionsHelpButton;
-    @FXML
-    private AnchorPane helpScene;
-    @FXML
-    private Button backToOptionsButton;
-    @FXML
-    private Button yesDeleteProgressButton;
-    @FXML
-    private Button noBackToOptionsButton;
-    @FXML
-    private AnchorPane wantToQuitPopUpLayer;
-    @FXML
-    private Button newGameNextButton;
-    @FXML
-    private AnchorPane EnterNamePopUpLayer;
-    @FXML
-    private Button PlayButton;
-    @FXML
-    private Button BackToDifficlyButton;
-    @FXML
-    private ImageView labyrinthImage;
-
+public class GUIController implements IUI
+{
+    /**-------------------
+     * SCENES AND POP-UPS.
+     */
+    @FXML private AnchorPane defaultScene;
+    
+    //Main scenes
+    @FXML private AnchorPane mainMenuScene;
+    @FXML private AnchorPane creditsScene;
+    @FXML private AnchorPane highscoreScene;
+    @FXML private AnchorPane newGameScene;
+    @FXML private AnchorPane optionsScene;
+    @FXML private AnchorPane gameScene;
+    @FXML private AnchorPane helpScene;
+    @FXML private AnchorPane combatScene;
+    
+    //Scenes within gameScene
+    @FXML private AnchorPane inventoryScene;
+    @FXML private AnchorPane searchScene;
+    
+    //Pop-ups
+    @FXML private AnchorPane wantToQuitPopUpLayer;
+    @FXML private AnchorPane enterNamePopUpLayer;
+    
+    /**-----------------------
+     * mainMenuScene elements.
+     */
+    @FXML private ImageView mainMenuBackgroundImage;
+    @FXML private Button newGameButton;
+    @FXML private Button loadGameButton;
+    @FXML private Button highScoreButton;
+    @FXML private Button creditsButton;
+    @FXML private Button quitButton;
+    
+    /**----------------------
+     * newGameScene elements.
+     */
+    @FXML private ImageView newGameBackgroundImage;
+    @FXML private ToggleGroup difficultyRadioButtons;
+    @FXML private RadioButton veryEasyButton;
+    @FXML private RadioButton easyButton;
+    @FXML private RadioButton normalButton;
+    @FXML private RadioButton hardButton;
+    @FXML private RadioButton veryHardButton;
+    @FXML private Button newGameBackButton;
+    @FXML private Button newGameNextButton;
+    
+    /**-----------------------------
+     * enterNamePopUpLayer elements.
+     */
+    @FXML private TextField enterPlayerName;
+    @FXML private Button PlayButton;
+    @FXML private Button BackToDifficlyButton;
+    
+    /**------------------------
+     * highscoreScene elements.
+     */
+    @FXML private ImageView highscoreBackgroundImage;
+    @FXML private ListView<?> highscoreList;
+    @FXML private Button highscoreBackButton;
+    
+    /**----------------------
+     * creditsScene elements.
+     */
+    @FXML private ImageView creditsBackgroundImage;
+    @FXML private Button creditsBackButton;
+    
+    /**-------------------
+     * gameScene elements.
+     */
+    //This ImageView displays the labyrinth
+    @FXML private ImageView labyrinthImage;
+    
+    //This TextArea writes the game activities
+    @FXML private TextArea logTextArea;
+    
+    //These buttons are used to navigate
+    @FXML private Button forwardButton;
+    @FXML private Button leftButton;
+    @FXML private Button rightButton;
+    @FXML private Button backButton;
+    
+    //These buttons are used to change to different scenes within gameScene.
+    @FXML private Button inventoryButton;
+    @FXML private Button searchButton;
+    @FXML private Button mapButton;
+    
+    //This buttons changes the main scene to optionsScene
+    @FXML private Button gameSceneOptionsButton;
+    
+    //This is used to pick up an item
+    @FXML private Button pickUpButton;
+    
+    /**----------------------
+     * optionsScene elements.
+     */
+    @FXML private Button resumeGameButton;
+    @FXML private Button saveGameButton;
+    @FXML private Button optionsHelpButton;
+    @FXML private Button optionsBackToMenuButton;
+    @FXML private Button optionsQuitGameButton;
+    
+    //Pop-ups
+    @FXML private Button backToOptionsButton;
+    @FXML private Button yesDeleteProgressButton;
+    @FXML private Button noBackToOptionsButton;
+    
+    /**---------------------
+     * combatScene elements.
+     */
+    //Container for combat graphics
+    @FXML private ImageView combatImage;
+    
+    //Container for written game activities
+    @FXML private TextArea logCombatTextArea;
+    
+    //Container for players current health
+    @FXML private TextField currentHealthField;
+    
+    //Action buttons
+    @FXML private Button attackButton;    
+    @FXML private Button fleeButton;
+    
+    //Change scene buttons
+    @FXML private Button combatInventoryButton;
+    @FXML private Button combatSceneOptionsButton;
+    
+    /**------------------------
+     * inventoryScene elements.
+     */
+    //Toggle group for all included radio buttons
+    @FXML private ToggleGroup inventoryButtons;
+    
+    //Radio buttons for items
+    @FXML private RadioButton itemOneRadioButton;
+    @FXML private RadioButton itemTwoRadioButton;
+    @FXML private RadioButton itemFiveRadioButton;
+    @FXML private RadioButton itemFourRadioButton;
+    @FXML private RadioButton itemThreeRadioButton;
+    @FXML private RadioButton itemSixRadioButton;
+    @FXML private RadioButton itemSevenRadioButton;
+    
+    //Action buttons
+    @FXML private Button useInventoryButton;
+    @FXML private Button dropInventoryButton;
+    @FXML private Button inspectInventoryButton;
+    
+    //Change scene button
+    @FXML private Button closeInventoryButton;
+    
+    /**---------------------
+     * searchScene elements.
+     */
+    //Toggle group for all included radio buttons
+    @FXML private ToggleGroup roomRadioButtons;
+    
+    //All included radio buttons
+    @FXML private RadioButton roomItem1RadioButton;
+    @FXML private RadioButton roomItem2RadioButton;
+    @FXML private RadioButton roomItem3RadioButton;
+    @FXML private RadioButton roomItem4RadioButton;
+    @FXML private RadioButton roomItem5RadioButton;
+    @FXML private RadioButton roomItem6RadioButton;
+    @FXML private RadioButton roomItem7RadioButton;
+    @FXML private RadioButton roomItem8RadioButton;
+    @FXML private RadioButton roomItem9RadioButton;
+    @FXML private RadioButton roomItem10RadioButton;
+    @FXML private RadioButton roomItem11RadioButton;
+    @FXML private RadioButton roomItem12RadioButton;
+    
+    /**-------------------
+     * NON-FXML VARIABLES.
+     */
     private boolean isMapView = false;
     private int difficulty = 3;
     private int itemNumber = 0;
     private int lootItemNumber = 0;
-
     private IGameEngine gameEngine;
-    @FXML
-    private TextField enterPlayerName;
-    @FXML
-    private AnchorPane combatScene;
-    @FXML
-    private ImageView combatImage;
-    @FXML
-    private Button attackButton;
-    @FXML
-    private Button combatInventoryButton;
-    @FXML
-    private Button fleeButton;
-    @FXML
-    private TextField currentHealthField;
-    @FXML
-    private Button combatSceneOptionsButton;
-    @FXML
-    private Button mapButton;
-    @FXML
-    private AnchorPane inventoryScene;
-    @FXML
-    private RadioButton itemOneRadioButton;
-    @FXML
-    private ToggleGroup inventoryButtons;
-    @FXML
-    private RadioButton itemTwoRadioButton;
-    @FXML
-    private RadioButton itemFiveRadioButton;
-    @FXML
-    private RadioButton itemFourRadioButton;
-    @FXML
-    private RadioButton itemThreeRadioButton;
-    @FXML
-    private RadioButton itemSixRadioButton;
-    @FXML
-    private RadioButton itemSevenRadioButton;
-    @FXML
-    private Button useInventoryButton;
-    @FXML
-    private Button dropInventoryButton;
-    @FXML
-    private Button inspectInventoryButton;
-    @FXML
-    private Button closeInventoryButton;
-    
     private RadioButton[] inventoryRadioButtons;
     private RadioButton[] searchRadioButtons;
-    @FXML
-    private TextArea logTextArea;
-    @FXML
-    private TextArea logCombatTextArea;
-    @FXML
-    private AnchorPane searchScene;
-    @FXML
-    private RadioButton roomItem1RadioButton;
-    @FXML
-    private RadioButton roomItem2RadioButton;
-    @FXML
-    private RadioButton roomItem3RadioButton;
-    @FXML
-    private RadioButton roomItem4RadioButton;
-    @FXML
-    private RadioButton roomItem5RadioButton;
-    @FXML
-    private RadioButton roomItem6RadioButton;
-    @FXML
-    private RadioButton roomItem7RadioButton;
-    @FXML
-    private ToggleGroup roomRadioButtons;
-    @FXML
-    private RadioButton roomItem8RadioButton;
-    @FXML
-    private RadioButton roomItem9RadioButton;
-    @FXML
-    private RadioButton roomItem10RadioButton;
-    @FXML
-    private RadioButton roomItem11RadioButton;
-    @FXML
-    private RadioButton roomItem12RadioButton;
+    
+    
+    
 
     public void initialize() {
         // TODO
@@ -370,7 +367,7 @@ public class GUIController implements IUI {
         for (int i = 0; i < searchRadioButtons.length; i++)
         {
             
-            if (roomItemList[i] != null && i < roomItemList.length)
+            if (i < roomItemList.length)
             {
                 searchRadioButtons[i].setText(roomItemList[i]);
                 searchRadioButtons[i].setVisible(true);
@@ -441,7 +438,7 @@ public class GUIController implements IUI {
 
     @FXML
     private void newGameNextButtonClicked(ActionEvent event) {
-        makeVisible(EnterNamePopUpLayer);
+        makeVisible(enterNamePopUpLayer);
     }
 
     @FXML
@@ -490,7 +487,7 @@ public class GUIController implements IUI {
 
     @FXML
     private void BackToDifficltyButtonClicked(ActionEvent event) {
-        makeInvisible(EnterNamePopUpLayer);
+        makeInvisible(enterNamePopUpLayer);
     }
 
     @FXML
