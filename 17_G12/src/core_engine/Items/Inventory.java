@@ -130,24 +130,7 @@ public class Inventory {
                     {
                     if(item.getType().equals(inventory[i].getType()))//checks if equipment to add is the same type as one already in inventory.
                     {
-                        while(true){ //while loop ensures a valid response from player.
-                            System.out.println("Do you wish to swap " + 
-                                    inventory[i].getName() + " with " + item.getName() + "?");
-                            System.out.println("Yes / No");
-                            Scanner input = new Scanner(System.in);
-                            String in = input.next().toLowerCase();
-                            if(in.equals("yes")){
-                                System.out.println(item.getName() + " was picked up.");
-                                inventory[i] = item; //destroys current equipment and replaces with new.
-                                updateStat();
-                                return true;
-                            }
-                            if(in.equals("no")){
-                                System.out.println("left the " + item.getName() + " on the ground.");
-                                return false;
-                            }
-                            System.out.println("That is not a valid response.");
-                        }
+                        dropItem(i);
                     }
                 }
                 }
