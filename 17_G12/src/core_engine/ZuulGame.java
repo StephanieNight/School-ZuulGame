@@ -8,6 +8,9 @@ package core_engine;
 import Ahmets_package.Fight;
 import acquaintance.IGameEngine;
 import acquaintance.IInventory;
+import core_engine.Items.Key;
+import core_engine.Items.PlateArmor;
+import core_engine.Items.Sword;
 import data.SaveGameInstance;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -397,6 +400,10 @@ public class ZuulGame implements IGameConstants {
         Actor m = player.getCurrentRoom().getMonster();
         if(fight.attack(player, m))
         {
+            if(m.getMapCode() == 'Z')
+            {
+                player.getCurrentRoom().dropItem(new Key());
+            }
             deleteMonster(m);
             player.getCurrentRoom().dropItem(itemGenerator.generateRandomItem());
            return true; 
@@ -430,6 +437,19 @@ public class ZuulGame implements IGameConstants {
         System.out.println("Size                : "+this.mazeSize);
         System.out.println("number of minions   : "+ this.maxNumberOfMinions);
         System.out.println("Diffictulty is      : "+ this.difficulty);
+        
+        
+        int randomX = (int)(Math.random() * labyrinth.getMaze().length);
+        int randomY = (int)(Math.random() * labyrinth.getMaze().length);
+        labyrinth.getMaze()[randomX][randomY].dropItem(new PlateArmor());
+            
+        randomX = (int)(Math.random() * labyrinth.getMaze().length);
+        randomY = (int)(Math.random() * labyrinth.getMaze().length);
+        labyrinth.getMaze()[randomX][randomY].dropItem(new Sword());
+            
+        randomX = (int)(Math.random() * labyrinth.getMaze().length);
+        randomY = (int)(Math.random() * labyrinth.getMaze().length);
+        labyrinth.getMaze()[randomX][randomY].dropItem(new PlateArmor());
         
         return true;
     }
