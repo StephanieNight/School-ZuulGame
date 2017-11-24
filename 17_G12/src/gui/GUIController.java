@@ -278,7 +278,10 @@ public class GUIController implements IUI {
             }
         
         }
-        logTextArea.appendText(gameEngine.getMessage() + "\n");
+        for(int i = 0; i < 500; i++)
+        {
+        logTextArea.appendText(Integer.toString(i) + "\n");
+        }
     }
 
     @FXML
@@ -431,6 +434,11 @@ public class GUIController implements IUI {
 
     @FXML
     private void attackButtonClicked(ActionEvent event) {
+        if(gameEngine.attack())
+        {
+            changeScene(combatScene, gameScene);
+        }
+        
     }
 
     @FXML
