@@ -526,6 +526,7 @@ public class GUIController implements IUI {
                 //chanceScene(combatScene, defeatedScene);
             }
             changeScene(combatScene, gameScene);
+            labyrinthImage.setImage(gameEngine.renderMazeView());
         }
         
         currentHealthField.setText(gameEngine.getCurrentHealthToString());

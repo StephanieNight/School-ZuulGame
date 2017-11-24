@@ -145,12 +145,16 @@ public class Fight {
     {
         int actorDefense = a2.getModifiedDefense();
         int actorHitpoint = a2.getCurrentHealth();
+        int damage;
        
         if ((int)(Math.random()*100) > actorDefense)
         {
-            actorHitpoint -= a1.getModifiedDamgeOutput();
+            damage = a1.getModifiedDamgeOutput() + 
+                    (int)(Math.random()*a1.getModifiedDamgeOutput()/5) 
+                    - a1.getModifiedDamgeOutput()/10;
+            actorHitpoint -= damage;
             a2.setCurrentHealth(actorHitpoint);
-            announceAttack(a1.getModifiedDamgeOutput(), a2.getCurrentHealth(), 
+            announceAttack(damage, a2.getCurrentHealth(), 
                    a1.getName(), a2.getName());
         }
         else
