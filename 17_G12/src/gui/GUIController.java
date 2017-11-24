@@ -367,12 +367,17 @@ public class GUIController implements IUI {
     {
         makeVisible(searchScene);
         String[] roomItemList = gameEngine.getLoot();
-        for (int i = 0; i < roomItemList.length && i < searchRadioButtons.length; i++)
+        for (int i = 0; i < searchRadioButtons.length; i++)
         {
-            searchRadioButtons[i].setVisible(true);
-            if (roomItemList[i] != null)
+            
+            if (roomItemList[i] != null && i < roomItemList.length)
             {
                 searchRadioButtons[i].setText(roomItemList[i]);
+                searchRadioButtons[i].setVisible(true);
+            }
+            else
+            {
+                searchRadioButtons[i].setVisible(false);
             }
         }
         makeInvisible(labyrinthImage);
