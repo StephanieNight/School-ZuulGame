@@ -6,9 +6,7 @@
 package core_engine;
 
 import core_engine.Items.PlateArmor;
-import core_engine.Items.Shield;
 import core_engine.Items.Sword;
-import core_engine.Room;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -48,7 +46,8 @@ public class Labyrinth
             
         randomX = (int)(Math.random() * maze.length);
         randomY = (int)(Math.random() * maze.length);
-        maze[randomX][randomY].dropItem(new Shield()); 
+      // * bug * //
+      //  maze[randomX][randomY].dropItem(new Shield()); 
     }  
     /* 
      * Spawns the player in the room 
@@ -75,6 +74,19 @@ public class Labyrinth
         if (maze[x][y].getMonster()== null)
         {
             maze[x][y].setMonster(actor);
+            actor.setCurrentRoom(maze[x][y]);
+            return true;
+        }
+        else 
+        {
+            return false;
+        } 
+    }
+        public boolean spawnNPC(int x, int y,Actor actor)
+    {
+        if (maze[x][y].getGaust()== null)
+        {
+            maze[x][y].setGaust(actor);
             actor.setCurrentRoom(maze[x][y]);
             return true;
         }
