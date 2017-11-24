@@ -492,7 +492,7 @@ public class GUIController implements IUI {
             {
                 //chanceScene(combatScene, defeatedScene);
             }
-            makeInvisible(combatScene);
+            changeScene(combatScene, gameScene);
         }
         
         currentHealthField.setText(gameEngine.getCurrentHealthToString());
