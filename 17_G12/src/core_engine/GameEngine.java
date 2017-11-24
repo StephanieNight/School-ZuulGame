@@ -155,6 +155,11 @@ public class GameEngine implements IGameEngine {
     public boolean checkForGameOver() {
         return game.checkForGameOver();
     }
+
+    @Override
+    public String[] getLoot() {
+        return game.getLoot();
+    }
     
     
     

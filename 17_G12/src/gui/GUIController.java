@@ -305,8 +305,8 @@ public class GUIController implements IUI {
         {
             changeScene(gameScene, combatScene);
         }
-        else
-        {
+        
+        
             if(isMapView)
             {
                 labyrinthImage.setImage(gameEngine.renderMiniMapView());
@@ -316,11 +316,8 @@ public class GUIController implements IUI {
                 labyrinthImage.setImage(gameEngine.renderMazeView());
             }
         
-        }
-        for(int i = 0; i < 500; i++)
-        {
-        logTextArea.appendText(Integer.toString(i) + "\n");
-        }
+        
+        
     }
 
     @FXML
@@ -343,12 +340,21 @@ public class GUIController implements IUI {
 
     @FXML
     private void inventoryButtonClicked(ActionEvent event) {
+ 
         makeVisible(inventoryScene);
         String[] inventoryList = gameEngine.getInventory();
         for(int i = 0; i < inventoryList.length; i++)
         {
             System.out.println(inventoryList[i]);
+            inventoryRadioButtons[i].setVisible(true);
+            if(inventoryList[i] != null)
+            {
             inventoryRadioButtons[i].setText(inventoryList[i]);
+            }
+            else
+            {
+                inventoryRadioButtons[i].setText("Empty inventory slot");
+            }
         }
         makeInvisible(labyrinthImage);
        
@@ -359,9 +365,10 @@ public class GUIController implements IUI {
     private void searchButtonClicked(ActionEvent event)
     {
         makeVisible(searchScene);
-        String[] roomItemList = new String[10];
-        for (int i = 0; i < roomItemList.length; i++)
+        String[] roomItemList = gameEngine.getLoot();
+        for (int i = 0; i < roomItemList.length && i < searchRadioButtons.length; i++)
         {
+            searchRadioButtons[i].setVisible(true);
             if (roomItemList[i] != null)
             {
                 searchRadioButtons[i].setText(roomItemList[i]);
@@ -436,7 +443,13 @@ public class GUIController implements IUI {
         changeScene(newGameScene, gameScene);
         gameEngine.startNewGame(difficulty, enterPlayerName.getText());
         labyrinthImage.setImage(gameEngine.renderMazeView());
-        inventoryRadioButtons = new RadioButton[7];
+        createRadioArrays();
+        
+        
+    }
+        private void createRadioArrays()
+        {
+            inventoryRadioButtons = new RadioButton[7];
         inventoryRadioButtons[0] = itemOneRadioButton;
         inventoryRadioButtons[1] = itemTwoRadioButton;
         inventoryRadioButtons[2] = itemThreeRadioButton;
@@ -445,8 +458,28 @@ public class GUIController implements IUI {
         inventoryRadioButtons[5] = itemSixRadioButton;
         inventoryRadioButtons[6] = itemSevenRadioButton;
         currentHealthField.setText(gameEngine.getCurrentHealthToString());
-    }
+        for (int i = 0; i < inventoryRadioButtons.length; i++) {
+            inventoryRadioButtons[i].setVisible(false);  
+        }
         
+        searchRadioButtons = new RadioButton[12];
+        
+        searchRadioButtons[0] = roomItem1RadioButton;
+        searchRadioButtons[1] = roomItem2RadioButton;
+        searchRadioButtons[2] = roomItem3RadioButton;
+        searchRadioButtons[3] = roomItem4RadioButton;
+        searchRadioButtons[4] = roomItem5RadioButton;
+        searchRadioButtons[5] = roomItem6RadioButton;
+        searchRadioButtons[6] = roomItem7RadioButton;
+        searchRadioButtons[7] = roomItem8RadioButton;
+        searchRadioButtons[8] = roomItem9RadioButton;
+        searchRadioButtons[9] = roomItem10RadioButton;
+        searchRadioButtons[10] = roomItem11RadioButton;
+        searchRadioButtons[11] = roomItem12RadioButton;
+            for (int i = 0; i < searchRadioButtons.length; i++) {
+                searchRadioButtons[i].setVisible(false);
+            }
+        }
     
 
     @FXML
@@ -506,7 +539,15 @@ public class GUIController implements IUI {
         for(int i = 0; i < inventoryList.length; i++)
         {
             System.out.println(inventoryList[i]);
+            inventoryRadioButtons[i].setVisible(true);
+            if(inventoryList[i] != null)
+            {
             inventoryRadioButtons[i].setText(inventoryList[i]);
+            }
+            else
+            {
+                inventoryRadioButtons[i].setText("Empty inventory slot");
+            }
         }
         makeInvisible(labyrinthImage);
     }

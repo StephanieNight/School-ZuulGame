@@ -35,6 +35,7 @@ public interface IGameEngine {
     public boolean useItem(int itemNumber);
     public boolean dropItem(int ItemNumber);
     public String itemDescription(int itemNumber);
+    public String[] getLoot();
     
     public boolean checkForCombat();
     public boolean attack();

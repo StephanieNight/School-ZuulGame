@@ -454,6 +454,16 @@ public class ZuulGame implements IGameConstants {
     {
         return (player.getCurrentHealth() < 1 || player.getLampOil() < 1);
     }
+    
+    public String[] getLoot()
+    {
+        
+        String[] lootArray = new String[player.getCurrentRoom().itemList().length];
+        for (int i = 0; i < lootArray.length; i++) {
+            lootArray[i] = player.getCurrentRoom().itemList()[i].getName();
+            }
+        return lootArray;
+    }
 }
     
 

@@ -24,7 +24,6 @@ public class Message {
         
         String oldMessage = "> " + description + "\n\n";
         description = "";
-        description = "";
         return msgOut;
     }
 
