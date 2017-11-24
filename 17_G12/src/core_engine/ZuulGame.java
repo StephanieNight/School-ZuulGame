@@ -398,6 +398,7 @@ public class ZuulGame implements IGameConstants {
         if(fight.attack(player, m))
         {
             deleteMonster(m);
+            player.getCurrentRoom().dropItem(itemGenerator.generateRandomItem());
            return true; 
         }
         else if(fight.attack(m, player))
