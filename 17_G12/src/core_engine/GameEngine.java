@@ -31,7 +31,7 @@ public class GameEngine implements IGameEngine {
     public int getDifficulty() {
         return game.getDifficulty();
     }
-
+    
     @Override
     public boolean saveHighScore() {
       return game.saveHighScore();
@@ -143,6 +143,12 @@ public class GameEngine implements IGameEngine {
     public String getMessage() {
         
         return "daaboo";
+    }
+
+    @Override
+    public String getCurrentHealthToString()
+    {
+        return Integer.toString(game.getPlayerCurrentHealth());
     }
     
     

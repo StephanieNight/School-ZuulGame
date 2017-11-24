@@ -176,7 +176,7 @@ public class GUIController implements IUI {
     @FXML
     private Button closeInventoryButton;
     
-    private RadioButton[] radioButtons;
+    private RadioButton[] inventoryRadioButtons;
     @FXML
     private TextArea logTextArea;
     @FXML
@@ -309,7 +309,7 @@ public class GUIController implements IUI {
         for(int i = 0; i < inventoryList.length; i++)
         {
             System.out.println(inventoryList[i]);
-            radioButtons[i].setText(inventoryList[i]);
+            inventoryRadioButtons[i].setText(inventoryList[i]);
         }
         viewPort.setVisible(false);
        
@@ -317,16 +317,19 @@ public class GUIController implements IUI {
     }
 
     @FXML
-    private void searchButtonClicked(ActionEvent event) {
+    private void searchButtonClicked(ActionEvent event)
+    {
 
     }
 
     @FXML
-    private void pickUpButtonClicked(ActionEvent event) {
+    private void pickUpButtonClicked(ActionEvent event)
+    {
     }
 
     @FXML
-    private void gameSceneOptionsButtonClicked(ActionEvent event) {
+    private void gameSceneOptionsButtonClicked(ActionEvent event)
+    {
         changeScene(gameScene, optionsScene);
     }
 
@@ -384,14 +387,14 @@ public class GUIController implements IUI {
         changeScene(newGameScene, gameScene);
         gameEngine.startNewGame(difficulty, enterPlayerName.getText());
         viewPort.setImage(gameEngine.renderMazeView());
-        radioButtons = new RadioButton[7];
-        radioButtons[0] = itemOneRadioButton;
-        radioButtons[1] = itemTwoRadioButton;
-        radioButtons[2] = itemThreeRadioButton;
-        radioButtons[3] = itemFourRadioButton;
-        radioButtons[4] = itemFiveRadioButton;
-        radioButtons[5] = itemSixRadioButton;
-        radioButtons[6] = itemSevenRadioButton;
+        inventoryRadioButtons = new RadioButton[7];
+        inventoryRadioButtons[0] = itemOneRadioButton;
+        inventoryRadioButtons[1] = itemTwoRadioButton;
+        inventoryRadioButtons[2] = itemThreeRadioButton;
+        inventoryRadioButtons[3] = itemFourRadioButton;
+        inventoryRadioButtons[4] = itemFiveRadioButton;
+        inventoryRadioButtons[5] = itemSixRadioButton;
+        inventoryRadioButtons[6] = itemSevenRadioButton;
         
     }
         
@@ -436,21 +439,40 @@ public class GUIController implements IUI {
     private void attackButtonClicked(ActionEvent event) {
         if(gameEngine.attack())
         {
+//            if (gameEngine.)
+//            {
+//                
+//            }
             changeScene(combatScene, gameScene);
         }
         
+        currentHealthField.setText(gameEngine.getCurrentHealthToString());
     }
 
     @FXML
-    private void combatInventoryButtonClicked(ActionEvent event) {
+    private void combatInventoryButtonClicked(ActionEvent event)
+    {
+        makeVisible(inventoryScene);
+        String[] inventoryList = gameEngine.getInventory();
+        for(int i = 0; i < inventoryList.length; i++)
+        {
+            System.out.println(inventoryList[i]);
+            inventoryRadioButtons[i].setText(inventoryList[i]);
+        }
+        viewPort.setVisible(false);
     }
 
     @FXML
-    private void fleeButtonClicked(ActionEvent event) {
+    private void fleeButtonClicked(ActionEvent event)
+    {
+        gameEngine.flee();
+        changeScene(combatScene, gameScene);
     }
 
     @FXML
-    private void currentHealthFieldUpdate(ActionEvent event) {
+    private void currentHealthFieldUpdate(ActionEvent event)
+    {
+        
     }
 
     @FXML

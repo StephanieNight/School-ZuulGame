@@ -194,6 +194,11 @@ public class ZuulGame implements IGameConstants {
     public int getDifficulty() {
         return difficulty;
     }
+    
+    public int getPlayerCurrentHealth()
+    {
+        return player.getCurrentHealth();
+    }
     /**
      * 
      * @return 
@@ -406,7 +411,7 @@ public class ZuulGame implements IGameConstants {
         
     }
     public boolean flee() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }   
     public boolean checkForCombat() {
         return player.getCurrentRoom().getMonster() != null;
