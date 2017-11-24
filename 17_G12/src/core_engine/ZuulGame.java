@@ -293,9 +293,7 @@ public class ZuulGame implements IGameConstants {
                 moveMonster(m);
             }
         }
-        
-        if (defeatedMinion != null)
-            deleteMonster(defeatedMinion);
+     
         
     } 
     private void moveMonster(Monster m) {
@@ -340,6 +338,7 @@ public class ZuulGame implements IGameConstants {
     public boolean setName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
     public Image renderMazeView() {
        return RenderEngine.renderMazeView(player);
     }
@@ -367,6 +366,7 @@ public class ZuulGame implements IGameConstants {
             return false;
             }
         }
+        System.out.println(player.getLampOil());
         return checkForCombat();
     }
     
