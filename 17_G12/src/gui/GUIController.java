@@ -181,6 +181,32 @@ public class GUIController implements IUI {
     private TextArea logTextArea;
     @FXML
     private TextArea logCombatTextArea;
+    @FXML
+    private AnchorPane searchScene;
+    @FXML
+    private RadioButton roomItem1RadioButton;
+    @FXML
+    private ToggleGroup inventoryButtons1;
+    @FXML
+    private RadioButton roomItem2RadioButton;
+    @FXML
+    private RadioButton roomItem3RadioButton;
+    @FXML
+    private RadioButton roomItem4RadioButton;
+    @FXML
+    private RadioButton roomItem5RadioButton;
+    @FXML
+    private RadioButton roomItem6RadioButton;
+    @FXML
+    private RadioButton roomItem7RadioButton;
+    @FXML
+    private Button useInventoryButton1;
+    @FXML
+    private Button dropInventoryButton1;
+    @FXML
+    private Button inspectInventoryButton1;
+    @FXML
+    private Button closeInventoryButton1;
 
     public void initialize() {
         // TODO
@@ -325,6 +351,7 @@ public class GUIController implements IUI {
     @FXML
     private void pickUpButtonClicked(ActionEvent event)
     {
+        
     }
 
     @FXML
