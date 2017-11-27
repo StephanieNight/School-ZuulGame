@@ -158,30 +158,27 @@ public class Inventory {
         {
             if(equipment)
             {
-                for (int i =0; i < inventory.length; i++) {
+                
+                    for (int i = 0; i < inventory.length; i++) {//cycles through inventory
                     if(inventory[i] != null)
                     {
-                        if(item.getType().equals(inventory[i].getType()))
-                        {
-                            while(true){ //loop with return statements ensures a valid answer.
-                                System.out.println("Do you wish to swap " + 
-                                        inventory[i].getName() + " with " + item.getName() + "?");
-                                System.out.println("Yes / No");
-                                Scanner input = new Scanner(System.in);
-                                String in = input.next().toLowerCase();
-                                if(in.equals("yes")){
-                                    System.out.println(item.getName() + " was picked up.");
-                                    inventory[i] = item; //destroys current equipment and replaces with new.
-                                    updateStat();
-                                    return true;
-                                }
-                                if(in.equals("no")){
-                                    System.out.println("left the " + item.getName() + " on the ground.");
-                                    return false;
-                                }
-                                System.out.println("That is not a valid response.");
-                            }
-                        }
+                    if(item.getType().equals(inventory[i].getType()))//checks if equipment to add is the same type as one already in inventory.
+                    {
+                        dropItem(i);
+                        break;
+                    }
+                }
+                }
+                //if you're not already wearing equipment of the same type, pick it up.
+                for (int i = 0; i < inventory.length; i++){
+                    if(inventory[i] == null){
+                        System.out.println(item.getName() + " was picked up.");
+                        inventory[i] = item; //adds item to first vacant spot in inventory.
+                        updateStat();
+                        return true;
+                    }
+                            
+                        
                     }
                 }
             }
@@ -202,8 +199,8 @@ public class Inventory {
                 }*/
             
         }
-        return false;//does nothing (is never reached), but compiler complains otherwise.
-    }
+        
+    
    
     
     /**
@@ -255,3 +252,6 @@ public class Inventory {
         }
     }
 }
+
+
+
