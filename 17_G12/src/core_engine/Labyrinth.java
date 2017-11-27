@@ -87,11 +87,13 @@ public class Labyrinth
             return false;
         } 
     }
-        public boolean spawnNPC(int x, int y,Actor actor)
+    public boolean spawnNPC(int x, int y,Actor actor)
     {
-        if (maze[x][y].getGaust()== null)
+        x=0;
+        y=1;
+        if (maze[x][y].getGhoust()== null)
         {
-            maze[x][y].setGaust(actor);
+            maze[x][y].setGhoust(actor);
             actor.setCurrentRoom(maze[x][y]);
             return true;
         }
@@ -123,7 +125,7 @@ public class Labyrinth
                 // draw the west edge
                 for (int j = 0; j < this.SIZE; j++) {
                         System.out.print(!maze[j][i].hasExit(DIR.W.direction) ? "| " : "  ");
-                        System.out.print(maze[j][i].getMapCode());
+                        System.out.print(maze[j][i].getMonsterMapCode());
                         System.out.print(" ");
                         
                 }

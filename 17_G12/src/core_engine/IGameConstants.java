@@ -22,10 +22,20 @@ public interface IGameConstants {
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
     String[] FILENAME_PICTURES_CHARACTOR =
     {
-        "innerMinion.png",          // 0
-        "innerZuul.png",            // 1
-        "outerMinion.png",          // 2
-        "outerZuul.png"             // 3
+        "innerMinion.png",              // 0
+        "innerZuul.png",                // 1
+        "innerGhoust.png",              // 2
+        "outerMinion.png",              // 3
+        "outerZuul.png",                // 4       
+        "outerGhouts.png"               // 5
+    };
+    String[] FILENAME_PICTURES_CHARACTOR_BATTLE =
+    {
+        "HealthBars.png",               // 0
+        "MonsterImp.png",               // 1
+        "MonsterImp.png",               // 2
+        "PlayerHighLevel.png",          // 3
+        "PlayerLowLevel.png"            // 4      
     };
     String[] FILENAME_PICTURES_MINIMAP = 
     {

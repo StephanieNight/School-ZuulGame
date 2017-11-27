@@ -18,7 +18,7 @@ public class Room
     private HashMap<String, Door> doors;
     private Actor player; // Copy
     private Actor monster; // Copy
-    private Actor gaust; // Copy
+    private Actor ghoust; // Copy
     private ArrayList<Item> lootList;
     private int pictureID_3D;
     private int pictureID_MiniMap;
@@ -143,7 +143,7 @@ public class Room
     {
         return !exits.isEmpty();
     }
-    public char getMapCode() {
+    public char getMonsterMapCode() {
         if(isConflict())
         {
             return 'C';
@@ -221,12 +221,15 @@ public class Room
         }
     }
 
-    public Actor getGaust() {
-        return gaust;
+    public Actor getGhoust() {
+        return ghoust;
     }
-    public void setGaust(Actor gaust) {
-        this.gaust = gaust;
+    public void setGhoust(Actor gaust) {
+        this.ghoust = gaust;
     }
-    
+    public boolean isOccupied()
+    {
+        return ghoust !=null&& monster != null;
+    }
 }
             
