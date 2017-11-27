@@ -42,7 +42,7 @@ public class HealingPotion implements Item{
      */
     @Override
     public boolean useItem(Player p) {
-        System.out.println("You already feel better");
+        msg.setDescription("You already feel better");
         p.setCurrentHealth(p.getCurrentHealth() + 30);
         return true;
     }

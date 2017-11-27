@@ -48,9 +48,10 @@ public class PotionOfCourage implements Item
     @Override
     public boolean useItem(Player p)
     {
-        System.out.println("Feels good to drink some liquid courage!");
+        msg.setDescription("Feels good to drink some liquid courage!");
         p.setXp(p.getXp() + 2);
         p.updateLevel();  
+        p.setCurrentHealth(p.getCurrentHealth() + 15);
         return true;
     }
 
