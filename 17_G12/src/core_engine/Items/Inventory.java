@@ -109,7 +109,7 @@ public class Inventory {
                 {
                     if(item.getType().equals(inventory[i].getType()))//checks if equipment to add is the same type as one already in inventory.
                     {
-                        System.out.println("Picked up " + item.getName() + " and dropped your" + inventory[i].getName());
+                        msg.setDescription("Picked up " + item.getName() + " and dropped your " + inventory[i].getName());
                         player.getCurrentRoom().dropItem(inventory[i]); //drops current equipment
                         inventory[i] = item; //replaces equipment with new.
                         //remove item from room
@@ -119,7 +119,7 @@ public class Inventory {
                 }
                 else//if you're not already wearing same type of equipment and inventory is not full, pick it up.
                 {
-                    System.out.println(item.getName() + " was picked up.");
+                    msg.setDescription(item.getName() + " was picked up.");
                         inventory[i] = item; //adds item to first vacant spot in inventory.
                         updateStat();
                         return true;
@@ -135,7 +135,7 @@ public class Inventory {
                 }
             }
         }
-        System.out.println("Inventory full");
+        msg.setDescription("Inventory full");
         return false;
     }
    
@@ -148,7 +148,7 @@ public class Inventory {
     public void dropItem(int itemID)
     {
         if(itemID < inventory.length && inventory[itemID] != null){
-            System.out.println("You dropped your " + inventory[itemID].getName());
+            msg.setDescription("You dropped your " + inventory[itemID].getName());
             player.getCurrentRoom().dropItem(inventory[itemID]);
             inventory[itemID] = null;
 
