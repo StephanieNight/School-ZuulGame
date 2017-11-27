@@ -375,7 +375,7 @@ public class RenderEngine implements IGameConstants{
     public static Image renderBattleView(Player player,Monster monster) {
         try {
             //set basic canves
-            BufferedImage renderedView = ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[0])); 
+            BufferedImage renderedView = new BufferedImage(600, 700,BufferedImage.TYPE_INT_ARGB); // ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[0])); 
     
             Room currentRoom = player.getCurrentRoom();                         // get the current room 
             Room nextRoom = currentRoom.getExit(player.getFacing().direction);  // get the room next to it.
@@ -383,177 +383,32 @@ public class RenderEngine implements IGameConstants{
             Graphics2D graph = renderedView.createGraphics();                   // makes the graphics opject to draw to. 
             BufferedImage tile;                                                 // image to be drawn.
             
-            
-            // stars with the back room
-            // <editor-fold defaultstate="collapsed" desc="back room.">
-            if(nextRoom != null){
-                // <editor-fold defaultstate="collapsed" desc="draw room.">
-                
-                 // draws the rest of the template
-                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[7])); // gets Outer Template img
-                graph.drawImage(tile, 0,0,null);// draws picture
-                
-                // checks for Left exit
-                if(nextRoom.getExit(player.getFacing().left.direction) != null)
-                {   // gets outher left img
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[8]));
-                    graph.drawImage(tile, 0,0,null);// draws picture
-                }
-                else
-                {   // gets outher no left img
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[11])); 
-                    graph.drawImage(tile, 0,0,null);// draws picture
-                }        
-                // checks for a rigth exit
-                if(nextRoom.getExit(player.getFacing().right.direction) != null)
-                {   // gets outher rigth img
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[9])); 
-                    graph.drawImage(tile, 0,0,null);// draws picture
-                }
-                else
-                {   // gets outher no rigth img
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[12])); 
-                    graph.drawImage(tile, 0,0,null);// draws picture
-                }
-                // checks if there is a exit straigth ahead
-                if(nextRoom.getExit(player.getFacing().direction) != null)
-                {   // gets outher forward img
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[13]));
-                    graph.drawImage(tile, 0,0,null);// draws picture
-                }
-                else
-                {   // gets outher no forward img
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[10]));
-                    graph.drawImage(tile, 0,0,null); // draws picture
-                } 
-               
-                
-                // </editor-fold> 
-                // <editor-fold defaultstate="collapsed" desc="draw monsters.">
-                Monster m =(Monster)nextRoom.getMonster();                     // gets monsters to draw.
-                if(m !=null)                                                    // checks if there is a actual monsters to draw.
-                {                    
-                    if(m.isBoss())                                              // checks the type.
-                    {
-                        if(isDebug)System.out.println("found a boss on next room tile");
-                        tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[3])); // outher template
-                        graph.drawImage(tile, 0,0,null);  // draws next room template;   
-                    }
-                    else
-                    {   
-                        if(isDebug)System.out.println("found a minion on next room tile");
-                        tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[2])); // outher template
-                        graph.drawImage(tile, 0,0,null);  // draws next room template;   
-                    }
-                }
-                // </editor-fold>
-                // <editor-fold defaultstate="collapsed" desc="draw Chests.">        
-                                 
-                if(nextRoom.hasItems())                                              // checks the room has Items.
-                {
-                    if(isDebug)System.out.println("found "+nextRoom.itemList().length+" items on next room tile");
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[1])); // gets innerChest img.
-                    graph.drawImage(tile, 0,0,null); 
-                }                
-                // </editor-fold>
-                // <editor-fold defaultstate="collapsed" desc="draw Door.">
-                if(nextRoom.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
-                {                       
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[2])); // outher door forward
-                    graph.drawImage(tile, 0,0,null);
-                }
-                // </editor-fold>                
-            }            
-            else
-            {   // gets InnerNoForward img
-                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4]));
+            // gets player
+            tile = ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR_BATTLE[4])); 
+            graph.drawImage(tile, 0,0,null);  // draws
+            // gets healthbar frame
+            tile = ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR_BATTLE[0])); 
+            graph.drawImage(tile, 0,0,null);  // draws
+            if(monster.isBoss())
+            {
+                tile = ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR_BATTLE[2])); 
                 graph.drawImage(tile, 0,0,null);  // draws
             }
-            // </editor-fold>      
-            // then the front room            
-            // <editor-fold defaultstate="collapsed" desc="front room.">
-            // <editor-fold defaultstate="collapsed" desc="draw room.">
-            
-            // gets inner template img
-            tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[1])); 
-            graph.drawImage(tile, 0,0,null); // draw
-            
-            // checks if there is a left exit
-            if(currentRoom.getExit(player.getFacing().left.direction) != null)
-            {   // get the inndr left img
-                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[2])); 
-                graph.drawImage(tile, 0,0,null); // draws 
-            }
-            else 
-            {   // get the inner no left img
-                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[5]));
-                graph.drawImage(tile, 0,0,null); // draws
-            }
-            // checks if there is a rigth exit
-            if(currentRoom.getExit(player.getFacing().right.direction) != null)
-            {   // get the inner rigth img
-                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[3])); 
-                graph.drawImage(tile, 0,0,null); // draws 
-            }
-            else 
-            {   // get the inner no rigth img
-                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[6]));
-                graph.drawImage(tile, 0,0,null); // draws
-            }  
-           
-            
-            // </editor-fold> 
-            // <editor-fold defaultstate="collapsed" desc="draw monsters.">
-            Monster m =(Monster) currentRoom.getMonster();                      // gets monsters to draw.
-            if(m !=null)                                                        // checks if there is a actual monsters to draw.
-            {                    
-                if(m.isBoss())                                                  // checks the type.
-                {
-                    if(isDebug)System.out.println("found a boss on current room tile");
-                    // gets inner zuul img
-                    tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[1])); 
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;   
-                }
-                else
-                {   
-                    if(isDebug)System.out.println("found a minion on next room tile");
-                    // gets inner miniun
-                    tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[0]));
-                    graph.drawImage(tile, 0,0,null);  // draws next room template;   
-                }
-            }
-            // </editor-fold>
-            // <editor-fold defaultstate="collapsed" desc="draw Chests.">        
-
-            if(currentRoom.hasItems())                                          // checks the room has Items.
+            else
             {
-                if(isDebug)System.out.println("found "+currentRoom.itemList().length+" items on current room tile");
-                // gets innerChest img.
-                tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[3])); 
-                graph.drawImage(tile, 0,0,null);  // Draw
-            }                
-            // </editor-fold>
-//            
-//            // <editor-fold defaultstate="collapsed" desc="draw Door.">
-//            if(nextRoom.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
-//            {                       
-//                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
-//                graph.drawImage(tile, 0,0,null);  // draws next room template;
-//                tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[2])); // outher door forward
-//                graph.drawImage(tile, 0,0,null);
-//            }
-//            // </editor-fold>             
-//            
-            // </editor-fold>     
-            return SwingFXUtils.toFXImage(renderedView,null);            
-        } 
-        catch (IOException ex) { 
+                tile = ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR_BATTLE[1])); 
+                graph.drawImage(tile, 0,0,null);  // draws
+            }
+            return SwingFXUtils.toFXImage(renderedView,null);       
+        }
+        catch(IOException ex)
+        {
             System.out.println("Error happened in Rendering");
             System.out.println("message: "+ex.getMessage());           
         }
+        
         return null;
     }
-}
+}        
+
    

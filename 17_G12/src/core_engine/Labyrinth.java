@@ -89,8 +89,6 @@ public class Labyrinth
     }
     public boolean spawnNPC(int x, int y,Actor actor)
     {
-        x=0;
-        y=1;
         if (maze[x][y].getGhoust()== null)
         {
             maze[x][y].setGhoust(actor);

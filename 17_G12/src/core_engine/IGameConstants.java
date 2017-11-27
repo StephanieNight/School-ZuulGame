@@ -33,7 +33,7 @@ public interface IGameConstants {
     {
         "HealthBars.png",               // 0
         "MonsterImp.png",               // 1
-        "MonsterImp.png",               // 2
+        "MonsterZuul.png",              // 2
         "PlayerHighLevel.png",          // 3
         "PlayerLowLevel.png"            // 4      
     };

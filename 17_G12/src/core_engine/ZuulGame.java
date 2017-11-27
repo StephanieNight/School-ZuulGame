@@ -219,7 +219,7 @@ public class ZuulGame implements IGameConstants {
         labyrinth.spawnPlayer(0,0, player);
         
         ghost = new GhostWanderer("bob", message);
-        labyrinth.spawnNPC(1,1,ghost); 
+        labyrinth.spawnNPC(0,1,ghost); 
         
         Monster zuul = new Monster("Zuul", 140 + ((int)(Math.pow(this.difficulty, 2))*10), 15, 25, 'Z',this.difficulty, true, this.difficulty, message);
         labyrinth.spawnMonster(this.mazeSize-1, this.mazeSize-1,zuul);
@@ -308,7 +308,7 @@ public class ZuulGame implements IGameConstants {
             {   
                 Room current = m.getCurrentRoom();
                 Room ex = current.getExit(s);
-                if(ex.getMonster() ==null)
+                if(!ex.isOccupied())
                 {
                     //Der laves et nyt object hver gang denne køres
                     Command command = new Command(CommandWord.GO, s);
@@ -320,7 +320,6 @@ public class ZuulGame implements IGameConstants {
             catch (Exception e)
             {
                 System.out.println(" Problem occured " + e.getMessage());
-
             }
         }
         
@@ -342,7 +341,7 @@ public class ZuulGame implements IGameConstants {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }    
     public Image renderMazeView() {
-       return TestRender.renderMazeView(player);
+       return RenderEngine.renderMazeView(player);
     }
     public Image renderMiniMapView() {           
        return RenderEngine.renderMiniMapView(labyrinth.getMaze());
