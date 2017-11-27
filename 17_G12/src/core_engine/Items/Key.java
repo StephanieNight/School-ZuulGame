@@ -12,29 +12,38 @@ import core_engine.Player;
  *
  * @author Malte
  */
-public class Key implements Item{
-
-
-private Message msg;
-
-@Override
-public String getDescription()
+public class Key implements Item
 {
-    return "This is a key, what does it do?";
-    
-}
+    private Message msg;
 
-
+    /**
+     * This returns the description of a Key object.
+     * @return String
+     */
     @Override
-    public String getName() {
+    public String getDescription()
+    {
+        return "This is a key, what does it do?";
+    }
+
+    /**
+     * This returns the name of a Key object.
+     * @return String
+     */
+    @Override
+    public String getName()
+    {
         return "Key";
     }
 
     /**
-     * Unlocks the door out of the dungeon letting the player win
+     * Unlocks the door out of the dungeon letting the player win.
+     * @param p
+     * @return false
      */
     @Override
-    public boolean useItem(Player p) {
+    public boolean useItem(Player p)
+    {
         if(p.getCurrentRoom().getExit("north").hasDoor("south"))
         {
             p.getCurrentRoom().getExit("north").getDoor("south").unLock(p);
@@ -44,19 +53,31 @@ public String getDescription()
 
     
     /**
-     * 
-     * @return 
+     * This returns the type of Item a Key object is.
+     * @return String
      */
     @Override
-    public String getType() {
+    public String getType()
+    {
         return "Key";
     }
-
+    
+    /**
+     * This returns -1, which is the stat of a Key object,
+     * since it is non-equipable.
+     * @return int: -1
+     */
     @Override
-    public int getStat() {
+    public int getStat()
+    {
         return -1;
     }
     
+    /**
+     * Key constructor, with a Message object as input, which is set as
+     * referencepoint to this objects message variable 'msg'.
+     * @param msg 
+     */
     public Key(Message msg)
     {
         this.msg = msg;
