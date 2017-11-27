@@ -12,36 +12,69 @@ import core_engine.Player;
  *
  * @author simon
  */
-public class PlateArmor implements Item{
+public class PlateArmor implements Item
+{
     private Message msg;
     
+    /**
+     * This returns the description of a PlateArmor object.
+     * @return String
+     */
     @Override
-    public String getDescription(){
+    public String getDescription()
+    {
         return "Heavy armor made to withstand attacks.";
     }
     
+    /**
+     * This returns the name of a PlateArmor object.
+     * @return String
+     */
     @Override
-    public String getName(){
+    public String getName()
+    {
         return "Plate armor";
        
     }
     
+    /**
+     * This returns false.
+     * @param p
+     * @return false
+     */
     @Override
-    public boolean useItem(Player p){
+    public boolean useItem(Player p)
+    {
         System.out.println("There's a time and place for everything, but not now.");
          return false;
     }
     
+    /**
+     * This returns the type of Item a PlateArmor object is.
+     * @return String
+     */
     @Override
-    public String getType(){ //Armor adds defense value.
+    public String getType()
+    {
         return "Armor";
     }
     
+    /**
+     * This returns 10, which is the stat increase applied to the player,
+     * when a PlateArmor object is equipped.
+     * @return int: 10
+     */
     @Override
-    public int getStat(){ //Added defense value amount.
+    public int getStat()
+    {
         return 10;
     }   
     
+    /**
+     * PlateArmor constructor, with a Message object as input, which is set
+     * as referencepoint to this objects Message variable 'msg'.
+     * @param msg 
+     */
     public PlateArmor(Message msg){
         this.msg = msg;
     }

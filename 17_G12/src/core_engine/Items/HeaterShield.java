@@ -18,7 +18,7 @@ public class HeaterShield implements Item
     private Message msg;
     
     /**
-     * This returns the desccription of a HeaterShield object.
+     * This returns the description of a HeaterShield object.
      * @return String
      */
     @Override
@@ -60,7 +60,7 @@ public class HeaterShield implements Item
 
     /**
      * This returns 10, which is the stat increase applied to the player,
-     * when a HeaterShield object is used.
+     * when a HeaterShield object is equipped.
      * @return int: 10
      */
     @Override
@@ -71,7 +71,7 @@ public class HeaterShield implements Item
     
     /**
      * HeaterShield constructor, with a Message object as input, which is
-     * set as referencepoint to this objects message variable 'msg'.
+     * set as referencepoint to this objects Message variable 'msg'.
      * @param msg 
      */
     public HeaterShield(Message msg)

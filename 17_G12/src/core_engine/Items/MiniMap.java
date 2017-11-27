@@ -14,17 +14,25 @@ import core_engine.Room;
  *
  * @author Malte
  */
-public class MiniMap implements Item{
-    
+public class MiniMap implements Item
+{
     private Labyrinth maze;
     private Message msg;
 
+    /**
+     * This returns the description of a MiniMap object.
+     * @return String
+     */
     @Override
     public String getDescription() {
         return "A datailed map of the labyrinth!"
                 + "\nYou can even see the monsters!";
     }
 
+    /**
+     * This returns the name of a MiniMap object.
+     * @return String
+     */
     @Override
     public String getName() {
         return "Map";
@@ -33,8 +41,9 @@ public class MiniMap implements Item{
 
     
     /**
-     * Updates the whole map as if you've been everywhere.
+     * Updates the whole map as if you've been everywhere and returns true.
      * @param p
+     * @return true 
      */
     @Override
     public boolean useItem(Player p) {
@@ -46,16 +55,32 @@ public class MiniMap implements Item{
         return true;
     }
 
+    /**
+     * This returns the type of Item a MiniMap object is.
+     * @return String
+     */
     @Override
     public String getType() {
         return "Consumable";
     }
 
+    /**
+     * This returns -1, which is the stat of a MiniMap object, since it
+     * is non-equipable.
+     * @return int: -1
+     */
     @Override
     public int getStat() {
         return -1;
     }
     
+    /**
+     * MiniMap constructor, with a the following arguments as input:
+     * @param maze: This is set as referencepoint to this objects
+     * Labyrinth variable.
+     * @param msg: This is set as referencepoint to this objects Message
+     * variable
+     */
     public MiniMap(Labyrinth maze, Message msg)
     {
         this.maze = maze;

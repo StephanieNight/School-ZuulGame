@@ -12,41 +12,74 @@ import core_engine.Player;
  *
  * @author Malte
  */
-public class PotionOfCourage implements Item {
-
+public class PotionOfCourage implements Item
+{
     private Message msg;
+    
+    /**
+     * This returns the description of a PotionOfCourage object.
+     * @return String
+     */
     @Override
-    public String getDescription() {
+    public String getDescription()
+    {
         return "A flask with a distinct smell of whiskey. "
                 + "\nWhy would anyone leave that here";
     }
 
-
+    /**
+     * This returns the name of a PotionOfCourage object.
+     * @return String
+     */
     @Override
-    public String getName() {
+    public String getName()
+    {
         return "Potion Of Courage";
     }
 
     /**
-     * lets you gain a level.
+     * This method uses the method 'setXp(int)' to add experience to the
+     * argument player object:
+     * @param p - Player Object
+     * After that the method 'updateLevel()' is used on the argument player
+     * object, to update the players level. after that this method returns true.
+     * @return true
      */
     @Override
-    public boolean useItem(Player p) {
+    public boolean useItem(Player p)
+    {
         System.out.println("Feels good to drink some liquid courage!");
         p.setXp(p.getXp() + 2);
         p.updateLevel();  
         return true;
     }
 
+    /**
+     * This returns the type of Item a PotionOfCourage object is.
+     * @return String
+     */
     @Override
-    public String getType() {
+    public String getType()
+    {
         return "Consumable";
     }
 
+    /**
+     * This returns -1, which is the stat of a PotionOfCourage object,
+     * since it is non-equipable.
+     * @return 
+     */
     @Override
-    public int getStat() {
+    public int getStat()
+    {
         return -1;
     }
+    
+    /**
+     * PotionOfCourage constructor, with a Message object as input, which is
+     * set as referencepoint to this objects message variable 'msg'.
+     * @param msg 
+     */
     public PotionOfCourage(Message msg)
     {
         this.msg = msg;
