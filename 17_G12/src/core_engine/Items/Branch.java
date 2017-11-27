@@ -12,36 +12,70 @@ import core_engine.Player;
  *
  * @author simon
  */
-public class Branch implements Item{
+public class Branch implements Item
+{
     private Message msg;
     
+    /**
+     * This returns the description of a Branch object.
+     * @return String
+     */
     @Override
-    public String getDescription(){
+    public String getDescription()
+    {
         return "A large branch you found outside the dungeon.";
     }
     
+    /**
+     * This returns the name of a Branch object.
+     * @return String
+     */
     @Override
-    public String getName(){
+    public String getName()
+    {
         return "Branch";
     }
     
+    /**
+     * This writes a String to the System console output and returns false.
+     * @param p
+     * @return false
+     */
     @Override
-    public boolean useItem(Player p){
+    public boolean useItem(Player p)
+    {
         System.out.println("There's a time and place for everything, but not now.");
         return false;
     }
     
+    /**
+     * This returns the type of Item a Branch object is.
+     * @return String
+     */
     @Override
-    public String getType(){ //weapons add attack value.
+    public String getType()
+    {
         return "Weapon";
     }
     
+    /**
+     * This returns 5, which is the stat increase applied to the player,
+     * when a Branch object is used.
+     * @return int: 5
+     */
     @Override
-    public int getStat(){ //Added attack value amount.
+    public int getStat()
+    {
         return 5;
     }
     
-    public Branch(Message message){
+    /**
+     * Branch constructor, with a Message object as input, which is set
+     * as referencepoint to this objects message variable 'msg'.
+     * @param message 
+     */
+    public Branch(Message message)
+    {
         msg = message;
     }
     

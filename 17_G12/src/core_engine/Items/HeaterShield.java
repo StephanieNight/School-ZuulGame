@@ -12,34 +12,68 @@ import core_engine.Player;
  *
  * @author Malte
  */
-public class HeaterShield implements Item {
+public class HeaterShield implements Item
+{
 
     private Message msg;
     
+    /**
+     * This returns the desccription of a HeaterShield object.
+     * @return String
+     */
     @Override
-    public String getDescription() {
+    public String getDescription()
+    {
         return "A aweinspirering shield that makes you wonder if anyone can hit you while using it"; 
     }
 
+    /**
+     * This returns the name of a HeaterShield object.
+     * @return String
+     */
     @Override
-    public String getName() {
+    public String getName()
+    {
         return "Shield";
     }
 
+    /**
+     * This returns false.
+     * @param p
+     * @return false
+     */
     @Override
-    public boolean useItem(Player p) {
+    public boolean useItem(Player p)
+    {
         return false;
     }
 
+    /**
+     * This returns the type of Item a HeaterShield object is.
+     * @return String
+     */
     @Override
-    public String getType() {
+    public String getType()
+    {
         return "Shield";
     }
 
+    /**
+     * This returns 10, which is the stat increase applied to the player,
+     * when a HeaterShield object is used.
+     * @return int: 10
+     */
     @Override
-    public int getStat() {
+    public int getStat()
+    {
         return 10;
     }
+    
+    /**
+     * HeaterShield constructor, with a Message object as input, which is
+     * set as referencepoint to this objects message variable 'msg'.
+     * @param msg 
+     */
     public HeaterShield(Message msg)
     {
         this.msg = msg;
