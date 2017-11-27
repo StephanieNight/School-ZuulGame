@@ -4,10 +4,6 @@
  * and open the template in the editor.
  */
 package core_engine.Items;
-
-import java.util.Scanner;
-import core_engine.Room;
-import core_engine.Actor;
 import core_engine.Message;
 import core_engine.Player;
 /**
@@ -21,11 +17,11 @@ import core_engine.Player;
 
 // skal måske laves til set i stedet for array
 public class Inventory {
-    private Item[] inventory;
+    private final Item[] inventory;
     private Message msg;
     private Player player;
-
-    private int diff;
+    private final int diff;
+    
     public Inventory( int diff, Message msg)
     {
         this.msg = msg;
@@ -37,13 +33,12 @@ public class Inventory {
         player = p;
     }
     
-    public String[] getInventoryList() //shows player's inventory //TODO needs command word.
+    public String[] getInventoryList() //shows player's inventory
     {
         int i = 0;
         String[] invString = new String[8-diff];
         for(Item list: inventory){
-            if(list == null)
-            {
+            if(list == null){
                 break;
             }
             invString[i] = list.getName();
@@ -61,9 +56,9 @@ public class Inventory {
      * @return 
      * returns true if an item was used, false if item wasn't used.
      */
-    public boolean useItem(int itemID) //TODO needs command word
+    public boolean useItem(int itemID)
     {//TODO change to void
-        if(itemID > inventory.length - 1 || itemID < 0 || inventory[itemID] == null)
+        if(itemID > inventory.length - 1 || inventory[itemID] == null)
         {
             return false;
         }
@@ -89,118 +84,60 @@ public class Inventory {
      * @return 
      */
     
-    public String getItemDescription(int itemID)//TODO needs command word.
+    public String getItemDescription(int itemID)
     {
-        return inventory[itemID].getDescription();
+        if(itemID < inventory.length && inventory[itemID] != null){
+            return inventory[itemID].getDescription();
+        }
+        return "No item selected.";
     }
     
     /**
      * checks if inventory has any available space and if item type is already 
      * on the list.
      * @param item 
+     * @return returns true if item was succesfully added, otherwise false.
      */
     public boolean addItem(Item item)
     {  
-        boolean equipment = false;
-        if ("Weapon".equals(item.getType()) || "Shield".equals(item.getType()) 
-                || "Armor".equals(item.getType()))
+        if ("Weapon".equals(item.getType()) ||"Shield".equals(item.getType())
+                || "Armor".equals(item.getType()))//checks if item is equipment.
         {
-            equipment = true;
-        }
-        
-        boolean inventoryFull = false;
-        for (int i = 0; i < inventory.length; i++) {
-            if(inventory[i] == null)
+            for (int i = 0; i < inventory.length; i++)//cycles through inventory
             {
-                inventoryFull = false;
-                break;
-            }
-            else
-            {
-                inventoryFull = true;
-            }
-        }
-        
-        if (!inventoryFull)
-        {
-            if(equipment)
-            {
-                for (int i = 0; i < inventory.length; i++) {//cycles through inventory
-                    if(inventory[i] != null)
-                    {
+                if(inventory[i] != null)
+                {
                     if(item.getType().equals(inventory[i].getType()))//checks if equipment to add is the same type as one already in inventory.
                     {
-                        dropItem(i);
-                    }
-                }
-                }
-                //if you're not already wearing equipment of the same type, pick it up.
-                for (int i = 0; i < inventory.length; i++){
-                    if(inventory[i] == null){
-                        System.out.println(item.getName() + " was picked up.");
-                        inventory[i] = item; //adds item to first vacant spot in inventory.
+                        System.out.println("Picked up " + item.getName() + " and dropped your" + inventory[i].getName());
+                        player.getCurrentRoom().dropItem(inventory[i]); //drops current equipment
+                        inventory[i] = item; //replaces equipment with new.
+                        //remove item from room
                         updateStat();
                         return true;
                     }
                 }
-            }
-            else //if consumable with non-full inventory
-            {
-                for (int i = 0; i < inventory.length; i++) {
-                    if(inventory[i] == null){
-                        inventory[i] = item; //adds item to first vacant spot in inventory.
-                        return true;
-                    }
-                }
-            }
-        }
-        else //if inventory is full
-        {
-            if(equipment)
-            {
-                
-                    for (int i = 0; i < inventory.length; i++) {//cycles through inventory
-                    if(inventory[i] != null)
-                    {
-                    if(item.getType().equals(inventory[i].getType()))//checks if equipment to add is the same type as one already in inventory.
-                    {
-                        dropItem(i);
-                        break;
-                    }
-                }
-                }
-                //if you're not already wearing equipment of the same type, pick it up.
-                for (int i = 0; i < inventory.length; i++){
-                    if(inventory[i] == null){
-                        System.out.println(item.getName() + " was picked up.");
+                else//if you're not already wearing same type of equipment and inventory is not full, pick it up.
+                {
+                    System.out.println(item.getName() + " was picked up.");
                         inventory[i] = item; //adds item to first vacant spot in inventory.
                         updateStat();
                         return true;
-                    }
-                            
-                        
-                    }
                 }
             }
-            //if consumable
-            System.out.println("You're overburdened, do you want to consume or drop an item to make space?");
-            System.out.println("Consume X / Drop X / no");
-            String input = "no"; //TODO get player input
-            if(input.equals("no")){
-                System.out.println("left the" + item.getName() + " on the ground.");
-                return false;
-            }
-            return true;//TODO
-                
-                
-                /*Scanner input = new Scanner(System.in);//TODO call the command word for useItem and dropItem only?
-                if(input.next().toLowerCase().equals("consume ")){
-                    useItem(input.next());
-                }*/
-            
         }
-        
-    
+        //if not equipment and inventory is not full.
+        if(inventory[inventory.length - 1] == null){
+            for (int i = 0; i < inventory.length; i++) {
+                if(inventory[i] == null){
+                    inventory[i] = item; //adds item to first vacant spot in inventory.
+                    return true;
+                }
+            }
+        }
+        System.out.println("Inventory full");
+        return false;
+    }
    
     
     /**
@@ -210,16 +147,18 @@ public class Inventory {
      */
     public void dropItem(int itemID)
     {
-        System.out.println("You dropped your " + inventory[itemID].getName());
-        player.getCurrentRoom().dropItem(inventory[itemID]);
-        inventory[itemID] = null;
-        
-        for(;itemID < inventory.length-1; itemID++) //all items following used item are put one index lower to fill the hole.
-        {
-            inventory[itemID] = inventory[itemID+1];
+        if(itemID < inventory.length && inventory[itemID] != null){
+            System.out.println("You dropped your " + inventory[itemID].getName());
+            player.getCurrentRoom().dropItem(inventory[itemID]);
+            inventory[itemID] = null;
+
+            for(;itemID < inventory.length-1; itemID++) //all items following used item are put one index lower to fill the hole.
+            {
+                inventory[itemID] = inventory[itemID+1];
+            }
+            inventory[inventory.length-1] = null; //the last item is (re)moved.
+            updateStat();
         }
-        inventory[inventory.length-1] = null; //the last item is (re)moved.
-        updateStat();
     }
     
     
@@ -252,6 +191,3 @@ public class Inventory {
         }
     }
 }
-
-
-
