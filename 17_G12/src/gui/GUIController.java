@@ -139,7 +139,8 @@ public class GUIController implements IUI
     @FXML private ImageView combatImage;
     
     //Container for written game activities
-    @FXML private TextArea logCombatTextArea;
+    @FXML private TextArea 
+            logCombatTextArea;
     
     //Container for players current health
     @FXML private TextField currentHealthField;
@@ -216,6 +217,8 @@ public class GUIController implements IUI
     
 
     public void initialize() {
+        logTextArea.setWrapText(true);
+        logCombatTextArea.setWrapText(true);
         // TODO
     }
 
@@ -323,8 +326,9 @@ public class GUIController implements IUI
             gameOverNameHolder.setVisible(true);
         }
         redraw();
-        logCombatTextArea.setText(gameEngine.getMessage());
-        logTextArea.setText(gameEngine.getMessage());
+        String tempMSG = gameEngine.getMessage();
+        logCombatTextArea.setText(tempMSG);
+        logTextArea.setText(tempMSG);
         
         
         
@@ -398,6 +402,9 @@ public class GUIController implements IUI
         gameEngine.pickUpItem(lootItemNumber);
         searchButtonClicked(event);
         redraw();
+        String tempMSG = gameEngine.getMessage();
+        logCombatTextArea.setText(tempMSG);
+        logTextArea.setText(tempMSG);
     }
 
     @FXML
@@ -546,8 +553,9 @@ public class GUIController implements IUI
             changeScene(combatScene, gameScene);
             labyrinthImage.setImage(gameEngine.renderMazeView());
         }
-        logCombatTextArea.setText(gameEngine.getMessage());
-        logTextArea.setText(gameEngine.getMessage());
+        String tempMSG = gameEngine.getMessage();
+        logCombatTextArea.setText(tempMSG);
+        logTextArea.setText(tempMSG);
         
         currentHealthField.setText(gameEngine.getCurrentHealthToString());
         if(gameEngine.checkForGameOver())
@@ -647,6 +655,9 @@ public class GUIController implements IUI
     private void useInventoryButtonClicked(ActionEvent event) {
         gameEngine.useItem(itemNumber);
         inventoryButtonClicked(event);
+        String tempMSG = gameEngine.getMessage();
+        logCombatTextArea.setText(tempMSG);
+        logTextArea.setText(tempMSG);
        
 
     }
@@ -656,12 +667,17 @@ public class GUIController implements IUI
         gameEngine.dropItem(itemNumber);
         inventoryButtonClicked(event);
         redraw();
+        String tempMSG = gameEngine.getMessage();
+        logCombatTextArea.setText(tempMSG);
+        logTextArea.setText(tempMSG);
     }
 
     @FXML
     private void inspectInventoryButtonClicked(ActionEvent event) {
-        gameEngine.itemDescription(itemNumber);
+        logTextArea.setText(gameEngine.itemDescription(itemNumber));
+        logCombatTextArea.setText(gameEngine.itemDescription(itemNumber));
         //write it in text box
+    
     }
 
     @FXML
@@ -677,12 +693,18 @@ public class GUIController implements IUI
         gameEngine.useLootItem(lootItemNumber);
         searchButtonClicked(event);
         
+        String tempMSG = gameEngine.getMessage();
+        logCombatTextArea.setText(tempMSG);
+        logTextArea.setText(tempMSG);
+        
     }
 
     @FXML
     private void inspectRoomItemButtonClicked(ActionEvent event)
     {
-        logTextArea.setText(gameEngine.getLootItemDescription(lootItemNumber));
+        logTextArea.setText(gameEngine.itemDescription(itemNumber));
+        logCombatTextArea.setText(gameEngine.itemDescription(itemNumber));
+        
     }
 
     @FXML
