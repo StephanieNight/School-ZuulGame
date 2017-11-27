@@ -342,7 +342,7 @@ public class ZuulGame implements IGameConstants {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }    
     public Image renderMazeView() {
-       return RenderEngine.renderMazeView(player);
+       return TestRender.renderMazeView(player);
     }
     public Image renderMiniMapView() {           
        return RenderEngine.renderMiniMapView(labyrinth.getMaze());

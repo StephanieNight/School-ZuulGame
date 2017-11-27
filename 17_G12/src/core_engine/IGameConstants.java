@@ -17,6 +17,7 @@ public interface IGameConstants {
     String DIR_MINIMAP = "assets//minimap tiles//";
     String DIR_MAZEVIEW_LABYRITH = "assets//rooms//textures//";
     String DIR_MAZEVIEW_OBJECTS = "assets//rooms//Objects//";
+    String DIR_MAZEVIEW_MALTE = "assets//rooms//MaltesEdit//";
     String FILENAME_SAVEGAME = "savegame.zuul";
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
     String[] FILENAME_PICTURES_CHARACTOR =
@@ -100,5 +101,11 @@ public interface IGameConstants {
         "NORMAL",               // 2
         "BRING IT ON",          // 3
         "I AM DEATH"            // 4
+    };
+    String[] MALTES_TILES = 
+    {
+        "innerRoomMalte.png",   //0
+        "noLeft.png",           //1
+        "noRight.png"           //2
     };
 }
