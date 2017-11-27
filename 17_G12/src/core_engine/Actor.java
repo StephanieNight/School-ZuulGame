@@ -151,7 +151,9 @@ public abstract class Actor implements Serializable
     
     public boolean isSwiftness()
     {
-        if(swiftnessCounter %2 == 1)
+        int check = swiftnessCounter;
+        
+        if(check %2 == 1)
         {
             if(swiftnessCounter < 1)
             {

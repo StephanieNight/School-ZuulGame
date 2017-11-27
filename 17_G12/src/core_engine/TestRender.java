@@ -308,11 +308,7 @@ public class TestRender implements IGameConstants {
                 }
                 // </editor-fold>                
             }            
-            else
-            {   // gets InnerNoForward img
-                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4]));
-                graph.drawImage(tile, 0,0,null);  // draws
-            }
+            
             // </editor-fold>      
             // then the front room            
             // <editor-fold defaultstate="collapsed" desc="front room.">
@@ -375,7 +371,11 @@ public class TestRender implements IGameConstants {
                 tile =ImageIO.read(new File(DIR_MAZEVIEW_MALTE+MALTES_TILES[2]));
                 graph.drawImage(tile, 0,0,null); // draws
             }  
-           
+           if(nextRoom == null)
+            {   // gets InnerNoForward img
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4]));
+                graph.drawImage(tile, 0,0,null);  // draws
+            }
             
             // </editor-fold> 
             // <editor-fold defaultstate="collapsed" desc="draw monsters.">

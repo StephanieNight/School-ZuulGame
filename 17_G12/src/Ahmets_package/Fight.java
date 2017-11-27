@@ -161,7 +161,7 @@ public class Fight {
         {
             announceMiss(a1.getName(), a2.getName());
         }
-        System.out.println(message.getDescription());
+        //System.out.println(message.getDescription());
        
         if(a2.getCurrentHealth() > 0){
             return false;

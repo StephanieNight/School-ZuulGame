@@ -44,8 +44,8 @@ public class ZuulGame implements IGameConstants {
      * mixes in apropreate numper of monsters and generates the 
      * lapyrinth.
      */
-    public ZuulGame() {
-        this.message = new Message();
+    public ZuulGame(Message msg) {
+        this.message = msg;
         this.fight = new Fight(message);
         //this.parser = new Parser();
 //        int i = -1;
@@ -215,7 +215,7 @@ public class ZuulGame implements IGameConstants {
      * handles the spawning of of the player, minions and Zuul.
      */
     private void spawnMobs(String playerName) {         
-        player = new Player(playerName, 100, 20, 30, 1, 1, message);    
+        player = new Player(playerName, 100, 20, 30, 1, this.difficulty, message);    
         labyrinth.spawnPlayer(0,0, player);
         
         ghost = new GhostWanderer("bob", message);

@@ -18,9 +18,11 @@ import javafx.scene.image.Image;
  */
 public class GameEngine implements IGameEngine {
     private ZuulGame game;
+    private Message msg;
     public GameEngine()
     {
-        this.game = new ZuulGame();
+        msg = new Message();
+        this.game = new ZuulGame(msg);
     }
     @Override
     public boolean startNewGame(int difficulty, String name) {
@@ -142,7 +144,7 @@ public class GameEngine implements IGameEngine {
     @Override
     public String getMessage() {
         
-        return "daaboo";
+        return msg.getDescription();
     }
 
     @Override

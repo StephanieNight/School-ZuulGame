@@ -205,6 +205,12 @@ public class GUIController implements IUI
     private IGameEngine gameEngine;
     private RadioButton[] inventoryRadioButtons;
     private RadioButton[] searchRadioButtons;
+    @FXML
+    private AnchorPane gameOverScene;
+    @FXML
+    private ImageView gameOverImage;
+    @FXML
+    private Label gameOverNameHolder;
     
     
     
@@ -303,8 +309,22 @@ public class GUIController implements IUI
         {
             changeScene(gameScene, combatScene);
         }
-        
+        if(gameEngine.checkForGameOver())
+        {
+            changeScene(gameScene, gameOverScene);
+            gameOverNameHolder.setVisible(false);
+            gameOverImage.setImage(null); // losing game over image
+        }
+        if(gameEngine.checkWinCondition())
+        {
+            changeScene(gameScene, gameOverScene);
+            gameOverImage.setImage(null); // winning game over image
+            gameOverNameHolder.setText(gameEngine.getName());
+            gameOverNameHolder.setVisible(true);
+        }
         redraw();
+        logCombatTextArea.setText(gameEngine.getMessage());
+        logTextArea.setText(gameEngine.getMessage());
         
         
         
@@ -526,8 +546,16 @@ public class GUIController implements IUI
             changeScene(combatScene, gameScene);
             labyrinthImage.setImage(gameEngine.renderMazeView());
         }
+        logCombatTextArea.setText(gameEngine.getMessage());
+        logTextArea.setText(gameEngine.getMessage());
         
         currentHealthField.setText(gameEngine.getCurrentHealthToString());
+        if(gameEngine.checkForGameOver())
+        {
+            changeScene(gameScene, gameOverScene);
+            gameOverNameHolder.setVisible(false);
+            gameOverImage.setImage(null); // losing game over image
+        }
     }
 
     @FXML
@@ -545,7 +573,7 @@ public class GUIController implements IUI
             }
             else
             {
-                inventoryRadioButtons[i].setText("Empty inventory slot");
+                inventoryRadioButtons[i].setText("Empty slot");
             }
         }
         makeInvisible(labyrinthImage);
@@ -748,6 +776,11 @@ public class GUIController implements IUI
         {
         labyrinthImage.setImage(gameEngine.renderMazeView());
         }
+    }
+
+    @FXML
+    private void mainMenuButton(ActionEvent event) {
+        changeScene(gameOverScene, mainMenuScene);
     }
     
     
