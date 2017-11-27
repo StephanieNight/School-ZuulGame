@@ -57,7 +57,7 @@ public class Inventory {
      * returns true if an item was used, false if item wasn't used.
      */
     public boolean useItem(int itemID)
-    {//TODO change to void
+    {
         if(itemID > inventory.length - 1 || inventory[itemID] == null)
         {
             return false;

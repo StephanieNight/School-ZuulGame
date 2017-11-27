@@ -46,8 +46,10 @@ public class Key implements Item
     {
         if(p.getCurrentRoom().getExit("north").hasDoor("south"))
         {
+            msg.setDescription("The door has been unlocked.");
             p.getCurrentRoom().getExit("north").getDoor("south").unLock(p);
         }
+        msg.setDescription("There's a time and place for everything, but not now.");
         return false;
     }
 

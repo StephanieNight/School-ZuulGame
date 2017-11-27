@@ -34,6 +34,7 @@ public class PotionOfSwiftness implements Item{
     @Override
     public boolean useItem(Player p) {
         p.setSwiftnessCounter(9);
+        msg.setDescription("You feel extremely energetic.");
         return true;
     }
 

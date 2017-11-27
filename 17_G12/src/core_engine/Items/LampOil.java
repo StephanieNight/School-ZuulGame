@@ -46,6 +46,7 @@ public class LampOil implements Item
     @Override
     public boolean useItem(Player p)
     {
+        msg.setDescription("Added the oil to your lamp.");
         p.addLampOil();
         return true;
     }

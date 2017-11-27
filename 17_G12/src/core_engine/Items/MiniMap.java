@@ -47,6 +47,7 @@ public class MiniMap implements Item
      */
     @Override
     public boolean useItem(Player p) {
+        msg.setDescription("You memorized the entire map. Might as well throw it away now.");
         for (int i = 0; i < maze.getMaze().length; i++) {
             for (int j = 0; j < maze.getMaze()[i].length; j++) {
                 maze.getMaze()[i][j].setPlayerVisisted();

@@ -37,6 +37,7 @@ public class PotionOfTeleportation implements Item {
         
         Room room = maze.getMaze()[x][y];
         maze.movePlayer(p, room);
+        msg.setDescription("You wake up from a drunken stupor, and don't remember how you got here.");
         return true;
     }
 

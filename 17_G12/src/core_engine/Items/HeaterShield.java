@@ -24,7 +24,7 @@ public class HeaterShield implements Item
     @Override
     public String getDescription()
     {
-        return "A aweinspirering shield that makes you wonder if anyone can hit you while using it"; 
+        return "A awe-inspiring shield that makes you wonder if anyone can hit you while using it"; 
     }
 
     /**
@@ -45,6 +45,7 @@ public class HeaterShield implements Item
     @Override
     public boolean useItem(Player p)
     {
+        msg.setDescription("There's a time and place for everything, but not now.");
         return false;
     }
 
