@@ -258,7 +258,7 @@ public class RenderEngine implements IGameConstants{
                 // <editor-fold defaultstate="collapsed" desc="draw Door.">
                 if(nextRoom.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
                 {                       
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[3])); // iner dead end
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[2])); // outher door forward
                     graph.drawImage(tile, 0,0,null);
@@ -268,29 +268,26 @@ public class RenderEngine implements IGameConstants{
                 if(NextSideR_Room != null)
                     if(NextSideR_Room.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
                     {                       
-                        tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
+                        tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[12])); // iner dead end
                         graph.drawImage(tile, 0,0,null);  // draws next room template;
-                        tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[2])); // outher door forward
+                        tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[7])); // outher door rigth
                         graph.drawImage(tile, 0,0,null);
                     }    
                 if(NextSideL_Room !=null)
                     if(NextSideL_Room.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
                     {                       
-                        tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
+                        tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[11])); // iner dead end
                         graph.drawImage(tile, 0,0,null);  // draws next room template;
-                        tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[2])); // outher door forward
+                        tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[6])); // outher door forward
                         graph.drawImage(tile, 0,0,null);
-                    }  
-                
-                
-                
+                    }                  
                 // </editor-fold>   
                 // <editor-fold defaultstate="collapsed" desc="draw Chests.">        
                                  
                 if(nextRoom.hasItems())                                              // checks the room has Items.
                 {
                     if(isDebug)System.out.println("found "+nextRoom.itemList().length+" items on next room tile");
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[1])); // gets innerChest img.
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[0])); // gets innerChest img.
                     graph.drawImage(tile, 0,0,null); 
                 }                
                 // </editor-fold>                
@@ -398,9 +395,9 @@ public class RenderEngine implements IGameConstants{
             if(SideR_Room != null)
                  if(SideR_Room.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
                 {                       
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[5])); // iner dead end
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[2])); // outher door forward
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[6])); // outher door forward
                     graph.drawImage(tile, 0,0,null);
                 }
             if(SideL_Room !=null)
@@ -408,18 +405,17 @@ public class RenderEngine implements IGameConstants{
                 {                       
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
-                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[2])); // outher door forward
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[5])); // outher door forward
                     graph.drawImage(tile, 0,0,null);
                 }       
-            // </editor-fold>      
-
+            // </editor-fold>
             // <editor-fold defaultstate="collapsed" desc="draw Chests.">        
 
             if(currentRoom.hasItems())                                          // checks the room has Items.
             {
                 if(isDebug)System.out.println("found "+currentRoom.itemList().length+" items on current room tile");
                 // gets innerChest img.
-                tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[3])); 
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[1])); 
                 graph.drawImage(tile, 0,0,null);  // Draw
             }                
             // </editor-fold>
