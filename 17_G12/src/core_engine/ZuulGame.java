@@ -364,7 +364,7 @@ public class ZuulGame implements IGameConstants {
             }        
             if(player.isInvis())
             {
-            return false;
+                return false;
             }
         }
         System.out.println(player.getLampOil());

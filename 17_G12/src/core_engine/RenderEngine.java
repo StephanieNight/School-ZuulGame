@@ -33,7 +33,7 @@ public class RenderEngine implements IGameConstants{
                 for(int col = 0; col < mazeSize; col++){
                     Room room = maze[row][col];
                     if(!room.isPlayerVissited()) continue;
-                    BufferedImage tile = new BufferedImage(181,181,BufferedImage.TYPE_INT_ARGB); // stars as a blank imagae
+                    BufferedImage tile; // stars as a blank imagae
                     switch (room.getExits().length)
                     {
                             case 1:
@@ -277,7 +277,7 @@ public class RenderEngine implements IGameConstants{
                     if(m.isBoss())                                              // checks the type.
                     {
                         if(isDebug)System.out.println("found a boss on next room tile");
-                        tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[3])); // outher template
+                        tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[4])); // outher template
                         graph.drawImage(tile, 0,0,null);  // draws next room template;   
                     }
                     else
@@ -295,8 +295,7 @@ public class RenderEngine implements IGameConstants{
                     graph.drawImage(tile, 0,0,null);  // draws 
 
                 }
-                // </editor-fold>
-                       
+                // </editor-fold>                     
             }            
             else
             {   // gets InnerNoForward img
