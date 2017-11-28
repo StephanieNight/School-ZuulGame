@@ -22,6 +22,7 @@ public interface IGameEngine {
     public boolean setName(); 
     public String getMessage();
     public String getCurrentHealthToString();
+    public Image getMainMenuBackground();
     
     public Image renderMazeView();
     public Image renderMiniMapView();

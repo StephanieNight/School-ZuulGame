@@ -71,12 +71,18 @@ public class GameEngine implements IGameEngine {
 
     @Override
     public Image renderMiniMapView() {
- return game.renderMiniMapView();
+        return game.renderMiniMapView();
     }
 
     @Override
     public Image renderBattleView() {
        return game.renderBattleView();
+    }
+    
+    @Override
+    public Image getMainMenuBackground()
+    {
+        return game.getMainMenuBackground();
     }
 
     @Override

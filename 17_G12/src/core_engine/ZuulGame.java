@@ -12,11 +12,15 @@ import core_engine.Items.Key;
 import core_engine.Items.PlateArmor;
 import core_engine.Items.Sword;
 import data.SaveGameInstance;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -347,8 +351,15 @@ public class ZuulGame implements IGameConstants {
        return RenderEngine.renderMiniMapView(labyrinth.getMaze());
     }
     public Image renderBattleView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return RenderEngine.renderBattleView(player, (Monster)player.getCurrentRoom().getMonster());
     }
+    
+    public Image getMainMenuBackground()
+    { 
+        Image blah   = new Image(DIR_MAIN_MENU_BACKGROUND);
+        return blah;
+    }
+    
     public boolean move() {
         Command command=new Command(CommandWord.GO, player.getFacing().direction);
         

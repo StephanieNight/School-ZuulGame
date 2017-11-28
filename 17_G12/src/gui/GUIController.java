@@ -219,6 +219,7 @@ public class GUIController implements IUI
     public void initialize() {
         logTextArea.setWrapText(true);
         logCombatTextArea.setWrapText(true);
+        
         // TODO
     }
 
@@ -311,6 +312,7 @@ public class GUIController implements IUI
         if(gameEngine.move())
         {
             changeScene(gameScene, combatScene);
+            combatImage.setImage(gameEngine.renderBattleView());
         }
         if(gameEngine.checkForGameOver())
         {
@@ -540,6 +542,7 @@ public class GUIController implements IUI
     @Override
     public void injectGameEngine(IGameEngine gameEngine) {
         this.gameEngine = gameEngine;
+        //mainMenuBackgroundImage.setImage(gameEngine.getMainMenuBackground());
     }
 
     @FXML
