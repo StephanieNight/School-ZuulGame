@@ -18,6 +18,8 @@ import java.util.Collections;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import java.awt.Graphics2D;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -359,10 +361,41 @@ public class ZuulGame implements IGameConstants {
     
     public Image getMainMenuBackground()
     {
-        BufferedImage renderedView =
-                new BufferedImage(600, 700, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D graph = renderedView.createGraphics();
-        return SwingFXUtils.toFXImage(renderedView, null);
+        try
+        {
+            BufferedImage renderedView =
+                new BufferedImage(640, 480, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage tile = ImageIO.read(new File(DIR_MAIN_MENU_BACKGROUND));
+            Graphics2D graph = renderedView.createGraphics();
+            graph.drawImage(tile, 0,0,null);
+            return SwingFXUtils.toFXImage(renderedView, null);
+        }
+        catch (IOException ex)
+        {
+            System.out.println("Error message:");
+            System.out.println(ex.getMessage());
+        }
+        return null;
+        
+    }
+    
+    public Image getNewGameBackground()
+    {
+        try
+        {
+            BufferedImage renderedView =
+                new BufferedImage(640, 480, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage tile = ImageIO.read(new File(DIR_NEW_GAME_BACKGROUND));
+            Graphics2D graph = renderedView.createGraphics();
+            graph.drawImage(tile, 0,0,null);
+            return SwingFXUtils.toFXImage(renderedView, null);
+        }
+        catch (IOException ex)
+        {
+            System.out.println("Error message:");
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
     
     public boolean move() {
@@ -385,7 +418,7 @@ public class ZuulGame implements IGameConstants {
         }
         System.out.println(player.getLampOil());
         return checkForCombat();
-    }    
+    }
     public boolean turnRight() {
         player.setFacing(player.getFacing().right);
         return false;

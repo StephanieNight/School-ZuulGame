@@ -15,10 +15,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="defaultScene" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
+<AnchorPane fx:id="defaultScene" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
       <AnchorPane fx:id="mainMenuScene">
          <children>
+            <ImageView fx:id="mainMenuBackgroundImage" pickOnBounds="true" preserveRatio="true" />
             <GridPane prefHeight="480.0" prefWidth="640.0">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -32,17 +33,31 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="World of Zuul">
+                  <Label text="World of Zuul" textFill="WHITE">
                      <font>
-                        <Font size="48.0" />
+                        <Font name="Luminari" size="48.0" />
                      </font>
                   </Label>
-                  <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#newGameButtonClicked" prefHeight="30.0" prefWidth="100.0" text="New Game" GridPane.rowIndex="1" />
-                  <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#loadGameButtonClicked" prefHeight="30.0" prefWidth="100.0" text="Load Game" GridPane.rowIndex="2" />
-                  <Button fx:id="highScoreButton" mnemonicParsing="false" onAction="#highscoreButtonClicked" prefHeight="30.0" prefWidth="100.0" text="High Score" GridPane.rowIndex="3" />
-                  <Button fx:id="creditsButton" mnemonicParsing="false" onAction="#creditsButtonClicked" prefHeight="30.0" prefWidth="100.0" text="Credits" GridPane.rowIndex="4" />
-                  <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButtonClicked" prefHeight="30.0" prefWidth="100.0" text="Quit" GridPane.rowIndex="5" />
-                  <ImageView fx:id="mainMenuBackgroundImage" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="5" />
+                  <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#newGameButtonClicked" prefHeight="30.0" prefWidth="100.0" text="New Game" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Luminari" size="13.0" />
+                     </font></Button>
+                  <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#loadGameButtonClicked" prefHeight="30.0" prefWidth="100.0" text="Load Game" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Luminari" size="13.0" />
+                     </font></Button>
+                  <Button fx:id="highScoreButton" mnemonicParsing="false" onAction="#highscoreButtonClicked" prefHeight="30.0" prefWidth="100.0" text="High Score" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Luminari" size="13.0" />
+                     </font></Button>
+                  <Button fx:id="creditsButton" mnemonicParsing="false" onAction="#creditsButtonClicked" prefHeight="30.0" prefWidth="100.0" text="Credits" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Luminari" size="13.0" />
+                     </font></Button>
+                  <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButtonClicked" prefHeight="30.0" prefWidth="100.0" text="Quit" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Luminari" size="13.0" />
+                     </font></Button>
                </children>
             </GridPane>
          </children>
@@ -110,7 +125,7 @@
       </AnchorPane>
       <AnchorPane fx:id="newGameScene" disable="true" visible="false">
          <children>
-            <ImageView fx:id="newGameBackgroundImage" fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+            <ImageView fx:id="newGameBackgroundImage" fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" />
             <GridPane prefHeight="480.0" prefWidth="640.0">
               <columnConstraints>
                   <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -126,49 +141,82 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Difficulty" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                  <Label text="Difficulty" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                      <font>
-                        <Font size="35.0" />
+                        <Font name="Luminari" size="35.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="veryEasyButton" mnemonicParsing="false" onAction="#veryEasyButtonClicked" text="Very easy" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
+                  <RadioButton fx:id="veryEasyButton" mnemonicParsing="false" onAction="#veryEasyButtonClicked" text="Very easy" textFill="WHITE" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets />
+                        <Insets left="50.0" />
                      </GridPane.margin>
                      <toggleGroup>
                         <ToggleGroup fx:id="difficultyRadioButtons" />
                      </toggleGroup>
+                     <font>
+                        <Font name="Luminari" size="18.0" />
+                     </font>
                   </RadioButton>
-                  <RadioButton fx:id="easyButton" mnemonicParsing="false" onAction="#easyButtonClicked" text="Easy" toggleGroup="$difficultyRadioButtons" GridPane.rowIndex="2">
+                  <RadioButton fx:id="easyButton" mnemonicParsing="false" onAction="#easyButtonClicked" text="Easy" textFill="WHITE" toggleGroup="$difficultyRadioButtons" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="50.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font name="Luminari" size="18.0" />
+                     </font>
                   </RadioButton>
-                  <RadioButton fx:id="normalButton" mnemonicParsing="false" onAction="#normalButtonClicked" selected="true" text="Normal" toggleGroup="$difficultyRadioButtons" GridPane.rowIndex="3">
+                  <RadioButton fx:id="normalButton" mnemonicParsing="false" onAction="#normalButtonClicked" selected="true" text="Normal" textFill="WHITE" toggleGroup="$difficultyRadioButtons" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="50.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font name="Luminari" size="18.0" />
+                     </font>
                   </RadioButton>
-                  <RadioButton fx:id="hardButton" mnemonicParsing="false" onAction="#hardButtonClicked" text="Hard" toggleGroup="$difficultyRadioButtons" GridPane.rowIndex="4">
+                  <RadioButton fx:id="hardButton" mnemonicParsing="false" onAction="#hardButtonClicked" text="Hard" textFill="WHITE" toggleGroup="$difficultyRadioButtons" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="50.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font name="Luminari" size="18.0" />
+                     </font>
                   </RadioButton>
-                  <RadioButton fx:id="veryHardButton" mnemonicParsing="false" onAction="#veryHardButtonClicked" text="Very Hard" textAlignment="CENTER" toggleGroup="$difficultyRadioButtons" GridPane.rowIndex="5">
+                  <RadioButton fx:id="veryHardButton" mnemonicParsing="false" onAction="#veryHardButtonClicked" text="Very Hard" textAlignment="CENTER" textFill="WHITE" toggleGroup="$difficultyRadioButtons" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="50.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font name="Luminari" size="18.0" />
+                     </font>
                   </RadioButton>
-                  <Button fx:id="newGameBackButton" mnemonicParsing="false" onAction="#newGameBackButtonClicked" text="Back to Main Menu" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <Button fx:id="newGameNextButton" mnemonicParsing="false" onAction="#newGameNextButtonClicked" text="Next" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="For first timers. This difficulty is preferred if you have never played the game before.  " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="If you have played the game but you still suck. This difficulty is preferred if you are still having trouble with the game." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="For the average player. This difficulty is preferred if you have a standard understanding of the game. " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="For the experienced player. This difficulty is preferred if you are looking for more challenge. " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="GOOD LUCK. " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Button fx:id="newGameBackButton" mnemonicParsing="false" onAction="#newGameBackButtonClicked" text="Back to Main Menu" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Luminari" size="13.0" />
+                     </font></Button>
+                  <Button fx:id="newGameNextButton" mnemonicParsing="false" onAction="#newGameNextButtonClicked" text="Next" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Luminari" size="13.0" />
+                     </font></Button>
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" text="For first timers. This difficulty is preferred if you have never played the game before.  " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Luminari" size="11.0" />
+                     </font></TextArea>
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" text="If you have played the game but you still suck. This difficulty is preferred if you are still having trouble with the game." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Luminari" size="11.0" />
+                     </font></TextArea>
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" text="For the average player. This difficulty is preferred if you have a standard understanding of the game. " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Luminari" size="11.0" />
+                     </font></TextArea>
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ransparent;" text="For the experienced player. This difficulty is preferred if you are looking for more challenge. " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Luminari" size="11.0" />
+                     </font></TextArea>
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ransparent;" text="GOOD LUCK. " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Luminari" size="11.0" />
+                     </font></TextArea>
                </children>
             </GridPane>
             <AnchorPane fx:id="enterNamePopUpLayer" disable="true" prefHeight="480.0" prefWidth="640.0" visible="false">

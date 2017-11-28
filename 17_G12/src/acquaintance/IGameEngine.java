@@ -23,6 +23,7 @@ public interface IGameEngine {
     public String getMessage();
     public String getCurrentHealthToString();
     public Image getMainMenuBackground();
+    public Image getNewGameBackground();
     
     public Image renderMazeView();
     public Image renderMiniMapView();
