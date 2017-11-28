@@ -6,21 +6,17 @@
 package core_engine;
 
 import Ahmets_package.Fight;
-import acquaintance.IGameEngine;
-import acquaintance.IInventory;
+import acquaintance.IActor;
+import acquaintance.ISaveGameHandler;
+import acquaintance.ISavegameInstance;
 import core_engine.Items.Key;
-import core_engine.Items.PlateArmor;
-import core_engine.Items.Sword;
-import data.SaveGameInstance;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
-import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
 
 /**
@@ -33,7 +29,9 @@ public class ZuulGame implements IGameConstants {
     //-----------------------------------------------------------
     // Primary instances
     private Player player;
+    //private IActor player;
     private ArrayList<Monster> monsters;
+    //private ArrayList<IActor> monsters;
     private GhostWanderer ghost;
     //-----------------------------------------------------------
     private Labyrinth labyrinth;
@@ -43,7 +41,7 @@ public class ZuulGame implements IGameConstants {
     private ItemGenerator itemGenerator;
     private Fight fight;
     private Message message;
-    
+    private ISaveGameHandler savegameHandler;    
     /** the constructer for the game engine to world of zuul this 
      * means it set the world size acording to dificulty 
      * mixes in apropreate numper of monsters and generates the 
@@ -87,39 +85,43 @@ public class ZuulGame implements IGameConstants {
     /**
         Saves the game to local disc.
     */   
-    public boolean saveGame() {
-        SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsters,difficulty);
+    public boolean saveGame() {             
+        Monster[] monstelist = new Monster[monsters.size()];
+        monstelist = monsters.toArray(monstelist);
         try
         {
-           SaveGameInstance.serializeToFile(sa);
+            SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monstelist,difficulty);
+            savegameHandler.saveGame(sa);
         }
-        catch(IOException e)
-        {
-            System.out.println(e.getMessage());
+        catch (IOException ex) {
             return false;
-        }       
+        }        
         return true;
     }
     /**
     Loads game from disc
     */
     public boolean loadGame() { 
-        SaveGameInstance sa;
+      
         try
         {
-            sa =SaveGameInstance.deserializeFromFile();
+            SaveGameInstance sa = (SaveGameInstance)savegameHandler.loadGame();
+            labyrinth.setMaze((Room[][])sa.getMaze());
+            monsters.clear();
+            for (Monster m : sa.getMonsters())
+            {
+                monsters.add(m);
+            }            
+            player = (Player)sa.getPlayer();
+            difficulty = sa.getDifficulty();
+            System.out.println("Loaded old Game"); 
+            return true;
         }
         catch(IOException | ClassNotFoundException e)
         {
             System.out.println(e.getMessage());
             return false;
-        }
-        labyrinth.setMaze(sa.getMaze());
-        monsters = sa.getMonsters();
-        player = sa.getPlayer();
-        difficulty = sa.getDifficulty();
-        System.out.println("Loaded old Game"); 
-        return true;
+        }  
     }
     /**
      * handle the players input and turn.
@@ -141,7 +143,7 @@ public class ZuulGame implements IGameConstants {
             return;
         }
         String direction = command.getSecondWord();
-        Room nextRoom = actor.getCurrentRoom().getExit(direction);
+        Room nextRoom =  actor.getCurrentRoom().getExit(direction);
         if (nextRoom != null) {
             labyrinth.moveMonster(actor, nextRoom);
         }
@@ -480,6 +482,10 @@ public class ZuulGame implements IGameConstants {
             return player.getCurrentRoom().itemList()[itemNumber].getDescription();
         return "";
     }
+    public void setSavegameHandler(ISaveGameHandler savegameHandler) {
+        this.savegameHandler = savegameHandler;
+    }
+    
 }
     
 

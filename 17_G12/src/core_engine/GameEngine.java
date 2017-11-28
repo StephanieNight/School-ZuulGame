@@ -7,7 +7,7 @@ package core_engine;
 
 import acquaintance.IGameEngine;
 import acquaintance.IInventory;
-import data.SaveGameInstance;
+import acquaintance.ISaveGameHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 public class GameEngine implements IGameEngine {
     private ZuulGame game;
     private Message msg;
+    private ISaveGameHandler sh;
     public GameEngine()
     {
         msg = new Message();
@@ -183,7 +184,10 @@ public class GameEngine implements IGameEngine {
     public String getLootItemDescription(int itemNumber) {
         return game.getLootItemDescription(itemNumber);
     }
-    
-    
-    
+
+    @Override
+    public void injectData(ISaveGameHandler sh) {
+        this.game.setSavegameHandler(sh);
+        this.sh = sh;
+    }
 }

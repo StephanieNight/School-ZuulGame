@@ -49,4 +49,5 @@ public interface IGameEngine {
     public boolean checkWinCondition();
     public boolean checkForGameOver();
     
+    public void injectData(ISaveGameHandler sh);
 }

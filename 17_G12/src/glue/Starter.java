@@ -7,8 +7,10 @@ package glue;
 
 import acquaintance.IData;
 import acquaintance.IGameEngine;
+import acquaintance.ISaveGameHandler;
 import acquaintance.IUI;
 import core_engine.GameEngine;
+import data.SaveGameHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,6 +29,9 @@ public class Starter extends Application {
 	Pane pane = loader.load();
 	
 	IGameEngine business = new GameEngine();
+        ISaveGameHandler data = new SaveGameHandler();
+        business.injectData(data);
+                        
 	IUI controller = (IUI)loader.getController();
 	controller.injectGameEngine(business);
 	

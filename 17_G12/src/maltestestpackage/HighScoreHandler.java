@@ -7,7 +7,7 @@ package maltestestpackage;
 
 import core_engine.ZuulGame;
 import core_engine.ZuulGame;
-import data.SaveGameInstance;
+import core_engine.SaveGameInstance;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
