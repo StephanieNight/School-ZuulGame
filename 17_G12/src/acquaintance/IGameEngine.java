@@ -24,6 +24,7 @@ public interface IGameEngine {
     public String getCurrentHealthToString();
     public Image getMainMenuBackground();
     public Image getNewGameBackground();
+    public Image getGameSceneBackground();
     
     public Image renderMazeView();
     public Image renderMiniMapView();

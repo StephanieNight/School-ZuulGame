@@ -212,6 +212,8 @@ public class GUIController implements IUI
     private ImageView gameOverImage;
     @FXML
     private Label gameOverNameHolder;
+    @FXML
+    private ImageView gameSceneBackgroundImage;
     
     
     
@@ -549,6 +551,7 @@ public class GUIController implements IUI
     {
         mainMenuBackgroundImage.setImage(gameEngine.getMainMenuBackground());
         newGameBackgroundImage.setImage(gameEngine.getNewGameBackground());
+        gameSceneBackgroundImage.setImage(gameEngine.getGameSceneBackground());
     }
 
     @FXML

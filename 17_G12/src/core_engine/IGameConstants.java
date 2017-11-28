@@ -22,6 +22,8 @@ public interface IGameConstants {
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
     String DIR_MAIN_MENU_BACKGROUND = "assets//backgrounds//gateBG2.png";
     String DIR_NEW_GAME_BACKGROUND = "assets//backgrounds//caveBG3.jpg";
+    String DIR_GAME_SCENE_BACKGROUND = 
+            "assets//backgrounds//gameSceneBackground.png";
     String[] FILENAME_PICTURES_CHARACTOR =
     {
         "innerMinion.png",              // 0
