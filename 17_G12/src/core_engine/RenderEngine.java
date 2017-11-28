@@ -214,6 +214,30 @@ public class RenderEngine implements IGameConstants{
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[12])); 
                     graph.drawImage(tile, 0,0,null);// draws picture
                 }
+                
+                 // draws the rest of the template
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[7])); // gets Outer Template img
+                graph.drawImage(tile, 0,0,null);// draws picture
+                
+                
+                if(nextRoom.getExit(player.getFacing().left.direction) != null)
+                {   
+                }
+                else
+                {   // gets outher no left img
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[11])); 
+                    graph.drawImage(tile, 0,0,null);// draws picture
+                }        
+                // checks for a rigth exit
+                if(nextRoom.getExit(player.getFacing().right.direction) != null)
+                {   
+                }
+                else
+                {   // gets outher no rigth img
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[12])); 
+                    graph.drawImage(tile, 0,0,null);// draws picture
+                }
+                
                 // checks if there is a exit straigth ahead
                 if(nextRoom.getExit(player.getFacing().direction) != null)
                 {   // gets outher forward img
@@ -284,11 +308,7 @@ public class RenderEngine implements IGameConstants{
             // <editor-fold defaultstate="collapsed" desc="front room.">
             // <editor-fold defaultstate="collapsed" desc="draw room.">
             
-            // gets inner template img
-            tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[1])); 
-            graph.drawImage(tile, 0,0,null); // draw
-            
-            // checks if there is a left exit
+             // checks if there is a left exit
             if(currentRoom.getExit(player.getFacing().left.direction) != null)
             {   // get the inndr left img
                 tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[2])); 
@@ -310,6 +330,44 @@ public class RenderEngine implements IGameConstants{
                 tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[6]));
                 graph.drawImage(tile, 0,0,null); // draws
             }  
+            
+            // gets inner template img
+            if(currentRoom.getExit(player.getFacing().opposite.direction) != null)
+            {
+            tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[1])); 
+            graph.drawImage(tile, 0,0,null); // draw
+            }
+            else
+            {
+            tile =ImageIO.read(new File(DIR_MAZEVIEW_MALTE+MALTES_TILES[0])); 
+            graph.drawImage(tile, 0,0,null); // draw    
+            }
+            
+            
+            // checks if there is a left exit
+            if(currentRoom.getExit(player.getFacing().left.direction) != null)
+            {   // get the inndr left img
+                
+            }
+            else 
+            {   // get the inner no left img
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_MALTE+MALTES_TILES[1]));
+                graph.drawImage(tile, 0,0,null); // draws
+            }
+            // checks if there is a rigth exit
+            if(currentRoom.getExit(player.getFacing().right.direction) != null)
+            {   // get the inner rigth img
+            }
+            else 
+            {   // get the inner no rigth img
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_MALTE+MALTES_TILES[2]));
+                graph.drawImage(tile, 0,0,null); // draws
+            }  
+           if(nextRoom == null)
+            {   // gets InnerNoForward img
+                tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4]));
+                graph.drawImage(tile, 0,0,null);  // draws
+            }
            
             
             // </editor-fold>
