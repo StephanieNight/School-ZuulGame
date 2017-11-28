@@ -74,7 +74,7 @@ public class LampOil implements Item
     
     /**
      * LampOil constructor, with a Message object as input, which is set as
-     * referencepoint to this objects message variable 'msg'.
+     * reference point to this objects message variable 'msg'.
      * @param msg 
      */
     public LampOil(Message msg)

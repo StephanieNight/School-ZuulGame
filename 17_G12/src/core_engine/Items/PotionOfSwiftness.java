@@ -30,6 +30,8 @@ public class PotionOfSwiftness implements Item{
      * Lets the player move twice between monster movement. Last for a short duration.
      * sets the counter for swiftness to 10, which lets you skip monsters turn
      * every 2nd time 5 times.
+     * @param p
+     * @return boolean: true
      */
     @Override
     public boolean useItem(Player p) {
@@ -47,6 +49,11 @@ public class PotionOfSwiftness implements Item{
     public int getStat() {
         return -1;
     }
+    /**
+     * PotionOfSwiftness constructor, with a Message object as input, 
+     * which is set as reference point to this objects message variable 'msg'.
+     * @param msg 
+     */
     public PotionOfSwiftness(Message msg)
     {
         this.msg = msg;

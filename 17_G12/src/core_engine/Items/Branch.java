@@ -71,7 +71,7 @@ public class Branch implements Item
     
     /**
      * Branch constructor, with a Message object as input, which is set
-     * as referencepoint to this objects message variable 'msg'.
+     * as reference point to this objects message variable 'msg'.
      * @param message 
      */
     public Branch(Message message)

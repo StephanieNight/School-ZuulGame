@@ -12,18 +12,21 @@ import core_engine.Room;
  *
  * @author Malte
  */
-public class PotionOfTeleportation implements Item {
+public class PotionOfTeleportation implements Item
+{
     private Labyrinth maze;
     private Message msg;
     
     @Override
-    public String getDescription() {
+    public String getDescription()
+    {
         return "A flask with a clear substance within it. "
                 + "\nSmells like sunshine and happiness... Wonder what it does...";
     }
 
     @Override
-    public String getName() {
+    public String getName()
+    {
         return "Potion Of Teleportation";
     }
 
@@ -31,7 +34,8 @@ public class PotionOfTeleportation implements Item {
      * transports the player to a random location on the map
      */
     @Override
-    public boolean useItem(Player p) {
+    public boolean useItem(Player p)
+    {
         int x = (int)(Math.random() * maze.getMaze().length);
         int y = (int)(Math.random() * maze.getMaze().length);
         
@@ -42,15 +46,25 @@ public class PotionOfTeleportation implements Item {
     }
 
     @Override
-    public String getType() {
+    public String getType()
+    {
         return "Consumable";
     }
 
     @Override
-    public int getStat() {
+    public int getStat()
+    {
         return -1;
-        }
+    }
     
+    /**
+     * PotionOfTeleportation constructor, with a the following arguments
+     * as input:
+     * @param maze: This is set as reference point to this objects
+     * Labyrinth variable.
+     * @param msg: This is set as reference point to this objects Message
+     * variable
+     */
     public PotionOfTeleportation(Labyrinth maze, Message msg)
     {
         this.maze = maze;

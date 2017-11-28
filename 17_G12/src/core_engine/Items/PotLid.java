@@ -61,7 +61,7 @@ public class PotLid implements Item
     /**
      * This returns 2, which is the stat increase applied to the player,
      * when a PotLid object is equipped.
-     * @return 
+     * @return int: 2
      */
     @Override
     public int getStat()
@@ -71,7 +71,7 @@ public class PotLid implements Item
     
     /**
      * PotLid constructor, with a Message object as input, which is set
-     * as referencepoint to this objects Message variable 'msg'.
+     * as reference point to this objects Message variable 'msg'.
      * @param msg 
      */
     public PotLid(Message msg)

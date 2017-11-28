@@ -12,36 +12,55 @@ import core_engine.Player;
  *
  * @author simon
  */
-public class Sword implements Item{
-    
+public class Sword implements Item
+{    
     private Message msg;
+    
     @Override
-    public String getDescription(){
+    public String getDescription()
+    {
         return "A steel sword.";
     }
     
     @Override
-    public String getName(){
+    public String getName()
+    {
         return "Sword";
     }
     
+    /**
+     * Uses the method 'setDescription' on the sword objects Message reference
+     * 'msg', with a String as argument. This String is displayed in the
+     * gameScenes console window.
+     * @param p
+     * @return boolean: false
+     */
     @Override
-    public boolean useItem(Player p){
+    public boolean useItem(Player p)
+    {
         msg.setDescription("There's a time and place for everything, but not now.");
         return false;
     }
     
     @Override
-    public String getType(){ //weapons add attack value.
+    public String getType()
+    { //weapons add attack value.
         return "Weapon";
     }
     
     @Override
-    public int getStat(){ //Added attack value amount.
+    public int getStat()
+    { //Added attack value amount.
         return 17;
     }   
     
-    public Sword(Message msg){
+    /**
+     * Sword constructor, with a Message object as input, 
+     * which is set as reference point to this objects message variable 'msg'.
+     * @param msg
+     */
+    public Sword(Message msg)
+    {
         this.msg = msg;
     }
 }

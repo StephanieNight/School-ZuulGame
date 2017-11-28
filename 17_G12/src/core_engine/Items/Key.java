@@ -77,7 +77,7 @@ public class Key implements Item
     
     /**
      * Key constructor, with a Message object as input, which is set as
-     * referencepoint to this objects message variable 'msg'.
+     * reference point to this objects message variable 'msg'.
      * @param msg 
      */
     public Key(Message msg)

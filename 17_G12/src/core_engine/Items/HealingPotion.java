@@ -69,7 +69,8 @@ public class HealingPotion implements Item{
     
     /**
      * HealingPotion constructer, with a Message object as input, which
-     * is set as referencepoint to this objects message variable 'msg'.
+     * is set as reference point to this objects message variable 'msg'.
+     * @param msg
      */
     public HealingPotion(Message msg)
     {

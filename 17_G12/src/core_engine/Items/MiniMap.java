@@ -77,9 +77,9 @@ public class MiniMap implements Item
     
     /**
      * MiniMap constructor, with a the following arguments as input:
-     * @param maze: This is set as referencepoint to this objects
+     * @param maze: This is set as reference point to this objects
      * Labyrinth variable.
-     * @param msg: This is set as referencepoint to this objects Message
+     * @param msg: This is set as reference point to this objects Message
      * variable
      */
     public MiniMap(Labyrinth maze, Message msg)

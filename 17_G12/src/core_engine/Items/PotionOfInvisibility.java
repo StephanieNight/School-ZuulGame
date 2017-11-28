@@ -12,17 +12,20 @@ import core_engine.Player;
  *
  * @author Malte
  */
-public class PotionOfInvisibility implements Item {
+public class PotionOfInvisibility implements Item
+{
 
     private Message msg;
     
     @Override
-    public String getDescription() {
+    public String getDescription()
+    {
         return "Is this flask empty? You can hear some liquid sloshing around inside";
     }
 
     @Override
-    public String getName() {
+    public String getName()
+    {
         return "Potion of Invisibility";
     }
 
@@ -30,25 +33,35 @@ public class PotionOfInvisibility implements Item {
     /**
      * sets invisibility to true, allowing the player to choose if he wants to 
      * engage monsters or not.
+     * @param p
+     * @return boolean: true 
      */
     @Override
-    public boolean useItem(Player p) {
+    public boolean useItem(Player p)
+    {
         p.setInvis(5);
         return true;
     }
 
     @Override
-    public String getType() {
+    public String getType()
+    {
         return "Consumable";
     }
 
     @Override
-    public int getStat() {
+    public int getStat()
+    {
         return -1;
     }
+    
+    /**
+     * PotionOfInvisibility constructor, with a Message object as input, 
+     * which is set as reference point to this objects message variable 'msg'.
+     * @param msg
+     */
     public PotionOfInvisibility(Message msg)
     {
         this.msg = msg;
     }
-    
 }

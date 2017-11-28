@@ -68,7 +68,7 @@ public class PotionOfCourage implements Item
     /**
      * This returns -1, which is the stat of a PotionOfCourage object,
      * since it is non-equipable.
-     * @return 
+     * @return int: -1
      */
     @Override
     public int getStat()
@@ -78,7 +78,7 @@ public class PotionOfCourage implements Item
     
     /**
      * PotionOfCourage constructor, with a Message object as input, which is
-     * set as referencepoint to this objects message variable 'msg'.
+     * set as reference point to this objects message variable 'msg'.
      * @param msg 
      */
     public PotionOfCourage(Message msg)

@@ -72,7 +72,7 @@ public class HeaterShield implements Item
     
     /**
      * HeaterShield constructor, with a Message object as input, which is
-     * set as referencepoint to this objects Message variable 'msg'.
+     * set as reference point to this objects Message variable 'msg'.
      * @param msg 
      */
     public HeaterShield(Message msg)

@@ -72,7 +72,7 @@ public class PlateArmor implements Item
     
     /**
      * PlateArmor constructor, with a Message object as input, which is set
-     * as referencepoint to this objects Message variable 'msg'.
+     * as reference point to this objects Message variable 'msg'.
      * @param msg 
      */
     public PlateArmor(Message msg){
