@@ -130,6 +130,7 @@ public class Inventory {
         if(inventory[inventory.length - 1] == null){
             for (int i = 0; i < inventory.length; i++) {
                 if(inventory[i] == null){
+                    msg.setDescription(item.getName() + " was picked up.");
                     inventory[i] = item; //adds item to first vacant spot in inventory.
                     return true;
                 }
