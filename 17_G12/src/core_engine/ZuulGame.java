@@ -21,6 +21,7 @@ import java.util.Collections;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -339,7 +340,7 @@ public class ZuulGame implements IGameConstants {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return player.getName();
     }
     public boolean setName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -355,9 +356,11 @@ public class ZuulGame implements IGameConstants {
     }
     
     public Image getMainMenuBackground()
-    { 
-        Image blah   = new Image(DIR_MAIN_MENU_BACKGROUND);
-        return blah;
+    {
+        BufferedImage renderedView =
+                new BufferedImage(600, 700, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graph = renderedView.createGraphics();
+        return SwingFXUtils.toFXImage(renderedView, null);
     }
     
     public boolean move() {
