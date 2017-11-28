@@ -30,7 +30,7 @@ public abstract class Actor implements Serializable
     private int armor = 0;
     private int shield = 0;
     private Labyrinth.DIR facing;
-    private int swiftnessCounter = 1;
+    private int swiftnessCounter = 10;
     private int invisible = 0;
     //in this constructor can you set a name, the defaultDefense and
     // the DefaultDamgeOutput 
@@ -155,7 +155,7 @@ public abstract class Actor implements Serializable
         
         if(check %2 == 1)
         {
-            if(swiftnessCounter < 1)
+            if(swiftnessCounter > 1)
             {
                 swiftnessCounter--;
             }

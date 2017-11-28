@@ -15,7 +15,7 @@ public interface IGameEngine {
     public boolean startNewGame(int difficulty, String name);
     public int getDifficulty();
     public boolean saveHighScore();
-    public boolean loadHighScore();
+    public IScore[] loadHighScore();
     public boolean saveGame();
     public boolean loadGame();    
     public String getName();
@@ -34,6 +34,9 @@ public interface IGameEngine {
     public boolean turnRight();
     public boolean turnLeft();
     public boolean turnBack();
+    public String checkForMonster();
+    public String talkToBob();
+
     
     public String[] getInventory();
     public boolean useItem(int itemNumber);

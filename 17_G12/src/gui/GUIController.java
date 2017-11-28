@@ -6,8 +6,11 @@
 package gui;
 
 import acquaintance.IGameEngine;
+import acquaintance.IScore;
 import acquaintance.IUI;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -83,7 +86,6 @@ public class GUIController implements IUI
      * highscoreScene elements.
      */
     @FXML private ImageView highscoreBackgroundImage;
-    @FXML private ListView<?> highscoreList;
     @FXML private Button highscoreBackButton;
     
     /**----------------------
@@ -214,6 +216,16 @@ public class GUIController implements IUI
     private Label gameOverNameHolder;
     @FXML
     private ImageView gameSceneBackgroundImage;
+    @FXML
+    private ListView<String> highScoreName;
+    @FXML
+    private ListView<String> highScoreNumber;
+    @FXML
+    private ListView<String> highScoreDifficulity;
+    ObservableList<String> scoreNames;
+    ObservableList<String> scoreNumbers;
+    ObservableList<String> scoreDifficulties;
+    private IScore[] scores;
     
     
     
@@ -231,11 +243,36 @@ public class GUIController implements IUI
     private void newGameButtonClicked(ActionEvent event) {
         changeScene(mainMenuScene, newGameScene);
     }
+    private class TempString{
+        private String in;
+        public TempString(String in)
+        {
+            this.in = in;
+        }
+        public String toString()
+        {
+            return in;
+        }
+    }
 
     @FXML
     private void highscoreButtonClicked(ActionEvent event) {
         changeScene(mainMenuScene, highscoreScene);
-        gameEngine.loadHighScore();
+        scoreNames = FXCollections.observableArrayList();
+        scoreNumbers = FXCollections.observableArrayList();
+        scoreDifficulties = FXCollections.observableArrayList();
+        
+        
+        scores = gameEngine.loadHighScore();
+        for (int i = 0; i < scores.length; i++) {
+            scoreNames.add(scores[i].getName());
+            scoreNumbers.add(scores[i].getScoreString());
+            scoreDifficulties.add(scores[i].getDifficulty());
+        }
+        
+        highScoreName.setItems(scoreNames);
+        highScoreNumber.setItems(scoreNumbers);
+        highScoreDifficulity.setItems(scoreDifficulties);
     }
 
     @FXML
@@ -263,6 +300,9 @@ public class GUIController implements IUI
     @FXML
     private void highscoreBackButtonClicked(ActionEvent event) {
         changeScene(highscoreScene, mainMenuScene);
+        
+        
+        
     }
 
     //------------------------------------------------------
@@ -328,6 +368,7 @@ public class GUIController implements IUI
             gameOverImage.setImage(null); // winning game over image
             gameOverNameHolder.setText(gameEngine.getName());
             gameOverNameHolder.setVisible(true);
+            gameEngine.saveHighScore();
         }
         redraw();
         String tempMSG = gameEngine.getMessage();
@@ -545,6 +586,7 @@ public class GUIController implements IUI
     public void injectGameEngine(IGameEngine gameEngine) {
         this.gameEngine = gameEngine;
         createBackgrounds();
+
     }
     
     private void createBackgrounds()
@@ -815,6 +857,23 @@ public class GUIController implements IUI
     private void mainMenuButton(ActionEvent event) {
         changeScene(gameOverScene, mainMenuScene);
     }
+
+    @FXML
+    private void taltToBob(ActionEvent event) {
+        if(gameEngine.checkForMonster() != null)
+        {
+        if(gameEngine.checkForMonster().startsWith("minion") || gameEngine.checkForMonster().equals("Zuul"))
+        {
+            changeScene(gameScene, combatScene);
+        }
+        else if(gameEngine.checkForMonster().equals("bob"))
+        {
+            logTextArea.setText(gameEngine.talkToBob());
+        }
+        }
+
+    }
+    
     
     
 }

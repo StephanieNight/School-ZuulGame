@@ -5,6 +5,7 @@
  */
 package acquaintance;
 
+import javafx.beans.property.StringProperty;
 import maltestestpackage.Score;
 
 /**
@@ -12,7 +13,10 @@ import maltestestpackage.Score;
  * @author Malte
  */
 public interface IScore {
+    public abstract String toString();
+    public abstract int getScore();
+    public abstract void setScore(int score);
     public abstract String getName();
-    public abstract String getDiff();
-    public abstract int getValue();
+    public abstract String getDifficulty();
+    public abstract String getScoreString();
 }

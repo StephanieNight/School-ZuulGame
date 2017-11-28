@@ -20,9 +20,9 @@ public class Message {
     }
 
     public String getDescription() {
-        String msgOut = oldMessage + "> " + description;
+        String msgOut = "> " + description + "\n\n> " + oldMessage;
         
-        String oldMessage = "> " + description + "\n\n";
+        oldMessage = description;
         description = "";
         return msgOut;
     }

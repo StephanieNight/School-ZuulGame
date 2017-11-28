@@ -8,6 +8,7 @@ package core_engine;
 import acquaintance.IGameEngine;
 import acquaintance.IInventory;
 import acquaintance.ISaveGameHandler;
+import acquaintance.IScore;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
@@ -37,11 +38,12 @@ public class GameEngine implements IGameEngine {
     
     @Override
     public boolean saveHighScore() {
-      return game.saveHighScore();
+      game.saveHighScore();
+      return true;
     }
 
     @Override
-    public boolean loadHighScore() {
+    public IScore[] loadHighScore() {
         return game.loadHighScore();
     }
 
@@ -201,4 +203,14 @@ public class GameEngine implements IGameEngine {
         this.game.setSavegameHandler(sh);
         this.sh = sh;
     }
+    @Override
+    public String checkForMonster() {
+        return game.getMonsterName();
+    }
+
+    @Override
+    public String talkToBob() {
+        return game.talkToBob();
+    }
+
 }

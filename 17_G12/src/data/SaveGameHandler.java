@@ -5,6 +5,7 @@
  */
 package data;
 
+import acquaintance.IHighScore;
 import core_engine.SaveGameInstance;
 
 import acquaintance.ISaveGameHandler;
@@ -37,6 +38,30 @@ public class SaveGameHandler implements  ISaveGameHandler{
         InputStream inStream = new FileInputStream(FILENAME_SAVEGAME);
         ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
         ISavegameInstance sa = (ISavegameInstance) fileObjectIn.readObject();
+        fileObjectIn.close();
+        inStream.close();         
+        return sa;
+    }
+    
+    /**
+ *
+ * @author Stephanie
+ */
+  
+    @Override
+    public void saveHighScore(IHighScore sa) throws IOException { 
+        OutputStream outStream = new FileOutputStream(FILENAME_SAVEGAME);    
+        ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
+        fileObjectOut.writeObject(sa);
+        fileObjectOut.close();
+        outStream.close();
+    }  
+
+    @Override
+    public IHighScore loadHighScore() throws IOException, ClassNotFoundException {
+        InputStream inStream = new FileInputStream(FILENAME_SAVEGAME);
+        ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
+        IHighScore sa = (IHighScore) fileObjectIn.readObject();
         fileObjectIn.close();
         inStream.close();         
         return sa;

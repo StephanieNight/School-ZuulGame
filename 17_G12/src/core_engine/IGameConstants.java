@@ -103,11 +103,11 @@ public interface IGameConstants {
     };
     String[] DIFFICULTY_NAMES =
     {
-        "PLAESE DONT HURT ME",  // 0
-        "EASY",                 // 1
-        "NORMAL",               // 2
-        "BRING IT ON",          // 3
-        "I AM DEATH"            // 4
+        "VERY EASY",           // 0
+        "EASY",                // 1
+        "NORMAL",              // 2
+        "HARD",                // 3
+        "VERY HARD"            // 4
     };
     String[] MALTES_TILES = 
     {

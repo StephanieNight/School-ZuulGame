@@ -64,5 +64,9 @@ public class GhostWanderer extends Actor
         return "There's chests hidden around the maze. "
                 + "Find them to get equipment.";
     }
+    public String getQuote()
+    {
+        return getQuote((int)(Math.random() * tips.length));
+    }
     
 }

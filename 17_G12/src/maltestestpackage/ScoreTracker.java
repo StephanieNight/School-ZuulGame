@@ -6,6 +6,7 @@
 package maltestestpackage;
 
 import core_engine.GameEngine;
+import core_engine.IGameConstants;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,9 +36,10 @@ public class ScoreTracker implements Serializable {
     public ScoreTracker(Player p, int diff)    
     {
         this.player = p;
-        this.diff = diff;
-        currentScore = (int)(Math.pow(diff,2));
-        score.setScore(currentScore);
+        
+        currentScore = (int)(Math.pow(diff,2)) * 10;
+        score = new Score(currentScore, IGameConstants.DIFFICULTY_NAMES[diff - 1], player.getName());
+
 
     }
 

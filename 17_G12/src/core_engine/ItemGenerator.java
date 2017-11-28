@@ -24,11 +24,14 @@ public class ItemGenerator {
 
     private Labyrinth maze;
     private Message msg;
+  
     
     public ItemGenerator(Labyrinth maze, Message msg)
     {
         this.maze = maze;
         this.msg = msg;
+
+
     }
     
     /**

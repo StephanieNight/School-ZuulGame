@@ -5,29 +5,36 @@
  */
 package maltestestpackage;
 
+import acquaintance.IScore;
 import java.io.Serializable;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * data type for scores used in highscore
  * @author Malte
  */
-public class Score implements Comparable<Score>, Serializable {
+public class Score implements IScore, Serializable {
  private String name;
- private String diff;
+ private String difficulty;
  private int score;
+ private String scoreString;
+ 
  
  public Score(int score, String diff, String name)
  {
      this.score = score;
-     this.diff = diff;
+     this.difficulty = diff;
      this.name = name;
+     this.scoreString = Integer.toString(score);
+     
  }
 
     public void setScore(int score) {
         this.score = score;
     }
     
-    
+   
     /**
      * returns a string with name, difficulty and score
      * @return 
@@ -35,36 +42,36 @@ public class Score implements Comparable<Score>, Serializable {
     @Override
     public String toString()
     {
-        return "" + name + " " + diff + " " + score;
-    }
-
-    /**
-     * compare operator to compare one Score object with another
-     * @param score 
-     * @return returns 1 if the current score is bigger than the score it is compared to
-     * returns 0 if the two scores are the same and -1 if the current score is
-     * the lesser of the two
-     */
-    @Override
-    public int compareTo(Score score) 
-    {
-        if (score.getScore() > this.score)
-        {
-            return 1;
-        }
-        else if (score.getScore() == this.score)
-        {
-            return 0;
-        } 
-        else
-        {
-            return -1;
-        }
+        return "\t" + name  + "\t\t " + score + "\t\t " + difficulty;
     }
     
     public int getScore()
     {
         return score;
     }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    @Override
+    public String getScoreString() {
+        return scoreString;
+    }
+
+   
+
+    
+
+  
+    
+
+
     
 }

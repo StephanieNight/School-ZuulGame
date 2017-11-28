@@ -7,8 +7,10 @@ package core_engine;
 
 import Ahmets_package.Fight;
 import acquaintance.IActor;
+import acquaintance.IHighScore;
 import acquaintance.ISaveGameHandler;
 import acquaintance.ISavegameInstance;
+import acquaintance.IScore;
 import core_engine.Items.Key;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -20,6 +22,8 @@ import javafx.scene.image.Image;
 import java.awt.Graphics2D;
 import java.io.File;
 import javax.imageio.ImageIO;
+import maltestestpackage.HighScoreHandler;
+import maltestestpackage.ScoreTracker;
 
 /**
  *
@@ -43,7 +47,9 @@ public class ZuulGame implements IGameConstants {
     private ItemGenerator itemGenerator;
     private Fight fight;
     private Message message;
-    private ISaveGameHandler savegameHandler;    
+    private ISaveGameHandler savegameHandler;   
+    private HighScoreHandler highScoreHandler;
+    private ScoreTracker scoreTracker;
     /** the constructer for the game engine to world of zuul this 
      * means it set the world size acording to dificulty 
      * mixes in apropreate numper of monsters and generates the 
@@ -52,6 +58,8 @@ public class ZuulGame implements IGameConstants {
     public ZuulGame(Message msg) {
         this.message = msg;
         this.fight = new Fight(message);
+        highScoreHandler = new HighScoreHandler();
+
         //this.parser = new Parser();
 //        int i = -1;
 //        while(i == -1)
@@ -337,11 +345,33 @@ public class ZuulGame implements IGameConstants {
         m.getCurrentRoom().setMonster(null);
         monsters.remove(m);
     }
-    public boolean saveHighScore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void saveHighScore() {
+        if(highScoreHandler.addScore(scoreTracker.getScore()))
+        {
+            try
+            {
+            savegameHandler.saveHighScore(highScoreHandler);
+            }
+            catch (IOException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
     }
-    public boolean loadHighScore() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public IScore[] loadHighScore() {
+        try
+        {
+            highScoreHandler = (HighScoreHandler)savegameHandler.loadHighScore();
+            System.out.println("Loaded old Game"); 
+            return highScoreHandler.getScores();
+        }
+        catch(IOException | ClassNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+            return highScoreHandler.getScores();
+        } 
+//        return highScoreHandler.getScores();
+
     }
     public String getName() {
         return player.getName();
@@ -428,6 +458,7 @@ public class ZuulGame implements IGameConstants {
             {
                 processMonsters();
                 player.useLampOil();
+                scoreTracker.turnEnd();
 
             }        
             if(player.isInvis())
@@ -459,20 +490,20 @@ public class ZuulGame implements IGameConstants {
         {
             if(m.getMapCode() == 'Z')
             {
+                scoreTracker.bossKill();
                 player.getCurrentRoom().dropItem(new Key(message));
             }
+            scoreTracker.monsterKill();
             deleteMonster(m);
+            int i = 0;
+            while(i < 1)
+            {
             player.getCurrentRoom().dropItem(itemGenerator.generateRandomItem());
+            i = (int)(Math.random() * 4);
+            }
            return true; 
         }
-        else if(fight.attack(m, player))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        else return fight.attack(m, player);
         
     }
     public boolean flee() {
@@ -495,7 +526,7 @@ public class ZuulGame implements IGameConstants {
         System.out.println("number of minions   : "+ this.maxNumberOfMinions);
         System.out.println("Diffictulty is      : "+ this.difficulty);
         
-
+        scoreTracker = new ScoreTracker(player, difficulty);
         return true;
     }    
     public boolean checkWinCondition() {
@@ -537,6 +568,25 @@ public class ZuulGame implements IGameConstants {
     public void setSavegameHandler(ISaveGameHandler savegameHandler) {
         this.savegameHandler = savegameHandler;
     }
+    
+    public String talkToBob()
+    {
+        return ghost.getQuote();
+    }
+    public String getMonsterName()
+    {
+        if(player.getCurrentRoom().getGhoust() != null)
+        {
+            return player.getCurrentRoom().getGhoust().getName();
+        }
+        else if (player.getCurrentRoom().getMonster() != null)
+        {
+            return player.getCurrentRoom().getMonster().getName();
+        }
+        
+        return null;
+       }
+
     
 }
     

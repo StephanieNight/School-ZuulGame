@@ -13,5 +13,7 @@ import java.util.ArrayList;
  */
 public interface ISaveGameHandler {
     public ISavegameInstance loadGame() throws IOException, ClassNotFoundException;
-    public void saveGame(ISavegameInstance sa)throws IOException;            
+    public void saveGame(ISavegameInstance sa)throws IOException;   
+    public IHighScore loadHighScore() throws IOException, ClassNotFoundException;
+    public void saveHighScore(IHighScore sa)throws IOException; 
 }
