@@ -375,8 +375,7 @@ public class GUIController implements IUI
             }
         }
         makeInvisible(labyrinthImage);
-       
-
+        makeInvisible(searchScene);
     }
 
     @FXML
@@ -398,6 +397,7 @@ public class GUIController implements IUI
             }
         }
         makeInvisible(labyrinthImage);
+        makeInvisible(inventoryScene);
     }
 
     @FXML
@@ -713,10 +713,9 @@ public class GUIController implements IUI
 
     @FXML
     private void inspectRoomItemButtonClicked(ActionEvent event)
-    {
-        logTextArea.setText(gameEngine.itemDescription(itemNumber));
-        logCombatTextArea.setText(gameEngine.itemDescription(itemNumber));
-        
+    {//replace all
+        logTextArea.setText(gameEngine.getLootItemDescription(lootItemNumber));
+        logCombatTextArea.setText(gameEngine.getLootItemDescription(lootItemNumber));
     }
 
     @FXML
