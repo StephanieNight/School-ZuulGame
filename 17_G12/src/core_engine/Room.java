@@ -229,7 +229,8 @@ public class Room
     }
     public boolean isOccupied()
     {
-        return ghoust !=null&& monster != null;
+        boolean o = (ghoust !=null || monster != null);                
+        return o;
     }
 }
             

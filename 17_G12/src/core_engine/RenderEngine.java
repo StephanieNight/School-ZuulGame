@@ -33,7 +33,7 @@ public class RenderEngine implements IGameConstants{
                 for(int col = 0; col < mazeSize; col++){
                     Room room = maze[row][col];
                     if(!room.isPlayerVissited()) continue;
-                    BufferedImage tile = new BufferedImage(181,181,BufferedImage.TYPE_INT_ARGB); // stars as a blank imagae
+                    BufferedImage tile; // stars as a blank imagae
                     switch (room.getExits().length)
                     {
                             case 1:
