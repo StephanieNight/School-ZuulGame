@@ -313,6 +313,7 @@ public class GUIController implements IUI
         {
             changeScene(gameScene, combatScene);
             combatImage.setImage(gameEngine.renderBattleView());
+            currentHealthField.setText(gameEngine.getCurrentHealthToString());
         }
         if(gameEngine.checkForGameOver())
         {
