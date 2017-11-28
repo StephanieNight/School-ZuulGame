@@ -49,7 +49,9 @@ public class Key implements Item
             msg.setDescription("The door has been unlocked.");
             p.getCurrentRoom().getExit("north").getDoor("south").unLock(p);
         }
-        msg.setDescription("There's a time and place for everything, but not now.");
+        else{
+            msg.setDescription("There's a time and place for everything, but not now.");
+        }
         return false;
     }
 
