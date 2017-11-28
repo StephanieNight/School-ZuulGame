@@ -432,7 +432,7 @@ public class RenderEngine implements IGameConstants{
     public static Image renderBattleView(Player player,Monster monster) {
         try {
             //set basic canves
-            BufferedImage renderedView = new BufferedImage(600, 700,BufferedImage.TYPE_INT_ARGB); // ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[0])); 
+            BufferedImage renderedView = new BufferedImage(700, 600,BufferedImage.TYPE_INT_ARGB); // ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[0])); 
     
             Room currentRoom = player.getCurrentRoom();                         // get the current room 
             Room nextRoom = currentRoom.getExit(player.getFacing().direction);  // get the room next to it.
