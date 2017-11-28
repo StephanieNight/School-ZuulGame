@@ -22,8 +22,7 @@ public interface IGameConstants {
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
     String DIR_MAIN_MENU_BACKGROUND = "assets//backgrounds//gateBG2.png";
     String DIR_NEW_GAME_BACKGROUND = "assets//backgrounds//caveBG3.jpg";
-    String DIR_GAME_SCENE_BACKGROUND = 
-            "assets//backgrounds//gameSceneBackground.png";
+    String DIR_GAME_SCENE_BACKGROUND = "assets//backgrounds//gameSceneBackground.png";
     String[] FILENAME_PICTURES_CHARACTOR =
     {
         "innerMinion.png",              // 0
@@ -57,8 +56,7 @@ public interface IGameConstants {
         "dead end east.png",            // 11
         "dead end south.png",           // 12
         "Straight path east west.png",  // 13
-        "Straight path north south.png",// 14
-        ""
+        "Straight path north south.png" // 14        
     };
     String[] FILENAME_PICTURES_MAZE = 
     {
@@ -79,21 +77,16 @@ public interface IGameConstants {
     };
         String[] FILENAME_PICTURES_MAZE_OBJECTS = 
     {
-        "outerDoorForward.png", // 0      
-        "outerChest.png",       // 1
-        "innerDoorForward.png", // 2        
-        "innerChest.png",       // 3
+        "outerChest.png",       // 0
+        "innerChest.png",       // 1
+        "outerDoorForward.png", // 2      
+        "innerDoorForward.png", // 3     
         
-        "InnerNoForward.png",   // 4
-        "InnerNoLeft.png",      // 5
-        "InnerNoRight.png",     // 6            
-        "OuterTemplate.png",    // 7
-        "OuterLeft.png",        // 8
-        "OuterRight.png",       // 9
-        "OuterNoForward.png",   // 10
-        "OuterNoLeft.png",      // 11
-        "OuterNoRight.png",     // 12
-        "OuterForward.png"      // 13    
+        "innerDoorLeft.png",    // 4
+        "innerDoorRight.png",   // 5
+        "outerDoorLeft.png",    // 6            
+        "outerDoorRight.png",   // 7
+        "outerDoorForward.png"  // 8   
     };
     String[] FILENAME_PICTURES_TOKEN = 
     {
