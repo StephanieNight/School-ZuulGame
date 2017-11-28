@@ -286,21 +286,54 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <RadioButton fx:id="itemOneRadioButton" mnemonicParsing="false" onAction="#itemOneRadioButtonClicked" text="Item 1" GridPane.halignment="CENTER">
+                              <RadioButton fx:id="itemOneRadioButton" mnemonicParsing="false" onAction="#itemOneRadioButtonClicked" textFill="WHITE" GridPane.halignment="CENTER">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="inventoryButtons" />
                                  </toggleGroup>
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font>
                               </RadioButton>
-                              <RadioButton fx:id="itemTwoRadioButton" mnemonicParsing="false" onAction="#itemTwoRadioButtonClicked" text="Item 2" toggleGroup="$inventoryButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                              <RadioButton fx:id="itemFiveRadioButton" mnemonicParsing="false" onAction="#itemFiveRadioButtonClicked" text="Item 5" toggleGroup="$inventoryButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="itemFourRadioButton" mnemonicParsing="false" onAction="#itemFourRadioButtonClicked" text="Item 4" toggleGroup="$inventoryButtons" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="itemThreeRadioButton" mnemonicParsing="false" onAction="#itemThreeRadioButtonClicked" text="Item 3" toggleGroup="$inventoryButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                              <RadioButton fx:id="itemSixRadioButton" mnemonicParsing="false" onAction="#itemSixRadioButtonClicked" text="Item 6" toggleGroup="$inventoryButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="itemSevenRadioButton" mnemonicParsing="false" onAction="#itemSevenRadioButtonClicked" text="Item 7" toggleGroup="$inventoryButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-                              <Button fx:id="useInventoryButton" mnemonicParsing="false" onAction="#useInventoryButtonClicked" text="Use" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button fx:id="dropInventoryButton" mnemonicParsing="false" onAction="#dropInventoryButtonClicked" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button fx:id="inspectInventoryButton" mnemonicParsing="false" onAction="#inspectInventoryButtonClicked" text="Inspect" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button fx:id="closeInventoryButton" mnemonicParsing="false" onAction="#closeInventoryButtonClicked" text="Close" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <RadioButton fx:id="itemTwoRadioButton" mnemonicParsing="false" onAction="#itemTwoRadioButtonClicked" textFill="WHITE" toggleGroup="$inventoryButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="itemFiveRadioButton" mnemonicParsing="false" onAction="#itemFiveRadioButtonClicked" textFill="WHITE" toggleGroup="$inventoryButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="itemFourRadioButton" mnemonicParsing="false" onAction="#itemFourRadioButtonClicked" textFill="WHITE" toggleGroup="$inventoryButtons" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="itemThreeRadioButton" mnemonicParsing="false" onAction="#itemThreeRadioButtonClicked" textFill="WHITE" toggleGroup="$inventoryButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="itemSixRadioButton" mnemonicParsing="false" onAction="#itemSixRadioButtonClicked" textFill="WHITE" toggleGroup="$inventoryButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="itemSevenRadioButton" mnemonicParsing="false" onAction="#itemSevenRadioButtonClicked" textFill="WHITE" toggleGroup="$inventoryButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <Button fx:id="useInventoryButton" mnemonicParsing="false" onAction="#useInventoryButtonClicked" text="Use" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></Button>
+                              <Button fx:id="dropInventoryButton" mnemonicParsing="false" onAction="#dropInventoryButtonClicked" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></Button>
+                              <Button fx:id="inspectInventoryButton" mnemonicParsing="false" onAction="#inspectInventoryButtonClicked" text="Inspect" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></Button>
+                              <Button fx:id="closeInventoryButton" mnemonicParsing="false" onAction="#closeInventoryButtonClicked" text="Close" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></Button>
                            </children>
                         </GridPane>
                      </children>
@@ -321,26 +354,74 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <RadioButton fx:id="roomItem1RadioButton" mnemonicParsing="false" onAction="#roomItem1RadioButtonClicked" selected="true" text="Item 1" GridPane.halignment="CENTER">
+                              <RadioButton fx:id="roomItem1RadioButton" mnemonicParsing="false" onAction="#roomItem1RadioButtonClicked" selected="true" text="Item 1" textFill="WHITE" GridPane.halignment="CENTER">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="roomRadioButtons" />
                                  </toggleGroup>
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font>
                               </RadioButton>
-                              <RadioButton fx:id="roomItem2RadioButton" mnemonicParsing="false" onAction="#roomItem2RadioButtonClicked" text="Item 2" toggleGroup="$roomRadioButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                              <RadioButton fx:id="roomItem3RadioButton" mnemonicParsing="false" onAction="#roomItem3RadioButtonClicked" text="Item 3" toggleGroup="$roomRadioButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                              <RadioButton fx:id="roomItem4RadioButton" mnemonicParsing="false" onAction="#roomItem4RadioButtonClicked" text="Item 4" toggleGroup="$roomRadioButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-                              <RadioButton fx:id="roomItem5RadioButton" mnemonicParsing="false" onAction="#roomItem5RadioButtonClicked" text="Item 5" toggleGroup="$roomRadioButtons" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="roomItem6RadioButton" mnemonicParsing="false" onAction="#roomItem6RadioButtonClicked" text="Item 6" toggleGroup="$roomRadioButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="roomItem7RadioButton" mnemonicParsing="false" onAction="#roomItem7RadioButtonClicked" text="Item 7" toggleGroup="$roomRadioButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="roomItem8RadioButton" mnemonicParsing="false" onAction="#roomItem8RadioButtonClicked" text="Item 8" toggleGroup="$roomRadioButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="roomItem9RadioButton" mnemonicParsing="false" onAction="#roomItem9RadioButtonClicked" text="Item 9" toggleGroup="$roomRadioButtons" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <RadioButton fx:id="roomItem10RadioButton" mnemonicParsing="false" onAction="#roomItem10RadioButtonClicked" text="Item 10" toggleGroup="$roomRadioButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <RadioButton fx:id="roomItem11RadioButton" mnemonicParsing="false" onAction="#roomItem11RadioButtonClicked" text="Item 11" toggleGroup="$roomRadioButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <RadioButton fx:id="roomItem12RadioButton" mnemonicParsing="false" onAction="#roomItem12RadioButtonClicked" text="Item 12" toggleGroup="$roomRadioButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" onAction="#useRoomItemButtonClicked" text="Use" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" onAction="#pickUpButtonClicked" text="Pick up" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" onAction="#inspectRoomItemButtonClicked" text="Inspect" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" onAction="#closeSearchSceneButtonClicked" text="Close" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <RadioButton fx:id="roomItem2RadioButton" mnemonicParsing="false" onAction="#roomItem2RadioButtonClicked" text="Item 2" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem3RadioButton" mnemonicParsing="false" onAction="#roomItem3RadioButtonClicked" text="Item 3" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem4RadioButton" mnemonicParsing="false" onAction="#roomItem4RadioButtonClicked" text="Item 4" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem5RadioButton" mnemonicParsing="false" onAction="#roomItem5RadioButtonClicked" text="Item 5" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem6RadioButton" mnemonicParsing="false" onAction="#roomItem6RadioButtonClicked" text="Item 6" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem7RadioButton" mnemonicParsing="false" onAction="#roomItem7RadioButtonClicked" text="Item 7" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem8RadioButton" mnemonicParsing="false" onAction="#roomItem8RadioButtonClicked" text="Item 8" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem9RadioButton" mnemonicParsing="false" onAction="#roomItem9RadioButtonClicked" text="Item 9" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem10RadioButton" mnemonicParsing="false" onAction="#roomItem10RadioButtonClicked" text="Item 10" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem11RadioButton" mnemonicParsing="false" onAction="#roomItem11RadioButtonClicked" text="Item 11" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="roomItem12RadioButton" mnemonicParsing="false" onAction="#roomItem12RadioButtonClicked" text="Item 12" textFill="WHITE" toggleGroup="$roomRadioButtons" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></RadioButton>
+                              <Button mnemonicParsing="false" onAction="#useRoomItemButtonClicked" text="Use" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></Button>
+                              <Button mnemonicParsing="false" onAction="#pickUpButtonClicked" text="Pick up" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></Button>
+                              <Button mnemonicParsing="false" onAction="#inspectRoomItemButtonClicked" text="Inspect" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></Button>
+                              <Button mnemonicParsing="false" onAction="#closeSearchSceneButtonClicked" text="Close" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Luminari" size="13.0" />
+                                 </font></Button>
                            </children>
                         </GridPane>
                      </children>
