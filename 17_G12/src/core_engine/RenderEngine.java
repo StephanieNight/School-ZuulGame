@@ -456,7 +456,27 @@ public class RenderEngine implements IGameConstants{
             }
             // </editor-fold>
           
-            // </editor-fold>     
+            // </editor-fold>   
+            // compass
+            switch(player.getFacing())
+            {
+                case E:
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[9])); 
+                    graph.drawImage(tile, 0,0,null);  // draws next room template; 
+                    break;
+                case S:
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[11])); 
+                    graph.drawImage(tile, 0,0,null);  // draws next room template; 
+                    break;
+                case N:
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[10])); 
+                    graph.drawImage(tile, 0,0,null);  // draws next room template;
+                    break;
+                case W:
+                    tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[12])); 
+                    graph.drawImage(tile, 0,0,null);  // draws next room template; 
+                    break;
+            }
             return SwingFXUtils.toFXImage(renderedView,null);            
         } 
         catch (IOException ex) { 

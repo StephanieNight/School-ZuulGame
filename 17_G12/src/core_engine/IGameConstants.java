@@ -89,7 +89,12 @@ public interface IGameConstants {
         "innerDoorRight.png",   // 5
         "outerDoorLeft.png",    // 6            
         "outerDoorRight.png",   // 7
-        "outerDoorForward.png"  // 8   
+        "outerDoorForward.png",  // 8 
+            
+        "CompassRoseEast.png",  // 9
+        "CompassRoseNorth.png", // 10
+        "CompassRoseSouth.png", // 11
+        "CompassRoseWest.png"   // 12
     };
     String[] FILENAME_PICTURES_TOKEN = 
     {
