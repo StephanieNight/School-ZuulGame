@@ -19,10 +19,10 @@ import javax.imageio.ImageIO;
  */
 public class RenderEngine implements IGameConstants{
     public static Image renderMiniMapView(Room[][] maze) {
-        String north = "north";
-        String south = "south";
-        String east = "east";
-        String west = "west";
+        String north = Labyrinth.DIR.N.direction;
+        String south = Labyrinth.DIR.S.direction;
+        String east = Labyrinth.DIR.E.direction;
+        String west = Labyrinth.DIR.W.direction;
         try {             
         int mazeSize = maze.length;
             //set basic canves
@@ -49,7 +49,6 @@ public class RenderEngine implements IGameConstants{
                                     //dead end exit sout
                                     tile = ImageIO.read(new File(DIR_MINIMAP+FILENAME_PICTURES_MINIMAP[12]));  
                                     break;
-
                                 }
                                 else if (room.getExits()[0].equals(east))
                                 {
