@@ -6,12 +6,13 @@ import java.util.Set;
 import java.util.HashMap;
 import core_engine.Items.Inventory;
 import core_engine.Items.Item;
+import java.io.Serializable;
 
 /**
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room 
+public class Room implements Serializable
 {
     private String description;
     private HashMap<String, Room> exits;
