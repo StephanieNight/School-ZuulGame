@@ -18,7 +18,7 @@ public class Score implements IScore, Serializable, Comparable<Score> {
  private String name;
  private String difficulty;
  private int score;
- private String scoreString;
+
  
  
  public Score(int score, String diff, String name)
@@ -26,7 +26,7 @@ public class Score implements IScore, Serializable, Comparable<Score> {
      this.score = score;
      this.difficulty = diff;
      this.name = name;
-     this.scoreString = Integer.toString(score);
+    
      
  }
 
@@ -62,7 +62,7 @@ public class Score implements IScore, Serializable, Comparable<Score> {
 
     @Override
     public String getScoreString() {
-        return scoreString;
+        return Integer.toString(score);
     }
 
     @Override
