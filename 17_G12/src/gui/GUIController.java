@@ -385,6 +385,7 @@ public class GUIController implements IUI
     private void loadGameButtonClicked(ActionEvent event) {
         gameEngine.loadGame();
         changeScene(mainMenuScene, gameScene);
+        redraw();
     }
 
     @FXML

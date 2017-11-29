@@ -34,3 +34,5 @@ hs_err_pid*
 /17_G12/dist/
 *.properties
 17_G12/nbproject/private/private.xml
+*.zuul
+*.properties
