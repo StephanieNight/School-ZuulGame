@@ -43,10 +43,12 @@ public class GUIController implements IUI
     @FXML private AnchorPane gameScene;
     @FXML private AnchorPane helpScene;
     @FXML private AnchorPane combatScene;
+    @FXML private AnchorPane gameOverScene;
     
     //Scenes within gameScene
     @FXML private AnchorPane inventoryScene;
     @FXML private AnchorPane searchScene;
+    @FXML private AnchorPane combatInventoryScene;
     
     //Pop-ups
     @FXML private AnchorPane wantToQuitPopUpLayer;
@@ -87,6 +89,9 @@ public class GUIController implements IUI
      */
     @FXML private ImageView highscoreBackgroundImage;
     @FXML private Button highscoreBackButton;
+    @FXML private ListView<String> highScoreName;
+    @FXML private ListView<String> highScoreNumber;
+    @FXML private ListView<String> highScoreDifficulity;
     
     /**----------------------
      * creditsScene elements.
@@ -99,6 +104,7 @@ public class GUIController implements IUI
      */
     //This ImageView displays the labyrinth
     @FXML private ImageView labyrinthImage;
+    @FXML private ImageView gameSceneBackgroundImage;
     
     //This TextArea writes the game activities
     @FXML private TextArea logTextArea;
@@ -155,6 +161,22 @@ public class GUIController implements IUI
     @FXML private Button combatInventoryButton;
     @FXML private Button combatSceneOptionsButton;
     
+    /**------------------------------
+     * combatInventoryScene elements.
+     */
+    @FXML private ToggleGroup inventoryButtons1; //Refactoring
+    @FXML private RadioButton itemOneRadioButton1;
+    @FXML private RadioButton itemTwoRadioButton1;
+    @FXML private RadioButton itemFiveRadioButton1;
+    @FXML private RadioButton itemFourRadioButton1;
+    @FXML private RadioButton itemThreeRadioButton1;
+    @FXML private RadioButton itemSixRadioButton1;
+    @FXML private RadioButton itemSevenRadioButton1;
+    @FXML private Button useInventoryButton1;
+    @FXML private Button dropInventoryButton1;
+    @FXML private Button inspectInventoryButton1;
+    @FXML private Button closeCombatInventoryButton;
+    
     /**------------------------
      * inventoryScene elements.
      */
@@ -198,6 +220,15 @@ public class GUIController implements IUI
     @FXML private RadioButton roomItem11RadioButton;
     @FXML private RadioButton roomItem12RadioButton;
     
+    /**-----------------------
+     * gameOverScene elements.
+     */
+    @FXML private ImageView gameOverBackgroundImage;
+    
+    @FXML private Label gameOverNameHolder;
+    @FXML private Label gameOverScore;
+    @FXML private Label gameOverDifficulty;
+    
     /**-------------------
      * NON-FXML VARIABLES.
      */
@@ -208,59 +239,14 @@ public class GUIController implements IUI
     private IGameEngine gameEngine;
     private RadioButton[] inventoryRadioButtons;
     private RadioButton[] searchRadioButtons;
-    @FXML
-    private AnchorPane gameOverScene;
-    @FXML
-    private ImageView gameOverImage;
-    @FXML
-    private Label gameOverNameHolder;
-    @FXML
-    private ImageView gameSceneBackgroundImage;
-    @FXML
-    private ListView<String> highScoreName;
-    @FXML
-    private ListView<String> highScoreNumber;
-    @FXML
-    private ListView<String> highScoreDifficulity;
+    private RadioButton[] combatInventoryButtons;
+    private IScore[] scores;
     ObservableList<String> scoreNames;
     ObservableList<String> scoreNumbers;
     ObservableList<String> scoreDifficulties;
-    private IScore[] scores;
-    @FXML
-    private Label gameOverScore;
-    @FXML
-    private Label gameOverDifficulty;
-    @FXML
-    private Label gameOverYourScore;
-    @FXML
-    private Label gameOverCurrentDifficulty;
-    @FXML
-    private AnchorPane combatInventoryScene;
-    @FXML
-    private RadioButton itemOneRadioButton1;
-    @FXML
-    private ToggleGroup inventoryButtons1;
-    @FXML
-    private RadioButton itemTwoRadioButton1;
-    @FXML
-    private RadioButton itemFiveRadioButton1;
-    @FXML
-    private RadioButton itemFourRadioButton1;
-    @FXML
-    private RadioButton itemThreeRadioButton1;
-    @FXML
-    private RadioButton itemSixRadioButton1;
-    @FXML
-    private RadioButton itemSevenRadioButton1;
-    @FXML
-    private Button useInventoryButton1;
-    @FXML
-    private Button dropInventoryButton1;
-    @FXML
-    private Button inspectInventoryButton1;
-    @FXML
-    private Button closeCombatInventoryButton;
-    private RadioButton[] combatInventoryButtons;
+    
+    
+    
     
     
     
@@ -398,25 +384,14 @@ public class GUIController implements IUI
         }
         if(gameEngine.checkForGameOver())
         {
+            setEndGameInformation();
             changeScene(gameScene, gameOverScene);
-            gameOverNameHolder.setVisible(false);
-            gameOverImage.setImage(null); // losing game over image
+                    // losing game over image
         }
         if(gameEngine.checkWinCondition())
         {
+            setEndGameInformation();
             changeScene(gameScene, gameOverScene);
-            gameOverImage.setImage(null); // winning game over image
-            
-            gameOverNameHolder.setText(gameEngine.getName());
-            gameOverScore.setText(gameEngine.getScoreString());
-            gameOverDifficulty.setText(gameEngine.getDifficultyString());
-            
-            
-            gameOverCurrentDifficulty.setVisible(true);
-            gameOverNameHolder.setVisible(true);
-            gameOverScore.setVisible(true);
-            gameOverDifficulty.setVisible(true);
-            gameOverYourScore.setVisible(true);
             
             gameEngine.saveHighScore();
         }
@@ -427,6 +402,13 @@ public class GUIController implements IUI
         
         
         
+    }
+    
+    private void setEndGameInformation()
+    {
+        gameOverNameHolder.setText(gameEngine.getName());
+        gameOverScore.setText(gameEngine.getScoreString());
+        gameOverDifficulty.setText(gameEngine.getDifficultyString());
     }
 
     @FXML
@@ -659,6 +641,7 @@ public class GUIController implements IUI
         mainMenuBackgroundImage.setImage(gameEngine.getMainMenuBackground());
         newGameBackgroundImage.setImage(gameEngine.getNewGameBackground());
         gameSceneBackgroundImage.setImage(gameEngine.getGameSceneBackground());
+        gameOverBackgroundImage.setImage(gameEngine.getGameOverSceneBackground());
     }
 
     @FXML
@@ -679,9 +662,8 @@ public class GUIController implements IUI
         currentHealthField.setText(gameEngine.getCurrentHealthToString());
         if(gameEngine.checkForGameOver())
         {
+            setEndGameInformation();
             changeScene(gameScene, gameOverScene);
-            gameOverNameHolder.setVisible(false);
-            gameOverImage.setImage(null); // losing game over image
         }
     }
 
@@ -923,10 +905,6 @@ public class GUIController implements IUI
     @FXML
     private void mainMenuButton(ActionEvent event) {
         changeScene(gameOverScene, mainMenuScene);
-        gameOverCurrentDifficulty.setVisible(false);
-        gameOverNameHolder.setVisible(false);
-        gameOverScore.setVisible(false);
-        
     }
 
     @FXML

@@ -672,47 +672,28 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" prefWidth="255.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="424.0" minHeight="10.0" prefHeight="275.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="424.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="424.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="424.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="424.0" minHeight="10.0" prefHeight="228.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="424.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="424.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="424.0" minHeight="10.0" prefHeight="118.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="231.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="gameOverNameHolder" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <Label fx:id="gameOverNameHolder" prefHeight="17.0" prefWidth="160.0" text="Label" textFill="WHITE" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Label>
                   <Button mnemonicParsing="false" onAction="#mainMenuButton" prefHeight="25.0" prefWidth="141.0" text="Go to main menu" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="gameOverScore" contentDisplay="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <Label fx:id="gameOverScore" contentDisplay="CENTER" text="diff" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Label>
-                  <Label fx:id="gameOverDifficulty" layoutX="20.0" layoutY="-20.0" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <Label fx:id="gameOverDifficulty" layoutX="20.0" layoutY="-20.0" text="Label" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Label>
-                  <Label text="Your Score" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font></Label>
-                  <Label text="Your Difficulty" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font></Label>
-                  <Label text="Your Name" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label text="Game Over" textFill="WHITE" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                     <font>
-                        <Font size="60.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets top="40.0" />
-                     </GridPane.margin>
-                  </Label>
+                  <Label fx:id="gameOverYourScore" text="Your score" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="gameOverCurrentDifficulty" text="Current difficulty" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

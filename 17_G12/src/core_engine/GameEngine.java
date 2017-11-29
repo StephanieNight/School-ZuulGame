@@ -94,9 +94,16 @@ public class GameEngine implements IGameEngine {
         return game.getNewGameBackground();
     }
     
+    @Override
     public Image getGameSceneBackground()
     {
         return game.getGameSceneBackground();
+    }
+    
+    @Override
+    public Image getGameOverSceneBackground()
+    {
+        return game.getGameOverSceneBackground();
     }
     
     @Override
