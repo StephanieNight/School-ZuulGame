@@ -18,14 +18,21 @@ import java.util.Collections;
 public class Labyrinth
 {
     private Message msg;
-    private final int SIZE;
+    private int size;
     private Room[][] maze;
     private boolean isLoop = false;  
-    public Labyrinth(int size, Message msg) 
+    public Labyrinth(Message msg) 
     {
         this.msg = msg;
-        this.SIZE = size;
-        maze = new Room[this.SIZE][this.SIZE];
+        
+      // * bug * //
+      //  maze[randomX][randomY].dropItem(new Shield()); 
+    }  
+    
+    public void newMaze(int size)
+    {
+        this.size = size;
+        maze = new Room[size][size];
         // fills the Maze with emptie 
         for(int r = 0; r <size; r++)
         {
@@ -51,15 +58,17 @@ public class Labyrinth
         randomY = (int)(Math.random() * maze.length - 1) + 1;
         maze[randomX][randomY].dropItem(new HeaterShield(msg));
         
-      // * bug * //
-      //  maze[randomX][randomY].dropItem(new Shield()); 
-    }  
+    }
+    public void loadMaze(Room[][] maze)
+    {
+        this.maze = maze;
+    }
     /* 
      * Spawns the player in the room 
      */
     public boolean spawnPlayer(int x, int y, Actor actor)
     {
-        if(x > this.SIZE || y > this.SIZE)
+        if(x > this.size || y > this.size)
         {
             return false;
         }
@@ -114,14 +123,14 @@ public class Labyrinth
     } 
     public void display() 
     {
-        for (int i = 0; i < this.SIZE; i++) {
+        for (int i = 0; i < this.size; i++) {
                 // draw the north edge
-                for (int j = 0; j < this.SIZE; j++) {
+                for (int j = 0; j < this.size; j++) {
                         System.out.print(!maze[j][i].hasExit(DIR.N.direction)  ? "+---" : "+   ");
                 }
                 System.out.println("+");
                 // draw the west edge
-                for (int j = 0; j < this.SIZE; j++) {
+                for (int j = 0; j < this.size; j++) {
                         System.out.print(!maze[j][i].hasExit(DIR.W.direction) ? "| " : "  ");
                         System.out.print(maze[j][i].getMonsterMapCode());
                         System.out.print(" ");
@@ -130,7 +139,7 @@ public class Labyrinth
                 System.out.println("|");
         }
         // draw the bottom line
-        for (int j = 0; j < this.SIZE; j++) {
+        for (int j = 0; j < this.size; j++) {
                 System.out.print("+---");
         }
         System.out.println("+");
@@ -160,8 +169,8 @@ public class Labyrinth
             if(nextX == 0 && nextY == 0) continue; //checks if Spawn room if true skip.
             
             
-            if (isInsideMaze(nextX, this.SIZE)  // checks if x is indside maze.
-             && isInsideMaze(nextY, this.SIZE))  // checks if y is indside maze.
+            if (isInsideMaze(nextX, this.size)  // checks if x is indside maze.
+             && isInsideMaze(nextY, this.size))  // checks if y is indside maze.
             { 
                 // checks if room has no exits 
                 if(!maze[nextX][nextY].hasAnyExits())
@@ -272,10 +281,7 @@ public class Labyrinth
     {
         return maze;
     }
-    public void setMaze(Room[][] maze)
-    {
-        this.maze = maze;
-    }    
+
 } 
     /*
     private void generateMapOLD(int size) 
