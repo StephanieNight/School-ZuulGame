@@ -6,8 +6,6 @@
 package data;
 
 import acquaintance.IHighScore;
-import core_engine.SaveGameInstance;
-
 import acquaintance.ISaveGameHandler;
 import acquaintance.ISavegameInstance;
 import static core_engine.IGameConstants.FILENAME_SAVEGAME;

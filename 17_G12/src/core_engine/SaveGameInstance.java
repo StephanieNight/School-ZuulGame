@@ -5,10 +5,9 @@
  */
 package core_engine;
 
-import acquaintance.IActor;
-import acquaintance.IRoom;
 import acquaintance.ISavegameInstance;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 
@@ -20,12 +19,12 @@ public class SaveGameInstance implements ISavegameInstance, Serializable {
     // then marked transient it will not be serialized.
     private Room[][] maze;
     private Player player;
-    private Monster[] monsters;
+    private ArrayList<Monster> monsters;
     private int difficulty;
     public SaveGameInstance()
     {
     }
-    public SaveGameInstance(Room[][] Maze,Player player,Monster[] monsters, int difficulty )
+    public SaveGameInstance(Room[][] Maze,Player player,ArrayList<Monster> monsters, int difficulty )
     {
       this.maze = Maze;
       this.difficulty = difficulty;
@@ -40,7 +39,7 @@ public class SaveGameInstance implements ISavegameInstance, Serializable {
         return player;
     }
     
-    public Monster[] getMonsters() {
+    public ArrayList<Monster> getMonsters() {
         return monsters;
     }
     

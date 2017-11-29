@@ -112,18 +112,15 @@ public class ZuulGame implements IGameConstants {
     Loads game from disc
     */
     public boolean loadGame() { 
-      
+       
         try
         {
-            SaveGameInstance sa = (SaveGameInstance)savegameHandler.loadGame();
+            SaveGameInstance sa = (SaveGameInstance)savegameHandler.loadGame();            
+            startNewGame(sa.getDifficulty(),sa.getPlayer().getName());
             labyrinth.setMaze((Room[][])sa.getMaze());
             monsters.clear();
-            for (Monster m : sa.getMonsters())
-            {
-                monsters.add(m);
-            }            
+            monsters.addAll(sa.getMonsters());
             player = (Player)sa.getPlayer();
-            difficulty = sa.getDifficulty();
             System.out.println("Loaded old Game"); 
             return true;
         }
@@ -521,14 +518,17 @@ public class ZuulGame implements IGameConstants {
         this.monsters =new ArrayList<>();
         this.labyrinth= new Labyrinth(mazeSize, message);   
         this.itemGenerator = new ItemGenerator(labyrinth, message);
-        
         spawnMobs(name);
-        finished = false;
-        System.out.println("Size                : "+this.mazeSize);
-        System.out.println("number of minions   : "+ this.maxNumberOfMinions);
-        System.out.println("Diffictulty is      : "+ this.difficulty);
+        this.scoreTracker = new ScoreTracker(player, difficulty);
+        this.finished = false;
+        if(isDebug)
+        {
+            System.out.println("Size                : "+this.mazeSize);
+            System.out.println("number of minions   : "+ this.maxNumberOfMinions);
+            System.out.println("Diffictulty is      : "+ this.difficulty);
+        }
         
-        scoreTracker = new ScoreTracker(player, difficulty);
+        
         return true;
     }    
     public boolean checkWinCondition() {
