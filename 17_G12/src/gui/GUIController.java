@@ -226,6 +226,41 @@ public class GUIController implements IUI
     ObservableList<String> scoreNumbers;
     ObservableList<String> scoreDifficulties;
     private IScore[] scores;
+    @FXML
+    private Label gameOverScore;
+    @FXML
+    private Label gameOverDifficulty;
+    @FXML
+    private Label gameOverYourScore;
+    @FXML
+    private Label gameOverCurrentDifficulty;
+    @FXML
+    private AnchorPane combatInventoryScene;
+    @FXML
+    private RadioButton itemOneRadioButton1;
+    @FXML
+    private ToggleGroup inventoryButtons1;
+    @FXML
+    private RadioButton itemTwoRadioButton1;
+    @FXML
+    private RadioButton itemFiveRadioButton1;
+    @FXML
+    private RadioButton itemFourRadioButton1;
+    @FXML
+    private RadioButton itemThreeRadioButton1;
+    @FXML
+    private RadioButton itemSixRadioButton1;
+    @FXML
+    private RadioButton itemSevenRadioButton1;
+    @FXML
+    private Button useInventoryButton1;
+    @FXML
+    private Button dropInventoryButton1;
+    @FXML
+    private Button inspectInventoryButton1;
+    @FXML
+    private Button closeCombatInventoryButton;
+    private RadioButton[] combatInventoryButtons;
     
     
     
@@ -300,6 +335,9 @@ public class GUIController implements IUI
     @FXML
     private void highscoreBackButtonClicked(ActionEvent event) {
         changeScene(highscoreScene, mainMenuScene);
+        scoreDifficulties.clear();
+        scoreNames.clear();
+        scoreNumbers.clear();
         
         
         
@@ -366,8 +404,18 @@ public class GUIController implements IUI
         {
             changeScene(gameScene, gameOverScene);
             gameOverImage.setImage(null); // winning game over image
+            
             gameOverNameHolder.setText(gameEngine.getName());
+            gameOverScore.setText(gameEngine.getScoreString());
+            gameOverDifficulty.setText(gameEngine.getDifficultyString());
+            
+            
+            gameOverCurrentDifficulty.setVisible(true);
             gameOverNameHolder.setVisible(true);
+            gameOverScore.setVisible(true);
+            gameOverDifficulty.setVisible(true);
+            gameOverYourScore.setVisible(true);
+            
             gameEngine.saveHighScore();
         }
         redraw();
@@ -470,6 +518,7 @@ public class GUIController implements IUI
 
     @FXML
     private void optionsQuitGameButtonClicked(ActionEvent event) {
+;
         Platform.exit();
     }
 
@@ -532,6 +581,19 @@ public class GUIController implements IUI
             inventoryRadioButtons[i].setVisible(false);  
         }
         
+            combatInventoryButtons = new RadioButton[7];
+        combatInventoryButtons[0] = itemOneRadioButton1;
+        combatInventoryButtons[1] = itemTwoRadioButton1;
+        combatInventoryButtons[2] = itemThreeRadioButton1;
+        combatInventoryButtons[3] = itemFourRadioButton1;
+        combatInventoryButtons[4] = itemFiveRadioButton1;
+        combatInventoryButtons[5] = itemSixRadioButton1;
+        combatInventoryButtons[6] = itemSevenRadioButton1;
+
+        for (int i = 0; i < combatInventoryButtons.length; i++) {
+            combatInventoryButtons[i].setVisible(false);
+        }
+            
         searchRadioButtons = new RadioButton[12];
         
         searchRadioButtons[0] = roomItem1RadioButton;
@@ -546,9 +608,10 @@ public class GUIController implements IUI
         searchRadioButtons[9] = roomItem10RadioButton;
         searchRadioButtons[10] = roomItem11RadioButton;
         searchRadioButtons[11] = roomItem12RadioButton;
-            for (int i = 0; i < searchRadioButtons.length; i++) {
+        for (int i = 0; i < searchRadioButtons.length; i++) {
                 searchRadioButtons[i].setVisible(false);
             }
+        
         }
     
 
@@ -623,22 +686,22 @@ public class GUIController implements IUI
     @FXML
     private void combatInventoryButtonClicked(ActionEvent event)
     {
-        GUIController.this.makeVisible(inventoryScene);
+        GUIController.this.makeVisible(combatInventoryScene);
         String[] inventoryList = gameEngine.getInventory();
         for(int i = 0; i < inventoryList.length; i++)
         {
             System.out.println(inventoryList[i]);
-            inventoryRadioButtons[i].setVisible(true);
+            combatInventoryButtons[i].setVisible(true);
             if(inventoryList[i] != null)
             {
-            inventoryRadioButtons[i].setText(inventoryList[i]);
+            combatInventoryButtons[i].setText(inventoryList[i]);
             }
             else
             {
-                inventoryRadioButtons[i].setText("Empty slot");
+                combatInventoryButtons[i].setText("Empty slot");
             }
         }
-        makeInvisible(labyrinthImage);
+        makeInvisible(combatImage);
     }
 
     @FXML
@@ -737,7 +800,9 @@ public class GUIController implements IUI
     @FXML
     private void closeInventoryButtonClicked(ActionEvent event) {
         GUIController.this.makeInvisible(inventoryScene);
+        makeInvisible(combatInventoryScene);
         makeVisible(labyrinthImage);
+        makeVisible(combatImage);
         redraw();
     }
 
@@ -856,6 +921,10 @@ public class GUIController implements IUI
     @FXML
     private void mainMenuButton(ActionEvent event) {
         changeScene(gameOverScene, mainMenuScene);
+        gameOverCurrentDifficulty.setVisible(false);
+        gameOverNameHolder.setVisible(false);
+        gameOverScore.setVisible(false);
+        
     }
 
     @FXML

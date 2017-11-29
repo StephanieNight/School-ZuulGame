@@ -14,7 +14,7 @@ import javafx.beans.property.StringProperty;
  * data type for scores used in highscore
  * @author Malte
  */
-public class Score implements IScore, Serializable {
+public class Score implements IScore, Serializable, Comparable<Score> {
  private String name;
  private String difficulty;
  private int score;
@@ -63,6 +63,22 @@ public class Score implements IScore, Serializable {
     @Override
     public String getScoreString() {
         return scoreString;
+    }
+
+    @Override
+    public int compareTo(Score o) {
+        if(o.getScore() < score)
+        {
+            return -1;
+        }
+        else if(o.getScore() == score)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
     }
 
    

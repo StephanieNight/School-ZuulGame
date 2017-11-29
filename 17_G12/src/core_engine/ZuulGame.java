@@ -363,10 +363,12 @@ public class ZuulGame implements IGameConstants {
         {
             highScoreHandler = (HighScoreHandler)savegameHandler.loadHighScore();
             System.out.println("Loaded old Game"); 
+            highScoreHandler.sortHighScore();
             return highScoreHandler.getScores();
         }
         catch(IOException | ClassNotFoundException e)
         {
+            highScoreHandler.sortHighScore();
             System.out.println(e.getMessage());
             return highScoreHandler.getScores();
         } 
@@ -586,6 +588,14 @@ public class ZuulGame implements IGameConstants {
         
         return null;
        }
+    public String getScoreString()
+    {
+        return scoreTracker.getScore().getScoreString();
+    }
+    public String getDifficultyString()
+    {
+        return scoreTracker.getScore().getDifficulty();
+    }
 
     
 }

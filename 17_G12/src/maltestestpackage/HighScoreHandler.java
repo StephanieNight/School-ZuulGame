@@ -18,6 +18,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import data.SaveGameHandler;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * class to handle highscore array and to check and add new score at the right place
@@ -77,7 +79,10 @@ public class HighScoreHandler implements Serializable, IHighScore{
        return false;
     }
     
-   
+   public void sortHighScore()
+   {
+       Arrays.sort(scores);
+   }
     
     }
 

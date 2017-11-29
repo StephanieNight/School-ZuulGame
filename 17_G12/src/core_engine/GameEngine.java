@@ -212,5 +212,15 @@ public class GameEngine implements IGameEngine {
     public String talkToBob() {
         return game.talkToBob();
     }
+    @Override
+    public String getScoreString()
+    {
+        return game.getScoreString();
+    }
+    @Override
+    public String getDifficultyString()
+    {
+        return game.getDifficultyString();
+    }
 
 }
