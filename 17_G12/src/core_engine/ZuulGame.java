@@ -59,6 +59,7 @@ public class ZuulGame implements IGameConstants {
         this.message = msg;
         this.fight = new Fight(message);
         highScoreHandler = new HighScoreHandler();
+        this.labyrinth = new Labyrinth(msg);
 
         //this.parser = new Parser();
 //        int i = -1;
@@ -100,7 +101,7 @@ public class ZuulGame implements IGameConstants {
         monstelist = monsters.toArray(monstelist);
         try
         {
-            SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monstelist,difficulty);
+            SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsterlist,difficulty);
             savegameHandler.saveGame(sa);
         }
         catch (IOException ex) {
@@ -117,7 +118,7 @@ public class ZuulGame implements IGameConstants {
         {
             SaveGameInstance sa = (SaveGameInstance)savegameHandler.loadGame();            
             startNewGame(sa.getDifficulty(),sa.getPlayer().getName());
-            labyrinth.setMaze((Room[][])sa.getMaze());
+            labyrinth.loadMaze((Room[][])sa.getMaze());
             monsters.clear();
             monsters.addAll(sa.getMonsters());
             player = (Player)sa.getPlayer();
@@ -516,7 +517,7 @@ public class ZuulGame implements IGameConstants {
         this.mazeSize = (int)((1.5*difficulty)+3);
         this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
         this.monsters =new ArrayList<>();
-        this.labyrinth= new Labyrinth(mazeSize, message);   
+        this.labyrinth.newMaze(mazeSize);
         this.itemGenerator = new ItemGenerator(labyrinth, message);
         spawnMobs(name);
         this.scoreTracker = new ScoreTracker(player, difficulty);
