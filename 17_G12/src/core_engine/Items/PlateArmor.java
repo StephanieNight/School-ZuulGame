@@ -7,12 +7,13 @@ package core_engine.Items;
 
 import core_engine.Message;
 import core_engine.Player;
+import java.io.Serializable;
 
 /**
  *
  * @author simon
  */
-public class PlateArmor implements Item
+public class PlateArmor implements Item, Serializable
 {
     private Message msg;
     

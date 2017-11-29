@@ -7,11 +7,12 @@ package core_engine.Items;
 
 import core_engine.Message;
 import core_engine.Player;
+import java.io.Serializable;
 /**
  *
  * @author simon
  */
-public class TatteredClothes implements Item{
+public class TatteredClothes implements Item, Serializable{
     
     private Message msg;
     @Override

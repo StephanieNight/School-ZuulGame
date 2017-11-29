@@ -7,12 +7,13 @@ package core_engine.Items;
 
 import core_engine.Message;
 import core_engine.Player;
+import java.io.Serializable;
 
 /**
  *
  * @author simon
  */
-public class Sword implements Item
+public class Sword implements Item, Serializable
 {    
     private Message msg;
     

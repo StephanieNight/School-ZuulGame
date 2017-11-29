@@ -8,11 +8,12 @@ import core_engine.Labyrinth;
 import core_engine.Message;
 import core_engine.Player;
 import core_engine.Room;
+import java.io.Serializable;
 /**
  *
  * @author Malte
  */
-public class PotionOfTeleportation implements Item
+public class PotionOfTeleportation implements Item, Serializable
 {
     private Labyrinth maze;
     private Message msg;

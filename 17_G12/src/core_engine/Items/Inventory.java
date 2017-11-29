@@ -6,6 +6,7 @@
 package core_engine.Items;
 import core_engine.Message;
 import core_engine.Player;
+import java.io.Serializable;
 /**
  * inventory to hold items
  * inventory length is determined by difficulty.
@@ -16,7 +17,7 @@ import core_engine.Player;
 
 
 // skal måske laves til set i stedet for array
-public class Inventory {
+public class Inventory implements Serializable{
     private final Item[] inventory;
     private Message msg;
     private Player player;

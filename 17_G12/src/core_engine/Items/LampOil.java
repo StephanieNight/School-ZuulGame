@@ -7,12 +7,13 @@ package core_engine.Items;
 
 import core_engine.Message;
 import core_engine.Player;
+import java.io.Serializable;
 
 /**
  * lets you add extra time to your game.
  * @author Malte
  */
-public class LampOil implements Item
+public class LampOil implements Item, Serializable
 {
     private Message msg;
     

@@ -5,11 +5,13 @@
  */
 package core_engine;
 
+import java.io.Serializable;
+
 /**
  *
  * @author BenPaxIndustries
  */
-public class Message {
+public class Message implements Serializable{
     private String description;
     private String oldMessage;
     

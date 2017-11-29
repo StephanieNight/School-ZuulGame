@@ -7,12 +7,13 @@ package core_engine.Items;
 
 import core_engine.Message;
 import core_engine.Player;
+import java.io.Serializable;
 
 /**
  *
  * @author Malte
  */
-public class HeaterShield implements Item
+public class HeaterShield implements Item, Serializable
 {
 
     private Message msg;

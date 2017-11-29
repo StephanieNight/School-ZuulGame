@@ -9,12 +9,13 @@ import core_engine.Labyrinth;
 import core_engine.Message;
 import core_engine.Player;
 import core_engine.Room;
+import java.io.Serializable;
 
 /**
  *
  * @author Malte
  */
-public class MiniMap implements Item
+public class MiniMap implements Item, Serializable
 {
     private Labyrinth maze;
     private Message msg;
