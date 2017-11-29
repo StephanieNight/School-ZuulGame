@@ -97,11 +97,10 @@ public class ZuulGame implements IGameConstants {
         Saves the game to local disc.
     */   
     public boolean saveGame() {             
-        Monster[] monstelist = new Monster[monsters.size()];
-        monstelist = monsters.toArray(monstelist);
+        
         try
         {
-            SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsterlist,difficulty);
+            SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsters,difficulty);
             savegameHandler.saveGame(sa);
         }
         catch (IOException ex) {
