@@ -119,6 +119,12 @@ public class GameEngine implements IGameEngine {
     }
     
     @Override
+    public Image getOptionsSceneBackground()
+    {
+        return game.getOptionsSceneBackground();
+    }
+    
+    @Override
     public boolean move() {
        return game.move();
     }

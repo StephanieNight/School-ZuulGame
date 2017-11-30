@@ -249,6 +249,8 @@ public class GUIController implements IUI
     ObservableList<String> scoreNames;
     ObservableList<String> scoreNumbers;
     ObservableList<String> scoreDifficulties;
+    @FXML
+    private ImageView optionsSceneBackground;
 
     public void initialize() {
         logTextArea.setWrapText(true);
@@ -658,6 +660,7 @@ public class GUIController implements IUI
         gameWonSceneBackgroundImage.setImage(gameEngine.getGameWonSceneBackground());
         highscoreBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
         creditsBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
+        optionsSceneBackground.setImage(gameEngine.getOptionsSceneBackground());
     }
 
     @FXML

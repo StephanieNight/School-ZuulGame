@@ -30,6 +30,8 @@ public interface IGameConstants {
             "assets//backgrounds//gameWonSceneBackground.png";
     String DIR_HIGHSCORE_AND_CREDITS_SCENE_BACKGROUND = 
             "assets//backgrounds//highscoreSceneBackground.png";
+    String DIR_OPTIONS_SCENE_BACKGROUND = 
+            "assets//backgrounds//optionsSceneBackground.png";
     String[] FILENAME_PICTURES_CHARACTOR =
     {
         "innerMinion.png",              // 0
