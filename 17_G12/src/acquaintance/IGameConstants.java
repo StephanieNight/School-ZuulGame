@@ -28,7 +28,7 @@ public interface IGameConstants {
             "assets//backgrounds//gameOverSceneBackground.png";
     String DIR_GAME_WON_SCENE_BACKGROUND = 
             "assets//backgrounds//gameWonSceneBackground.png";
-    String DIR_HIGHSCORE_SCENE_BACKGROUND = 
+    String DIR_HIGHSCORE_AND_CREDITS_SCENE_BACKGROUND = 
             "assets//backgrounds//highscoreSceneBackground.png";
     String[] FILENAME_PICTURES_CHARACTOR =
     {
