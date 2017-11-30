@@ -19,8 +19,7 @@ public class Command
     * @param secondWord used then you need to pair the command with something 
     * like what direction to go in
     */
-    public Command(CommandWord commandWord, String secondWord)
-    {
+    public Command(CommandWord commandWord, String secondWord) {
         this.commandWord = commandWord;
         this.secondWord = secondWord;
     }
@@ -28,24 +27,21 @@ public class Command
      * Returns the command word of the instqance class
      * @return Commandword
      */
-    public CommandWord getCommandWord()
-    {
+    public CommandWord getCommandWord() {
         return commandWord;
     }
     /**
      * Returns the second word word of the instqance class
      * @return Second word that is a string
      */    
-    public String getSecondWord()
-    {
+    public String getSecondWord() {
         return secondWord;
     }
     /**
      * is this a unknown command.
      * @return a true or false value.
      */
-    public boolean isUnknown()
-    {
+    public boolean isUnknown() {
         return (commandWord == CommandWord.UNKNOWN);
     }
     /**
@@ -53,8 +49,7 @@ public class Command
      * to check if the go command has a direction associated with it.
      * @return a True or False;
      */
-    public boolean hasSecondWord()
-    {
+    public boolean hasSecondWord() {
         return (secondWord != null);
     }
 }

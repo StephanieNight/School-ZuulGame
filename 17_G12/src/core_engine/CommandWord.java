@@ -19,16 +19,14 @@ public enum CommandWord
      * Constructer
      * @param commandString 
      */
-    CommandWord(String commandString)
-    {
+    CommandWord(String commandString) {
         this.commandString = commandString;
     }
     /**
      * gets a string representation of the Commandword
      * @return String 
      */
-    public String toString()
-    {
+    public String toString() {
         return commandString;
     }
 }
