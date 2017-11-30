@@ -26,6 +26,7 @@ public interface IGameEngine {
     public Image getNewGameBackground();
     public Image getGameSceneBackground();
     public Image getGameOverSceneBackground();
+    public Image getGameWonSceneBackground();
     public String getScoreString();
     public String getDifficultyString();
     

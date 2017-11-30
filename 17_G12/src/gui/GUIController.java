@@ -44,6 +44,7 @@ public class GUIController implements IUI
     @FXML private AnchorPane helpScene;
     @FXML private AnchorPane combatScene;
     @FXML private AnchorPane gameOverScene;
+    @FXML private AnchorPane gameWonScene;
     
     //Scenes within gameScene
     @FXML private AnchorPane inventoryScene;
@@ -225,9 +226,13 @@ public class GUIController implements IUI
      */
     @FXML private ImageView gameOverBackgroundImage;
     
-    @FXML private Label gameOverNameHolder;
-    @FXML private Label gameOverScore;
-    @FXML private Label gameOverDifficulty;
+    /**----------------------
+     * gameWonScene elements.
+     */
+    @FXML private ImageView gameWonSceneBackground;
+    @FXML private Label gameWonNameHolder;
+    @FXML private Label gameWonScore;
+    @FXML private Label gameWonDifficulty;
     
     /**-------------------
      * NON-FXML VARIABLES.
@@ -244,12 +249,6 @@ public class GUIController implements IUI
     ObservableList<String> scoreNames;
     ObservableList<String> scoreNumbers;
     ObservableList<String> scoreDifficulties;
-    
-    
-    
-    
-    
-    
 
     public void initialize() {
         logTextArea.setWrapText(true);
@@ -261,9 +260,23 @@ public class GUIController implements IUI
     //-----------------------Main Menu----------------------
     //------------------------------------------------------
     @FXML
-    private void newGameButtonClicked(ActionEvent event) {
+    private void newGameButtonClicked(ActionEvent event)
+    {
         changeScene(mainMenuScene, newGameScene);
     }
+
+    @FXML
+    private void gameOverSceneMainMenuButtonClicked(ActionEvent event)
+    {
+        changeScene(gameOverScene, mainMenuScene);
+    }
+
+    @FXML
+    private void gameWonSceneMainMenuButtonClicked(ActionEvent event)
+    {
+        changeScene(gameWonScene, mainMenuScene);
+    }
+    
     private class TempString{
         private String in;
         public TempString(String in)
@@ -385,14 +398,13 @@ public class GUIController implements IUI
         }
         if(gameEngine.checkForGameOver())
         {
-            setEndGameInformation();
             changeScene(gameScene, gameOverScene);
                     // losing game over image
         }
         if(gameEngine.checkWinCondition())
         {
             setEndGameInformation();
-            changeScene(gameScene, gameOverScene);
+            changeScene(gameScene, gameWonScene);
             
             gameEngine.saveHighScore();
         }
@@ -407,9 +419,9 @@ public class GUIController implements IUI
     
     private void setEndGameInformation()
     {
-        gameOverNameHolder.setText(gameEngine.getName());
-        gameOverScore.setText(gameEngine.getScoreString());
-        gameOverDifficulty.setText(gameEngine.getDifficultyString());
+        gameWonNameHolder.setText(gameEngine.getName());
+        gameWonScore.setText(gameEngine.getScoreString());
+        gameWonDifficulty.setText(gameEngine.getDifficultyString());
     }
 
     @FXML
@@ -643,6 +655,7 @@ public class GUIController implements IUI
         newGameBackgroundImage.setImage(gameEngine.getNewGameBackground());
         gameSceneBackgroundImage.setImage(gameEngine.getGameSceneBackground());
         gameOverBackgroundImage.setImage(gameEngine.getGameOverSceneBackground());
+        gameWonSceneBackground.setImage(gameEngine.getGameWonSceneBackground());
     }
 
     @FXML
@@ -902,11 +915,6 @@ public class GUIController implements IUI
         labyrinthImage.setImage(gameEngine.renderMazeView());
         }
         combatImage.setImage(gameEngine.renderBattleView());
-    }
-
-    @FXML
-    private void mainMenuButton(ActionEvent event) {
-        changeScene(gameOverScene, mainMenuScene);
     }
 
     @FXML
