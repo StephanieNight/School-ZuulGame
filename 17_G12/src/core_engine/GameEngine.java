@@ -113,9 +113,9 @@ public class GameEngine implements IGameEngine {
     }
     
     @Override
-    public Image getHighscoreSceneBackground()
+    public Image getHighscoreAndCreditsSceneBackground()
     {
-        return game.getHighscoreSceneBackground();
+        return game.getHighscoreAndCreditsSceneBackground();
     }
     
     @Override

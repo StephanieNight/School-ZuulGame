@@ -656,7 +656,8 @@ public class GUIController implements IUI
         gameSceneBackgroundImage.setImage(gameEngine.getGameSceneBackground());
         gameOverBackgroundImage.setImage(gameEngine.getGameOverSceneBackground());
         gameWonSceneBackgroundImage.setImage(gameEngine.getGameWonSceneBackground());
-        highscoreBackgroundImage.setImage(gameEngine.getHighscoreSceneBackground());
+        highscoreBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
+        creditsBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
     }
 
     @FXML
