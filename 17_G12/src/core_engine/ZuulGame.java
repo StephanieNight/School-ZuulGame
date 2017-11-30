@@ -8,6 +8,7 @@ package core_engine;
 import acquaintance.IGameConstants;
 import acquaintance.ISaveGameHandler;
 import acquaintance.IScore;
+import acquaintance.IHighScore;
 import core_engine.Items.Key;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
