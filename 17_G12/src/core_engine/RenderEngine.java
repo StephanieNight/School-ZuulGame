@@ -176,7 +176,7 @@ public class RenderEngine implements IGameConstants{
         try {
             //set basic canves
             BufferedImage renderedView = ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[0])); 
-    
+            // gets the rooms that we need to render.
             Room currentRoom = player.getCurrentRoom();                         // get the current room 
             Room nextRoom = currentRoom.getExit(player.getFacing().direction);  // get the room next to it.
             Room SideR_Room = currentRoom.getExit(player.getFacing().right.direction);
@@ -454,10 +454,10 @@ public class RenderEngine implements IGameConstants{
                 graph.drawImage(tile, 0,0,null);  // draws 
 
             }
-            // </editor-fold>
-          
+            // </editor-fold>       
             // </editor-fold>   
             // compass
+            // <editor-fold defaultstate="collapsed" desc="draw Compass.">
             switch(player.getFacing())
             {
                 case E:
@@ -477,6 +477,7 @@ public class RenderEngine implements IGameConstants{
                     graph.drawImage(tile, 0,0,null);  // draws next room template; 
                     break;
             }
+            // </editor-fold>   
             return SwingFXUtils.toFXImage(renderedView,null);            
         } 
         catch (IOException ex) { 
