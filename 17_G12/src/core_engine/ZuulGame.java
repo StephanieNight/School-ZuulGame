@@ -388,7 +388,14 @@ public class ZuulGame implements IGameConstants {
         
     }
     public boolean flee() {
-        return true;
+              if(player.isInvis())
+        {
+            return false;
+        }
+        else
+        {
+        return fight.attack(player.getCurrentRoom().getMonster(), player);
+        }
     }   
     public void useItem(int itemID) {
         player.getInventory().useItem(itemID);
