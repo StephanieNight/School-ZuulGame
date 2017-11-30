@@ -625,13 +625,13 @@ public class ZuulGame implements IGameConstants {
         return null;
     }
     
-    public Image getOptionsSceneBackground()
+    public Image getOptionsAndHelpSceneBackground()
     {
         try
         {
             BufferedImage renderedView =
                 new BufferedImage(640, 480, BufferedImage.TYPE_INT_ARGB);
-            BufferedImage tile = ImageIO.read(new File(DIR_OPTIONS_SCENE_BACKGROUND));
+            BufferedImage tile = ImageIO.read(new File(DIR_OPTIONS_AND_HELP_SCENE_BACKGROUND));
             Graphics2D graph = renderedView.createGraphics();
             graph.drawImage(tile, 0,0,null);
             return SwingFXUtils.toFXImage(renderedView, null);

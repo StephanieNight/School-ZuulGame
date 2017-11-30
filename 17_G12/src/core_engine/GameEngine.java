@@ -119,9 +119,9 @@ public class GameEngine implements IGameEngine {
     }
     
     @Override
-    public Image getOptionsSceneBackground()
+    public Image getOptionsAndHelpSceneBackground()
     {
-        return game.getOptionsSceneBackground();
+        return game.getOptionsAndHelpSceneBackground();
     }
     
     @Override
