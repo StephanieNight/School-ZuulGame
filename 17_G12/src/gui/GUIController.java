@@ -708,6 +708,11 @@ public class GUIController implements IUI
     {
         gameEngine.flee();
         changeScene(combatScene, gameScene);
+        if(gameEngine.checkForGameOver())
+        {
+            changeScene(gameScene, gameOverScene);
+        }
+        
     }
 
     @FXML
