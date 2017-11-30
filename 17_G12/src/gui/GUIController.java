@@ -371,6 +371,7 @@ public class GUIController implements IUI
     private void loadGameButtonClicked(ActionEvent event) {
         gameEngine.loadGame();
         changeScene(mainMenuScene, gameScene);
+        createRadioArrays();
         redraw();
     }
 
@@ -552,7 +553,7 @@ public class GUIController implements IUI
     }
         private void createRadioArrays()
         {
-            inventoryRadioButtons = new RadioButton[7];
+        inventoryRadioButtons = new RadioButton[7];
         inventoryRadioButtons[0] = itemOneRadioButton;
         inventoryRadioButtons[1] = itemTwoRadioButton;
         inventoryRadioButtons[2] = itemThreeRadioButton;
@@ -565,7 +566,7 @@ public class GUIController implements IUI
             inventoryRadioButtons[i].setVisible(false);  
         }
         
-            combatInventoryButtons = new RadioButton[7];
+        combatInventoryButtons = new RadioButton[7];
         combatInventoryButtons[0] = itemOneRadioButton1;
         combatInventoryButtons[1] = itemTwoRadioButton1;
         combatInventoryButtons[2] = itemThreeRadioButton1;
@@ -900,6 +901,7 @@ public class GUIController implements IUI
         {
         labyrinthImage.setImage(gameEngine.renderMazeView());
         }
+        combatImage.setImage(gameEngine.renderBattleView());
     }
 
     @FXML
@@ -920,7 +922,7 @@ public class GUIController implements IUI
             logTextArea.setText(gameEngine.talkToBob());
         }
         }
-
+        redraw();
     }
     
     
