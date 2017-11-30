@@ -5,7 +5,7 @@
  */
 package core_engine;
 
-import Ahmets_package.Fight;
+import acquaintance.IGameConstants;
 import acquaintance.ISaveGameHandler;
 import acquaintance.IScore;
 import core_engine.Items.Key;
@@ -19,8 +19,7 @@ import javafx.scene.image.Image;
 import java.awt.Graphics2D;
 import java.io.File;
 import javax.imageio.ImageIO;
-import maltestestpackage.HighScoreHandler;
-import maltestestpackage.ScoreTracker;
+
 
 /**
  *

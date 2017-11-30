@@ -8,7 +8,7 @@ package data;
 import acquaintance.IHighScore;
 import acquaintance.ISaveGameHandler;
 import acquaintance.ISavegameInstance;
-import static core_engine.IGameConstants.FILENAME_SAVEGAME;
+import static acquaintance.IGameConstants.FILENAME_SAVEGAME;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

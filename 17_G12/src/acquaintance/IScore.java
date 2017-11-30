@@ -6,7 +6,7 @@
 package acquaintance;
 
 import javafx.beans.property.StringProperty;
-import maltestestpackage.Score;
+import core_engine.Score;
 
 /**
  *
