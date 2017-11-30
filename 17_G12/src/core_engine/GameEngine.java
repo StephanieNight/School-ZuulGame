@@ -113,6 +113,12 @@ public class GameEngine implements IGameEngine {
     }
     
     @Override
+    public Image getHighscoreSceneBackground()
+    {
+        return game.getHighscoreSceneBackground();
+    }
+    
+    @Override
     public boolean move() {
        return game.move();
     }

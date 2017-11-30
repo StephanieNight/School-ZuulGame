@@ -593,6 +593,25 @@ public class ZuulGame implements IGameConstants {
         }
         return null;
     }
+    
+    public Image getHighscoreSceneBackground()
+    {
+        try
+        {
+            BufferedImage renderedView =
+                new BufferedImage(640, 480, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage tile = ImageIO.read(new File(DIR_HIGHSCORE_SCENE_BACKGROUND));
+            Graphics2D graph = renderedView.createGraphics();
+            graph.drawImage(tile, 0,0,null);
+            return SwingFXUtils.toFXImage(renderedView, null);
+        }
+        catch (IOException ex)
+        {
+            System.out.println("Error message:");
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
 }
    
     

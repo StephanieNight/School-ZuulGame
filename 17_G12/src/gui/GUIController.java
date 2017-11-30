@@ -229,7 +229,7 @@ public class GUIController implements IUI
     /**----------------------
      * gameWonScene elements.
      */
-    @FXML private ImageView gameWonSceneBackground;
+    @FXML private ImageView gameWonSceneBackgroundImage;
     @FXML private Label gameWonNameHolder;
     @FXML private Label gameWonScore;
     @FXML private Label gameWonDifficulty;
@@ -655,7 +655,8 @@ public class GUIController implements IUI
         newGameBackgroundImage.setImage(gameEngine.getNewGameBackground());
         gameSceneBackgroundImage.setImage(gameEngine.getGameSceneBackground());
         gameOverBackgroundImage.setImage(gameEngine.getGameOverSceneBackground());
-        gameWonSceneBackground.setImage(gameEngine.getGameWonSceneBackground());
+        gameWonSceneBackgroundImage.setImage(gameEngine.getGameWonSceneBackground());
+        highscoreBackgroundImage.setImage(gameEngine.getHighscoreSceneBackground());
     }
 
     @FXML
