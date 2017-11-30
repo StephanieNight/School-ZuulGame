@@ -45,7 +45,8 @@ public class Key implements Item, Serializable
     @Override
     public boolean useItem(Player p)
     {
-        if(p.getCurrentRoom().getExit("north").hasDoor("south"))
+        if(p.getCurrentRoom().getExit("north") != null && 
+                p.getCurrentRoom().getExit("north").hasDoor("south"))
         {
             msg.setDescription("The door has been unlocked.");
             p.getCurrentRoom().getExit("north").getDoor("south").unLock(p);
