@@ -123,6 +123,10 @@ public class ZuulGame implements IGameConstants {
         return true;
     }    
     public boolean checkWinCondition() {
+        if(labyrinth.getMaze()[0][0].getDoor("south").isLocked())
+        {
+            return false;
+        }
         return player.getCurrentRoom().isExit();
     }    
     public boolean checkForGameOver() {
