@@ -6,10 +6,7 @@
 package core_engine;
 
 import Ahmets_package.Fight;
-import acquaintance.IActor;
-import acquaintance.IHighScore;
 import acquaintance.ISaveGameHandler;
-import acquaintance.ISavegameInstance;
 import acquaintance.IScore;
 import core_engine.Items.Key;
 import java.awt.image.BufferedImage;
@@ -58,41 +55,13 @@ public class ZuulGame implements IGameConstants {
     public ZuulGame(Message msg) {
         this.message = msg;
         this.fight = new Fight(message);
-        highScoreHandler = new HighScoreHandler();
+        this.highScoreHandler = new HighScoreHandler();
         this.labyrinth = new Labyrinth(msg);
-
-        //this.parser = new Parser();
-//        int i = -1;
-//        while(i == -1)
-//        {
-//          i = parser.getDifficulty();
-//        }
-//        difficulty = 3;        
-//        mazeSize = (int)((1.5*difficulty)+3);
-//        maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
-//        monsters =new ArrayList<>();
-//        labyrinth= new Labyrinth(mazeSize);   
-//        spawnMobs();
-//        finished = false;
-//        System.out.println("Size                : "+this.mazeSize);
-//        System.out.println("number of minions   : "+ this.maxNumberOfMinions);
-//        System.out.println("Diffictulty is      : "+ this.difficulty);
+        this.monsters =new ArrayList<>();
     }
     //-----------------------------------------------------------
-    //--------------------------General--------------------------
+    //----------------------- General Play ----------------------
     //-----------------------------------------------------------  
-    /**
-     * 
-     */
-    public void play() {          
-        printWelcome();
-        while (!finished) {            
-            labyrinth.display();
-            processPlayer();
-            processMonsters();           
-        }
-        System.out.println("Thank you for playing. Good bye.");
-    }    
     /**
         Saves the game to local disc.
     */   
@@ -116,7 +85,7 @@ public class ZuulGame implements IGameConstants {
         try
         {
             SaveGameInstance sa = (SaveGameInstance)savegameHandler.loadGame();            
-            startNewGame(sa.getDifficulty(),sa.getPlayer().getName());
+            //startNewGame(sa.getDifficulty(),sa.getPlayer().getName());
             labyrinth.loadMaze((Room[][])sa.getMaze());
             monsters.clear();
             monsters.addAll(sa.getMonsters());
@@ -125,72 +94,40 @@ public class ZuulGame implements IGameConstants {
             return true;
         }
         catch(IOException | ClassNotFoundException e)
-        {
+        {            
             System.out.println(e.getMessage());
             return false;
         }  
     }
-    /**
-     * handle the players input and turn.
-     */
-    private void processPlayer() {
-//        Command command = parser.getCommand();
-//        if (!processCommand(command))
-//            processPlayer();
-    }  
-    /**
-     * a version of the old go room from the legacy zuul game 
-     * modified to handle the AI/NPC movement around the map.
-     * @param command command, with what direction the NPC should move.
-     * @param actor the NPC that should move.
-     */
-    private void goRoom(Command command, Actor actor) {
-        if(!command.hasSecondWord()) {
-            System.out.println("Problem with monster "+actor.getName());
-            return;
-        }
-        String direction = command.getSecondWord();
-        Room nextRoom =  actor.getCurrentRoom().getExit(direction);
-        if (nextRoom != null) {
-            labyrinth.moveMonster(actor, nextRoom);
-        }
+    public boolean checkForCombat() {
+        return player.getCurrentRoom().getMonster() != null;
     }
-    /**
-    * the legacy go room from the zuul framework, modified to have a Boolean return
-    * this is so that it the player tryes to go somewhere that it cant, you dont 
-    * miss a turn.
-    * @param command
-    * @return Boolean was move successefull.
-    */
-    private boolean goRoom(Command command) {
-        Labyrinth.DIR dir =  Labyrinth.DIR.getDir(command.getSecondWord());
-        Room nextRoom = player.getCurrentRoom().getExit(dir.direction);
+    public boolean startNewGame(int difficulty, String name) {
+        this.difficulty = difficulty;        
+        this.mazeSize = (int)((1.5*difficulty)+3);
+        this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
+    
+        this.labyrinth.newMaze(mazeSize);
+        this.itemGenerator = new ItemGenerator(labyrinth, message);
+        spawnMobs(name);
+        this.scoreTracker = new ScoreTracker(player, difficulty);
+        this.finished = false;
+        if(isDebug)
+        {
+            System.out.println("Size                : "+this.mazeSize);
+            System.out.println("number of minions   : "+ this.maxNumberOfMinions);
+            System.out.println("Diffictulty is      : "+ this.difficulty);
+        }
         
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-            return false;
-        }
-        else if(nextRoom.hasDoor(dir.opposite.direction))
-        {
-                Door d = nextRoom.getDoor(dir.opposite.direction);
-            if(d.isLocked())
-            {
-                System.out.println("Door in directin "+ dir.direction+ " is Locked ");
-                // TODO Add key 
-            }            
-            else
-            {
-                labyrinth.movePlayer(player, nextRoom);
-                return true;
-            }            
-        }
-        else
-        {
-            labyrinth.movePlayer(player, nextRoom);
-            return true;
-        }            
-        return false;
-    }
+        
+        return true;
+    }    
+    public boolean checkWinCondition() {
+        return player.getCurrentRoom().isExit();
+    }    
+    public boolean checkForGameOver() {
+        return (player.getCurrentHealth() < 1 || player.getLampOil() < 1);
+    }   
     /**
      * chacks if the quit command is valid
      * @param command the command to be checked
@@ -211,10 +148,7 @@ public class ZuulGame implements IGameConstants {
      */
     public int getDifficulty() {
         return difficulty;
-    }    
-    public int getPlayerCurrentHealth() {
-        return player.getCurrentHealth();
-    }
+    }   
     /**
      * prints the welcome screen to system out.
      */
@@ -295,9 +229,212 @@ public class ZuulGame implements IGameConstants {
         System.out.println("you have the following uptions :");
 //        parser.showCommands();
     }    
+    public void saveHighScore() {
+        if(highScoreHandler.addScore(scoreTracker.getScore()))
+        {
+            try
+            {
+            savegameHandler.saveHighScore(highScoreHandler);
+            }
+            catch (IOException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+    public IScore[] loadHighScore() {
+        try
+        {
+            highScoreHandler = (HighScoreHandler)savegameHandler.loadHighScore();
+            System.out.println("Loaded old Game"); 
+            highScoreHandler.sortHighScore();
+            return highScoreHandler.getScores();
+        }
+        catch(IOException | ClassNotFoundException e)
+        {
+            highScoreHandler.sortHighScore();
+            System.out.println(e.getMessage());
+            return highScoreHandler.getScores();
+        } 
+//        return highScoreHandler.getScores();
+
+    }
+    public String getLootItemDescription(int itemNumber) {
+        if(player.getCurrentRoom().itemList().length > 0)
+            return player.getCurrentRoom().itemList()[itemNumber].getDescription();
+        return "";
+    } 
+    public String itemDescription(int itemID) {
+        return player.getInventory().getItemDescription(itemID);
+    }
+    public void setSavegameHandler(ISaveGameHandler savegameHandler) {
+        this.savegameHandler = savegameHandler;
+    }
+
+    public String getScoreString() {
+        return scoreTracker.getScore().getScoreString();
+    }
+    public String getDifficultyString() {
+        return scoreTracker.getScore().getDifficulty();
+    }       
+    //-----------------------------------------------------------
+    //---------------------Player Handling-----------------------
+    //-----------------------------------------------------------
+    /**
+    * the legacy go room from the zuul framework, modified to have a Boolean return
+    * this is so that it the player tryes to go somewhere that it cant, you dont 
+    * miss a turn.
+    * @param command
+    * @return Boolean was move successefull.
+    */
+    private boolean goRoom(Command command) {
+        Labyrinth.DIR dir =  Labyrinth.DIR.getDir(command.getSecondWord());
+        Room nextRoom = player.getCurrentRoom().getExit(dir.direction);
+        
+        if (nextRoom == null) {
+            System.out.println("There is no door!");
+            return false;
+        }
+        else if(nextRoom.hasDoor(dir.opposite.direction))
+        {
+                Door d = nextRoom.getDoor(dir.opposite.direction);
+            if(d.isLocked())
+            {
+                System.out.println("Door in directin "+ dir.direction+ " is Locked ");
+                // TODO Add key 
+            }            
+            else
+            {
+                labyrinth.movePlayer(player, nextRoom);
+                return true;
+            }            
+        }
+        else
+        {
+            labyrinth.movePlayer(player, nextRoom);
+            return true;
+        }            
+        return false;
+    }
+    public String getName() {
+        return player.getName();
+    }
+    public boolean setName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public int getPlayerCurrentHealth() {
+        return player.getCurrentHealth();
+    }
+    public boolean move() {
+        Command command=new Command(CommandWord.GO, player.getFacing().direction);
+        
+        boolean moved = goRoom(command);
+        
+        if(moved)
+        {
+            if(!player.isSwiftness())
+            {
+                processMonsters();
+                player.useLampOil();
+                scoreTracker.turnEnd();
+
+            }        
+            if(player.isInvis())
+            {
+                return false;
+            }
+            message.setDescription("LampOil left : "+player.getLampOil());
+        }
+        if(isDebug)
+        {
+            labyrinth.display();
+        }
+        return checkForCombat();
+    }
+    public boolean turnRight() {
+        player.setFacing(player.getFacing().right);
+        return false;
+    }    
+    public boolean turnLeft() {
+        player.setFacing(player.getFacing().left);
+        return false;
+    }    
+    public boolean turnBack() {
+        player.setFacing(player.getFacing().opposite);
+        return false;
+    }    
+    public String[] getInventory() {
+        return player.getInventory().getInventoryList();
+    }
+    public boolean attack() {
+        Actor m = player.getCurrentRoom().getMonster();
+        if(fight.attack(player, m))
+        {
+            if(m.getMapCode() == 'Z')
+            {
+                scoreTracker.bossKill();
+                player.getCurrentRoom().dropItem(new Key(message));
+            }
+            scoreTracker.monsterKill();
+            deleteMonster(m);
+            int i = 0;
+            while(i < 1)
+            {
+            player.getCurrentRoom().dropItem(itemGenerator.generateRandomItem());
+            i = (int)(Math.random() * 4);
+            }
+           return true; 
+        }
+        else return fight.attack(m, player);
+        
+    }
+    public boolean flee() {
+        return true;
+    }   
+    public void useItem(int itemID) {
+        player.getInventory().useItem(itemID);
+    }    
+    public void dropItem(int itemID){
+        player.getInventory().dropItem(itemID);
+    }    
+    public String[] getLoot() {
+        String[] lootArray = new String[player.getCurrentRoom().itemList().length];
+        for (int i = 0; i < lootArray.length; i++) {
+            lootArray[i] = player.getCurrentRoom().itemList()[i].getName();
+            }
+        return lootArray;
+    }
+    public void useLootItem(int itemNumber) {
+        if(player.getCurrentRoom().itemList().length > 0)
+                   player.getCurrentRoom().useItem(itemNumber,player);
+    }
+    public void pickUpItem(int itemNumber) {
+        if(player.getCurrentRoom().itemList().length > 0)
+        player.getCurrentRoom().pickupItem(itemNumber,player.getInventory());
+    }          
+    public String talkToBob() {
+        return ghost.getQuote();
+    }
     //-----------------------------------------------------------
     //------------------------AI Handling------------------------
-    //-----------------------------------------------------------      
+    //-----------------------------------------------------------  
+    /**
+     * a version of the old go room from the legacy zuul game 
+     * modified to handle the AI/NPC movement around the map.
+     * @param command command, with what direction the NPC should move.
+     * @param actor the NPC that should move.
+     */
+    private void goRoom(Command command, Actor actor) {
+        if(!command.hasSecondWord()) {
+            System.out.println("Problem with monster "+actor.getName());
+            return;
+        }
+        String direction = command.getSecondWord();
+        Room nextRoom =  actor.getCurrentRoom().getExit(direction);
+        if (nextRoom != null) {
+            labyrinth.moveMonster(actor, nextRoom);
+        }
+    }    
     private void processMonsters() {
         Monster defeatedMinion = null;
         for(Monster m : monsters)
@@ -341,43 +478,22 @@ public class ZuulGame implements IGameConstants {
     private void deleteMonster(Actor m) {
         m.getCurrentRoom().setMonster(null);
         monsters.remove(m);
-    }
-    public void saveHighScore() {
-        if(highScoreHandler.addScore(scoreTracker.getScore()))
+    } 
+    public String getMonsterName() {
+        if(player.getCurrentRoom().getGhoust() != null)
         {
-            try
-            {
-            savegameHandler.saveHighScore(highScoreHandler);
-            }
-            catch (IOException ex)
-            {
-                System.out.println(ex.getMessage());
-            }
+            return player.getCurrentRoom().getGhoust().getName();
         }
-    }
-    public IScore[] loadHighScore() {
-        try
+        else if (player.getCurrentRoom().getMonster() != null)
         {
-            highScoreHandler = (HighScoreHandler)savegameHandler.loadHighScore();
-            System.out.println("Loaded old Game"); 
-            highScoreHandler.sortHighScore();
-            return highScoreHandler.getScores();
+            return player.getCurrentRoom().getMonster().getName();
         }
-        catch(IOException | ClassNotFoundException e)
-        {
-            highScoreHandler.sortHighScore();
-            System.out.println(e.getMessage());
-            return highScoreHandler.getScores();
-        } 
-//        return highScoreHandler.getScores();
-
-    }
-    public String getName() {
-        return player.getName();
-    }
-    public boolean setName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
+        
+        return null;
+       }
+    //-----------------------------------------------------------
+    //----------------------- Rendering -------------------------
+    //-----------------------------------------------------------  
     public Image renderMazeView() {
        return RenderEngine.renderMazeView(player);
     }
@@ -386,10 +502,8 @@ public class ZuulGame implements IGameConstants {
     }
     public Image renderBattleView() {
         return RenderEngine.renderBattleView(player, (Monster)player.getCurrentRoom().getMonster());
-    }
-    
-    public Image getMainMenuBackground()
-    {
+    }    
+    public Image getMainMenuBackground() {
         try
         {
             BufferedImage renderedView =
@@ -406,10 +520,8 @@ public class ZuulGame implements IGameConstants {
         }
         return null;
         
-    }
-    
-    public Image getNewGameBackground()
-    {
+    }    
+    public Image getNewGameBackground() {
         try
         {
             BufferedImage renderedView =
@@ -425,10 +537,8 @@ public class ZuulGame implements IGameConstants {
             System.out.println(ex.getMessage());
         }
         return null;
-    }
-    
-    public Image getGameSceneBackground()
-    {
+    }    
+    public Image getGameSceneBackground() {
         try
         {
             BufferedImage renderedView =
@@ -444,10 +554,8 @@ public class ZuulGame implements IGameConstants {
             System.out.println(ex.getMessage());
         }
         return null;
-    }
-    
-    public Image getGameOverSceneBackground()
-    {
+    }    
+    public Image getGameOverSceneBackground() {
         try
         {
             BufferedImage renderedView =
@@ -463,160 +571,8 @@ public class ZuulGame implements IGameConstants {
             System.out.println(ex.getMessage());
         }
         return null;
-    }
-    
-    public boolean move() {
-        Command command=new Command(CommandWord.GO, player.getFacing().direction);
-        
-        boolean moved = goRoom(command);
-        
-        if(moved)
-        {
-            if(!player.isSwiftness())
-            {
-                processMonsters();
-                player.useLampOil();
-                scoreTracker.turnEnd();
-
-            }        
-            if(player.isInvis())
-            {
-                return false;
-            }
-        }
-        System.out.println(player.getLampOil());
-        return checkForCombat();
-    }
-    public boolean turnRight() {
-        player.setFacing(player.getFacing().right);
-        return false;
-    }    
-    public boolean turnLeft() {
-        player.setFacing(player.getFacing().left);
-        return false;
-    }    
-    public boolean turnBack() {
-        player.setFacing(player.getFacing().opposite);
-        return false;
-    }    
-    public String[] getInventory() {
-        return player.getInventory().getInventoryList();
-    }
-    public boolean attack() {
-        Actor m = player.getCurrentRoom().getMonster();
-        if(fight.attack(player, m))
-        {
-            if(m.getMapCode() == 'Z')
-            {
-                scoreTracker.bossKill();
-                player.getCurrentRoom().dropItem(new Key(message));
-            }
-            scoreTracker.monsterKill();
-            deleteMonster(m);
-            int i = 0;
-            while(i < 1)
-            {
-            player.getCurrentRoom().dropItem(itemGenerator.generateRandomItem());
-            i = (int)(Math.random() * 4);
-            }
-           return true; 
-        }
-        else return fight.attack(m, player);
-        
-    }
-    public boolean flee() {
-        return true;
-    }   
-    public boolean checkForCombat() {
-        return player.getCurrentRoom().getMonster() != null;
-    }
-    public boolean startNewGame(int difficulty, String name) {
-        this.difficulty = difficulty;        
-        this.mazeSize = (int)((1.5*difficulty)+3);
-        this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
-        this.monsters =new ArrayList<>();
-        this.labyrinth.newMaze(mazeSize);
-        this.itemGenerator = new ItemGenerator(labyrinth, message);
-        spawnMobs(name);
-        this.scoreTracker = new ScoreTracker(player, difficulty);
-        this.finished = false;
-        if(isDebug)
-        {
-            System.out.println("Size                : "+this.mazeSize);
-            System.out.println("number of minions   : "+ this.maxNumberOfMinions);
-            System.out.println("Diffictulty is      : "+ this.difficulty);
-        }
-        
-        
-        return true;
-    }    
-    public boolean checkWinCondition() {
-        return player.getCurrentRoom().isExit();
-    }    
-    public void useItem(int itemID) {
-        player.getInventory().useItem(itemID);
-    }    
-    public void dropItem(int itemID){
-        player.getInventory().dropItem(itemID);
-    }    
-    public String itemDescription(int itemID){
-        return player.getInventory().getItemDescription(itemID);
-    }
-    public boolean checkForGameOver() {
-        return (player.getCurrentHealth() < 1 || player.getLampOil() < 1);
-    }
-    public String[] getLoot()
-    {
-        String[] lootArray = new String[player.getCurrentRoom().itemList().length];
-        for (int i = 0; i < lootArray.length; i++) {
-            lootArray[i] = player.getCurrentRoom().itemList()[i].getName();
-            }
-        return lootArray;
-    }
-    public void useLootItem(int itemNumber) {
-        if(player.getCurrentRoom().itemList().length > 0)
-                   player.getCurrentRoom().useItem(itemNumber,player);
-    }
-    public void pickUpItem(int itemNumber) {
-        if(player.getCurrentRoom().itemList().length > 0)
-        player.getCurrentRoom().pickupItem(itemNumber,player.getInventory());
-    }
-    public String getLootItemDescription(int itemNumber) {
-        if(player.getCurrentRoom().itemList().length > 0)
-            return player.getCurrentRoom().itemList()[itemNumber].getDescription();
-        return "";
-    }
-    public void setSavegameHandler(ISaveGameHandler savegameHandler) {
-        this.savegameHandler = savegameHandler;
-    }
-    
-    public String talkToBob()
-    {
-        return ghost.getQuote();
-    }
-    public String getMonsterName()
-    {
-        if(player.getCurrentRoom().getGhoust() != null)
-        {
-            return player.getCurrentRoom().getGhoust().getName();
-        }
-        else if (player.getCurrentRoom().getMonster() != null)
-        {
-            return player.getCurrentRoom().getMonster().getName();
-        }
-        
-        return null;
-       }
-    public String getScoreString()
-    {
-        return scoreTracker.getScore().getScoreString();
-    }
-    public String getDifficultyString()
-    {
-        return scoreTracker.getScore().getDifficulty();
-    }
-
-    
+    } 
 }
+   
     
 
