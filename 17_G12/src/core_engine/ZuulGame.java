@@ -500,7 +500,10 @@ public class ZuulGame implements IGameConstants {
        return RenderEngine.renderMiniMapView(labyrinth.getMaze());
     }
     public Image renderBattleView() {
-        return RenderEngine.renderBattleView(player, (Monster)player.getCurrentRoom().getMonster());
+        if(player.getCurrentRoom().getMonster() == null)
+            return null;
+        else
+            return RenderEngine.renderBattleView(player, (Monster)player.getCurrentRoom().getMonster());
     }    
     public Image getMainMenuBackground() {
         try
