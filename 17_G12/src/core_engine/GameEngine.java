@@ -95,9 +95,9 @@ public class GameEngine implements IGameEngine {
     }
     
     @Override
-    public Image getGameSceneBackground()
+    public Image getGameAndCombatSceneBackground()
     {
-        return game.getGameSceneBackground();
+        return game.getGameAndCombatSceneBackground();
     }
     
     @Override
@@ -110,6 +110,18 @@ public class GameEngine implements IGameEngine {
     public Image getGameWonSceneBackground()
     {
         return game.getGameWonSceneBackground();
+    }
+    
+    @Override
+    public Image getHighscoreAndCreditsSceneBackground()
+    {
+        return game.getHighscoreAndCreditsSceneBackground();
+    }
+    
+    @Override
+    public Image getOptionsAndHelpSceneBackground()
+    {
+        return game.getOptionsAndHelpSceneBackground();
     }
     
     @Override

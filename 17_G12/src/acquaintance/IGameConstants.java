@@ -20,14 +20,18 @@ public interface IGameConstants {
     String DIR_MAZEVIEW_MALTE = "assets//rooms//MaltesEdit//";
     String FILENAME_SAVEGAME = "savegame.zuul";
     String FILENAME_HIGHSCORE_LIST = "highscore.zuul";
-    String DIR_MAIN_MENU_BACKGROUND = "assets//backgrounds//gateBG2.png";
-    String DIR_NEW_GAME_BACKGROUND = "assets//backgrounds//caveBG3.jpg";
-    String DIR_GAME_SCENE_BACKGROUND = 
+    String DIR_MAIN_MENU_BACKGROUND = "assets//backgrounds//mainMenuBackground.png";
+    String DIR_NEW_GAME_BACKGROUND = "assets//backgrounds//newGameBackground.jpg";
+    String DIR_GAME_AND_COMBAT_SCENE_BACKGROUND = 
             "assets//backgrounds//gameSceneBackground.png";
     String DIR_GAME_OVER_SCENE_BACKGROUND = 
             "assets//backgrounds//gameOverSceneBackground.png";
     String DIR_GAME_WON_SCENE_BACKGROUND = 
             "assets//backgrounds//gameWonSceneBackground.png";
+    String DIR_HIGHSCORE_AND_CREDITS_SCENE_BACKGROUND = 
+            "assets//backgrounds//highscoreSceneBackground.png";
+    String DIR_OPTIONS_AND_HELP_SCENE_BACKGROUND = 
+            "assets//backgrounds//optionsSceneBackground.png";
     String[] FILENAME_PICTURES_CHARACTOR =
     {
         "innerMinion.png",              // 0

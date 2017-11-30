@@ -130,6 +130,7 @@ public class GUIController implements IUI
     /**----------------------
      * optionsScene elements.
      */
+    @FXML private ImageView optionsSceneBackground;
     @FXML private Button resumeGameButton;
     @FXML private Button saveGameButton;
     @FXML private Button optionsHelpButton;
@@ -141,9 +142,16 @@ public class GUIController implements IUI
     @FXML private Button yesDeleteProgressButton;
     @FXML private Button noBackToOptionsButton;
     
+    /**-------------------
+     * helpScene elements.
+     */
+    @FXML private ImageView helpSceneBackgroundImage;
+    
     /**---------------------
      * combatScene elements.
      */
+    @FXML private ImageView combatSceneImage;
+    
     //Container for combat graphics
     @FXML private ImageView combatImage;
     
@@ -229,7 +237,7 @@ public class GUIController implements IUI
     /**----------------------
      * gameWonScene elements.
      */
-    @FXML private ImageView gameWonSceneBackground;
+    @FXML private ImageView gameWonSceneBackgroundImage;
     @FXML private Label gameWonNameHolder;
     @FXML private Label gameWonScore;
     @FXML private Label gameWonDifficulty;
@@ -653,9 +661,14 @@ public class GUIController implements IUI
     {
         mainMenuBackgroundImage.setImage(gameEngine.getMainMenuBackground());
         newGameBackgroundImage.setImage(gameEngine.getNewGameBackground());
-        gameSceneBackgroundImage.setImage(gameEngine.getGameSceneBackground());
+        gameSceneBackgroundImage.setImage(gameEngine.getGameAndCombatSceneBackground());
         gameOverBackgroundImage.setImage(gameEngine.getGameOverSceneBackground());
-        gameWonSceneBackground.setImage(gameEngine.getGameWonSceneBackground());
+        gameWonSceneBackgroundImage.setImage(gameEngine.getGameWonSceneBackground());
+        highscoreBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
+        creditsBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
+        optionsSceneBackground.setImage(gameEngine.getOptionsAndHelpSceneBackground());
+        helpSceneBackgroundImage.setImage(gameEngine.getOptionsAndHelpSceneBackground());
+        combatSceneImage.setImage(gameEngine.getGameAndCombatSceneBackground());
     }
 
     @FXML
@@ -707,6 +720,11 @@ public class GUIController implements IUI
     {
         gameEngine.flee();
         changeScene(combatScene, gameScene);
+        if(gameEngine.checkForGameOver())
+        {
+            changeScene(gameScene, gameOverScene);
+        }
+        
     }
 
     @FXML

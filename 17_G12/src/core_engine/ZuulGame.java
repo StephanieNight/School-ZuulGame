@@ -8,6 +8,7 @@ package core_engine;
 import acquaintance.IGameConstants;
 import acquaintance.ISaveGameHandler;
 import acquaintance.IScore;
+import acquaintance.IHighScore;
 import core_engine.Items.Key;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -122,6 +123,10 @@ public class ZuulGame implements IGameConstants {
         return true;
     }    
     public boolean checkWinCondition() {
+        if(labyrinth.getMaze()[0][0].getDoor("south").isLocked())
+        {
+            return false;
+        }
         return player.getCurrentRoom().isExit();
     }    
     public boolean checkForGameOver() {
@@ -388,7 +393,14 @@ public class ZuulGame implements IGameConstants {
         
     }
     public boolean flee() {
-        return true;
+              if(player.isInvis())
+        {
+            return false;
+        }
+        else
+        {
+        return fight.attack(player.getCurrentRoom().getMonster(), player);
+        }
     }   
     public void useItem(int itemID) {
         player.getInventory().useItem(itemID);
@@ -540,12 +552,12 @@ public class ZuulGame implements IGameConstants {
         }
         return null;
     }    
-    public Image getGameSceneBackground() {
+    public Image getGameAndCombatSceneBackground() {
         try
         {
             BufferedImage renderedView =
                 new BufferedImage(640, 480, BufferedImage.TYPE_INT_ARGB);
-            BufferedImage tile = ImageIO.read(new File(DIR_GAME_SCENE_BACKGROUND));
+            BufferedImage tile = ImageIO.read(new File(DIR_GAME_AND_COMBAT_SCENE_BACKGROUND));
             Graphics2D graph = renderedView.createGraphics();
             graph.drawImage(tile, 0,0,null);
             return SwingFXUtils.toFXImage(renderedView, null);
@@ -582,6 +594,44 @@ public class ZuulGame implements IGameConstants {
             BufferedImage renderedView =
                 new BufferedImage(640, 480, BufferedImage.TYPE_INT_ARGB);
             BufferedImage tile = ImageIO.read(new File(DIR_GAME_WON_SCENE_BACKGROUND));
+            Graphics2D graph = renderedView.createGraphics();
+            graph.drawImage(tile, 0,0,null);
+            return SwingFXUtils.toFXImage(renderedView, null);
+        }
+        catch (IOException ex)
+        {
+            System.out.println("Error message:");
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
+    
+    public Image getHighscoreAndCreditsSceneBackground()
+    {
+        try
+        {
+            BufferedImage renderedView =
+                new BufferedImage(640, 480, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage tile = ImageIO.read(new File(DIR_HIGHSCORE_AND_CREDITS_SCENE_BACKGROUND));
+            Graphics2D graph = renderedView.createGraphics();
+            graph.drawImage(tile, 0,0,null);
+            return SwingFXUtils.toFXImage(renderedView, null);
+        }
+        catch (IOException ex)
+        {
+            System.out.println("Error message:");
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
+    
+    public Image getOptionsAndHelpSceneBackground()
+    {
+        try
+        {
+            BufferedImage renderedView =
+                new BufferedImage(640, 480, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage tile = ImageIO.read(new File(DIR_OPTIONS_AND_HELP_SCENE_BACKGROUND));
             Graphics2D graph = renderedView.createGraphics();
             graph.drawImage(tile, 0,0,null);
             return SwingFXUtils.toFXImage(renderedView, null);
