@@ -5,6 +5,7 @@
  */
 package gui;
 
+import static acquaintance.IGameConstants.isDebug;
 import acquaintance.IGameEngine;
 import acquaintance.IScore;
 import acquaintance.IUI;
@@ -457,7 +458,8 @@ public class GUIController implements IUI
         String[] inventoryList = gameEngine.getInventory();
         for(int i = 0; i < inventoryList.length; i++)
         {
-            System.out.println(inventoryList[i]);
+            if(isDebug)
+                System.out.println("GUI inventory received: " + inventoryList[i]);
             inventoryRadioButtons[i].setVisible(true);
             if(inventoryList[i] != null)
             {
@@ -701,7 +703,8 @@ public class GUIController implements IUI
         String[] inventoryList = gameEngine.getInventory();
         for(int i = 0; i < inventoryList.length; i++)
         {
-            System.out.println(inventoryList[i]);
+            if (isDebug)
+                System.out.println("GUI inventory received: " + inventoryList[i]);
             combatInventoryButtons[i].setVisible(true);
             if(inventoryList[i] != null)
             {
@@ -788,11 +791,11 @@ public class GUIController implements IUI
     private void useInventoryButtonClicked(ActionEvent event) {
         gameEngine.useItem(itemNumber);
         inventoryButtonClicked(event);
+        combatInventoryButtonClicked(event);
         String tempMSG = gameEngine.getMessage();
         logCombatTextArea.setText(tempMSG);
         logTextArea.setText(tempMSG);
-       
-
+        currentHealthField.setText(gameEngine.getCurrentHealthToString());
     }
 
     @FXML

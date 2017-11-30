@@ -8,6 +8,7 @@ package core_engine;
 import Legacy_framework.CombatCommandWord;
 import Legacy_framework.CombatCommand;
 import Legacy_framework.Command;
+import static acquaintance.IGameConstants.isDebug;
 /**
  * Class to resolve conflict between a player and a monster.
  * @author collaboration between Ahmet, Malte and Nicolai.
@@ -60,7 +61,8 @@ public class Fight {
                  p.setXp(p.getXp() + 1);
                  int newLevel = p.getLevel();
                 if (newLevel > oldLevel){
-                    System.out.println("Congratulations, you lvled up!");
+                    if (isDebug)
+                        System.out.println("Congratulations, you lvled up!");
                 }
                 return true;
              }
@@ -68,7 +70,8 @@ public class Fight {
              attack (m,p);
              isAlive = alive(p);
              if (!isAlive){ 
-                 System.out.println("You are dead");
+                 if (isDebug)
+                    System.out.println("You are dead");
                  return false;
              }
          
@@ -206,7 +209,8 @@ public class Fight {
     private boolean useItem(CombatCommand command){
        
        if(!command.hasSecondWord()){ 
-           System.out.println("Which item");
+           if (isDebug)
+                System.out.println("Which item");
            return false;
        }
        try

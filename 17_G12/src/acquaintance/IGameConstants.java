@@ -12,7 +12,7 @@ package acquaintance;
  * @author Stephanie
  */
 public interface IGameConstants {
-    boolean isDebug = true;
+    boolean isDebug = false;
     String DIR_CHARACTORS = "assets//charactors//";
     String DIR_MINIMAP = "assets//minimap tiles//";
     String DIR_MAZEVIEW_LABYRITH = "assets//rooms//textures//";

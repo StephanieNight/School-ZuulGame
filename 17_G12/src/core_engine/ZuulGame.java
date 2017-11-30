@@ -90,7 +90,8 @@ public class ZuulGame implements IGameConstants {
             monsters.clear();
             monsters.addAll(sa.getMonsters());
             player = (Player)sa.getPlayer();
-            System.out.println("Loaded old Game"); 
+            if (isDebug)
+                System.out.println("Loaded old Game"); 
             return true;
         }
         catch(IOException | ClassNotFoundException e)
@@ -152,17 +153,8 @@ public class ZuulGame implements IGameConstants {
      */
     public int getDifficulty() {
         return difficulty;
-    }   
-    /**
-     * prints the welcome screen to system out.
-     */
-    private void printWelcome() {   System.out.println("+----------------------------------------------+");
-        System.out.println("| You are lost. You are alone. You wander.     |");
-        System.out.println("| in a endless maze. you hear a GROWL near you.|");
-        System.out.println("|                                              |");
-        System.out.println("| what do you do ?                             |");
-        System.out.println("+----------------------------------------------+");        
-    }    
+    }
+    
     /**
      * handles the spawning of of the player, minions and Zuul.
      */
@@ -250,7 +242,8 @@ public class ZuulGame implements IGameConstants {
         try
         {
             highScoreHandler = (HighScoreHandler)savegameHandler.loadHighScore();
-            System.out.println("Loaded old Game"); 
+            if (isDebug)
+                System.out.println("Loaded old Game"); 
             highScoreHandler.sortHighScore();
             return highScoreHandler.getScores();
         }
@@ -296,7 +289,8 @@ public class ZuulGame implements IGameConstants {
         Room nextRoom = player.getCurrentRoom().getExit(dir.direction);
         
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            if (isDebug)
+                System.out.println("There is no door!");
             return false;
         }
         else if(nextRoom.hasDoor(dir.opposite.direction))
@@ -304,7 +298,8 @@ public class ZuulGame implements IGameConstants {
                 Door d = nextRoom.getDoor(dir.opposite.direction);
             if(d.isLocked())
             {
-                System.out.println("Door in directin "+ dir.direction+ " is Locked ");
+                if (isDebug)
+                    System.out.println("Door in directin "+ dir.direction+ " is Locked ");
                 // TODO Add key 
             }            
             else
@@ -437,7 +432,8 @@ public class ZuulGame implements IGameConstants {
      */
     private void goRoom(Command command, Actor actor) {
         if(!command.hasSecondWord()) {
-            System.out.println("Problem with monster "+actor.getName());
+            if (isDebug)
+                System.out.println("Problem with monster "+actor.getName());
             return;
         }
         String direction = command.getSecondWord();
@@ -453,7 +449,8 @@ public class ZuulGame implements IGameConstants {
             if (m.getCurrentRoom().isConflict())
             {
                 defeatedMinion = m;
-                labyrinth.display();
+                if (isDebug)
+                    labyrinth.display();
             } else {
                 moveMonster(m);
             }
@@ -475,7 +472,8 @@ public class ZuulGame implements IGameConstants {
                     //Der laves et nyt object hver gang denne køres
                     Command command = new Command(CommandWord.GO, s);
                     goRoom(command, m);
-                    System.out.println("Minion " + m.getName() + " has moved "+ s);
+                    if (isDebug == true)
+                        System.out.println("Minion " + m.getName() + " has moved "+ s);
                     break;
                 }
             }

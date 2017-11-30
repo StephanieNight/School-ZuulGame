@@ -5,6 +5,7 @@
  */
 package core_engine;
 
+import static acquaintance.IGameConstants.isDebug;
 import core_engine.Items.PlateArmor;
 import core_engine.Items.HeaterShield;
 import core_engine.Items.Sword;
@@ -134,7 +135,7 @@ public class Labyrinth
                         System.out.print(!maze[j][i].hasExit(DIR.W.direction) ? "| " : "  ");
                         System.out.print(maze[j][i].getMonsterMapCode());
                         System.out.print(" ");
-                        
+
                 }
                 System.out.println("|");
         }

@@ -276,7 +276,8 @@ public class RenderEngine implements IGameConstants{
                                  
                 if(nextRoom.hasItems())                                              // checks the room has Items.
                 {
-                    if(isDebug)System.out.println("found "+nextRoom.itemList().length+" items on next room tile");
+                    if(isDebug)
+                        System.out.println("found "+nextRoom.itemList().length+" items on next room tile");
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[0])); // gets innerChest img.
                     graph.drawImage(tile, 0,0,null); 
                 }                
@@ -287,13 +288,15 @@ public class RenderEngine implements IGameConstants{
                 {                    
                     if(m.isBoss())                                              // checks the type.
                     {
-                        if(isDebug)System.out.println("found a boss on next room tile");
+                        if(isDebug)
+                            System.out.println("found a boss on next room tile");
                         tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[4])); // outher template
                         graph.drawImage(tile, 0,0,null);  // draws next room template;   
                     }
                     else
                     {   
-                        if(isDebug)System.out.println("found a minion on next room tile");
+                        if(isDebug)
+                            System.out.println("found a minion on next room tile");
                         tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[3])); // outher template
                         graph.drawImage(tile, 0,0,null);  // draws next room template;   
                     }
@@ -301,7 +304,8 @@ public class RenderEngine implements IGameConstants{
                 GhostWanderer g =(GhostWanderer)nextRoom.getGhoust();                     // gets monsters to draw.
                 if(g !=null)                                                    // checks if there is a actual monsters to draw.
                 { 
-                    if(isDebug)System.out.println("found a ghoust on next room tile");
+                    if(isDebug)
+                        System.out.println("found a ghoust on next room tile");
                     tile =ImageIO.read(new File(DIR_CHARACTORS+FILENAME_PICTURES_CHARACTOR[5])); // gets outher ghoust img 
                     graph.drawImage(tile, 0,0,null);  // draws 
 
@@ -384,10 +388,12 @@ public class RenderEngine implements IGameConstants{
             // <editor-fold defaultstate="collapsed" desc="draw Door.">
             if(SideR_Room != null)
             {
-                System.out.println("Found a Room to the rigth (Højre) from current room");
+                if (isDebug)
+                    System.out.println("Found a Room to the rigth (Højre) from current room");
                 if(SideR_Room.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
-                {  
-                    System.out.println("drawn a Door");
+                {
+                    if (isDebug)
+                        System.out.println("drawn a Door");
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_MALTE+MALTES_TILES[2])); // iner dead end
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[5])); // outher door forward
@@ -396,10 +402,12 @@ public class RenderEngine implements IGameConstants{
             }
             if(SideL_Room !=null)
             {
-                System.out.println("Found a Room to the Left (Venstre) from current room");
+                if (isDebug)
+                    System.out.println("Found a Room to the Left (Venstre) from current room");
                 if(SideL_Room.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
-                {                       
-                    System.out.println("drawn a Door");
+                {
+                    if (isDebug)
+                        System.out.println("drawn a Door");
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_MALTE+MALTES_TILES[1])); // iner dead end
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[4])); // outher door forward
@@ -410,7 +418,8 @@ public class RenderEngine implements IGameConstants{
             {
                 if(nextRoom.hasDoor(Labyrinth.DIR.S.direction))
                 {
-                    System.out.println("drawn a Door");
+                    if (isDebug)
+                        System.out.println("drawn a Door");
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[4])); // iner dead end
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_OBJECTS+FILENAME_PICTURES_MAZE_OBJECTS[3])); // outher door forward
