@@ -24,7 +24,7 @@ public interface IGameEngine {
     public String getCurrentHealthToString();
     public Image getMainMenuBackground();
     public Image getNewGameBackground();
-    public Image getGameSceneBackground();
+    public Image getGameAndCombatSceneBackground();
     public Image getGameOverSceneBackground();
     public Image getGameWonSceneBackground();
     public Image getHighscoreAndCreditsSceneBackground();
