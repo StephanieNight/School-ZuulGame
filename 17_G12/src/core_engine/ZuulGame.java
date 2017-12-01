@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package core_engine;
-
 import acquaintance.IGameConstants;
 import acquaintance.ISaveGameHandler;
 import acquaintance.IScore;
@@ -20,8 +19,6 @@ import javafx.scene.image.Image;
 import java.awt.Graphics2D;
 import java.io.File;
 import javax.imageio.ImageIO;
-
-
 /**
  *
  * @author Stephanie
@@ -63,8 +60,8 @@ public class ZuulGame implements IGameConstants {
     //----------------------- General Play ----------------------
     //-----------------------------------------------------------  
     /**
-        Saves the game to local disc.
-    */   
+     *   Saves the game to local disc.
+     */   
     public boolean saveGame() {             
         
         try
@@ -78,8 +75,8 @@ public class ZuulGame implements IGameConstants {
         return true;
     }
     /**
-    Loads game from disc
-    */
+     * Loads game from local disc
+     */
     public boolean loadGame() { 
        
         try
@@ -100,9 +97,20 @@ public class ZuulGame implements IGameConstants {
             return false;
         }  
     }
+    /**
+     * Checks if there is a monser in the players room, if there is the player 
+     * is in combat.
+     * @return 
+     */
     public boolean checkForCombat() {
         return player.getCurrentRoom().getMonster() != null;
     }
+    /**
+     * 
+     * @param difficulty
+     * @param name
+     * @return 
+     */
     public boolean startNewGame(int difficulty, String name) {
         this.difficulty = difficulty;        
         this.mazeSize = (int)((1.5*difficulty)+3);
@@ -139,8 +147,7 @@ public class ZuulGame implements IGameConstants {
      */
     public int getDifficulty() {
         return difficulty;
-    }
-    
+    }    
     /**
      * handles the spawning of of the player, minions and Zuul.
      */
@@ -212,9 +219,9 @@ public class ZuulGame implements IGameConstants {
             return player.getCurrentRoom().itemList()[itemNumber].getDescription();
         return "";
     } 
-//    public String itemDescription(int itemID) {
-//        return player.getInventory().getItemDescription(itemID);
-//    }
+    public String itemDescription(int itemID) {
+        return player.getInventory().getItemDescription(itemID);
+    }
     public void setSavegameHandler(ISaveGameHandler savegameHandler) {
         this.savegameHandler = savegameHandler;
     }
