@@ -10,10 +10,7 @@ package Legacy_framework;
  * @author simon
  */
 
-import core_engine.Labyrinth;
 import core_engine.GameEngine;
-import core_engine.Command;
-import core_engine.CommandWord;
 
 //currently a buggy mess, a work in progress, and how to function is undecided.
 public class MovePlayer {

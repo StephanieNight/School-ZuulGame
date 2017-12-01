@@ -134,20 +134,6 @@ public class ZuulGame implements IGameConstants {
         return (player.getCurrentHealth() < 1 || player.getLampOil() < 1);
     }   
     /**
-     * chacks if the quit command is valid
-     * @param command the command to be checked
-     * @return Boolean if the command is valied
-     */
-    private boolean quit(Command command) {
-        if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    /**
      * gets the Difficulty.
      * @return the difficulty.
      */
@@ -189,42 +175,7 @@ public class ZuulGame implements IGameConstants {
             player.addItem(itemGenerator.generateItem(1));
             player.addItem(itemGenerator.generateItem(2));
         }
-    }    
-    /**
-     * process the command given, from the player 
-     * used to se if the player whants help - to move 
-     * or to quit.
-     * @param command the command created by the player 
-     * @return was the action succesfull.
-     */
-    private boolean processCommand(Command command) {
-        CommandWord commandWord = command.getCommandWord();
-
-        if(commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
-        if (null != commandWord) switch (commandWord) {
-            case HELP:
-                printHelp();
-                return true;
-            case GO:
-                return goRoom(command);
-            case QUIT:
-                finished = quit(command);
-                return true;
-            default:
-                break;
-        }
-        return false;
-    }
-    /**
-     * 
-     */
-    private void printHelp() {
-        System.out.println("you have the following uptions :");
-//        parser.showCommands();
-    }    
+    }      
     public void saveHighScore() {
         if(highScoreHandler.addScore(scoreTracker.getScore()))
         {
@@ -284,10 +235,8 @@ public class ZuulGame implements IGameConstants {
     * @param command
     * @return Boolean was move successefull.
     */
-    private boolean goRoom(Command command) {
-        Labyrinth.DIR dir =  Labyrinth.DIR.getDir(command.getSecondWord());
-        Room nextRoom = player.getCurrentRoom().getExit(dir.direction);
-        
+    private boolean goRoom(Labyrinth.DIR dir) {       
+        Room nextRoom = player.getCurrentRoom().getExit(dir.direction);        
         if (nextRoom == null) {
             if (isDebug)
                 System.out.println("There is no door!");
@@ -325,9 +274,8 @@ public class ZuulGame implements IGameConstants {
         return player.getCurrentHealth();
     }
     public boolean move() {
-        Command command=new Command(CommandWord.GO, player.getFacing().direction);
-        
-        boolean moved = goRoom(command);
+       
+        boolean moved = goRoom(player.getFacing());
         
         if(moved)
         {
@@ -430,14 +378,8 @@ public class ZuulGame implements IGameConstants {
      * @param command command, with what direction the NPC should move.
      * @param actor the NPC that should move.
      */
-    private void goRoom(Command command, Actor actor) {
-        if(!command.hasSecondWord()) {
-            if (isDebug)
-                System.out.println("Problem with monster "+actor.getName());
-            return;
-        }
-        String direction = command.getSecondWord();
-        Room nextRoom =  actor.getCurrentRoom().getExit(direction);
+    private void goRoom(String dir, Actor actor) {      
+        Room nextRoom =  actor.getCurrentRoom().getExit(dir);
         if (nextRoom != null) {
             labyrinth.moveMonster(actor, nextRoom);
         }
@@ -469,9 +411,7 @@ public class ZuulGame implements IGameConstants {
                 Room ex = current.getExit(s);
                 if(!ex.isOccupied())
                 {
-                    //Der laves et nyt object hver gang denne køres
-                    Command command = new Command(CommandWord.GO, s);
-                    goRoom(command, m);
+                    goRoom(s, m);
                     if (isDebug == true)
                         System.out.println("Minion " + m.getName() + " has moved "+ s);
                     break;

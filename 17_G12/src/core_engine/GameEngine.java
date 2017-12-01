@@ -6,11 +6,8 @@
 package core_engine;
 
 import acquaintance.IGameEngine;
-import acquaintance.IInventory;
 import acquaintance.ISaveGameHandler;
 import acquaintance.IScore;
-import java.io.IOException;
-import java.util.ArrayList;
 import javafx.scene.image.Image;
 
 /**
@@ -21,8 +18,7 @@ public class GameEngine implements IGameEngine {
     private ZuulGame game;
     private Message msg;
     private ISaveGameHandler sh;
-    public GameEngine()
-    {
+    public GameEngine() {
         msg = new Message();
         this.game = new ZuulGame(msg);
     }
@@ -30,110 +26,83 @@ public class GameEngine implements IGameEngine {
     public boolean startNewGame(int difficulty, String name) {
        return game.startNewGame(difficulty, name);
     }
-
     @Override
     public int getDifficulty() {
         return game.getDifficulty();
-    }
-    
+    }    
     @Override
     public boolean saveHighScore() {
       game.saveHighScore();
       return true;
     }
-
     @Override
     public IScore[] loadHighScore() {
         return game.loadHighScore();
     }
-
     @Override
     public boolean saveGame() {
       return game.saveGame();
     }
-
     @Override
     public boolean loadGame() {
        return game.loadGame();
     }
-
     @Override
     public String getName() {
         return game.getName();
     }
-
     @Override
     public boolean setName() {
         return game.setName();
     }
-
     @Override
     public Image renderMazeView() {
         return game.renderMazeView();
     }
-
     @Override
     public Image renderMiniMapView() {
         return game.renderMiniMapView();
     }
-
     @Override
     public Image renderBattleView() {
        return game.renderBattleView();
-    }
-    
+    }    
     @Override
-    public Image getMainMenuBackground()
-    {
+    public Image getMainMenuBackground() {
         return game.getMainMenuBackground();
     }
-
     @Override
-    public Image getNewGameBackground()
-    {
+    public Image getNewGameBackground() {
         return game.getNewGameBackground();
     }
-    
     @Override
-    public Image getGameAndCombatSceneBackground()
-    {
+    public Image getGameAndCombatSceneBackground() {
         return game.getGameAndCombatSceneBackground();
-    }
-    
+    }    
     @Override
-    public Image getGameOverSceneBackground()
-    {
+    public Image getGameOverSceneBackground() {
         return game.getGameOverSceneBackground();
-    }
-    
+    }    
     @Override
-    public Image getGameWonSceneBackground()
-    {
+    public Image getGameWonSceneBackground() {
         return game.getGameWonSceneBackground();
-    }
-    
+    }    
     @Override
-    public Image getHighscoreAndCreditsSceneBackground()
-    {
+    public Image getHighscoreAndCreditsSceneBackground() {
         return game.getHighscoreAndCreditsSceneBackground();
-    }
-    
+    }    
     @Override
-    public Image getOptionsAndHelpSceneBackground()
-    {
+    public Image getOptionsAndHelpSceneBackground() {
         return game.getOptionsAndHelpSceneBackground();
-    }
-    
+    }    
     @Override
     public boolean move() {
        return game.move();
     }
-
     @Override
     public boolean turnRight() {
         return game.turnRight();
     }
-
     @Override
     public boolean turnLeft() {
         return game.turnLeft();
