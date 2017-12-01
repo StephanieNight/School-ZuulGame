@@ -259,6 +259,9 @@ public class GUIController implements IUI
     ObservableList<String> scoreNumbers;
     ObservableList<String> scoreDifficulties;
 
+    /**
+     * This is run when the GUI.fxml file is loaded.
+     */
     public void initialize() {
         logTextArea.setWrapText(true);
         logCombatTextArea.setWrapText(true);
@@ -266,26 +269,30 @@ public class GUIController implements IUI
     }
 
     //------------------------------------------------------
+    //------------------------------------------------------
     //-----------------------Main Menu----------------------
     //------------------------------------------------------
+    //------------------------------------------------------
+    
+    /**
+     * This method is triggered, when pressing the 'New Game' button in the
+     * main menu of the game, and when used, it changes from the main menu 
+     * to the new game scene, where you can pick difficulties and 
+     * start the game.
+     * @param event 
+     */
     @FXML
     private void newGameButtonClicked(ActionEvent event)
     {
         changeScene(mainMenuScene, newGameScene);
     }
-
-    @FXML
-    private void gameOverSceneMainMenuButtonClicked(ActionEvent event)
-    {
-        changeScene(gameOverScene, mainMenuScene);
-    }
-
-    @FXML
-    private void gameWonSceneMainMenuButtonClicked(ActionEvent event)
-    {
-        changeScene(gameWonScene, mainMenuScene);
-    }
     
+    /**
+     * This method is triggered, when pressing the 'Load Game' button in the
+     * main menu of the game, and when used, it changes from the main menu to
+     * the game scene, with the progress of the last saved game.
+     * @param event 
+     */
     @FXML
     private void loadGameButtonClicked(ActionEvent event) {
         gameEngine.loadGame();
@@ -294,6 +301,12 @@ public class GUIController implements IUI
         redraw();
     }
 
+    /**
+     * This method is triggered, when pressing the 'Highscore' button in the
+     * main menu of the game, and when used, it changes from the main menu to
+     * the highscore scene, where you can see the top 10 best scores achieved.
+     * @param event 
+     */
     @FXML
     private void highscoreButtonClicked(ActionEvent event) {
         changeScene(mainMenuScene, highscoreScene);
@@ -314,30 +327,66 @@ public class GUIController implements IUI
         highScoreDifficulity.setItems(scoreDifficulties);
     }
 
+    /**
+     * This method is triggered, when pressing the 'Credits' button in the
+     * main menu of the game, and when used, it changes from the main menu to
+     * the credits scene, where you can see everyone involved in the making of
+     * the game.
+     * @param event 
+     */
     @FXML
     private void creditsButtonClicked(ActionEvent event) {
         changeScene(mainMenuScene, creditsScene);
     }
 
+    /**
+     * This method is triggered, when pressing the 'Quit' button in the main
+     * menu of the game, and when used, it terminates the program and quits
+     * the game.
+     * @param event 
+     */
     @FXML
     private void quitButtonClicked(ActionEvent event) {
         //Quits the game
         Platform.exit();
     }
 
+    
+    
+    //------------------------------------------------------
     //------------------------------------------------------
     //---------------------New Game Menu--------------------
     //------------------------------------------------------
+    //------------------------------------------------------
+    
+    /**
+     * This method is triggered when pressing the 'Back to Main Menu' button
+     * in the new game menu, and when used, it changes from the new game menu
+     * to the main menu.
+     * @param event 
+     */
     @FXML
     private void newGameBackButtonClicked(ActionEvent event) {
         changeScene(newGameScene, mainMenuScene);
     }
     
+    /**
+     * This method is triggered when pressing the 'Next' Button in the
+     * new game menu, and when used, a popup appears where you can enter your
+     * name in the game.
+     * @param event 
+     */
     @FXML
     private void newGameNextButtonClicked(ActionEvent event) {
         GUIController.this.makeVisible(enterNamePopUpLayer);
     }
 
+    /**
+     * This method is triggered when pressing the 'Play' Button in the
+     * popup of a new game menu, and when used, the game starts, changing
+     * from the new game menu to the actual game scene.
+     * @param event 
+     */
     @FXML
     private void playButtonClicked(ActionEvent event) {
         changeScene(newGameScene, gameScene);
@@ -347,40 +396,86 @@ public class GUIController implements IUI
         GUIController.this.makeInvisible(enterNamePopUpLayer);
     }
     
+    /**
+     * This method is triggered when pressing the 'Back to Difficulty'
+     * button in a popup of the new game menu, and when used, the popup
+     * dissappears from the new game menu.
+     * @param event 
+     */
     @FXML
     private void BackToDifficltyButtonClicked(ActionEvent event) {
         GUIController.this.makeInvisible(enterNamePopUpLayer);
     }
 
+    /**
+     * This method is triggered when pressing the 'Very easy' difficulty
+     * radio button in the new game menu, and when used, the diffuculty
+     * variable in the code is set to the value for very easy difficulty.
+     * @param event 
+     */
     @FXML
     private void veryEasyButtonClicked(ActionEvent event) {
         difficulty = 1;
     }
 
+    /**
+     * This method is triggered when pressing the 'Easy' difficulty
+     * radio button in the new game menu, and when used, the diffuculty
+     * variable in the code is set to the value for easy difficulty.
+     * @param event 
+     */
     @FXML
     private void easyButtonClicked(ActionEvent event) {
         difficulty = 2;
     }
 
+    /**
+     * This method is triggered when pressing the 'Normal' difficulty
+     * radio button in the new game menu, and when used, the diffuculty
+     * variable in the code is set to the value for normal difficulty.
+     * @param event 
+     */
     @FXML
     private void normalButtonClicked(ActionEvent event) {
         difficulty = 3;
     }
 
+    /**
+     * This method is triggered when pressing the 'Hard' difficulty
+     * radio button in the new game menu, and when used, the diffuculty
+     * variable in the code is set to the value for hard difficulty.
+     * @param event 
+     */
     @FXML
     private void hardButtonClicked(ActionEvent event) {
         difficulty = 4;
     }
 
+    /**
+     * This method is triggered when pressing the 'Very hard' difficulty
+     * radio button in the new game menu, and when used, the diffuculty
+     * variable in the code is set to the value for very hard difficulty.
+     * @param event 
+     */
     @FXML
     private void veryHardButtonClicked(ActionEvent event) {
         difficulty = 5;
     }
     
-
+    
+    
+    //------------------------------------------------------
     //------------------------------------------------------
     //--------------------Highscore Menu--------------------
     //------------------------------------------------------
+    //------------------------------------------------------
+    
+    /**
+     * This method is triggered when pressing the 'Back to Main Menu' button
+     * in the highscore menu, and when used, it changes the scene from
+     * highScoreScene to mainMenuScene and clears the highscores.
+     * @param event 
+     */
     @FXML
     private void highscoreBackButtonClicked(ActionEvent event) {
         changeScene(highscoreScene, mainMenuScene);
@@ -390,21 +485,53 @@ public class GUIController implements IUI
     }
     
 
+    
+    //------------------------------------------------------
     //------------------------------------------------------
     //----------------------Credits Menu--------------------
     //------------------------------------------------------
+    //------------------------------------------------------
+    
+    /**
+     * This method is triggered when pressing the 'Back to Main Menu' button
+     * in the credits menu, and when used, it changes the scene from 
+     * creditsScene to mainMenuScene.
+     * @param event 
+     */
     @FXML
     private void creditsBackButtonClicked(ActionEvent event) {
         changeScene(creditsScene, mainMenuScene);
     }
     
-    
+    //------------------------------------------------------
     /**------------------------------------------------------
      * ---------------------GameScene------------------------.
      -------------------------------------------------------*/
+    //------------------------------------------------------
+    
+    /**
+     * This method is triggered when pressing the 'Forward' button in the
+     * game scene, and when used, it does the following:
+     * 
+     * Engages in combat, changing the scene from gameScene to combatScene
+     * and renders the combatImage and currentHealthField, IF gameEngine.move()
+     * is true.
+     * 
+     * Ends the game with game over by changing the scene from gameScene to
+     * gameOverScene, IF gameEngine.checkForGameOver() is true.
+     * 
+     * Ends the game with player win by changing the scene from gameScene to
+     * gameWonScene, IF gameEnginge.checkWinCondition() is true.
+     * 
+     * Redraws the presentation of maze and minimap with 'redraw()' and
+     * updates the game log with the most recent gameplay information.
+     * 
+     * @param event 
+     */
     @FXML
-    private void forwardButtonClicked(ActionEvent event) {
-        if(gameEngine.move())
+    private void forwardButtonClicked(ActionEvent event)
+    {
+        if(gameEngine.move()) //Er navngivning korrekt her?
         {
             changeScene(gameScene, combatScene);
             combatImage.setImage(gameEngine.renderBattleView());
@@ -428,24 +555,58 @@ public class GUIController implements IUI
         logTextArea.setText(tempMSG);
     }
     
+    /**
+     * This method is triggered when pressing the 'Left' button in the
+     * game scene, and when used, it does the following:
+     * 
+     * Faces the player in the direction to the left.
+     * Redraws the presentation of maze and minimap with 'redraw()'.
+     * @param event 
+     */
     @FXML
     private void leftButtonClicked(ActionEvent event) {
         gameEngine.turnLeft();
         redraw();
     }
 
+    /**
+     * This method is triggered when pressing the 'Right' button in the
+     * game scene, and when used, it does the following:
+     * 
+     * Faces the player in the direction to the right.
+     * Redraws the presentation of maze and minimap with 'redraw()'.
+     * @param event 
+     */
     @FXML
     private void rightButtonClicked(ActionEvent event) {
         gameEngine.turnRight();
         redraw();
     }
 
+    /**
+     * This method is triggered when pressing the 'Back' button in the
+     * game scene, and when used, it does the following:
+     * 
+     * Faces the player in the opposite direction.
+     * Redraws the presentation of maze and minimap with 'redraw()'.
+     * @param event 
+     */
     @FXML
     private void backButtonClicked(ActionEvent event) {
         gameEngine.turnBack();
         redraw();
     }
     
+    /**
+     * This method is triggered when pressing the 'Inventory' button in
+     * the gameScene, and when used, it does the following:
+     * 
+     * Opens the inventory by making the inventoryScene visible and
+     * gets the current items to display in the inventory.
+     * 
+     * 
+     * @param event 
+     */
     @FXML
     private void inventoryButtonClicked(ActionEvent event) {
  
@@ -522,27 +683,6 @@ public class GUIController implements IUI
         }
         }
         redraw();
-    }
-    
-    /**------------------------------------------------------
-     * ---------------------GameScene------------------------.
-     ---------------------inventoryScene--------------------*/
-    
-    
-    
-    /**------------------------------------------------------
-     * ---------------------GameScene------------------------.
-     ----------------------SearchScene----------------------*/
-    
-    @FXML
-    private void pickUpButtonClicked(ActionEvent event)
-    {
-        gameEngine.pickUpItem(lootItemNumber);
-        searchButtonClicked(event);
-        redraw();
-        String tempMSG = gameEngine.getMessage();
-        logCombatTextArea.setText(tempMSG);
-        logTextArea.setText(tempMSG);
     }
     
     /**------------------------------------------------------
@@ -663,6 +803,25 @@ public class GUIController implements IUI
         changeScene(combatScene, optionsScene);
     }
     
+    
+    /**------------------------------------------------------
+     * -------------------gameOverScene----------------------.
+     --------------------------------------------------------*/
+    @FXML
+    private void gameOverSceneMainMenuButtonClicked(ActionEvent event)
+    {
+        changeScene(gameOverScene, mainMenuScene);
+    }
+    
+    
+    /**------------------------------------------------------
+     * -------------------gameWonScene-----------------------.
+     --------------------------------------------------------*/
+    @FXML
+    private void gameWonSceneMainMenuButtonClicked(ActionEvent event)
+    {
+        changeScene(gameWonScene, mainMenuScene);
+    }
     
     /**------------------------------------------------------
      * ------------------inventoryScene----------------------.
@@ -853,6 +1012,17 @@ public class GUIController implements IUI
         GUIController.this.makeInvisible(searchScene);
         makeVisible(labyrinthImage);
         redraw();
+    }
+    
+    @FXML
+    private void pickUpButtonClicked(ActionEvent event)
+    {
+        gameEngine.pickUpItem(lootItemNumber);
+        searchButtonClicked(event);
+        redraw();
+        String tempMSG = gameEngine.getMessage();
+        logCombatTextArea.setText(tempMSG);
+        logTextArea.setText(tempMSG);
     }
     
     
