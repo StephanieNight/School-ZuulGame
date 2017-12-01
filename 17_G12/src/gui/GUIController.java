@@ -286,16 +286,12 @@ public class GUIController implements IUI
         changeScene(gameWonScene, mainMenuScene);
     }
     
-    private class TempString{
-        private String in;
-        public TempString(String in)
-        {
-            this.in = in;
-        }
-        public String toString()
-        {
-            return in;
-        }
+    @FXML
+    private void loadGameButtonClicked(ActionEvent event) {
+        gameEngine.loadGame();
+        changeScene(mainMenuScene, gameScene);
+        createRadioArrays();
+        redraw();
     }
 
     @FXML
@@ -336,6 +332,51 @@ public class GUIController implements IUI
     private void newGameBackButtonClicked(ActionEvent event) {
         changeScene(newGameScene, mainMenuScene);
     }
+    
+    @FXML
+    private void newGameNextButtonClicked(ActionEvent event) {
+        GUIController.this.makeVisible(enterNamePopUpLayer);
+    }
+
+    @FXML
+    private void playButtonClicked(ActionEvent event) {
+        changeScene(newGameScene, gameScene);
+        gameEngine.startNewGame(difficulty, enterPlayerName.getText());
+        labyrinthImage.setImage(gameEngine.renderMazeView());
+        createRadioArrays();
+        GUIController.this.makeInvisible(enterNamePopUpLayer);
+    }
+    
+    @FXML
+    private void BackToDifficltyButtonClicked(ActionEvent event) {
+        GUIController.this.makeInvisible(enterNamePopUpLayer);
+    }
+
+    @FXML
+    private void veryEasyButtonClicked(ActionEvent event) {
+        difficulty = 1;
+    }
+
+    @FXML
+    private void easyButtonClicked(ActionEvent event) {
+        difficulty = 2;
+    }
+
+    @FXML
+    private void normalButtonClicked(ActionEvent event) {
+        difficulty = 3;
+    }
+
+    @FXML
+    private void hardButtonClicked(ActionEvent event) {
+        difficulty = 4;
+    }
+
+    @FXML
+    private void veryHardButtonClicked(ActionEvent event) {
+        difficulty = 5;
+    }
+    
 
     //------------------------------------------------------
     //--------------------Highscore Menu--------------------
@@ -346,10 +387,8 @@ public class GUIController implements IUI
         scoreDifficulties.clear();
         scoreNames.clear();
         scoreNumbers.clear();
-        
-        
-        
     }
+    
 
     //------------------------------------------------------
     //----------------------Credits Menu--------------------
@@ -358,45 +397,11 @@ public class GUIController implements IUI
     private void creditsBackButtonClicked(ActionEvent event) {
         changeScene(creditsScene, mainMenuScene);
     }
-
-    //------------------------------------------------------
-    //--------------------General Methods-------------------
-    //------------------------------------------------------
-    private void changeScene(AnchorPane from, AnchorPane to) {
-        from.setVisible(false);
-        from.setDisable(true);
-        to.setVisible(true);
-        to.setDisable(false);
-    }
-
-    private void makeVisible(AnchorPane popUp) {
-        popUp.setVisible(true);
-        popUp.setDisable(false);
-    }
-
-    private void makeInvisible(AnchorPane popUp) {
-        popUp.setVisible(false);
-        popUp.setDisable(true);
-    }
     
-    private void makeVisible(ImageView popUp) {
-        popUp.setVisible(true);
-        popUp.setDisable(false);
-    }
-
-    private void makeInvisible(ImageView popUp) {
-        popUp.setVisible(false);
-        popUp.setDisable(true);
-    }
-
-    @FXML
-    private void loadGameButtonClicked(ActionEvent event) {
-        gameEngine.loadGame();
-        changeScene(mainMenuScene, gameScene);
-        createRadioArrays();
-        redraw();
-    }
-
+    
+    /**------------------------------------------------------
+     * ---------------------GameScene------------------------.
+     -------------------------------------------------------*/
     @FXML
     private void forwardButtonClicked(ActionEvent event) {
         if(gameEngine.move())
@@ -421,18 +426,8 @@ public class GUIController implements IUI
         String tempMSG = gameEngine.getMessage();
         logCombatTextArea.setText(tempMSG);
         logTextArea.setText(tempMSG);
-        
-        
-        
     }
     
-    private void setEndGameInformation()
-    {
-        gameWonNameHolder.setText(gameEngine.getName());
-        gameWonScore.setText(gameEngine.getScoreString());
-        gameWonDifficulty.setText(gameEngine.getDifficultyString());
-    }
-
     @FXML
     private void leftButtonClicked(ActionEvent event) {
         gameEngine.turnLeft();
@@ -450,7 +445,7 @@ public class GUIController implements IUI
         gameEngine.turnBack();
         redraw();
     }
-
+    
     @FXML
     private void inventoryButtonClicked(ActionEvent event) {
  
@@ -495,7 +490,50 @@ public class GUIController implements IUI
         makeInvisible(labyrinthImage);
         makeInvisible(inventoryScene);
     }
-
+    
+    @FXML
+    private void gameSceneOptionsButtonClicked(ActionEvent event)
+    {
+        changeScene(gameScene, optionsScene);
+    }
+    
+    @FXML
+    private void mapButtonClicked(ActionEvent event) {
+        if (!isMapView) {
+            labyrinthImage.setImage(gameEngine.renderMiniMapView());
+            isMapView = true;
+        } else {
+            labyrinthImage.setImage(gameEngine.renderMazeView());
+            isMapView = false;
+        }
+    }
+    
+    @FXML
+    private void taltToBob(ActionEvent event) {
+        if(gameEngine.checkForMonster() != null)
+        {
+        if(gameEngine.checkForMonster().startsWith("minion") || gameEngine.checkForMonster().equals("Zuul"))
+        {
+            changeScene(gameScene, combatScene);
+        }
+        else if(gameEngine.checkForMonster().equals("bob"))
+        {
+            logTextArea.setText(gameEngine.talkToBob());
+        }
+        }
+        redraw();
+    }
+    
+    /**------------------------------------------------------
+     * ---------------------GameScene------------------------.
+     ---------------------inventoryScene--------------------*/
+    
+    
+    
+    /**------------------------------------------------------
+     * ---------------------GameScene------------------------.
+     ----------------------SearchScene----------------------*/
+    
     @FXML
     private void pickUpButtonClicked(ActionEvent event)
     {
@@ -506,12 +544,10 @@ public class GUIController implements IUI
         logCombatTextArea.setText(tempMSG);
         logTextArea.setText(tempMSG);
     }
-
-    @FXML
-    private void gameSceneOptionsButtonClicked(ActionEvent event)
-    {
-        changeScene(gameScene, optionsScene);
-    }
+    
+    /**------------------------------------------------------
+     * -------------------optionsScene-----------------------.
+     -------------------------------------------------------*/
 
     @FXML
     private void saveGameButtonClicked(ActionEvent event) {
@@ -538,15 +574,9 @@ public class GUIController implements IUI
     private void optionsHelpButtonClicked(ActionEvent event) {
         changeScene(optionsScene, helpScene);
     }
-
-    @FXML
-    private void backtoOptionsButtonClicked(ActionEvent event) {
-        changeScene(helpScene, optionsScene);
-    }
-
-//    private void newGamePlayButtonClicked(ActionEvent event) {
-//        changeScene(newGameScene, gameScene);
-//    }
+    
+    /** PopUp Layer - wantToQuitPopUpLayer. */
+    
     @FXML
     private void yesDeleteProgressButtonClicked(ActionEvent event) {
         GUIController.this.makeInvisible(wantToQuitPopUpLayer);
@@ -557,122 +587,20 @@ public class GUIController implements IUI
     private void noBackToOptionsButtonClicked(ActionEvent event) {
         GUIController.this.makeInvisible(wantToQuitPopUpLayer);
     }
-
-    @FXML
-    private void newGameNextButtonClicked(ActionEvent event) {
-        GUIController.this.makeVisible(enterNamePopUpLayer);
-    }
-
-    @FXML
-    private void playButtonClicked(ActionEvent event) {
-        changeScene(newGameScene, gameScene);
-        gameEngine.startNewGame(difficulty, enterPlayerName.getText());
-        labyrinthImage.setImage(gameEngine.renderMazeView());
-        createRadioArrays();
-        GUIController.this.makeInvisible(enterNamePopUpLayer);
-        
-        
-    }
-        private void createRadioArrays()
-        {
-        inventoryRadioButtons = new RadioButton[7];
-        inventoryRadioButtons[0] = itemOneRadioButton;
-        inventoryRadioButtons[1] = itemTwoRadioButton;
-        inventoryRadioButtons[2] = itemThreeRadioButton;
-        inventoryRadioButtons[3] = itemFourRadioButton;
-        inventoryRadioButtons[4] = itemFiveRadioButton;
-        inventoryRadioButtons[5] = itemSixRadioButton;
-        inventoryRadioButtons[6] = itemSevenRadioButton;
-        currentHealthField.setText(gameEngine.getCurrentHealthToString());
-        for (int i = 0; i < inventoryRadioButtons.length; i++) {
-            inventoryRadioButtons[i].setVisible(false);  
-        }
-        
-        combatInventoryButtons = new RadioButton[7];
-        combatInventoryButtons[0] = itemOneRadioButton1;
-        combatInventoryButtons[1] = itemTwoRadioButton1;
-        combatInventoryButtons[2] = itemThreeRadioButton1;
-        combatInventoryButtons[3] = itemFourRadioButton1;
-        combatInventoryButtons[4] = itemFiveRadioButton1;
-        combatInventoryButtons[5] = itemSixRadioButton1;
-        combatInventoryButtons[6] = itemSevenRadioButton1;
-
-        for (int i = 0; i < combatInventoryButtons.length; i++) {
-            combatInventoryButtons[i].setVisible(false);
-        }
-            
-        searchRadioButtons = new RadioButton[12];
-        
-        searchRadioButtons[0] = roomItem1RadioButton;
-        searchRadioButtons[1] = roomItem2RadioButton;
-        searchRadioButtons[2] = roomItem3RadioButton;
-        searchRadioButtons[3] = roomItem4RadioButton;
-        searchRadioButtons[4] = roomItem5RadioButton;
-        searchRadioButtons[5] = roomItem6RadioButton;
-        searchRadioButtons[6] = roomItem7RadioButton;
-        searchRadioButtons[7] = roomItem8RadioButton;
-        searchRadioButtons[8] = roomItem9RadioButton;
-        searchRadioButtons[9] = roomItem10RadioButton;
-        searchRadioButtons[10] = roomItem11RadioButton;
-        searchRadioButtons[11] = roomItem12RadioButton;
-        for (int i = 0; i < searchRadioButtons.length; i++) {
-                searchRadioButtons[i].setVisible(false);
-            }
-        
-        }
     
-
+    /**------------------------------------------------------
+     * -------------------optionsScene-----------------------.
+     -----------------------helpScene-----------------------*/
+    
     @FXML
-    private void BackToDifficltyButtonClicked(ActionEvent event) {
-        GUIController.this.makeInvisible(enterNamePopUpLayer);
-    }
-
-    @FXML
-    private void veryEasyButtonClicked(ActionEvent event) {
-        difficulty = 1;
-    }
-
-    @FXML
-    private void easyButtonClicked(ActionEvent event) {
-        difficulty = 2;
-    }
-
-    @FXML
-    private void normalButtonClicked(ActionEvent event) {
-        difficulty = 3;
-    }
-
-    @FXML
-    private void hardButtonClicked(ActionEvent event) {
-        difficulty = 4;
-    }
-
-    @FXML
-    private void veryHardButtonClicked(ActionEvent event) {
-        difficulty = 5;
-    }
-
-    @Override
-    public void injectGameEngine(IGameEngine gameEngine) {
-        this.gameEngine = gameEngine;
-        createBackgrounds();
-
+    private void backtoOptionsButtonClicked(ActionEvent event) {
+        changeScene(helpScene, optionsScene);
     }
     
-    private void createBackgrounds()
-    {
-        mainMenuBackgroundImage.setImage(gameEngine.getMainMenuBackground());
-        newGameBackgroundImage.setImage(gameEngine.getNewGameBackground());
-        gameSceneBackgroundImage.setImage(gameEngine.getGameAndCombatSceneBackground());
-        gameOverBackgroundImage.setImage(gameEngine.getGameOverSceneBackground());
-        gameWonSceneBackgroundImage.setImage(gameEngine.getGameWonSceneBackground());
-        highscoreBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
-        creditsBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
-        optionsSceneBackground.setImage(gameEngine.getOptionsAndHelpSceneBackground());
-        helpSceneBackgroundImage.setImage(gameEngine.getOptionsAndHelpSceneBackground());
-        combatSceneImage.setImage(gameEngine.getGameAndCombatSceneBackground());
-    }
-
+    
+    /**------------------------------------------------------
+     * --------------------combatScene-----------------------.
+     --------------------------------------------------------*/
     @FXML
     private void attackButtonClicked(ActionEvent event) {
         if(gameEngine.attack())
@@ -727,68 +655,64 @@ public class GUIController implements IUI
         {
             changeScene(gameScene, gameOverScene);
         }
-        
     }
-
+    
     @FXML
-    private void currentHealthFieldUpdate(ActionEvent event)
+    private void combatSceneOptionsButtonClicked(ActionEvent event)
     {
-        
-    }
-
-    @FXML
-    private void combatSceneOptionsButtonClicked(ActionEvent event) {
         changeScene(combatScene, optionsScene);
     }
-
+    
+    
+    /**------------------------------------------------------
+     * ------------------inventoryScene----------------------.
+     --------------------------------------------------------*/
+    
     @FXML
-    private void mapButtonClicked(ActionEvent event) {
-        if (!isMapView) {
-            labyrinthImage.setImage(gameEngine.renderMiniMapView());
-            isMapView = true;
-        } else {
-            labyrinthImage.setImage(gameEngine.renderMazeView());
-            isMapView = false;
-        }
-    }
-
-    @FXML
-    private void itemOneRadioButtonClicked(ActionEvent event) {
+    private void itemOneRadioButtonClicked(ActionEvent event)
+    {
         itemNumber = 0;
     }
 
     @FXML
-    private void itemTwoRadioButtonClicked(ActionEvent event) {
+    private void itemTwoRadioButtonClicked(ActionEvent event)
+    {
         itemNumber = 1;
     }
 
     @FXML
-    private void itemFiveRadioButtonClicked(ActionEvent event) {
-        itemNumber = 4;
-    }
-
-    @FXML
-    private void itemFourRadioButtonClicked(ActionEvent event) {
-        itemNumber = 3;
-    }
-
-    @FXML
-    private void itemThreeRadioButtonClicked(ActionEvent event) {
+    private void itemThreeRadioButtonClicked(ActionEvent event)
+    {
         itemNumber = 2;
     }
 
     @FXML
-    private void itemSixRadioButtonClicked(ActionEvent event) {
+    private void itemFourRadioButtonClicked(ActionEvent event)
+    {
+        itemNumber = 3;
+    }
+    
+    @FXML
+    private void itemFiveRadioButtonClicked(ActionEvent event)
+    {
+        itemNumber = 4;
+    }
+
+    @FXML
+    private void itemSixRadioButtonClicked(ActionEvent event)
+    {
         itemNumber = 5;
     }
 
     @FXML
-    private void itemSevenRadioButtonClicked(ActionEvent event) {
+    private void itemSevenRadioButtonClicked(ActionEvent event)
+    {
         itemNumber = 6;
     }
-
+    
     @FXML
-    private void useInventoryButtonClicked(ActionEvent event) {
+    private void useInventoryButtonClicked(ActionEvent event)
+    {
         gameEngine.useItem(itemNumber);
         inventoryButtonClicked(event);
         combatInventoryButtonClicked(event);
@@ -799,7 +723,8 @@ public class GUIController implements IUI
     }
 
     @FXML
-    private void dropInventoryButtonClicked(ActionEvent event) {
+    private void dropInventoryButtonClicked(ActionEvent event)
+    {
         gameEngine.dropItem(itemNumber);
         inventoryButtonClicked(event);
         redraw();
@@ -809,7 +734,8 @@ public class GUIController implements IUI
     }
 
     @FXML
-    private void inspectInventoryButtonClicked(ActionEvent event) {
+    private void inspectInventoryButtonClicked(ActionEvent event)
+    {
         logTextArea.setText(gameEngine.itemDescription(itemNumber));
         logCombatTextArea.setText(gameEngine.itemDescription(itemNumber));
         //write it in text box
@@ -817,41 +743,19 @@ public class GUIController implements IUI
     }
 
     @FXML
-    private void closeInventoryButtonClicked(ActionEvent event) {
+    private void closeInventoryButtonClicked(ActionEvent event)
+    {
         GUIController.this.makeInvisible(inventoryScene);
         makeInvisible(combatInventoryScene);
         makeVisible(labyrinthImage);
         makeVisible(combatImage);
         redraw();
     }
-
-    @FXML
-    private void useRoomItemButtonClicked(ActionEvent event)
-    {
-        gameEngine.useLootItem(lootItemNumber);
-        searchButtonClicked(event);
-        
-        String tempMSG = gameEngine.getMessage();
-        logCombatTextArea.setText(tempMSG);
-        logTextArea.setText(tempMSG);
-        
-    }
-
-    @FXML
-    private void inspectRoomItemButtonClicked(ActionEvent event)
-    {//replace all
-        logTextArea.setText(gameEngine.getLootItemDescription(lootItemNumber));
-        logCombatTextArea.setText(gameEngine.getLootItemDescription(lootItemNumber));
-    }
-
-    @FXML
-    private void closeSearchSceneButtonClicked(ActionEvent event)
-    {
-        GUIController.this.makeInvisible(searchScene);
-        makeVisible(labyrinthImage);
-        redraw();
-    }
-
+    
+    /**------------------------------------------------------
+     * --------------------searchScene-----------------------.
+     --------------------------------------------------------*/
+    
     @FXML
     private void roomItem1RadioButtonClicked(ActionEvent event)
     {
@@ -923,7 +827,155 @@ public class GUIController implements IUI
     {
         lootItemNumber = 11;
     }
+    
+    @FXML
+    private void useRoomItemButtonClicked(ActionEvent event)
+    {
+        gameEngine.useLootItem(lootItemNumber);
+        searchButtonClicked(event);
+        
+        String tempMSG = gameEngine.getMessage();
+        logCombatTextArea.setText(tempMSG);
+        logTextArea.setText(tempMSG);
+        
+    }
 
+    @FXML
+    private void inspectRoomItemButtonClicked(ActionEvent event)
+    {//replace all
+        logTextArea.setText(gameEngine.getLootItemDescription(lootItemNumber));
+        logCombatTextArea.setText(gameEngine.getLootItemDescription(lootItemNumber));
+    }
+
+    @FXML
+    private void closeSearchSceneButtonClicked(ActionEvent event)
+    {
+        GUIController.this.makeInvisible(searchScene);
+        makeVisible(labyrinthImage);
+        redraw();
+    }
+    
+    
+    //------------------------------------------------------
+    //-------------------General Methods--------------------
+    //------------------------------------------------------
+    private void changeScene(AnchorPane from, AnchorPane to) {
+        from.setVisible(false);
+        from.setDisable(true);
+        to.setVisible(true);
+        to.setDisable(false);
+    }
+
+    private void makeVisible(AnchorPane popUp) {
+        popUp.setVisible(true);
+        popUp.setDisable(false);
+    }
+
+    private void makeInvisible(AnchorPane popUp) {
+        popUp.setVisible(false);
+        popUp.setDisable(true);
+    }
+    
+    private void makeVisible(ImageView popUp) {
+        popUp.setVisible(true);
+        popUp.setDisable(false);
+    }
+
+    private void makeInvisible(ImageView popUp) {
+        popUp.setVisible(false);
+        popUp.setDisable(true);
+    }
+
+    private class TempString{
+        private String in;
+        public TempString(String in)
+        {
+            this.in = in;
+        }
+        public String toString()
+        {
+            return in;
+        }
+    }
+    
+    private void setEndGameInformation()
+    {
+        gameWonNameHolder.setText(gameEngine.getName());
+        gameWonScore.setText(gameEngine.getScoreString());
+        gameWonDifficulty.setText(gameEngine.getDifficultyString());
+    }
+
+    
+    private void createRadioArrays()
+    {
+        inventoryRadioButtons = new RadioButton[7];
+        inventoryRadioButtons[0] = itemOneRadioButton;
+        inventoryRadioButtons[1] = itemTwoRadioButton;
+        inventoryRadioButtons[2] = itemThreeRadioButton;
+        inventoryRadioButtons[3] = itemFourRadioButton;
+        inventoryRadioButtons[4] = itemFiveRadioButton;
+        inventoryRadioButtons[5] = itemSixRadioButton;
+        inventoryRadioButtons[6] = itemSevenRadioButton;
+        currentHealthField.setText(gameEngine.getCurrentHealthToString());
+        
+        for (int i = 0; i < inventoryRadioButtons.length; i++)
+        {
+            inventoryRadioButtons[i].setVisible(false);  
+        }
+        
+        combatInventoryButtons = new RadioButton[7];
+        combatInventoryButtons[0] = itemOneRadioButton1;
+        combatInventoryButtons[1] = itemTwoRadioButton1;
+        combatInventoryButtons[2] = itemThreeRadioButton1;
+        combatInventoryButtons[3] = itemFourRadioButton1;
+        combatInventoryButtons[4] = itemFiveRadioButton1;
+        combatInventoryButtons[5] = itemSixRadioButton1;
+        combatInventoryButtons[6] = itemSevenRadioButton1;
+
+        for (int i = 0; i < combatInventoryButtons.length; i++) {
+            combatInventoryButtons[i].setVisible(false);
+        }
+            
+        searchRadioButtons = new RadioButton[12];
+        
+        searchRadioButtons[0] = roomItem1RadioButton;
+        searchRadioButtons[1] = roomItem2RadioButton;
+        searchRadioButtons[2] = roomItem3RadioButton;
+        searchRadioButtons[3] = roomItem4RadioButton;
+        searchRadioButtons[4] = roomItem5RadioButton;
+        searchRadioButtons[5] = roomItem6RadioButton;
+        searchRadioButtons[6] = roomItem7RadioButton;
+        searchRadioButtons[7] = roomItem8RadioButton;
+        searchRadioButtons[8] = roomItem9RadioButton;
+        searchRadioButtons[9] = roomItem10RadioButton;
+        searchRadioButtons[10] = roomItem11RadioButton;
+        searchRadioButtons[11] = roomItem12RadioButton;
+        for (int i = 0; i < searchRadioButtons.length; i++)
+        {
+            searchRadioButtons[i].setVisible(false);
+        }
+    }
+    
+    @Override
+    public void injectGameEngine(IGameEngine gameEngine) {
+        this.gameEngine = gameEngine;
+        createBackgrounds();
+
+    }
+    
+    private void createBackgrounds()
+    {
+        mainMenuBackgroundImage.setImage(gameEngine.getMainMenuBackground());
+        newGameBackgroundImage.setImage(gameEngine.getNewGameBackground());
+        gameSceneBackgroundImage.setImage(gameEngine.getGameAndCombatSceneBackground());
+        gameOverBackgroundImage.setImage(gameEngine.getGameOverSceneBackground());
+        gameWonSceneBackgroundImage.setImage(gameEngine.getGameWonSceneBackground());
+        highscoreBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
+        creditsBackgroundImage.setImage(gameEngine.getHighscoreAndCreditsSceneBackground());
+        optionsSceneBackground.setImage(gameEngine.getOptionsAndHelpSceneBackground());
+        helpSceneBackgroundImage.setImage(gameEngine.getOptionsAndHelpSceneBackground());
+        combatSceneImage.setImage(gameEngine.getGameAndCombatSceneBackground());
+    }
     
     private void redraw()
     {
@@ -937,23 +989,13 @@ public class GUIController implements IUI
         }
         combatImage.setImage(gameEngine.renderBattleView());
     }
-
+    
+    /**------------------------------------------------------
+     * ----------------Methods without body------------------.
+     --------------------------------------------------------*/
     @FXML
-    private void taltToBob(ActionEvent event) {
-        if(gameEngine.checkForMonster() != null)
-        {
-        if(gameEngine.checkForMonster().startsWith("minion") || gameEngine.checkForMonster().equals("Zuul"))
-        {
-            changeScene(gameScene, combatScene);
-        }
-        else if(gameEngine.checkForMonster().equals("bob"))
-        {
-            logTextArea.setText(gameEngine.talkToBob());
-        }
-        }
-        redraw();
+    private void currentHealthFieldUpdate(ActionEvent event)
+    {
+        
     }
-    
-    
-    
 }
