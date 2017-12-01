@@ -212,13 +212,12 @@ public class ZuulGame implements IGameConstants {
             return player.getCurrentRoom().itemList()[itemNumber].getDescription();
         return "";
     } 
-    public String itemDescription(int itemID) {
-        return player.getInventory().getItemDescription(itemID);
-    }
+//    public String itemDescription(int itemID) {
+//        return player.getInventory().getItemDescription(itemID);
+//    }
     public void setSavegameHandler(ISaveGameHandler savegameHandler) {
         this.savegameHandler = savegameHandler;
     }
-
     public String getScoreString() {
         return scoreTracker.getScore().getScoreString();
     }
@@ -523,10 +522,8 @@ public class ZuulGame implements IGameConstants {
             System.out.println(ex.getMessage());
         }
         return null;
-    }
-    
-    public Image getGameWonSceneBackground()
-    {
+    }    
+    public Image getGameWonSceneBackground() {
         try
         {
             BufferedImage renderedView =
@@ -542,10 +539,8 @@ public class ZuulGame implements IGameConstants {
             System.out.println(ex.getMessage());
         }
         return null;
-    }
-    
-    public Image getHighscoreAndCreditsSceneBackground()
-    {
+    }    
+    public Image getHighscoreAndCreditsSceneBackground() {
         try
         {
             BufferedImage renderedView =
@@ -561,10 +556,8 @@ public class ZuulGame implements IGameConstants {
             System.out.println(ex.getMessage());
         }
         return null;
-    }
-    
-    public Image getOptionsAndHelpSceneBackground()
-    {
+    }    
+    public Image getOptionsAndHelpSceneBackground() {
         try
         {
             BufferedImage renderedView =
