@@ -19,7 +19,6 @@ public interface IGameEngine {
     public boolean saveGame();
     public boolean loadGame();    
     public String getName();
-    public boolean setName(); 
     public String getMessage();
     public String getCurrentHealthToString();
     public Image getMainMenuBackground();

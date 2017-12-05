@@ -51,10 +51,7 @@ public class GameEngine implements IGameEngine {
     public String getName() {
         return game.getName();
     }
-    @Override
-    public boolean setName() {
-        return game.setName();
-    }
+
     @Override
     public Image renderMazeView() {
         return game.renderMazeView();
