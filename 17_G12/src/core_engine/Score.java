@@ -20,7 +20,12 @@ public class Score implements IScore, Serializable, Comparable<Score> {
  private int score;
 
  
- 
+ /**
+  * The constructer used to make new Score objects. 
+  * @param score is the start value the score has.
+  * @param diff is the difficulty name.
+  * @param name is the player name.
+  */
  public Score(int score, String diff, String name)
  {
      this.score = score;
@@ -29,7 +34,10 @@ public class Score implements IScore, Serializable, Comparable<Score> {
     
      
  }
-
+/**
+ * Method to set the score value
+ * @param score the interget value of the current score.
+ */
     public void setScore(int score) {
         this.score = score;
     }
@@ -42,29 +50,51 @@ public class Score implements IScore, Serializable, Comparable<Score> {
     @Override
     public String toString()
     {
-        return "\t" + name  + "\t\t " + score + "\t\t " + difficulty;
+        return "" + name  + " " + score + " " + difficulty;
     }
     
+    /**
+     * Method to get the score value
+     * @return the integer value of the score
+     */
     public int getScore()
     {
         return score;
     }
 
+    /**
+     * the method to get the name
+     * @return name of player
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     * The method to get the difficulty in String format
+     * @return the name of the associated difficulty
+     */
     @Override
     public String getDifficulty() {
         return difficulty;
     }
 
+    /**
+     * The method to get the score value in string format
+     * @return the score value in a String
+     */
     @Override
     public String getScoreString() {
         return Integer.toString(score);
     }
 
+    /**
+     * The method from Comparable interface
+     * @param o the score you want to compare to
+     * @return an integer value: 1 if this score is larger than the other, 
+     * 0 if they're even and -1 if this score is smaller than the other.
+     */
     @Override
     public int compareTo(Score o) {
         if(o.getScore() < score)
