@@ -32,7 +32,11 @@ public class ScoreTracker implements Serializable {
     private int diff;
 
     
-    
+    /**
+     * set up the score tracker with the player and the difficulty
+     * @param p player to be traced
+     * @param diff game difficulty.
+     */
     public ScoreTracker(Player p, int diff)    
     {
         this.player = p;
@@ -42,37 +46,33 @@ public class ScoreTracker implements Serializable {
 
 
     }
-
+    /**
+     * gets the current score
+     * @return score
+     */
     public Score getScore() {
         return score;
-    }
-    
+    }    
     /**
      * adds points when called, used when the player kills a normal monster
      */
-    public void monsterKill()
-    {
+    public void monsterKill() {
         
         currentScore += diff * 5;
         score.setScore(currentScore);
-    }
-    
+    }    
     /**
      * used when the boss is killed
      */
-    public void bossKill()
-    {
+    public void bossKill() {
         currentScore += diff * 10;
         score.setScore(currentScore);
     }
     /**
      * subtracts points every time called, used at the end of every counting turn.
      */
-    public void turnEnd()
-    {
+    public void turnEnd() {
         currentScore -= 1;
         score.setScore(currentScore);
-    }
-    
-    
+    }    
 }
