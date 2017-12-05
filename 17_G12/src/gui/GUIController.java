@@ -630,6 +630,15 @@ public class GUIController implements IUI
         makeInvisible(searchScene);
     }
 
+    /**
+     * This method is triggered when pressing the 'Search' button in
+     * the gameScene, and when used, it does the following:
+     * 
+     * Opens the search menu by making the searchScene visible and
+     * gets the items in the current room to display.
+     * 
+     * @param event 
+     */
     @FXML
     private void searchButtonClicked(ActionEvent event)
     {
@@ -651,13 +660,35 @@ public class GUIController implements IUI
         makeInvisible(labyrinthImage);
         makeInvisible(inventoryScene);
     }
-    
+
+
+    /**
+     * This method is triggered when pressing the 'Options' button in
+     * the gameScene, and when used, it does the following:
+     * 
+     * Opens the options menu by making the optionsScene visible and
+     * the gameScene invisible.
+     * 
+     * @param event 
+     */
     @FXML
     private void gameSceneOptionsButtonClicked(ActionEvent event)
     {
         changeScene(gameScene, optionsScene);
     }
     
+    /**
+     * This method is triggered when pressing the 'Map' button in
+     * the gameScene, and when used, it does the following:
+     * 
+     * If the map is not opened, the map will be rendered and shown
+     * in the gameScene.
+     * 
+     * If the map is opened, the maze will be rendered and shown in
+     * the gameScene.
+     * 
+     * @param event 
+     */
     @FXML
     private void mapButtonClicked(ActionEvent event) {
         if (!isMapView) {
@@ -669,6 +700,15 @@ public class GUIController implements IUI
         }
     }
     
+    /**
+     * This method is triggered when pressing the 'Talk' button in
+     * the gameScene, and when used, it does the following:
+     * 
+     * Engages in combat if there is a monster in the same room, or
+     * Talks to the friendly minion Bob, if he is in the same room.
+     * 
+     * @param event 
+     */
     @FXML
     private void taltToBob(ActionEvent event) {
         if(gameEngine.checkForMonster() != null)
@@ -689,27 +729,63 @@ public class GUIController implements IUI
      * -------------------optionsScene-----------------------.
      -------------------------------------------------------*/
 
+    /**
+     * This method is triggered when pressing the 'Save Game' button in
+     * the gameScene, and when used, it saves the game, by calling the
+     * method saveGame() on the business facade 'gameEngine'.
+     * 
+     * @param event 
+     */
     @FXML
     private void saveGameButtonClicked(ActionEvent event) {
         gameEngine.saveGame();
     }
 
+    /**
+     * This method is triggered when pressing the 'Back to Main Menu'
+     * button in the popup asking if you want to quit in the optionsScene.
+     * When used it goes back to the options menu making the popup
+     * invisible.
+     * 
+     * @param event 
+     */
     @FXML
     private void optionsBackToMenuButtonClicked(ActionEvent event) {
         GUIController.this.makeVisible(wantToQuitPopUpLayer);
     }
 
+    /**
+     * This method is triggered when pressing the 'Quit' button in the
+     * options menu. When used it terminates the program and quits 
+     * the game.
+     * 
+     * @param event 
+     */
     @FXML
     private void optionsQuitGameButtonClicked(ActionEvent event) {
-;
+
         Platform.exit();
     }
 
+    /**
+     * This method is triggered when pressing the 'Resume Game' button
+     * in the options menu. When used it quits the menu and resumes the
+     * game by changing from the optionsScene to the GameScene.
+     * 
+     * @param event 
+     */
     @FXML
     private void resumeGameButtonClicked(ActionEvent event) {
         changeScene(optionsScene, gameScene);
     }
 
+    /**
+     * This method is triggered when pressing the 'Help' button in the
+     * options menu. When used it opens the help menu by changing from
+     * the optionsScene to the helpScene.
+     * 
+     * @param event 
+     */
     @FXML
     private void optionsHelpButtonClicked(ActionEvent event) {
         changeScene(optionsScene, helpScene);
@@ -717,12 +793,29 @@ public class GUIController implements IUI
     
     /** PopUp Layer - wantToQuitPopUpLayer. */
     
+    /**
+     * This method is triggered when pressing the 'Yes, delete all my
+     * progress' button in the popup in the options menu asking if you
+     * want to quit. When used it goes back to the main menu, making the
+     * popup invisible and switching from the optionsScene to the
+     * mainMenuScene.
+     * 
+     * @param event 
+     */
     @FXML
     private void yesDeleteProgressButtonClicked(ActionEvent event) {
         GUIController.this.makeInvisible(wantToQuitPopUpLayer);
         changeScene(optionsScene, mainMenuScene);
     }
 
+    /**
+     * This method is triggered when pressing the 'No, take me back to
+     * options' button in the popup in the options menu asking if you
+     * want to quit. When used it goes back to the options menu by
+     * making the popup invisible.
+     * 
+     * @param event 
+     */
     @FXML
     private void noBackToOptionsButtonClicked(ActionEvent event) {
         GUIController.this.makeInvisible(wantToQuitPopUpLayer);
@@ -732,6 +825,13 @@ public class GUIController implements IUI
      * -------------------optionsScene-----------------------.
      -----------------------helpScene-----------------------*/
     
+    /**
+     * This method is triggered when pressing the 'Back to Options'
+     * button in the help menu. When used, it goes back to the options
+     * menu, by changing from the helpScene to the optionsScene.
+     * 
+     * @param event 
+     */
     @FXML
     private void backtoOptionsButtonClicked(ActionEvent event) {
         changeScene(helpScene, optionsScene);
@@ -741,6 +841,15 @@ public class GUIController implements IUI
     /**------------------------------------------------------
      * --------------------combatScene-----------------------.
      --------------------------------------------------------*/
+    
+    /**
+     * This methods is triggered when pressing the 'attack' button
+     * in the combatScene. when used it:
+     * 
+     * Attacks and damages the minion if the mi
+     * 
+     * @param event 
+     */
     @FXML
     private void attackButtonClicked(ActionEvent event) {
         if(gameEngine.attack())
