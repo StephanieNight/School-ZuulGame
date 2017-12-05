@@ -24,16 +24,66 @@ public class Room implements Serializable
     private int pictureID_3D;
     private int pictureID_MiniMap;
     private boolean playerVissited;
-    private boolean isExit;
-
+    private boolean isExit; // one room is the exit of the maze
+    /**
+     * basic constructor for a room 
+     * set the description, if the player has visited to false because no the 
+     * player has not yet, and sets the Hashmaps of doors and exits.
+     * @param description the rooms decription
+     */
+    public Room(String description) 
+    {
+        this.description = description;
+        exits = new HashMap<>();
+        doors = new HashMap<>();
+        lootList = new ArrayList<>();
+        this.pictureID_3D=0;
+        this.pictureID_MiniMap =0;
+        this.playerVissited = false;
+    }
+    /**
+     * set the description, if the player has visited to false because no the 
+     * player has not yet, and sets the Hashmaps of doors and exits. 
+     * 
+     * takes an array of items to add to its loot list
+     * @param description the rooms decription
+     * @param items the array of loot to add
+     */
+    public Room(String description, Item[] items) 
+    {
+        this(description);
+        Collections.addAll(lootList, items);
+    }
+    /**
+     * set the description, if the player has visited to false because no the 
+     * player has not yet, and sets the Hashmaps of doors and exits and adds 
+     * a single item to the loot list.
+     * @param description the rooms decription
+     * @param item item to add to loot list
+     */
+    public Room(String description, Item item)
+    {
+        this(description);
+        lootList.add(item);
+    }
+    /**
+     * set if the room is final exit.
+     * @param isExit true ? 
+     */
     public void setIsExit(boolean isExit) {
         this.isExit = isExit;
     }
-
+    /**
+     * get if the room is Exit
+     * @return true if the room is exit if not false.
+     */
     public boolean isExit() {
         return isExit;
-    }
-    
+    }    
+    /**
+     * 
+     * @param pictureID_3D 
+     */
     public void setPictureID_3D(int pictureID_3D) {
         this.pictureID_3D = pictureID_3D;
     }
@@ -49,27 +99,7 @@ public class Room implements Serializable
     public boolean isPlayerVissited() {
         return playerVissited;
     }
-
-    public Room(String description) 
-    {
-        this.description = description;
-        exits = new HashMap<String, Room>();
-        doors = new HashMap<String, Door>();
-        lootList = new ArrayList<>();
-        this.pictureID_3D=0;
-        this.pictureID_MiniMap =0;
-        this.playerVissited = false;
-    }
-    public Room(String description, Item[] items) 
-    {
-        this(description);
-        Collections.addAll(lootList, items);
-    }
-    public Room(String description, Item item)
-    {
-        this(description);
-        lootList.add(item);
-    }
+    
     
     public void setExit(String direction, Room neighbor) 
     {
@@ -156,11 +186,11 @@ public class Room implements Serializable
        else 
         return ' ';
     }
-    /* 
-    *
-    */
-    public String[] getExits()
-    {
+    /** 
+     * gets the exits 
+     * @return stirng array of exit directions.
+     */
+    public String[] getExits() {
         Set<String> keys = exits.keySet();
         int i =0;
         String[] e = new String[keys.size()];
@@ -171,38 +201,57 @@ public class Room implements Serializable
         }
         return e;    
     }
-    public void changeDescription(String desc)
-    {
+    /**
+     * Changes the rooms description
+     * @param desc new string description.
+     */
+    public void changeDescription(String desc) {
         this.description = desc;
     }
-    
+    /**
+     * does the room has any items
+     * @return true id lootlist size is greater then 0 - false if not.
+     */
     public boolean hasItems(){
         return (lootList.size() > 0);
     }    
+    /**
+     * get the loot list 
+     * @return array of loot in the room.
+     */
     public Item[] itemList() {
         Item itemList[] = new Item[lootList.size()];
         return lootList.toArray(itemList);
     }    
-    public Item pickupItem(int id, Inventory inventory) {
+    /**
+     * pick up and item and places it in an inventory
+     * @param id id of item
+     * @param inventory inventory that the item is added to.
+     */
+    public void pickupItem(int id, Inventory inventory) {
         Item returnItem = lootList.get(id);
         if(inventory.addItem(returnItem)){
             lootList.remove(id);
         }
-        return returnItem;
     }    
+    /**
+     * adds item to the loot list
+     * @param item 
+     */
     public void dropItem(Item item) {
         lootList.add(item);
     }
-    public void setDoor(String direction) 
-    {
+    /**
+     * adds a door in direction 
+     * @param direction direction that the door is in
+     */
+    public void setDoor(String direction) {
         doors.put(direction,new Door(true));
     }
-    public boolean hasDoor(String direction)
-    {        
+    public boolean hasDoor(String direction) {        
         return doors.containsKey(direction);
     }
-    public Door getDoor(String direction)
-    {
+    public Door getDoor(String direction) {
         if(hasDoor(direction))
         {
             return doors.get(direction);
@@ -210,26 +259,22 @@ public class Room implements Serializable
         }
         return null;        
     }    
-    public void setPlayerVisisted()
-    {
+    public void setPlayerVisisted() {
         playerVissited = true;
     }
-    public void useItem(int id, Player p)
-    {
+    public void useItem(int id, Player p) {
         if(itemList()[id].useItem(p))
         {
             lootList.remove(id);
         }
     }
-
     public Actor getGhoust() {
         return ghoust;
     }
     public void setGhoust(Actor gaust) {
         this.ghoust = gaust;
     }
-    public boolean isOccupied()
-    {
+    public boolean isOccupied() {
         boolean o = (ghoust !=null || monster != null);                
         return o;
     }
