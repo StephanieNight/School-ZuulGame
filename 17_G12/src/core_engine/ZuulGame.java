@@ -106,16 +106,23 @@ public class ZuulGame implements IGameConstants {
         return player.getCurrentRoom().getMonster() != null;
     }
     /**
+     * starts a new game, from the deficulty it calculates what size the maze 
+     * shall be, the amount of monsters and start level they shal have. 
      * 
-     * @param difficulty
-     * @param name
-     * @return 
+     * map size is calculates from the formula : 
+     * (1.5*difficulty)+3 then converted to a int since you can't have * 0.67 of a room. 
+     * number of minions is calculated from the formula : 
+     * Math.pow(mazeSize,1.5)/2 and then also converted to a int because the same reason
+     * a half monster dont exist.
+     * @param difficulty a int based represention of the deficulty, the higther 
+     * the number the bigger the pain.
+     * @param name the name of the player. 
+     * @return true it successfull in creating a game.
      */
     public boolean startNewGame(int difficulty, String name) {
         this.difficulty = difficulty;        
         this.mazeSize = (int)((1.5*difficulty)+3);
-        this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;
-    
+        this.maxNumberOfMinions= (int)Math.pow(this.mazeSize,1.5)/2;    
         this.labyrinth.newMaze(mazeSize);
         this.itemGenerator = new ItemGenerator(labyrinth, message);
         spawnMobs(name);
@@ -126,11 +133,14 @@ public class ZuulGame implements IGameConstants {
             System.out.println("Size                : "+this.mazeSize);
             System.out.println("number of minions   : "+ this.maxNumberOfMinions);
             System.out.println("Diffictulty is      : "+ this.difficulty);
-        }
-        
-        
+        }        
         return true;
     }    
+    /**
+     * checks if the player has won.
+     * @return false based on if the door is locked and true if the player has unlocked
+     * the door and is back in the exit room.
+     */
     public boolean checkWinCondition() {
         if(labyrinth.getMaze()[0][0].getDoor("south").isLocked())
         {
@@ -138,6 +148,10 @@ public class ZuulGame implements IGameConstants {
         }
         return player.getCurrentRoom().isExit();
     }    
+    /**
+     * checks if you ran out of lamp oil or is dead
+     * @return returns true based on if p.currrenthealt or p.lampoil is below 1
+     */
     public boolean checkForGameOver() {
         return (player.getCurrentHealth() < 1 || player.getLampOil() < 1);
     }   
@@ -149,8 +163,10 @@ public class ZuulGame implements IGameConstants {
         return difficulty;
     }    
     /**
-     * handles the spawning of of the player, minions and Zuul.
-     */
+   * handles the spawning of of the player, minions and Zuul. takes in a name
+   * to give the player
+   * @param playerName name of the player
+   */
     private void spawnMobs(String playerName) {         
         player = new Player(playerName, 100, 20, 30, 1, this.difficulty, message);    
         labyrinth.spawnPlayer(0,0, player);
@@ -182,7 +198,10 @@ public class ZuulGame implements IGameConstants {
             player.addItem(itemGenerator.generateItem(1));
             player.addItem(itemGenerator.generateItem(2));
         }
-    }      
+    }   
+    /**
+     * saves the highscore to local disk.
+     */
     public void saveHighScore() {
         if(highScoreHandler.addScore(scoreTracker.getScore()))
         {
@@ -196,6 +215,10 @@ public class ZuulGame implements IGameConstants {
             }
         }
     }
+    /**
+     * loads all highscores fron the local disk
+     * @return highscores.
+     */
     public IScore[] loadHighScore() {
         try
         {
@@ -214,32 +237,55 @@ public class ZuulGame implements IGameConstants {
 //        return highScoreHandler.getScores();
 
     }
+    /**
+     * gets the descripion if a surtan pice of loot in the room the player is standing in.
+     * @param itemNumber ID of the item 
+     * @return a string of the description
+     */
     public String getLootItemDescription(int itemNumber) {
         if(player.getCurrentRoom().itemList().length > 0)
             return player.getCurrentRoom().itemList()[itemNumber].getDescription();
         return "";
     } 
+    /**
+     * gets the descripion if a surtan pice of loot in the players inventory.
+     * @param itemID  ID of the item 
+     * @return  a string of the description
+     */
     public String itemDescription(int itemID) {
         return player.getInventory().getItemDescription(itemID);
     }
+    /**
+     * Injecs the data layer logic to the game 
+     * @param savegameHandler savegamehandler that implement isavegameghander
+     */
     public void setSavegameHandler(ISaveGameHandler savegameHandler) {
         this.savegameHandler = savegameHandler;
     }
+    /**
+     * gets a string representation of the amount of points the player has collected. 
+     * @return string value of score.
+     */
     public String getScoreString() {
         return scoreTracker.getScore().getScoreString();
     }
+    /**
+     * get the difficulty string of the game. 
+     * @return a string represention of the dificulty 
+     */
     public String getDifficultyString() {
         return scoreTracker.getScore().getDifficulty();
     }       
     //-----------------------------------------------------------
     //---------------------Player Handling-----------------------
     //-----------------------------------------------------------
-    /**
+   /**
     * the legacy go room from the zuul framework, modified to have a Boolean return
-    * this is so that it the player tryes to go somewhere that it cant, you dont 
-    * miss a turn.
-    * @param command
-    * @return Boolean was move successefull.
+    * this is so that then player tryes to go somewhere that it cant, you dont 
+    * miss a turn.allso command is removed, and replaced with a DIR enum for the 
+    * direction the player wishes to go in.
+    * @param dir direction that wishes to be moved
+    * @return if the move woas succesfull
     */
     private boolean goRoom(Labyrinth.DIR dir) {       
         Room nextRoom = player.getCurrentRoom().getExit(dir.direction);        
@@ -270,15 +316,25 @@ public class ZuulGame implements IGameConstants {
         }            
         return false;
     }
+    /**
+     * gets the player name. 
+     * @return player name.
+     */
     public String getName() {
         return player.getName();
     }
-    public boolean setName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    /**
+     * gets the players current healt
+     * @return int of players health
+     */
     public int getPlayerCurrentHealth() {
         return player.getCurrentHealth();
     }
+    /**
+     * handles all about the turn of the player and allso the monsters 
+     * if the playes is in swiftness mode, use lampoil and calls process monster
+     * @return true if there is a confligt
+     */
     public boolean move() {
        
         boolean moved = goRoom(player.getFacing());
@@ -304,21 +360,42 @@ public class ZuulGame implements IGameConstants {
         }
         return checkForCombat();
     }
+    /**
+     * turns the players facing direction to the rigth.
+     * @return false because this does not cost a turn
+     */
     public boolean turnRight() {
         player.setFacing(player.getFacing().right);
         return false;
     }    
+    /**
+     * turns the players facing direction to the left.
+     * @return  false because this does not cost a turn
+     */
     public boolean turnLeft() {
         player.setFacing(player.getFacing().left);
         return false;
     }    
+    /**
+     * turns the players facing direction 180 .
+     * @return  false because this does not cost a turn
+     */
     public boolean turnBack() {
         player.setFacing(player.getFacing().opposite);
         return false;
     }    
+    /**
+     * get list of items in inventory
+     * @return string array of all the names in the inventory
+     */
     public String[] getInventory() {
         return player.getInventory().getInventoryList();
     }
+    /**
+     * the actual attack handler for one swing againts a monster 
+     * if the player is succesfull in killing the monster, it is removed.
+     * @return true if the monster died
+     */
     public boolean attack() {
         Actor m = player.getCurrentRoom().getMonster();
         if(fight.attack(player, m))
@@ -333,30 +410,47 @@ public class ZuulGame implements IGameConstants {
             int i = 0;
             while(i < 1)
             {
-            player.getCurrentRoom().dropItem(itemGenerator.generateRandomItem());
-            i = (int)(Math.random() * 4);
+                player.getCurrentRoom().dropItem(itemGenerator.generateRandomItem());
+                i = (int)(Math.random() * 4);
             }
            return true; 
         }
         else return fight.attack(m, player);
         
     }
+    /**
+     * player flees if it is invisible you can get away, if not you will get 
+     * damaged by the monster.
+     * @return true if player died form attack and false if not
+     */
     public boolean flee() {
-              if(player.isInvis())
+        if(player.isInvis())
         {
             return false;
         }
         else
         {
-        return fight.attack(player.getCurrentRoom().getMonster(), player);
+            return fight.attack(player.getCurrentRoom().getMonster(), player);
         }
-    }   
+    }  
+    /**
+     * uses an item selected with ID 
+     * @param itemID Id of item selected
+     */
     public void useItem(int itemID) {
         player.getInventory().useItem(itemID);
     }    
+    /**
+     * drops an item to the room the player is currently in
+     * @param itemID id of item selected.
+     */
     public void dropItem(int itemID){
         player.getInventory().dropItem(itemID);
-    }    
+    } 
+    /**
+     * makes an array of names if items in the players inventory.
+     * @return array of string names of objects, 
+     */
     public String[] getLoot() {
         String[] lootArray = new String[player.getCurrentRoom().itemList().length];
         for (int i = 0; i < lootArray.length; i++) {
@@ -364,14 +458,29 @@ public class ZuulGame implements IGameConstants {
             }
         return lootArray;
     }
+    /** 
+     * uses an item located on the floor of the room that the player is stading 
+     * in.
+     * @param itemNumber ID of the item that the player whants to use.
+     */
     public void useLootItem(int itemNumber) {
         if(player.getCurrentRoom().itemList().length > 0)
                    player.getCurrentRoom().useItem(itemNumber,player);
     }
+    /**
+     * picks up an item located on the floor of the room that the player is stading 
+     * in.
+     * @param itemNumber ID of the item that the player whants to pickup.
+     */
     public void pickUpItem(int itemNumber) {
         if(player.getCurrentRoom().itemList().length > 0)
         player.getCurrentRoom().pickupItem(itemNumber,player.getInventory());
     }          
+    /**
+     * a sudu talk to the friendly NPC, this is for giving the player tips on 
+     * how to play
+     * @return tips in string format.
+     */
     public String talkToBob() {
         return ghost.getQuote();
     }
@@ -390,22 +499,26 @@ public class ZuulGame implements IGameConstants {
             labyrinth.moveMonster(actor, nextRoom);
         }
     }    
+    /**
+     * proccesss the monsteres turn, checks if there is confligts between a 
+     * monster and the player and moves the monsters on the field.
+     */
     private void processMonsters() {
-        Monster defeatedMinion = null;
         for(Monster m : monsters)
         {
-            if (m.getCurrentRoom().isConflict())
-            {
-                defeatedMinion = m;
-                if (isDebug)
-                    labyrinth.display();
-            } else {
+            // if the monster is not figthing the player, then move
+            if (!m.getCurrentRoom().isConflict())
+           {
                 moveMonster(m);
             }
-        }
-     
-        
-    } 
+        }        
+    }   
+    /**
+     * moves the monster, by getting all exits and picking one at random, checks 
+     * if a monster is allready there, if not it moves.
+     * 
+     * @param m monster that should be moved
+     */
     private void moveMonster(Monster m) {
         String[] exits = m.getCurrentRoom().getExits();
         Collections.shuffle(Arrays.asList(exits));
@@ -430,10 +543,18 @@ public class ZuulGame implements IGameConstants {
         }
         
     }  
+    /** 
+     * removes monster from list and maze.
+     * @param m monster to remove.
+     */
     private void deleteMonster(Actor m) {
         m.getCurrentRoom().setMonster(null);
         monsters.remove(m);
-    } 
+    }     
+    /**
+     * gets the name of a monster in the room of the player.
+     * @return name of monster or ghost in the players current room.
+     */
     public String getMonsterName() {
         if(player.getCurrentRoom().getGhoust() != null)
         {
@@ -448,19 +569,39 @@ public class ZuulGame implements IGameConstants {
        }
     //-----------------------------------------------------------
     //----------------------- Rendering -------------------------
-    //-----------------------------------------------------------  
+    //-----------------------------------------------------------
+    /**
+     * calls the render engine to get a image of the maze from the players
+     * current location
+     * @return sudu 3D image of the maze
+     */
     public Image renderMazeView() {
        return RenderEngine.renderMazeView(player);
     }
+    /**
+     * calls the render engine to get a image of the map, with only as much as 
+     * the player has vissitet unless a map has ben found. monsters and player 
+     * is visiable
+     * @return a 2D top down image of the maze
+     */
     public Image renderMiniMapView() {           
        return RenderEngine.renderMiniMapView(labyrinth.getMaze());
     }
+    /** 
+     * calls the render engine to get a image of the battle at hand with the 
+     * player and a monster 
+     * @return sudu 3d view of the player and monster.
+     */
     public Image renderBattleView() {
         if(player.getCurrentRoom().getMonster() == null)
             return null;
         else
             return RenderEngine.renderBattleView(player, (Monster)player.getCurrentRoom().getMonster());
     }    
+    /**
+     * makes a image of the background for the main menu
+     * @return image.
+     */
     public Image getMainMenuBackground() {
         try
         {
@@ -479,6 +620,10 @@ public class ZuulGame implements IGameConstants {
         return null;
         
     }    
+    /**
+     * makes a image of the background for the new game
+     * @return image
+     */
     public Image getNewGameBackground() {
         try
         {
@@ -496,6 +641,10 @@ public class ZuulGame implements IGameConstants {
         }
         return null;
     }    
+    /**
+     * makes a image of the background for game and combat
+     * @return image
+     */
     public Image getGameAndCombatSceneBackground() {
         try
         {
@@ -513,6 +662,10 @@ public class ZuulGame implements IGameConstants {
         }
         return null;
     }    
+    /**
+     * makes a image of the background for the game over
+     * @return image
+     */
     public Image getGameOverSceneBackground() {
         try
         {
@@ -530,6 +683,10 @@ public class ZuulGame implements IGameConstants {
         }
         return null;
     }    
+    /**
+     * makes a image of the background for the  game won
+     * @return image
+     */
     public Image getGameWonSceneBackground() {
         try
         {
@@ -546,7 +703,11 @@ public class ZuulGame implements IGameConstants {
             System.out.println(ex.getMessage());
         }
         return null;
-    }    
+    }  
+    /**
+     * makes a image of the background for the  highscore and credits
+     * @return image
+     */
     public Image getHighscoreAndCreditsSceneBackground() {
         try
         {
@@ -563,7 +724,11 @@ public class ZuulGame implements IGameConstants {
             System.out.println(ex.getMessage());
         }
         return null;
-    }    
+    }   
+    /**
+     * makes a image of the background for the options and help
+     * @return image
+     */
     public Image getOptionsAndHelpSceneBackground() {
         try
         {
