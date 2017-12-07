@@ -60,7 +60,8 @@ public class HighScoreHandler implements Serializable, IHighScore{
      * adds a score to the array if the score value is larger than the any of 
      * the other entries. The array moves all scores with lower values one up in
      * the array and places the new score where it fits.
-     * @param score 
+     * @param score the new potential addition to the highscore array
+     * @return true if the new score is successfully added.
      */
     public boolean addScore(Score score)
     {
@@ -79,6 +80,9 @@ public class HighScoreHandler implements Serializable, IHighScore{
        return false;
     }
     
+    /**
+     * makes sure the array is sorted correctly.
+     */
    public void sortHighScore()
    {
        Arrays.sort(scores);
