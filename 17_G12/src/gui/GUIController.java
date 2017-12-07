@@ -843,10 +843,10 @@ public class GUIController implements IUI
      --------------------------------------------------------*/
     
     /**
-     * This methods is triggered when pressing the 'attack' button
-     * in the combatScene. when used it:
-     * 
-     * Attacks and damages the minion if the mi
+     * This methods is triggered when pressing the 'Attack' button
+     * in the combatScene. When used it either attacks the monster, ends
+     * the game or ends the fight. This information is then described in
+     * the gameLog.
      * 
      * @param event 
      */
@@ -873,6 +873,12 @@ public class GUIController implements IUI
         }
     }
 
+    /**
+     * This methods is triggered when pressing the 'Inventory' button in
+     * the combatScene. When used it opens the inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void combatInventoryButtonClicked(ActionEvent event)
     {
@@ -895,6 +901,13 @@ public class GUIController implements IUI
         makeInvisible(combatImage);
     }
 
+    /**
+     * This method is triggered when pressing the 'Flee' button in the
+     * combatScene. When used the player escapes combat, and exits the
+     * combatScene.
+     * 
+     * @param event 
+     */
     @FXML
     private void fleeButtonClicked(ActionEvent event)
     {
@@ -906,6 +919,12 @@ public class GUIController implements IUI
         }
     }
     
+    /**
+     * This method is triggered when pressing the 'Options' button in the
+     * combatScene. When used the options menu appears.
+     * 
+     * @param event 
+     */
     @FXML
     private void combatSceneOptionsButtonClicked(ActionEvent event)
     {
@@ -916,6 +935,12 @@ public class GUIController implements IUI
     /**------------------------------------------------------
      * -------------------gameOverScene----------------------.
      --------------------------------------------------------*/
+    /**
+     * This method is triggered when pressing the 'Go to main menu' button
+     * in the gameOverScene. When used the game goes back to the main menu.
+     * 
+     * @param event 
+     */
     @FXML
     private void gameOverSceneMainMenuButtonClicked(ActionEvent event)
     {
@@ -926,6 +951,12 @@ public class GUIController implements IUI
     /**------------------------------------------------------
      * -------------------gameWonScene-----------------------.
      --------------------------------------------------------*/
+    /**
+     * This method is triggered when pressing the 'Go to main menu' button
+     * in the gameWonScene. When used the game goes back to the main menu.
+     * 
+     * @param event 
+     */
     @FXML
     private void gameWonSceneMainMenuButtonClicked(ActionEvent event)
     {
@@ -935,49 +966,96 @@ public class GUIController implements IUI
     /**------------------------------------------------------
      * ------------------inventoryScene----------------------.
      --------------------------------------------------------*/
-    
+    /**
+     * This method is triggered when selecting the first radiobutton in
+     * the inventory. When used it selects the first item in the inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void itemOneRadioButtonClicked(ActionEvent event)
     {
         itemNumber = 0;
     }
 
+    /**
+     * This method is triggered when selecting the second radiobutton in
+     * the inventory. When used it selects the second item in the inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void itemTwoRadioButtonClicked(ActionEvent event)
     {
         itemNumber = 1;
     }
 
+    /**
+     * This method is triggered when selecting the third radiobutton in
+     * the inventory. When used it selects the third item in the inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void itemThreeRadioButtonClicked(ActionEvent event)
     {
         itemNumber = 2;
     }
 
+    /**
+     * This method is triggered when selecting the fourth radiobutton in
+     * the inventory. When used it selects the fourth item in the inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void itemFourRadioButtonClicked(ActionEvent event)
     {
         itemNumber = 3;
     }
     
+    /**
+     * This method is triggered when selecting the fifth radiobutton in
+     * the inventory. When used it selects the fifth item in the inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void itemFiveRadioButtonClicked(ActionEvent event)
     {
         itemNumber = 4;
     }
 
+    /**
+     * This method is triggered when selecting the sixth radiobutton in
+     * the inventory. When used it selects the sixth item in the inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void itemSixRadioButtonClicked(ActionEvent event)
     {
         itemNumber = 5;
     }
 
+    /**
+     * This method is triggered when selecting the seventh radiobutton in
+     * the inventory. When used it selects the seventh item in the inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void itemSevenRadioButtonClicked(ActionEvent event)
     {
         itemNumber = 6;
     }
     
+    /**
+     * This method is triggered when pressing the 'Use' button in the
+     * inventory. When used the item, that is selected, is used.
+     * 
+     * @param event 
+     */
     @FXML
     private void useInventoryButtonClicked(ActionEvent event)
     {
@@ -990,6 +1068,13 @@ public class GUIController implements IUI
         currentHealthField.setText(gameEngine.getCurrentHealthToString());
     }
 
+    /**
+     * This method is triggered when pressing the 'Drop' button in the
+     * inventory. When used the item, that is selected' is dropped out
+     * of the inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void dropInventoryButtonClicked(ActionEvent event)
     {
@@ -1001,6 +1086,13 @@ public class GUIController implements IUI
         logTextArea.setText(tempMSG);
     }
 
+    /**
+     * This method is triggered when pressing the 'Inspect' button in the
+     * inventory. When used information about the selected item is written
+     * in the gameLog.
+     * 
+     * @param event 
+     */
     @FXML
     private void inspectInventoryButtonClicked(ActionEvent event)
     {
@@ -1010,6 +1102,12 @@ public class GUIController implements IUI
     
     }
 
+    /**
+     * This method is triggered when pressing the 'Close' button in the
+     * inventory. When used the inventory is closed.
+     * 
+     * @param event 
+     */
     @FXML
     private void closeInventoryButtonClicked(ActionEvent event)
     {
@@ -1023,79 +1121,156 @@ public class GUIController implements IUI
     /**------------------------------------------------------
      * --------------------searchScene-----------------------.
      --------------------------------------------------------*/
-    
+    /**
+     * This method is triggered when selecting the first item in the
+     * search menu. When used the first item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem1RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 0;
     }
 
+    /**
+     * This method is triggered when selecting the second item in the
+     * search menu. When used the second item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem2RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 1;
     }
 
+    /**
+     * This method is triggered when selecting the third item in the
+     * search menu. When used the third item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem3RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 2;
     }
 
+    /**
+     * This method is triggered when selecting the fourth item in the
+     * search menu. When used the fourth item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem4RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 3;
     }
 
+    /**
+     * This method is triggered when selecting the fifth item in the
+     * search menu. When used the fifth item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem5RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 4;
     }
 
+    /**
+     * This method is triggered when selecting the sixth item in the
+     * search menu. When used the sixth item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem6RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 5;
     }
 
+    /**
+     * This method is triggered when selecting the seventh item in the
+     * search menu. When used the first seventh is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem7RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 6;
     }
 
+    /**
+     * This method is triggered when selecting the eigth item in the
+     * search menu. When used the eigth item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem8RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 7;
     }
 
+    /**
+     * This method is triggered when selecting the ninth item in the
+     * search menu. When used the ninth item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem9RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 8;
     }
 
+    /**
+     * This method is triggered when selecting the tenth item in the
+     * search menu. When used the tenth item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem10RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 9;
     }
 
+    /**
+     * This method is triggered when selecting the eleventh item in the
+     * search menu. When used the eleventh item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem11RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 10;
     }
 
+    /**
+     * This method is triggered when selecting the twelth item in the
+     * search menu. When used the twelth item is selected.
+     * 
+     * @param event 
+     */
     @FXML
     private void roomItem12RadioButtonClicked(ActionEvent event)
     {
         lootItemNumber = 11;
     }
     
+    /**
+     * This method is triggered when pressing the 'Use' button in the
+     * search menu. When used the selected item is used.
+     * 
+     * @param event 
+     */
     @FXML
     private void useRoomItemButtonClicked(ActionEvent event)
     {
@@ -1108,6 +1283,13 @@ public class GUIController implements IUI
         
     }
 
+    /**
+     * This method is triggered when pressing the 'Inspect' button in the
+     * search menu. When used information about the selected item is written
+     * in the gameLog.
+     * 
+     * @param event 
+     */
     @FXML
     private void inspectRoomItemButtonClicked(ActionEvent event)
     {//replace all
@@ -1115,6 +1297,12 @@ public class GUIController implements IUI
         logCombatTextArea.setText(gameEngine.getLootItemDescription(lootItemNumber));
     }
 
+    /**
+     * This method is triggered when pressing the 'Close' button in the
+     * search menu. When used, the search menu is closed.
+     * 
+     * @param event 
+     */
     @FXML
     private void closeSearchSceneButtonClicked(ActionEvent event)
     {
@@ -1123,6 +1311,13 @@ public class GUIController implements IUI
         redraw();
     }
     
+    /**
+     * This method is triggered when pressing the 'Pick up' button in the
+     * search menu. When used the selected item is picked up and put into
+     * the players inventory.
+     * 
+     * @param event 
+     */
     @FXML
     private void pickUpButtonClicked(ActionEvent event)
     {
@@ -1138,6 +1333,13 @@ public class GUIController implements IUI
     //------------------------------------------------------
     //-------------------General Methods--------------------
     //------------------------------------------------------
+    /**
+     * This is a private method, designed to change between the different
+     * scenes our game is made up off in the FXML Document.
+     * 
+     * @param from
+     * @param to 
+     */
     private void changeScene(AnchorPane from, AnchorPane to) {
         from.setVisible(false);
         from.setDisable(true);
@@ -1145,38 +1347,45 @@ public class GUIController implements IUI
         to.setDisable(false);
     }
 
+    /**
+     * This is a private method, designed to make a specific scene visible.
+     * @param popUp 
+     */
     private void makeVisible(AnchorPane popUp) {
         popUp.setVisible(true);
         popUp.setDisable(false);
     }
 
+    /**
+     * This is a private method, designed to make a specific scene invisible.
+     * @param popUp 
+     */
     private void makeInvisible(AnchorPane popUp) {
         popUp.setVisible(false);
         popUp.setDisable(true);
     }
     
+    /**
+     * This is a private method, designed to make an image visible.
+     * @param popUp 
+     */
     private void makeVisible(ImageView popUp) {
         popUp.setVisible(true);
         popUp.setDisable(false);
     }
 
+    /**
+     * This is a private method, designed to make an image invisible.
+     * @param popUp 
+     */
     private void makeInvisible(ImageView popUp) {
         popUp.setVisible(false);
         popUp.setDisable(true);
     }
-
-    private class TempString{
-        private String in;
-        public TempString(String in)
-        {
-            this.in = in;
-        }
-        public String toString()
-        {
-            return in;
-        }
-    }
     
+    /**
+     * This is a private method, that writes the players score.
+     */
     private void setEndGameInformation()
     {
         gameWonNameHolder.setText(gameEngine.getName());
@@ -1184,7 +1393,10 @@ public class GUIController implements IUI
         gameWonDifficulty.setText(gameEngine.getDifficultyString());
     }
 
-    
+    /**
+     * This is a private method, that declares all the various radiobuttons
+     * in the game.
+     */
     private void createRadioArrays()
     {
         inventoryRadioButtons = new RadioButton[7];
@@ -1235,6 +1447,11 @@ public class GUIController implements IUI
         }
     }
     
+    /**
+     * This method is used to achieve layered architecture, by glueing the
+     * business layer to the presentation layer.
+     * @param gameEngine 
+     */
     @Override
     public void injectGameEngine(IGameEngine gameEngine) {
         this.gameEngine = gameEngine;
@@ -1242,6 +1459,10 @@ public class GUIController implements IUI
 
     }
     
+    /**
+     * This is a private method, 
+     * that is used to insert the various images to the GUI.
+     */
     private void createBackgrounds()
     {
         mainMenuBackgroundImage.setImage(gameEngine.getMainMenuBackground());
@@ -1256,15 +1477,20 @@ public class GUIController implements IUI
         combatSceneImage.setImage(gameEngine.getGameAndCombatSceneBackground());
     }
     
+    /**
+     * This is a private method,
+     * that is used to render (visuals of the game) 
+     * the minimap and the labyrinth.
+     */
     private void redraw()
     {
         if(isMapView)
         {
-        labyrinthImage.setImage(gameEngine.renderMiniMapView());
+            labyrinthImage.setImage(gameEngine.renderMiniMapView());
         }
         else
         {
-        labyrinthImage.setImage(gameEngine.renderMazeView());
+            labyrinthImage.setImage(gameEngine.renderMazeView());
         }
         combatImage.setImage(gameEngine.renderBattleView());
     }
