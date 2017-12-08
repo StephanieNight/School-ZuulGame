@@ -295,10 +295,12 @@ public class GUIController implements IUI
      */
     @FXML
     private void loadGameButtonClicked(ActionEvent event) {
-        gameEngine.loadGame();
-        changeScene(mainMenuScene, gameScene);
-        createRadioArrays();
-        redraw();
+        if(gameEngine.loadGame())
+        {
+            changeScene(mainMenuScene, gameScene);
+            createRadioArrays();
+            redraw();
+        }        
     }
 
     /**
