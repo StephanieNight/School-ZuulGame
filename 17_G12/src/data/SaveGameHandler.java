@@ -5,6 +5,7 @@
  */
 package data;
 
+import static acquaintance.IGameConstants.FILENAME_HIGHSCORE_LIST;
 import acquaintance.IHighScore;
 import acquaintance.ISaveGameHandler;
 import acquaintance.ISavegameInstance;
@@ -48,7 +49,7 @@ public class SaveGameHandler implements  ISaveGameHandler{
   
     @Override
     public void saveHighScore(IHighScore sa) throws IOException { 
-        OutputStream outStream = new FileOutputStream(FILENAME_SAVEGAME);    
+        OutputStream outStream = new FileOutputStream(FILENAME_HIGHSCORE_LIST);    
         ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
         fileObjectOut.writeObject(sa);
         fileObjectOut.close();
@@ -57,7 +58,7 @@ public class SaveGameHandler implements  ISaveGameHandler{
 
     @Override
     public IHighScore loadHighScore() throws IOException, ClassNotFoundException {
-        InputStream inStream = new FileInputStream(FILENAME_SAVEGAME);
+        InputStream inStream = new FileInputStream(FILENAME_HIGHSCORE_LIST);
         ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);
         IHighScore sa = (IHighScore) fileObjectIn.readObject();
         fileObjectIn.close();
