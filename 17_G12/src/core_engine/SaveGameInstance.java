@@ -17,6 +17,7 @@ public class SaveGameInstance implements ISavegameInstance, Serializable {
     private Player player;
     private ArrayList<Monster> monsters;
     private int difficulty;
+    private ScoreTracker scoretracker;
     /**
      * Creates a empty savegame instance
      */
@@ -30,12 +31,14 @@ public class SaveGameInstance implements ISavegameInstance, Serializable {
      * @param monsters list of monsters.
      * @param difficulty the games difficulty.
      */
-    public SaveGameInstance(Room[][] Maze,Player player,ArrayList<Monster> monsters, int difficulty )
+    public SaveGameInstance(Room[][] Maze,Player player,ArrayList<Monster> monsters,
+            int difficulty, ScoreTracker scoretracker )
     {
       this.maze = Maze;
       this.difficulty = difficulty;
       this.monsters = monsters;
       this.player = player;
+      this.scoretracker = scoretracker;
     }    
     /**
      * Gets the maze
@@ -65,4 +68,8 @@ public class SaveGameInstance implements ISavegameInstance, Serializable {
     public int getDifficulty() {
         return difficulty;
     }
+
+    public ScoreTracker getScoretracker() {
+        return scoretracker;
+    }    
 }

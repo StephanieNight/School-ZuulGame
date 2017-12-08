@@ -66,7 +66,7 @@ public class ZuulGame implements IGameConstants {
         
         try
         {
-            SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsters,difficulty);
+            SaveGameInstance sa = new SaveGameInstance(labyrinth.getMaze(),player,monsters,difficulty,scoreTracker);
             savegameHandler.saveGame(sa);
         }
         catch (IOException ex) {
@@ -83,10 +83,13 @@ public class ZuulGame implements IGameConstants {
         {
             SaveGameInstance sa = (SaveGameInstance)savegameHandler.loadGame();            
             //startNewGame(sa.getDifficulty(),sa.getPlayer().getName());
-            labyrinth.loadMaze((Room[][])sa.getMaze());
-            monsters.clear();
-            monsters.addAll(sa.getMonsters());
-            player = (Player)sa.getPlayer();
+            this.labyrinth.loadMaze((Room[][])sa.getMaze());
+            this.monsters.clear();
+            this.monsters.addAll(sa.getMonsters());
+            this.player = (Player)sa.getPlayer();
+            this.difficulty = sa.getDifficulty();
+            this.itemGenerator = new ItemGenerator(labyrinth, message);
+            this.scoreTracker = sa.getScoretracker();
             if (isDebug)
                 System.out.println("Loaded old Game"); 
             return true;
