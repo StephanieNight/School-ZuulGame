@@ -127,12 +127,12 @@ public class Labyrinth
         for (int i = 0; i < this.size; i++) {
                 // draw the north edge
                 for (int j = 0; j < this.size; j++) {
-                        System.out.print(!maze[j][i].hasExit(DIR.N.direction)  ? "+---" : "+   ");
+                        System.out.print(!maze[j][i].hasExit(Direction.N.direction)  ? "+---" : "+   ");
                 }
                 System.out.println("+");
                 // draw the west edge
                 for (int j = 0; j < this.size; j++) {
-                        System.out.print(!maze[j][i].hasExit(DIR.W.direction) ? "| " : "  ");
+                        System.out.print(!maze[j][i].hasExit(Direction.W.direction) ? "| " : "  ");
                         System.out.print(maze[j][i].getMonsterMapCode());
                         System.out.print(" ");
 
@@ -148,7 +148,7 @@ public class Labyrinth
     private void startMazeGeneration()
     {
         maze[0][0].setIsExit(true);
-        DIR dir = DIR.S;
+        Direction dir = Direction.S;
         // Add Exit to Current Room
         int nextX = dir.dx;      // gets X for the next Room 
         int nextY = dir.dy;      // gets Y for the nex Room
@@ -160,9 +160,9 @@ public class Labyrinth
     }
     private void generateMaze(int currentX, int currentY) 
     {
-        DIR[] dirs = DIR.values(); // gets all 4 enums for direction
+        Direction[] dirs = Direction.values(); // gets all 4 enums for direction
         Collections.shuffle(Arrays.asList(dirs)); // mixes them up to get a reandom direction.
-        for (DIR dir : dirs) // loops through each posible direction
+        for (Direction dir : dirs) // loops through each posible direction
         {
             
             int nextX = currentX + dir.dx;      // gets X for the next Room 
@@ -235,15 +235,15 @@ public class Labyrinth
         return false;
         
     }
-    public enum DIR 
+    public enum Direction 
     {
         N("north", 0, -1), S("south", 0, 1), E("east", 1, 0), W("west", -1, 0);
         public final String direction; //representation of direction. 
         public final int dx;  // Direction in the array out of the x axis 
         public final int dy;  // Direction in the array out of the y axis
-        public DIR opposite;  // deklares the opposite direction for ref. 
-        public DIR left;
-        public DIR right;
+        public Direction opposite;  // deklares the opposite direction for ref. 
+        public Direction left;
+        public Direction right;
         // use the static initializer to resolve forward references
         static {
                 N.opposite = S;
@@ -259,22 +259,22 @@ public class Labyrinth
                 E.right = S;
                 W.right = N;
         }
-        private DIR(String dir, int dx, int dy)
+        private Direction(String dir, int dx, int dy)
         {
                 this.direction = dir;
                 this.dx = dx;
                 this.dy = dy;
         }
-        public static DIR getDir(String dir)
+        public static Direction getDir(String dir)
         {
-            if(dir.equals(DIR.N.direction))
-                 return DIR.N;
-            if(dir.equals(DIR.E.direction))
-                 return DIR.E;
-            if(dir.equals(DIR.W.direction))
-                 return DIR.W;
-            if(dir.equals(DIR.S.direction))
-                 return DIR.S;
+            if(dir.equals(Direction.N.direction))
+                 return Direction.N;
+            if(dir.equals(Direction.E.direction))
+                 return Direction.E;
+            if(dir.equals(Direction.W.direction))
+                 return Direction.W;
+            if(dir.equals(Direction.S.direction))
+                 return Direction.S;
             return null;               
         }
     };   

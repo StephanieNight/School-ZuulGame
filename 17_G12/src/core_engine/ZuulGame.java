@@ -281,13 +281,13 @@ public class ZuulGame implements IGameConstants {
     //-----------------------------------------------------------
    /**
     * the legacy go room from the zuul framework, modified to have a Boolean return
-    * this is so that then player tryes to go somewhere that it cant, you dont 
-    * miss a turn.allso command is removed, and replaced with a DIR enum for the 
-    * direction the player wishes to go in.
+ this is so that then player tryes to go somewhere that it cant, you dont 
+ miss a turn.allso command is removed, and replaced with a Direction enum for the 
+ direction the player wishes to go in.
     * @param dir direction that wishes to be moved
     * @return if the move woas succesfull
     */
-    private boolean goRoom(Labyrinth.DIR dir) {       
+    private boolean goRoom(Labyrinth.Direction dir) {       
         Room nextRoom = player.getCurrentRoom().getExit(dir.direction);        
         if (nextRoom == null) {
             if (isDebug)

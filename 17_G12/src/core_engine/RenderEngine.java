@@ -20,10 +20,10 @@ import javax.imageio.ImageIO;
  */
 public class RenderEngine implements IGameConstants{
     public static Image renderMiniMapView(Room[][] maze) {
-        String north = Labyrinth.DIR.N.direction;
-        String south = Labyrinth.DIR.S.direction;
-        String east = Labyrinth.DIR.E.direction;
-        String west = Labyrinth.DIR.W.direction;
+        String north = Labyrinth.Direction.N.direction;
+        String south = Labyrinth.Direction.S.direction;
+        String east = Labyrinth.Direction.E.direction;
+        String west = Labyrinth.Direction.W.direction;
         try {             
         int mazeSize = maze.length;
             //set basic canves
@@ -255,7 +255,7 @@ public class RenderEngine implements IGameConstants{
                 
                 // </editor-fold>  
                 // <editor-fold defaultstate="collapsed" desc="draw Door.">
-                if(nextRoom.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
+                if(nextRoom.hasDoor(Labyrinth.Direction.S.direction))                 // checks if there is a door in the room.
                 {                       
                     tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[3])); // iner dead end
                     graph.drawImage(tile, 0,0,null);  // draws next room template;
@@ -264,7 +264,7 @@ public class RenderEngine implements IGameConstants{
                 }    
                 Room NextSideR_Room = nextRoom.getExit(player.getFacing().right.direction);
                 if(NextSideR_Room != null)
-                    if(NextSideR_Room.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
+                    if(NextSideR_Room.hasDoor(Labyrinth.Direction.S.direction))                 // checks if there is a door in the room.
                     {                       
                         tile =ImageIO.read(new File(DIR_MAZEVIEW_LABYRITH+FILENAME_PICTURES_MAZE[12])); // iner dead end
                         graph.drawImage(tile, 0,0,null);  // draws next room template;
@@ -390,7 +390,7 @@ public class RenderEngine implements IGameConstants{
             {
                 if (isDebug)
                     System.out.println("Found a Room to the rigth (Højre) from current room");
-                if(SideR_Room.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
+                if(SideR_Room.hasDoor(Labyrinth.Direction.S.direction))                 // checks if there is a door in the room.
                 {
                     if (isDebug)
                         System.out.println("drawn a Door");
@@ -404,7 +404,7 @@ public class RenderEngine implements IGameConstants{
             {
                 if (isDebug)
                     System.out.println("Found a Room to the Left (Venstre) from current room");
-                if(SideL_Room.hasDoor(Labyrinth.DIR.S.direction))                 // checks if there is a door in the room.
+                if(SideL_Room.hasDoor(Labyrinth.Direction.S.direction))                 // checks if there is a door in the room.
                 {
                     if (isDebug)
                         System.out.println("drawn a Door");
@@ -416,7 +416,7 @@ public class RenderEngine implements IGameConstants{
             }
             if(nextRoom != null)
             {
-                if(nextRoom.hasDoor(Labyrinth.DIR.S.direction))
+                if(nextRoom.hasDoor(Labyrinth.Direction.S.direction))
                 {
                     if (isDebug)
                         System.out.println("drawn a Door");

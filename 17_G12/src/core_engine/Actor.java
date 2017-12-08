@@ -27,7 +27,7 @@ public abstract class Actor implements Serializable
     private int weapon = 0;
     private int armor = 0;
     private int shield = 0;
-    private Labyrinth.DIR facing;
+    private Labyrinth.Direction facing;
     private int swiftnessCounter = 1;
     private int invisible = 0;
     /**
@@ -48,7 +48,7 @@ public abstract class Actor implements Serializable
         this.MAP_CODE = mapCode;
         this.currentHealth = getModufiedHealthPoint();
         this.message = message;
-        this.facing = Labyrinth.DIR.S;        
+        this.facing = Labyrinth.Direction.S;        
         this.level = level;
     }
     /**
@@ -210,14 +210,14 @@ public abstract class Actor implements Serializable
      * gets the direction Enum the actor is looking ing
      * @return a Enum representation of North south east and west.
      */
-    public Labyrinth.DIR getFacing(){
+    public Labyrinth.Direction getFacing(){
         return this.facing;
     }
     /**
      * set the actors direction. represented in north south east and west.
      * @param facing the new direction for the actor
      */
-    public void setFacing(Labyrinth.DIR facing){
+    public void setFacing(Labyrinth.Direction facing){
         this.facing = facing;
     }    
     /**

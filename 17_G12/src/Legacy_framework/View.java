@@ -18,7 +18,7 @@ public class View {
     
     private Player player;
 
-    public void View(Labyrinth.DIR facing){
+    public void View(Labyrinth.Direction facing){
         int ID = 0;
         /* ID is effectively used as the first 6 digits in binary.
         1 means door exists, each 0 means it doesn't.
