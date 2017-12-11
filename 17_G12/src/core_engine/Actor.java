@@ -92,13 +92,6 @@ public abstract class Actor implements Serializable
         }
     }
     /**
-     * get the default health points
-     * @return default health points
-     */
-    public int getDefaultHealthPoint() {
-        return DEFAULT_HEALTH_POINTS;
-    }
-    /**
      * in this metode you get the modified heathPoint back the modified 
      * HeahtPoint is the DefaultHealthPoint + (the level * 10) therefore the 
      * higher the level the higher the healthpoint is there value 10 can be
@@ -107,13 +100,6 @@ public abstract class Actor implements Serializable
      */
     public int getModufiedHealthPoint() {
         return maximumHealthPoint = DEFAULT_HEALTH_POINTS+(level*10);
-    }
-    /**
-     * get he default defence points for the actor
-     * @return default defence
-     */
-    public int getDefaultDefense() {
-        return DEFAULT_DEFENSE;
     }
     /**
      * in this metode you get the modified defense back the modified defense
@@ -131,13 +117,6 @@ public abstract class Actor implements Serializable
      */
     public String getName() {
         return NAME;
-    }
-    /**
-     * 
-     * @return default damage
-     */    
-    public int getDefaultDamgeOutput() {
-        return DEFAULT_DAMGE_OUTPUT;
     }
     /**
      * in this metode you get the modified damgeOutout back the modified 
