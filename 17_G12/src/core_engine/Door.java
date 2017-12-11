@@ -16,10 +16,10 @@ public class Door implements Serializable{
     /**
      * contructor to create a door it is posible to state if the door is locked
      * by default or not
-     * @param Locked is the door locked
+     * @param locked is the door locked
      */
-    public Door(boolean Locked) {        
-        this.locked = Locked;
+    public Door(boolean locked) {        
+        this.locked = locked;
     }
     /**
      * unluckeds the door
