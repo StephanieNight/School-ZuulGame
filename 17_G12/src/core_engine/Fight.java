@@ -9,7 +9,7 @@ package core_engine;
  * @author collaboration between Ahmet, Malte and Nicolai.
  */
 public class Fight {
-    private boolean survived;
+
     private final Message message;
     /**
     * This is the constructor for the class and automatically runs the fighting 
@@ -20,14 +20,6 @@ public class Fight {
     {
        this.message = message;
    }
-    /**
-     * did the player survive the battle
-     * @return true if player is not dead.
-     */
-    public boolean didSurvive() {
-        return survived;
-    }    
-    
     /**
     * This is a method to resolve the attack. First it checks if the attack hits
     * by rolling a random number between 0 and 99. If the number is higher than

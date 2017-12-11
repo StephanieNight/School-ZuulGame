@@ -265,18 +265,7 @@ public class Labyrinth
                 this.dx = dx;
                 this.dy = dy;
         }
-        public static Direction getDir(String dir)
-        {
-            if(dir.equals(Direction.N.direction))
-                 return Direction.N;
-            if(dir.equals(Direction.E.direction))
-                 return Direction.E;
-            if(dir.equals(Direction.W.direction))
-                 return Direction.W;
-            if(dir.equals(Direction.S.direction))
-                 return Direction.S;
-            return null;               
-        }
+
     };   
     public Room[][] getMaze()
     {
