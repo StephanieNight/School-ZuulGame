@@ -23,7 +23,7 @@
 
 <AnchorPane fx:id="defaultScene" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
-      <AnchorPane fx:id="mainMenuScene" disable="true" visible="false">
+      <AnchorPane fx:id="mainMenuScene">
          <children>
             <ImageView fx:id="mainMenuBackgroundImage" pickOnBounds="true" preserveRatio="true" />
             <GridPane prefHeight="480.0" prefWidth="640.0">
@@ -526,7 +526,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="helpScene" prefHeight="480.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="helpScene" disable="true" prefHeight="480.0" prefWidth="640.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="helpSceneBackgroundImage" fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" />
             <GridPane layoutX="166.0" layoutY="150.0" prefHeight="480.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
