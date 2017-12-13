@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,9 +21,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="defaultScene" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
+<AnchorPane fx:id="defaultScene" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
-      <AnchorPane fx:id="mainMenuScene">
+      <AnchorPane fx:id="mainMenuScene" disable="true" visible="false">
          <children>
             <ImageView fx:id="mainMenuBackgroundImage" pickOnBounds="true" preserveRatio="true" />
             <GridPane prefHeight="480.0" prefWidth="640.0">
@@ -520,7 +526,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="helpScene" disable="true" prefHeight="480.0" prefWidth="640.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="helpScene" prefHeight="480.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="helpSceneBackgroundImage" fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" />
             <GridPane layoutX="166.0" layoutY="150.0" prefHeight="480.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -538,7 +544,7 @@
                         <Font size="35.0" />
                      </font>
                   </Label>
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="test&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet&#10;hjælp med spillet" GridPane.rowIndex="1" />
+                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Help is not yet fully implemented. &#10;If you need help you can refer to the report on page&#10;25 - 27&#10;Help is expected to be inplemented in World of Zuul 2.0&#10;which has an expected release date in 2020" GridPane.rowIndex="1" />
                   <Button fx:id="backToOptionsButton" mnemonicParsing="false" onAction="#backtoOptionsButtonClicked" text="Back to Options" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                </children>
             </GridPane>
