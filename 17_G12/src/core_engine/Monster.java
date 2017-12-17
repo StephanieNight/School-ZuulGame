@@ -18,7 +18,7 @@ public class Monster extends Actor
      * @param name the name of the monster
   @param defaultHealthpoint starting health points before adding extra from levels
      * @param defaultDefense starting defense before adding extra from levels
-     * @param DefaultDamgeOutput starting damage done before adding extra from levels
+     * @param defaultDamgeOutput starting damage done before adding extra from levels
      * @param mapCode the char used to show the monster, is used in some methods 
      * to distinguish between normal and boss monsters
      * @param level the level the monsters will be.

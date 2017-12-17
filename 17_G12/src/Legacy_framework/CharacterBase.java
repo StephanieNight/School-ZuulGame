@@ -79,7 +79,6 @@ public class CharacterBase
     
     /**
      * getter for characterName
-     * @param
      * @return Character.characterName
      */
     public String getCharacterName()
@@ -98,7 +97,6 @@ public class CharacterBase
     
     /**
      * getter for description
-     * @param character
      * @return 
      */
     public String getDiscription ()
